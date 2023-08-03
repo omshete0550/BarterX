@@ -9,8 +9,8 @@
 }
 
 .LoginPageInnerContainer .ImageContianer {
-  width: 25%;
-  background-color: #e1dfec;
+  width: 35%;
+  background-color: #0e47a1;
   min-height: 100%;
   padding: 5%;
   display: flex;
@@ -53,11 +53,11 @@
 }
 
 .LoginPageInnerContainer .LoginFormContainer .inputContainer {
-  color: #3f3f45;
+  color: #5b80d1;
   margin: 20px 0px;
 }
 .LoginPageInnerContainer .LoginFormContainer .inputContainer i {
-  color: #3f3f45;
+  color: #5b80d1;
   font-size: 1.2em;
   margin-right: 0.5em;
   margin-top: 0.1em;
@@ -80,7 +80,7 @@
 
 .LoginPageInnerContainer .LoginFormContainer .inputContainer .input {
   display: block;
-  width: calc(100% - 20px);
+  width: calc(100% - 0px);
   font-size: 15px;
   padding: 10px;
   border: 1px solid #d6d7db;
@@ -88,7 +88,7 @@
   margin-top: 5px;
   outline: 0px !important;
   background-color: #d6d7db;
-  color: #3f3f45;
+  color: #0e47a1;
 }
 
 .LoginPageInnerContainer .LoginFormContainer .OptionsContainer {
@@ -110,7 +110,7 @@
   height: 15px;
   margin: 0px;
   display: block;
-  border: 1px solid #d6d7db;
+  border: 1px solid #d6d7db;  
 }
 
 .LoginPageInnerContainer .LoginFormContainer .checkboxContainer {
@@ -119,10 +119,10 @@
   align-items: center;
 }
 
-.LoginPageInnerContainer .LoginFormContainer .checkboxContainer span {
+.LoginPageInnerContainer .LoginFormContainer .checkboxContainer label {
   display: block;
   padding: 0px 5px;
-  color: #3f3f45;
+  color: #000;
 }
 
 .LoginPageInnerContainer .LoginFormContainer .ForgotPasswordLink {
@@ -138,14 +138,18 @@
   border-radius: 20px;
   font-weight: bold;
   color: white;
-  background-color: #041239;
+  background-color: #0e47a1;
   border: 0px;
   outline: 0px;
   cursor: pointer;
 }
 
 .LoginFormContainer .LoginFormInnerContainer .LoginButton:active {
-  background-color: #4520ff;
+  background-color: #0e47a1;
+}
+.HaveAnAcc{
+  margin-top: 1em;
+  padding: 0 5px;
 }
 
 @media only screen and (max-width: 1200px) {

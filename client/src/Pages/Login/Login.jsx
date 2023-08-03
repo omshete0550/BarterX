@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../Login/Login.css';
+import { TfiEmail, TfiLock } from 'react-icons/tfi';
 
 const Login = () => {
 
@@ -20,25 +21,37 @@ const Login = () => {
               <form>
                 <div className="inputContainer">
                   <label className="label" htmlFor="emailAddress">
-                    <img src="https://i.imgur.com/Hn13wvm.png" className="labelIcon" />
+                    <i><TfiEmail /></i>
                     <span>Email Address*</span>
                   </label>
                   <input type="email" className="input" id="emailAddress" name='email'  placeholder="Enter your Email Address"/>
                 </div>
                 <div className="inputContainer">
                   <label className="label" htmlFor="emailAddress">
-                    <img src="https://i.imgur.com/g5SvdfG.png" className="labelIcon" />
+                    <i><TfiLock /></i>
                     <span>Password*</span>
                   </label>
                   <input type="password" className="input" id="emailAddress" name='password' placeholder="Enter your Password" />
                 </div>
                 <div className="OptionsContainer">
                   <div className="checkboxContainer">
-                    <span> Don't have an account? <Link to="/register">Sign Up</Link> </span>
+                    <input type="checkbox" id="RememberMe" className="checkbox" /> 
+                    <label for="RememberMe">Remember me</label>
+                  </div>
+                    <a href="#" className="ForgotPasswordLink">Forgot Password?</a>
+                </div>
+                {/* <div className="OptionsContainer">
+                  <div className="checkboxContainer">
+                    <span> Don't have an account? <Link to="/register" style={{ color: '#5b80d1' }}>Sign Up</Link> </span>
                   </div>
                   <a href="#" className="ForgotPasswordLink">Forgot Password?</a>
-                </div>
+                </div> */}
                 <button className="LoginButton">Login</button>
+                <div className='HaveAnAcc'>
+                  <span> Don't have an account? {" "}
+                    <Link to="/register" style={{ color: '#5b80d1' }}>Sign Up</Link> 
+                  </span>
+                </div>
               </form>
 
             </div>

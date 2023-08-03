@@ -49,11 +49,16 @@ const Register = () => {
                 </div>
                 <div className="OptionsContainer">
                   <div className="checkboxContainer">
-                    <span> Have an account? <Link to="/login">Sign In</Link> </span>
+                    <input type="checkbox" id="RememberMe" className="checkbox" /> 
+                    <label for="RememberMe">Remember me</label>
                   </div>
-                  {/* <a href="#" className="ForgotPasswordLink">Forgot Password?</a> */}
                 </div>
                 <button className="LoginButton">Register</button>
+                <div className='HaveAnAcc'>
+                  <span> Already have an account? {" "}
+                    <Link to="/login" style={{ color: '#5b80d1' }}>Sign In</Link> 
+                  </span>
+                </div>
               </form>
 
             </div>
