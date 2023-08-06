@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Login/Login.css";
 import { TfiEmail, TfiLocationPin, TfiLock, TfiUser } from "react-icons/tfi";
 
 const Register = () => {
-  const namePattern = /^[A-Za-z\s]+$/;
+  const [username, setUsername] = useState("");
+  const [isUsernameCorrect, setIsUsernameCorrect] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const [passwordStrength, setPasswordStrength] = useState("");
 
-    console.log("success");
+  const checkPasswordStrength = (password) => {
+    const strongRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if (strongRegex.test(password)) {
+      setPasswordStrength("strong");
+    } else {
+      setPasswordStrength("weak");
+    }
+  };
+
+  const onChange = (e) => {
+    const newUsername = e.target.value;
+    setUsername(newUsername);
+    usernameValidator(newUsername);
+  };
+
+  const usernameValidator = (username) => {
+    var usernameRegex =
+      /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/;
+    if (usernameRegex.test(username)) {
+      setIsUsernameCorrect(true);
+    } else {
+      setIsUsernameCorrect(false);
+    }
+    console.log(isUsernameCorrect);
   };
 
   return (
@@ -26,7 +50,7 @@ const Register = () => {
               <header className="subHeader">
                 Welcome to <b>BarterX!</b> Please Enter your Details
               </header>
-              <form onSubmit={handleSubmit}>
+              <form>
                 <div className="inputContainer">
                   <label className="label" htmlFor="Name">
                     <i>
@@ -40,7 +64,8 @@ const Register = () => {
                     id="name"
                     placeholder="Enter your name"
                     name="name"
-                    pattern={namePattern}
+                    value={username || ""}
+                    onChange={onChange}
                     required
                   />
                 </div>
@@ -61,7 +86,7 @@ const Register = () => {
                   />
                 </div>
                 <div className="inputContainer">
-                  <label className="label" htmlFor="emailAddress">
+                  <label className="label" htmlFor="password">
                     <i>
                       <TfiLock />
                     </i>
@@ -74,8 +99,16 @@ const Register = () => {
                     name="password"
                     placeholder="Enter your Password"
                     required
+                    onChange={(e) => checkPasswordStrength(e.target.value)}
                   />
                 </div>
+                {passwordStrength && (
+                  <div className={`passwordStrength ${passwordStrength}`}>
+                    {passwordStrength === "strong"
+                      ? "Strong Password"
+                      : "Weak Password"}
+                  </div>
+                )}
                 <div className="inputContainer">
                   <label className="label" htmlFor="Name">
                     <i>
@@ -89,8 +122,9 @@ const Register = () => {
                     id="pincode"
                     placeholder="Enter your pincode"
                     name="pincode"
-                    min={100000}
-                    max={999999}
+                    pattern="[0-9]{4}"
+                    minLength={6}
+                    maxLength={6}
                     required
                   />
                 </div>
