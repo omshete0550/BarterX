@@ -46,7 +46,7 @@ const Register = () => {
 
           <div className="LoginFormContainer">
             <div className="LoginFormInnerContainer">
-              <header className="header">Register Now</header>
+              <header className="Loginheader">Register Now</header>
               <header className="subHeader">
                 Welcome to <b>BarterX!</b> Please Enter your Details
               </header>
@@ -143,7 +143,7 @@ const Register = () => {
                   <span>
                     {" "}
                     Already have an account?{" "}
-                    <Link to="/login" style={{ color: "#5b80d1" }}>
+                    <Link to="/login" style={{ color: "#00a182" }}>
                       Sign In
                     </Link>
                   </span>

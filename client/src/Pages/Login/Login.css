@@ -10,7 +10,7 @@
 
 .LoginPageInnerContainer .ImageContianer {
   width: 50%;
-  background-color: #8fc1e3;
+  background-color: #00a181;
   min-height: 100%;
   padding: 5%;
   display: flex;
@@ -42,24 +42,24 @@
   margin-bottom: 30px;
 }
 
-.LoginPageInnerContainer .LoginFormContainer .header {
+.LoginPageInnerContainer .LoginFormContainer .Loginheader {
   font-size: 48px;
   font-weight: 500;
-  color: #041239;
+  color: #004651;
 }
 
 .LoginPageInnerContainer .LoginFormContainer .subHeader {
-  color: #8fc1e3;
+  color: #00a181;
   margin-top: 5px;
   margin-bottom: 40px;
 }
 
 .LoginPageInnerContainer .LoginFormContainer .inputContainer {
-  color: #31708e;
+  color: #00a182;
   margin: 20px 0px;
 }
 .LoginPageInnerContainer .LoginFormContainer .inputContainer i {
-  color: #31708e;
+  color: #00a182;
   font-size: 1.2em;
   margin-right: 0.5em;
   margin-top: 0.1em;
@@ -90,7 +90,7 @@
   margin-top: 5px;
   outline: 0px !important;
   background-color: #d6d7db;
-  color: #31708e;
+  color: #00a182;
 }
 .LoginPageInnerContainer .LoginFormContainer .OptionsContainer {
   display: flex;
@@ -139,14 +139,14 @@
   border-radius: 20px;
   font-weight: bold;
   color: white;
-  background-color: #31708e;
+  background-color: #00a182;
   border: 0px;
   outline: 0px;
   cursor: pointer;
 }
 
 .LoginFormContainer .LoginFormInnerContainer .LoginButton:active {
-  background-color: #31708e;
+  background-color: #00a182;
 }
 .HaveAnAcc {
   margin-top: 1em;
@@ -186,13 +186,13 @@
 }
 .PopupMainContent h1 {
   font-size: 1.5em;
-  color: #31708e;
+  color: #00a182;
 }
 .close {
   width: 25px;
   height: 25px;
-  background-color: #31708e;
-  border: 1px solid #31708e;
+  background-color: #00a182;
+  border: 1px solid #00a182;
   border-radius: 25%;
   color: #fff;
   font-size: 2rem;
@@ -202,13 +202,13 @@
   align-items: center;
 }
 .PopupHeading {
-  color: #31708e;
+  color: #00a182;
   font-weight: 400;
   font-size: 1em;
   padding-bottom: 12px;
 }
 .PopupDesc {
-  color: #31708e;
+  color: #00a182;
   font-weight: 400;
   font-size: 1em;
   padding-bottom: 12px;
@@ -223,7 +223,7 @@
   margin-top: 5px;
   outline: 0px !important;
   background-color: #d6d7db;
-  color: #31708e;
+  color: #00a182;
   margin-bottom: 12px;
 }
 .forgotSubmitBtn {
@@ -235,7 +235,7 @@
   border-radius: 5px;
   font-weight: bold;
   color: white;
-  background-color: #31708e;
+  background-color: #00a182;
   border: 0px;
   outline: 0px;
   cursor: pointer;
@@ -245,14 +245,14 @@
   padding-bottom: 0;
 }
 .ResendOtp h3 {
-  color: #31708e;
+  color: #00a182;
   font-size: 1em;
   font-weight: 400;
 }
 .ResendOtp span {
   text-decoration: underline;
   font-weight: 400;
-  color: #31708e;
+  color: #00a182;
   font-size: 1em;
 }
 /*  */
@@ -303,7 +303,7 @@
 }
 
 .LoginPageContainer::-webkit-scrollbar-thumb {
-  background: #041239;
+  background: #004651;
 }
 
 .LoginPageContainer::-webkit-scrollbar-thumb:hover {

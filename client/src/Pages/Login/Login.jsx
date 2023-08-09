@@ -25,7 +25,7 @@ const Login = () => {
 
           <div className="LoginFormContainer">
             <div className="LoginFormInnerContainer">
-              <header className="header">Log in</header>
+              <header className="Loginheader">Log in</header>
               <header className="subHeader">
                 Welcome to <b>BarterX!</b> Please Enter your Details
               </header>
@@ -84,7 +84,7 @@ const Login = () => {
                   <span>
                     {" "}
                     Don't have an account?{" "}
-                    <Link to="/register" style={{ color: "#31708e" }}>
+                    <Link to="/register" style={{ color: "#00a182" }}>
                       Sign Up
                     </Link>
                   </span>
