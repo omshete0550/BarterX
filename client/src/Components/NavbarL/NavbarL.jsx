@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaArrowLeft, FaSearch, FaUser } from "react-icons/fa";
+import { FaArrowRight, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./NavbarL.css";
 import "../Navbar/Navbar.css";
@@ -51,9 +51,9 @@ const NavbarL = () => {
             BarterX
           </Link>
           <div className="burger" id="burger">
-            <span className="burger-line"></span>
-            <span className="burger-line"></span>
-            <span className="burger-line"></span>
+            <span className="burgerLine1"></span>
+            <span className="burgerLine2"></span>
+            <span className="burgerLine3"></span>
           </div>
           <span className="overlay"></span>
           <div className={`menu ${isMenuActive ? "is-active" : ""}`} id="menu">
@@ -105,10 +105,10 @@ const NavbarL = () => {
                 <Link className="menu-link" to="/register">
                   <div className="loginContainerNav">
                     <button className="loginBtnNav">
-                      <i>
-                        <FaUser />
-                      </i>
                       <p className="text">Sign Up/Login</p>
+                      <i>
+                        <FaArrowRight />
+                      </i>
                     </button>
                   </div>
                 </Link>

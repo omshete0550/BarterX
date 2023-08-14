@@ -58,7 +58,7 @@ button {
   text-transform: unset;
 }
 
-img,
+/* img,
 video {
   display: block;
   max-width: 100%;
@@ -70,7 +70,7 @@ img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-}
+} */
 
 .section {
   margin: 0 auto;
@@ -91,7 +91,7 @@ img {
   line-height: 1.5;
   letter-spacing: -1px;
   text-transform: uppercase;
-  color: var(--color-blue-200);
+  color: rgb(55, 93, 187);
   z-index: 99999;
 }
 
@@ -103,8 +103,8 @@ img {
   height: auto;
   z-index: 10;
   margin: 0 auto;
-  background-color: #004651;
-  box-shadow: var(--shadow-medium);
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(220, 220, 220, 0.5) 0px 8px 16px;
 }
 
 .navbar {
@@ -142,15 +142,18 @@ img {
 }
 .menu-link {
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 500;
   line-height: 1.5;
   text-transform: uppercase;
-  color: #fff;
+  color: #000;
   transition: all 0.3s ease;
 }
 .menu-link:hover {
-  color: var(--color-blue-200);
+  opacity: 1;
+  transition: all 1s ease 0s;
+  border-bottom: 3px solid rgb(55, 93, 187);
+  font-weight: 500;
 }
 @media only screen and (min-width: 1023px) {
   .menu {
@@ -177,7 +180,6 @@ img {
     margin-left: 2rem;
   }
 }
-
 .burger {
   position: relative;
   display: block;
@@ -189,12 +191,32 @@ img {
   outline: none;
   visibility: visible;
 }
-.burger-line {
+.burgerLine1 {
+  display: block;
+  cursor: pointer;
+  width: 50%;
+  height: 2px;
+  margin: 6px 0;
+  transform: rotate(0deg);
+  border-radius: 1rem;
+  background: var(--color-black);
+}
+.burgerLine2 {
   display: block;
   cursor: pointer;
   width: 100%;
   height: 2px;
-  margin: 6px auto;
+  margin: 6px 0;
+  transform: rotate(0deg);
+  border-radius: 1rem;
+  background: var(--color-black);
+}
+.burgerLine3 {
+  display: block;
+  cursor: pointer;
+  width: 75%;
+  height: 2px;
+  margin: 6px 0;
   transform: rotate(0deg);
   border-radius: 1rem;
   background: var(--color-black);
