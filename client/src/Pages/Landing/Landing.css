@@ -3,14 +3,17 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
-  padding-top: 25vh;
+  height: 90vh;
 }
 .LandingSec1 .img_sec1 {
   width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .LandingSec1 .img_sec1 img {
   width: 100%;
+  max-width: 75%;
   height: 100%;
 }
 .LandingSec1 .content_sec1 {
@@ -110,7 +113,7 @@
 /* LandingSec2 */
 
 .LandingSec2 {
-  /* margin-top: 10vh; */
+  margin-top: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,10 +141,139 @@
   font-size: 1rem;
 }
 
+/* LandingSec3 */
+
+.landingSec3_row {
+  background-color: rgb(55, 93, 187);
+  border-radius: 10px;
+  filter: drop-shadow(20px 20px 50px #0000001c);
+  justify-content: center;
+  text-align: center;
+  padding: 4.563em 4.922em 4.5em;
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+.barndInfoBx1 {
+  padding: 0 4.109em;
+  color: #fff;
+  position: relative;
+}
+.barndInfo_heading {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 1.042em 0 0.4167em;
+}
+.barndInfo_desc {
+  font-size: 1em;
+}
+.icon_animation i {
+  font-size: 3em;
+}
+
+/* Category Section */
+
+.Categcontainer {
+  width: 100%;
+  height: auto;
+  padding: 0 8%;
+}
+.Categcontainer h2 {
+  text-align: center;
+  padding-top: 6%;
+  margin-bottom: 60px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  position: relative;
+}
+.Categcontainer h2::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 5px;
+  background-color: rgb(55, 93, 187);
+  border-radius: 20px;
+}
+.Categrow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+.Categrow .service {
+  padding: 25px 15px;
+  background: transparent;
+  font-size: 15px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.Categrow .service:hover {
+  color: #fff;
+  background-color: rgb(55, 93, 187);
+  transform: scale(1.05);
+}
+.Categrow .service i {
+  color: rgb(55, 93, 187);
+  margin-bottom: 20px;
+  font-size: 40px;
+  transition: 0.5s;
+}
+.Categrow .service:hover i {
+  color: #fff;
+}
+.Categrow .service h2 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* LandingSec4 */
+
+.LandingSec4 {
+  margin-top: 10vh;
+  padding: 5em 15em;
+  background: rgb(18 19 65);
+}
+.LandingSec4 h2 {
+  font-size: 2em;
+  padding-bottom: 2em;
+  color: #fff;
+}
+.countUpContainerLeft {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2em;
+}
+.countUpContainerRight {
+  display: flex;
+  justify-content: flex-end;
+}
+.countUpBx h1 {
+  color: #c3ff7a;
+  font-size: 4rem;
+  font-weight: 300;
+}
+.countUpBx h3 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* media */
+@media (max-width: 1280px) {
+  .searchbox-wrap {
+    max-width: 75%;
+  }
+}
 @media (max-width: 1023px) {
   .LandingSec1 {
     flex-direction: column;
     padding-top: 10vh;
+    height: 95vh;
   }
   .LandingSec1 .img_sec1 {
     width: 100%;
@@ -153,6 +285,33 @@
   }
   .LandingSec2 {
     padding: 5em 3em;
+  }
+  .landingSec3_row {
+    width: 85%;
+  }
+  .landingSec3_row {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .barndInfoBx1 {
+    padding: 1em 4.109em;
+    color: #fff;
+    position: relative;
+  }
+  .barndInfo_heading {
+    margin: 0;
+  }
+  .LandingSec4 {
+    padding: 5em 10em;
+  }
+  .countUpContainerLeft {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .countUpContainerRight {
+    display: flex;
+    justify-content: flex-start;
   }
 }
 @media (max-width: 600px) {
@@ -195,5 +354,26 @@
   }
   .LandingSec2 .LandingSec2_content {
     width: 100%;
+  }
+
+  .landingSec3_row {
+    padding: 2.563em 1.922em 2.563em;
+    width: 95%;
+  }
+  .barndInfoBx1 {
+    padding: 0;
+    color: #fff;
+    position: relative;
+    margin-bottom: 2em;
+  }
+  .LandingSec4 {
+    padding: 2em 2em;
+    margin-top: 5vh;
+  }
+  .countUpBx h1 {
+    font-size: 2rem;
+  }
+  .countUpBx h3 {
+    font-size: 1rem;
   }
 }

@@ -1,14 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { FaArrowRight, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./NavbarL.css";
 import "../Navbar/Navbar.css";
 const NavbarL = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
-
+  const [showBoxShadow, setShowBoxShadow] = useState(false);
   const toggleMenu = () => {
     setIsMenuActive(!isMenuActive);
   };
+
+  const handleScroll = () => {
+    setShowBoxShadow(window.scrollY > 0); 
+  };
+
+  useEffect(() => {
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
 
   useEffect(() => {
     const navbarMenu = document.getElementById("menu");
@@ -45,7 +60,7 @@ const NavbarL = () => {
   }, []);
   return (
     <>
-      <header className="header" id="header">
+      <header className={`header ${showBoxShadow ? "sticky" : ""}`} id="header">
         <nav className="navbar container">
           <Link to="/" className="brand">
             BarterX
@@ -75,7 +90,7 @@ const NavbarL = () => {
               </li>
               <li className="menu-item menu-mob">
                 <Link className="menu-link" to="/">
-                  How It Works
+                  How To Trade
                 </Link>
               </li>
               <li className="menu-item menu-mob">
@@ -93,9 +108,9 @@ const NavbarL = () => {
                     <button className="btn">
                       <span></span>
                       <p
-                        data-start="How It Works"
+                        data-start="How To Trade"
                         data-text="view more!"
-                        data-title="How It Works"
+                        data-title="How To Trade"
                       ></p>
                     </button>
                   </div>
