@@ -4,12 +4,7 @@ import NavbarL from "../../Components/NavbarL/NavbarL";
 import banner1 from "../../assets/banner1.png";
 import banner2 from "../../assets/Banner2.png";
 import landing_vector from "../../assets/landing_vector_img (2).png";
-import { Navigation, Pagination, Autoplay, A11y } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import Footer from "../../Components/Footer/Footer";
 
 const Landing = () => {
   return (
@@ -24,7 +19,7 @@ const Landing = () => {
           <h1>
             We connect you to <br />
             people around you to <br />
-            <span>barterX items</span> with
+            <span className="underlined">barterX items</span> with
           </h1>
           <p>
             Our feed is filled with listed items by varoius <br />
@@ -39,47 +34,20 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* <div className="banner_sec">
-        <Swiper
-          slidesPerView={1}
-          loop={true}
-          pagination={{ clickable: true }}
-          modules={[Navigation, Autoplay, Pagination]}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          navigation={{
-            prevEl: ".banner_left_arrow",
-            nextEl: ".banner_right_arrow",
-          }}
-        >
-          <SwiperSlide>
-            <img
-              className="banner_img"
-              src={banner1}
-              alt=""
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              className="banner_img"
-              src={banner2}
-              alt=""
-            />
-          </SwiperSlide>
-        </Swiper>
-        <div className="banner_arrows_wrapper">
-          <img
-            src="https://png.pngtree.com/png-clipart/20190903/original/pngtree-right-arrow-png-image_4421150.jpg"
-            className="banner_left_arrow"
-          />
-          <img
-            src="https://png.pngtree.com/png-clipart/20190903/original/pngtree-right-arrow-png-image_4421150.jpg"
-            className="banner_right_arrow"
-          />
+
+      <div className="LandingSec2">
+        <div className="LandingSec2_heading">
+          <h3>Introduction</h3>
+          <h1>Why BarterX?</h1>
         </div>
-      </div> */}
+        <div className="LandingSec2_content">
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur officiis odit omnis perferendis, quasi non maiores? Maiores recusandae nam magni eveniet quod minima, suscipit eligendi omnis dignissimos cumque doloribus. Magni accusantium assumenda reprehenderit quisquam voluptate natus tempora cupiditate similique! Quia veniam possimus autem expedita? Nulla eaque libero consequuntur fugit perferendis!
+          </p>
+        </div>
+      </div>
+
+      <Footer />
     </>
   );
 };

@@ -158,8 +158,8 @@
   align-items: center;
   padding: 10px 20px;
   gap: 15px;
-  background-color: transparent;
-  outline: 1px #000 solid;
+  background-color: rgb(55, 93, 187);
+  outline: 1px rgb(55, 93, 187) solid;
   outline-offset: -3px;
   border-radius: 1em;
   border: none;
@@ -168,7 +168,7 @@
 }
 
 .loginBtnNav .text {
-  color: #000;
+  color: #fff;
   font-weight: 700;
   font-size: 1em;
   transition: 400ms;
@@ -176,21 +176,21 @@
 
 .loginBtnNav i {
   font-size: 1.5em;
-  color: #000;
+  color: #fff;
   padding-top: 5px;
 }
 
 .loginBtnNav:hover {
-  background-color: rgb(55, 93, 187);
-  outline: 1px rgb(55, 93, 187) solid;
+  background-color: transparent;
+  outline: 1px #000 solid;
 }
 
 .loginBtnNav:hover .text {
-  color: #fff;
+  color: #000;
 }
 
 .loginBtnNav:hover svg path {
-  fill: #fff;
+  fill: #000;
 }
 .close-menu{
   z-index: 999;
