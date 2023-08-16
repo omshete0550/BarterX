@@ -20,7 +20,68 @@ import {
 } from "react-icons/fa";
 import CountUp from "react-countup";
 
+const CategoryArr = [
+  {
+    id: 1,
+    categName: "SmartTV",
+    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    categicon: "fas fa-tv",
+  },
+  {
+    id: 2,
+    categName: "Desktop",
+    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    categicon: "fas fa-tv",
+  },
+  {
+    id: 3,
+    categName: "Camera",
+    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    categicon: "fas fa-tv",
+  },
+  {
+    id: 4,
+    categName: "SmartTV",
+    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    categicon: "fas fa-tv",
+  },
+  {
+    id: 5,
+    categName: "SmartTV",
+    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    categicon: "fas fa-tv",
+  },
+  {
+    id: 6,
+    categName: "Desktop",
+    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    categicon: "fas fa-tv",
+  },
+  {
+    id: 7,
+    categName: "Camera",
+    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    categicon: "fas fa-tv",
+  },
+  {
+    id: 8,
+    categName: "SmartTV",
+    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    categicon: "fas fa-tv",
+  },
+];
+
 const Landing = () => {
+  const categ = CategoryArr.map((item) => {
+    <div className="Categrow">
+      <div className="service">
+        <i className={item.categicon}></i>
+        <h3>{item.categName}</h3>
+        <p>{item.categDesc}</p>
+      </div>
+    </div>;
+  });
+
   return (
     <>
       <NavbarL />
@@ -118,19 +179,15 @@ const Landing = () => {
       <div className="LandingCategSec">
         <section className="Categcontainer">
           <h2>Categories</h2>
+
+          {/* {categ} */}
+
           <div className="Categrow">
-            <div className="service">
-              <i>
-                <FaTv />
-              </i>
-              <h3>Smart TV</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
             <div className="service">
               <i>
                 <FaDesktop />
               </i>
-              <h3>Desktop</h3>
+              <h3></h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             </div>
             <div className="service">
