@@ -1,7 +1,15 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-import './Footer.css';
+import { Link } from "react-router-dom";
+import "./Footer.css";
 const Footer = () => {
+  const scrollHandler = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <div className="pg-footer">
@@ -142,7 +150,11 @@ const Footer = () => {
                   d="M223.06,43.32c-.77-7.2,1.87-28.47-20-32.53C187.78,8,180.41,18,178.32,20.7s-5.63,10.1-4.07,16.7-.13,15.23-4.06,15.91-8.75-2.9-6.89-7S167.41,36,167.15,33a18.93,18.93,0,0,0-2.64-8.53c-3.44-5.5-8-11.19-19.12-11.19a21.64,21.64,0,0,0-18.31,9.18c-2.08,2.7-5.66,9.6-4.07,16.69s.64,14.32-6.11,13.9S108.35,46.5,112,36.54s-1.89-21.24-4-23.94S96.34,0,85.23,0,57.46,8.84,56.49,24.56s6.92,20.79,7,24.59c.07,2.75-6.43,4.16-12.92,2.38s-4-10.75-3.46-12.38c1.85-6.6-2-14-4.08-16.69a21.62,21.62,0,0,0-18.3-9.18C13.62,13.28,9.06,19,5.62,24.47A18.81,18.81,0,0,0,3,33a21.85,21.85,0,0,0,1.58,9.08,16.58,16.58,0,0,1,1.06,5A6.75,6.75,0,0,1,0,54H236C235.47,54,223.83,50.52,223.06,43.32Z"
                 ></path>
               </svg>
-              <Link className="footer-social-link linkedin" to="/" target="_blank">
+              <Link
+                className="footer-social-link linkedin"
+                to="/"
+                target="_blank"
+              >
                 <span className="hidden-link-text">Linkedin</span>
                 <svg
                   className="footer-social-icon-svg"
@@ -155,7 +167,11 @@ const Footer = () => {
                   ></path>
                 </svg>
               </Link>
-              <Link className="footer-social-link twitter" to="/" target="_blank">
+              <Link
+                className="footer-social-link twitter"
+                to="/"
+                target="_blank"
+              >
                 <span className="hidden-link-text">Twitter</span>
                 <svg
                   className="footer-social-icon-svg"
@@ -168,7 +184,11 @@ const Footer = () => {
                   ></path>
                 </svg>
               </Link>
-              <Link className="footer-social-link youtube" to="/" target="_blank">
+              <Link
+                className="footer-social-link youtube"
+                to="/"
+                target="_blank"
+              >
                 <span className="hidden-link-text">Youtube</span>
                 <svg
                   className="footer-social-icon-svg"
@@ -181,7 +201,11 @@ const Footer = () => {
                   ></path>
                 </svg>
               </Link>
-              <Link className="footer-social-link github" to="/" target="_blank">
+              <Link
+                className="footer-social-link github"
+                to="/"
+                target="_blank"
+              >
                 <span className="hidden-link-text">Github</span>
                 <svg
                   className="footer-social-icon-svg"
@@ -201,12 +225,25 @@ const Footer = () => {
               <p className="footer-copyright-text">
                 <Link className="footer-copyright-link" to="/" target="_self">
                   {" "}
-                  ©2023. | All rights reserved.{" "} | BarterX
+                  ©2023. | All rights reserved. | BarterX
                 </Link>
               </p>
             </div>
           </div>
         </footer>
+
+        {/* scroll to top start */}
+        <div className="scroll_wrap" onClick={scrollHandler}>
+          <img
+            className="scrollup_img"
+            src="https://cdn-icons-png.flaticon.com/512/892/892692.png"
+            alt="arrow"
+            loading="lazy"
+            width="51"
+            height="51"
+          />
+        </div>
+        {/* scroll to top end */}
       </div>
     </>
   );

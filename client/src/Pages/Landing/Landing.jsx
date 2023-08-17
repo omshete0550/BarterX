@@ -19,6 +19,8 @@ import {
   FaUser,
 } from "react-icons/fa";
 import CountUp from "react-countup";
+import { textVariants } from "../../Components/Motion";
+import { motion } from "framer-motion";
 
 const CategoryArr = [
   {
@@ -74,23 +76,55 @@ const CategoryArr = [
 const Landing = () => {
   const categ = CategoryArr.map((item) => {
     <div className="Categrow">
-      <div className="service">
+      <motion.div
+        className="service"
+        variants={textVariants("up", 0.2)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.5 }}
+      >
         <i className={item.categicon}></i>
         <h3>{item.categName}</h3>
         <p>{item.categDesc}</p>
-      </div>
+      </motion.div>
     </div>;
   });
 
   return (
     <>
-      <NavbarL />
+      <motion.div
+        variants={textVariants("up", 0.2)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <NavbarL />
+      </motion.div>
 
       <div className="row LandingSec1">
-        <div className="img_sec1">
-          <img src={landing_vector} alt="" />
-        </div>
-        <div className="content_sec1">
+        <motion.div
+          className="img_sec1"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <img
+            src="https://img.freepik.com/free-vector/international-trade-concept-illustration_114360-9661.jpg?w=2000"
+            alt=""
+          />
+        </motion.div>
+        <motion.div
+          className="content_sec1"
+          variants={textVariants("right", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
           <h1>
             We connect you to <br />
             people around you to <br />
@@ -106,10 +140,17 @@ const Landing = () => {
               <span>Sign Up</span>{" "}
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="landingSec3">
+      <motion.div
+        className="landingSec3"
+        variants={textVariants("up", 0.2)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="my_container">
           <div className="landingSec3_row">
             <div className="barndInfoBx1">
@@ -156,7 +197,7 @@ const Landing = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <div className="LandingSec2">
         <div className="LandingSec2_heading">
@@ -178,60 +219,117 @@ const Landing = () => {
 
       <div className="LandingCategSec">
         <section className="Categcontainer">
-          <h2>Categories</h2>
+          <motion.h2
+            variants={textVariants("up", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+          >
+            Categories
+          </motion.h2>
 
           {/* {categ} */}
 
           <div className="Categrow">
-            <div className="service">
+            <motion.div
+              className="service"
+              variants={textVariants("up", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <i>
                 <FaDesktop />
               </i>
               <h3></h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-            <div className="service">
+            </motion.div>
+            <motion.div
+              className="service"
+              variants={textVariants("up", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <i>
                 <FaCamera />
               </i>
               <h3>Camera</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-            <div className="service">
+            </motion.div>
+            <motion.div
+              className="service"
+              variants={textVariants("up", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <i>
                 <FaTshirt />
               </i>
               <h3>Clothes</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-            <div className="service">
+            </motion.div>
+            <motion.div
+              className="service"
+              variants={textVariants("up", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <i>
                 <FaTv />
               </i>
               <h3>Smart TV</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-            <div className="service">
+            </motion.div>
+            <motion.div
+              className="service"
+              variants={textVariants("up", 0.4)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <i>
                 <FaDesktop />
               </i>
               <h3>Desktop</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-            <div className="service">
+            </motion.div>
+            <motion.div
+              className="service"
+              variants={textVariants("up", 0.4)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <i>
                 <FaCamera />
               </i>
               <h3>Camera</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-            <div className="service">
+            </motion.div>
+            <motion.div
+              className="service"
+              variants={textVariants("up", 0.4)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <i>
                 <FaTshirt />
               </i>
               <h3>Clothes</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
+            </motion.div>
           </div>
         </section>
       </div>
@@ -242,7 +340,7 @@ const Landing = () => {
           <div className="countUpContainerLeft">
             <div className="countUpBx">
               <h1>
-                <CountUp end={4125} />
+                <CountUp end={4125} />+
               </h1>
               <h3>Number of Businesses</h3>
             </div>
@@ -250,7 +348,7 @@ const Landing = () => {
           <div className="countUpContainerRight">
             <div className="countUpBx">
               <h1>
-                <CountUp end={629800000} />
+                <CountUp end={629800000} />+
               </h1>
               <h3>Total Barter Transaction Volume</h3>
             </div>
@@ -258,7 +356,7 @@ const Landing = () => {
           <div className="countUpContainerLeft">
             <div className="countUpBx">
               <h1>
-                <CountUp end={212000000} />
+                <CountUp end={212000000} />+
               </h1>
               <h3>Total Cash Saved By Businesses</h3>
             </div>
@@ -266,7 +364,7 @@ const Landing = () => {
           <div className="countUpContainerRight">
             <div className="countUpBx">
               <h1>
-                <CountUp end={95} />
+                <CountUp end={95} />+
               </h1>
               <h3>Number of Charities Supported</h3>
             </div>
@@ -274,7 +372,7 @@ const Landing = () => {
           <div className="countUpContainerLeft">
             <div className="countUpBx">
               <h1>
-                <CountUp end={2737000} />
+                <CountUp end={2737000} />+
               </h1>
               <h3>Total Barter Donations by Businesses</h3>
             </div>
@@ -282,7 +380,7 @@ const Landing = () => {
           <div className="countUpContainerRight">
             <div className="countUpBx">
               <h1>
-                <CountUp end={2162000} />
+                <CountUp end={2162000} />+
               </h1>
               <h3>Total Cash Saved By Charities</h3>
             </div>

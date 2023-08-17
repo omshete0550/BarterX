@@ -251,6 +251,7 @@
 .countUpContainerRight {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 2em;
 }
 .countUpBx h1 {
   color: #c3ff7a;
