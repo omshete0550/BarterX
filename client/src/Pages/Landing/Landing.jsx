@@ -21,7 +21,9 @@ import {
 import CountUp from "react-countup";
 import { textVariants } from "../../Components/Motion";
 import { motion } from "framer-motion";
-
+import TabPanel from '../../Components/VerticalTabPanel/TabPanel'
+import resumeData from "../../Components/VerticalTabPanel/Data";
+import VerticalTab from "../../Components/VerticalTabPanel/VerticalTab";
 const CategoryArr = [
   {
     id: 1,
@@ -81,7 +83,7 @@ const Landing = () => {
         variants={textVariants("up", 0.2)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ amount: 0.1 }}
         transition={{ duration: 0.5 }}
       >
         <i className={item.categicon}></i>
@@ -93,15 +95,15 @@ const Landing = () => {
 
   return (
     <>
-      <motion.div
+      {/* <motion.div
         variants={textVariants("up", 0.2)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ amount: 0.1 }}
         transition={{ duration: 0.5 }}
-      >
+      > */}
         <NavbarL />
-      </motion.div>
+      {/* </motion.div> */}
 
       <div className="row LandingSec1">
         <motion.div
@@ -109,7 +111,7 @@ const Landing = () => {
           variants={textVariants("left", 0.2)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
           <img
@@ -122,7 +124,7 @@ const Landing = () => {
           variants={textVariants("right", 0.2)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
           <h1>
@@ -148,7 +150,7 @@ const Landing = () => {
         variants={textVariants("up", 0.2)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ amount: 0.1 }}
         transition={{ duration: 0.5 }}
       >
         <div className="my_container">
@@ -223,7 +225,7 @@ const Landing = () => {
             variants={textVariants("up", 0.2)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
             Categories
@@ -237,7 +239,7 @@ const Landing = () => {
               variants={textVariants("up", 0.2)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
             >
               <i>
@@ -251,7 +253,7 @@ const Landing = () => {
               variants={textVariants("up", 0.2)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
             >
               <i>
@@ -265,7 +267,7 @@ const Landing = () => {
               variants={textVariants("up", 0.2)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
             >
               <i>
@@ -279,7 +281,7 @@ const Landing = () => {
               variants={textVariants("up", 0.2)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
             >
               <i>
@@ -293,7 +295,7 @@ const Landing = () => {
               variants={textVariants("up", 0.4)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
             >
               <i>
@@ -307,7 +309,7 @@ const Landing = () => {
               variants={textVariants("up", 0.4)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
             >
               <i>
@@ -321,7 +323,7 @@ const Landing = () => {
               variants={textVariants("up", 0.4)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
             >
               <i>
@@ -386,6 +388,11 @@ const Landing = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="LandingSec5">
+        {/* <TabPanel /> */}
+        <VerticalTab data={resumeData.jobs} />
       </div>
 
       <Footer />

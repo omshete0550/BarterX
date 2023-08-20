@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
   height: 90vh;
+  overflow-x: hidden;
 }
 .LandingSec1 .img_sec1 {
   width: 50%;
@@ -262,6 +263,13 @@
   color: #fff;
   font-size: 1.5rem;
   font-weight: 600;
+}
+
+/* Landing Sec 5 */
+
+.LandingSec5{
+  margin-top: 5em;
+  padding: 20px 40px;
 }
 
 /* media */

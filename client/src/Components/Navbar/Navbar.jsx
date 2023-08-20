@@ -44,7 +44,7 @@ const Navbar = () => {
   return (
     <>
       <header className="header" id="header">
-        <nav className="navbar container">
+        <nav className="navbar NavContainer">
           <Link to="/" className="brand">
             BarterX
           </Link>
