@@ -1,110 +1,58 @@
-import React, { useEffect } from "react";
-import { FaArrowLeft, FaSearch } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
+
 import "./Navbar.css";
 const Navbar = () => {
-  useEffect(() => {
-    const navbarMenu = document.getElementById("menu");
-    const burgerMenu = document.getElementById("burger");
-    const bgOverlay = document.querySelector(".overlay");
-
-    if (burgerMenu && bgOverlay) {
-      burgerMenu.addEventListener("click", () => {
-        navbarMenu.classList.add("is-active");
-        bgOverlay.classList.toggle("is-active");
-      });
-
-      bgOverlay.addEventListener("click", () => {
-        navbarMenu.classList.remove("is-active");
-        bgOverlay.classList.toggle("is-active");
-      });
-    }
-
-    document.querySelectorAll(".menu-link").forEach((link) => {
-      link.addEventListener("click", () => {
-        navbarMenu.classList.remove("is-active");
-        bgOverlay.classList.remove("is-active");
-      });
-    });
-
-    const searchBlock = document.querySelector(".search-block");
-    const searchToggle = document.querySelector(".search-toggle");
-    const searchCancel = document.querySelector(".search-cancel");
-
-    if (searchToggle && searchCancel) {
-      searchToggle.addEventListener("click", () => {
-        searchBlock.classList.add("is-active");
-      });
-
-      searchCancel.addEventListener("click", () => {
-        searchBlock.classList.remove("is-active");
-      });
-    }
-  }, []);
   return (
     <>
-      <header className="header" id="header">
-        <nav className="navbar NavContainer">
-          <Link to="/" className="brand">
-            BarterX
-          </Link>
-          <div className="burger" id="burger">
-            <span className="burger-line"></span>
-            <span className="burger-line"></span>
-            <span className="burger-line"></span>
+      <div className="navbarHome">
+        <div className="BarterLogo">
+          <p>BarterX</p>
+        </div>
+        <div className="navItemsHome">
+          <ul>
+            <li>Category</li>
+            <li>Deals</li>
+            <li>What's New</li>
+            <li>Delivery</li>
+            <li>
+              <div class="InputSearchContainer">
+                <input
+                  type="text"
+                  name="text"
+                  class="input"
+                  id="input"
+                  placeholder="Search"
+                />
+
+                <label for="inputSearch" class="labelforsearch">
+                  <svg viewBox="0 0 512 512" class="searchIcon">
+                    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+                  </svg>
+                </label>
+                <div class="border"></div>
+
+                <button class="micButton">
+                  <svg viewBox="0 0 384 512" class="micIcon">
+                    <path d="M192 0C139 0 96 43 96 96V256c0 53 43 96 96 96s96-43 96-96V96c0-53-43-96-96-96zM64 216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 89.1 66.2 162.7 152 174.4V464H120c-13.3 0-24 10.7-24 24s10.7 24 24 24h72 72c13.3 0 24-10.7 24-24s-10.7-24-24-24H216V430.4c85.8-11.7 152-85.3 152-174.4V216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 70.7-57.3 128-128 128s-128-57.3-128-128V216z"></path>
+                  </svg>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div className="userAcc">
+          <div className="UserAccItem">
+            <i><FaUser /></i>
+            <p>Account</p>
           </div>
-          <span className="overlay"></span>
-          <div className="menu" id="menu">
-            <ul className="menu-inner">
-              <li className="menu-item">
-                <Link className="menu-link" to="/">
-                  Home
-                </Link>
-              </li>
-              <li className="menu-item">
-                <Link className="menu-link" to="/">
-                  About
-                </Link>
-              </li>
-              <li className="menu-item">
-                <Link className="menu-link" to="/">
-                  Contact Us
-                </Link>
-              </li>
-              <li className="menu-item">
-                <Link className="menu-link" to="/">
-                  Project
-                </Link>
-              </li>
-              <li className="menu-item">
-                <Link className="menu-link" to="/">
-                  Support
-                </Link>
-              </li>
-            </ul>
+          <div className="UserAccItem">
+            <i><FaShoppingCart /></i>
+            <p>Cart</p>
           </div>
-          <span>
-            <i>
-              <FaSearch className="search-toggle" />
-            </i>
-          </span>
-          <div className="search-block">
-            <form className="search-form">
-              <span>
-                <i>
-                  <FaArrowLeft className="search-cancel" />
-                </i>
-              </span>
-              <input
-                type="search"
-                name="search"
-                className="search-input"
-                placeholder="Search here..."
-              />
-            </form>
-          </div>
-        </nav>
-      </header>
+        </div>
+      </div>
     </>
   );
 };
