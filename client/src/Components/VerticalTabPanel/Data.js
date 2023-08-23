@@ -3,22 +3,32 @@ let resumeData = {
         {
             expData: {
                 company: "User Interface",
-                position: "Graduate Student",
-                period: "Oct 2018 - present",
+                // position: "Graduate Student",
+                // period: "Oct 2018 - present",
                 details: [
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dignissim fringilla dui ac mattis.",
-                    "Donec in sodales eros. Nulla fermentum, ante in venenatis pellentesque, justo odio viverra lorem, varius posuere erat tortor et magna."
+                    "1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "3. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                ],
+                images: [
+                    "https://cdn.pixabay.com/photo/2018/05/18/15/30/web-design-3411373_1280.jpg",
+                    "https://cdn.pixabay.com/photo/2018/05/18/15/30/web-design-3411373_1280.jpg",
+                    "https://cdn.pixabay.com/photo/2018/05/18/15/30/web-design-3411373_1280.jpg"
                 ]
             }
         },
         {
             expData: {
                 company: "Seller Interface",
-                position: "Research Assistant",
-                period: "Oct 2016 - May 2018",
+                // position: "Research Assistant",
+                // period: "Oct 2016 - May 2018",
                 details: [
-                    "Suspendisse potenti. Vestibulum aliquam luctus sem, at feugiat felis. Pellentesque dignissim lorem eu ipsum condimentum varius. ",
-                    "Nam vehicula pretium arcu. Nam venenatis ante et porta pellentesque."
+                    "1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "2. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                ],
+                images: [
+                    "https://cdn.pixabay.com/photo/2018/05/18/15/30/web-design-3411373_1280.jpg",
+                    "https://cdn.pixabay.com/photo/2018/05/18/15/30/web-design-3411373_1280.jpg",
                 ]
             }
         }

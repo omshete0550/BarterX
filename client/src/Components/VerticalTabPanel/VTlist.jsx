@@ -14,7 +14,7 @@ function VTlist(props) {
         onClick={Clicked}
         style={
           props.activeTabId === props.index
-            ? { color: "#64ffda" }
+            ? { color: "rgb(55, 93, 187)" }
             : { color: "#8892b0" }
         }
       >

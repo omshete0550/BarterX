@@ -267,9 +267,14 @@
 
 /* Landing Sec 5 */
 
-.LandingSec5{
+.LandingSec5 {
   margin-top: 5em;
-  padding: 20px 40px;
+  padding: 20px 80px;
+}
+.LandingSec5 h1{
+  text-align: center;
+  font-size: 3rem;
+  color: rgb(55, 93, 187);
 }
 
 /* media */
@@ -384,5 +389,9 @@
   }
   .countUpBx h3 {
     font-size: 1rem;
+  }
+  .LandingSec5 {
+    margin-top: 0em;
+    padding: 20px 20px;
   }
 }

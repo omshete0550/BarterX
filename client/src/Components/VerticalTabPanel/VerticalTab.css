@@ -3,7 +3,7 @@
   /* max-width: 700px; */
   position: relative;
 }
-.tabHeading{
+.tabHeading {
   margin-right: 2em;
 }
 .section__Jobs-container span {
@@ -36,6 +36,13 @@
 .section__Jobs-styledTabList {
   padding: 0;
 }
-.VerticalRow{
+.VerticalRow {
   display: flex;
+}
+
+@media (max-width: 768px) {
+  .VerticalRow {
+    display: flex;
+    flex-direction: column;
+  }
 }

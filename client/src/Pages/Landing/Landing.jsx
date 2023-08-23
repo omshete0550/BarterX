@@ -391,7 +391,7 @@ const Landing = () => {
       </div>
 
       <div className="LandingSec5">
-        {/* <TabPanel /> */}
+        <h1>Guidelines</h1>
         <VerticalTab data={resumeData.jobs} />
       </div>
 

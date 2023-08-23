@@ -30,3 +30,35 @@
   left: 0px;
   color: #000;
 } */
+
+.VTContnetContainer {
+  display: flex;
+  width: 75vw;
+  height: 50vh;
+}
+.VTContnetContainerImg {
+  width: 50%;
+}
+.VTContnetContainerImg img {
+  width: 100%;
+  /* max-width: 25vw; */
+}
+.VTContnetContainerSteps {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .VTContnetContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .VTContnetContainerImg {
+    width: 75%;
+  }
+  .VTContnetContainerImg img {
+    width: 100%;
+  }
+  .VTContnetContainerSteps {
+    width: 100%;
+  }
+}
