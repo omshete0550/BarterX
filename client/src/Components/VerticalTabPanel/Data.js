@@ -1,7 +1,9 @@
 let resumeData = {
     jobs: [
         {
+            index: 1,
             expData: {
+                
                 company: "User Interface",
                 // position: "Graduate Student",
                 // period: "Oct 2018 - present",
@@ -18,7 +20,9 @@ let resumeData = {
             }
         },
         {
+            index: 2,
             expData: {
+                
                 company: "Seller Interface",
                 // position: "Research Assistant",
                 // period: "Oct 2016 - May 2018",

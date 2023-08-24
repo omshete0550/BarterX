@@ -3,27 +3,13 @@ import { FaArrowRight, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./NavbarL.css";
 import "../Navbar/Navbar.css";
+import logo from '../../assets/logo.png'
 const NavbarL = () => {
+
   const [isMenuActive, setIsMenuActive] = useState(false);
-  const [showBoxShadow, setShowBoxShadow] = useState(false);
   const toggleMenu = () => {
     setIsMenuActive(!isMenuActive);
   };
-
-  const handleScroll = () => {
-    setShowBoxShadow(window.scrollY > 0); 
-  };
-
-  useEffect(() => {
-    // Add scroll event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Clean up event listener
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
 
   useEffect(() => {
     const navbarMenu = document.getElementById("menu");
@@ -44,26 +30,32 @@ const NavbarL = () => {
       });
     });
 
-    const searchBlock = document.querySelector(".search-block");
-    const searchToggle = document.querySelector(".search-toggle");
-    const searchCancel = document.querySelector(".search-cancel");
-
-    if (searchToggle && searchCancel) {
-      searchToggle.addEventListener("click", () => {
-        searchBlock.classList.add("is-active");
-      });
-
-      searchCancel.addEventListener("click", () => {
-        searchBlock.classList.remove("is-active");
-      });
-    }
+   
   }, []);
+
+  const [showBoxShadow, setShowBoxShadow] = useState(false);
+  const handleScroll = () => {
+    setShowBoxShadow(window.scrollY > 0); 
+  };
+
+  useEffect(() => {
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
+  
   return (
     <>
       <header className={`header ${showBoxShadow ? "sticky" : ""}`} id="header">
         <nav className="navbar NavContainer">
           <Link to="/" className="brand">
-            BarterX
+            <img src={logo} alt="" />
           </Link>
           <div className="burger" id="burger">
             <span className="burgerLine1"></span>
@@ -74,7 +66,7 @@ const NavbarL = () => {
           <div className={`menu ${isMenuActive ? "is-active" : ""}`} id="menu">
             <ul className="menu-inner">
               <li className="menu-item">
-                <Link className="menu-link" to="/">
+                <Link className="menu-link" to="/home">
                   Home
                 </Link>
               </li>
