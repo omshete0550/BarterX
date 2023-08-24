@@ -1,11 +1,3 @@
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 :root {
   --red: hsl(1, 90%, 64%);
   --blue: hsl(219, 85%, 26%);
@@ -32,19 +24,12 @@
   --fs4: clamp(2.07rem, calc(1.57rem + 2.5vw), 3.36rem);
   --fs5: clamp(2.49rem, calc(1.82rem + 3.33vw), 4.2rem);
 }
-
-body {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: var(--fs0);
-  line-height: 1.5;
-  background-color: var(--very-light-grayish-blue);
-  color: var(--very-dark-blue);
+.NotificationApp{
   display: grid;
   place-items: center;
-  padding: 2rem;
+  height: 100vh;
 }
-
-.container {
+.Notificationcontainer {
   background-color: var(--white);
   border-radius: var(--radius-sm);
   box-shadow: 0 4px 2rem var(--light-grayish-blue-1);
@@ -54,7 +39,7 @@ body {
   max-width: 800px;
 }
 
-a {
+.NotificationApp a {
   font-weight: bold;
   text-decoration: none;
   color: var(--very-dark-blue);
@@ -65,7 +50,7 @@ a {
   }
 }
 
-header {
+.NotificationHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -102,7 +87,7 @@ header {
   }
 }
 
-.wrapper {
+.Notificationwrapper {
   display: grid;
   gap: 0.6rem;
 }

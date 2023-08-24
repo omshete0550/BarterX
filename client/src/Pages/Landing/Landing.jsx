@@ -21,7 +21,7 @@ import {
 import CountUp from "react-countup";
 import { textVariants } from "../../Components/Motion";
 import { motion } from "framer-motion";
-import TabPanel from '../../Components/VerticalTabPanel/TabPanel'
+import TabPanel from "../../Components/VerticalTabPanel/TabPanel";
 import resumeData from "../../Components/VerticalTabPanel/Data";
 import VerticalTab from "../../Components/VerticalTabPanel/VerticalTab";
 const CategoryArr = [
@@ -102,7 +102,7 @@ const Landing = () => {
         viewport={{ amount: 0.1 }}
         transition={{ duration: 0.5 }}
       > */}
-        <NavbarL />
+      <NavbarL />
       {/* </motion.div> */}
 
       <div className="row LandingSec1">
@@ -202,21 +202,37 @@ const Landing = () => {
       </motion.div>
 
       <div className="LandingSec2">
-        <div className="LandingSec2_heading">
+        <motion.div
+          className="LandingSec2_heading"
+          variants={textVariants("up", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
           <h3>Introduction</h3>
           <h1>Why BarterX?</h1>
-        </div>
-        <div className="LandingSec2_content">
+        </motion.div>
+        <motion.div
+          className="LandingSec2_content"
+          variants={textVariants("up", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur
-            officiis odit omnis perferendis, quasi non maiores? Maiores
-            recusandae nam magni eveniet quod minima, suscipit eligendi omnis
-            dignissimos cumque doloribus. Magni accusantium assumenda
-            reprehenderit quisquam voluptate natus tempora cupiditate similique!
-            Quia veniam possimus autem expedita? Nulla eaque libero consequuntur
-            fugit perferendis!
+            Welcome to BarterX, the ultimate destination for modern bartering
+            enthusiasts. Our platform is designed to revolutionize the way
+            people exchange goods and services, fostering a thriving community
+            built on collaboration, sustainability, and creativity. <br />{" "}
+            <br />
+            At BarterX, we believe that every item has a story and value that
+            goes beyond its price tag. Our mission is to empower individuals and
+            businesses to discover the hidden potential of their possessions by
+            exchanging them for things they truly need or desire.
           </p>
-        </div>
+        </motion.div>
       </div>
 
       <div className="LandingCategSec">
@@ -340,52 +356,94 @@ const Landing = () => {
         <div>
           <h2>BarterX Community Stats</h2>
           <div className="countUpContainerLeft">
-            <div className="countUpBx">
+            <motion.div
+              className="countUpBx"
+              variants={textVariants("down", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <h1>
                 <CountUp end={4125} />+
               </h1>
               <h3>Number of Businesses</h3>
-            </div>
+            </motion.div>
           </div>
           <div className="countUpContainerRight">
-            <div className="countUpBx">
+            <motion.div
+              className="countUpBx"
+              variants={textVariants("down", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <h1>
                 <CountUp end={629800000} />+
               </h1>
               <h3>Total Barter Transaction Volume</h3>
-            </div>
+            </motion.div>
           </div>
           <div className="countUpContainerLeft">
-            <div className="countUpBx">
+            <motion.div
+              className="countUpBx"
+              variants={textVariants("down", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <h1>
                 <CountUp end={212000000} />+
               </h1>
               <h3>Total Cash Saved By Businesses</h3>
-            </div>
+            </motion.div>
           </div>
           <div className="countUpContainerRight">
-            <div className="countUpBx">
+            <motion.div
+              className="countUpBx"
+              variants={textVariants("down", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <h1>
                 <CountUp end={95} />+
               </h1>
               <h3>Number of Charities Supported</h3>
-            </div>
+            </motion.div>
           </div>
           <div className="countUpContainerLeft">
-            <div className="countUpBx">
+            <motion.div
+              className="countUpBx"
+              variants={textVariants("down", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <h1>
                 <CountUp end={2737000} />+
               </h1>
               <h3>Total Barter Donations by Businesses</h3>
-            </div>
+            </motion.div>
           </div>
           <div className="countUpContainerRight">
-            <div className="countUpBx">
+            <motion.div
+              className="countUpBx"
+              variants={textVariants("down", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+            >
               <h1>
                 <CountUp end={2162000} />+
               </h1>
               <h3>Total Cash Saved By Charities</h3>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
