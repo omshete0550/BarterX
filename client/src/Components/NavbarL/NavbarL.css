@@ -1,0 +1,206 @@
+.menu-link .buttons {
+  display: flex;
+  justify-content: space-around;
+  top: 20px;
+  left: 20px;
+}
+.menu-link .buttons button {
+  width: 150px;
+  height: 45px;
+  color: #000;
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+.menu-link .buttons button:before,
+.menu-link .buttons button:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: rgb(55, 93, 187);
+  transition: all 0.3s cubic-bezier(0.35, 0.1, 0.25, 1);
+}
+.menu-link .buttons button:before {
+  right: 0;
+  top: 0;
+  transition: all 0.5s cubic-bezier(0.35, 0.1, 0.25, 1);
+}
+.menu-link .buttons button:after {
+  left: 0;
+  bottom: 0;
+}
+.menu-link .buttons button span {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
+.menu-link .buttons button span:before,
+.menu-link .buttons button span:after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 0;
+  background-color: rgb(55, 93, 187);
+  transition: all 0.3s cubic-bezier(0.35, 0.1, 0.25, 1);
+}
+.menu-link .buttons button span:before {
+  right: 0;
+  top: 0;
+  transition: all 0.5s cubic-bezier(0.35, 0.1, 0.25, 1);
+}
+.menu-link .buttons button span:after {
+  left: 0;
+  bottom: 0;
+}
+.menu-link .buttons button p {
+  padding: 0;
+  margin: 0;
+  transition: all 0.4s cubic-bezier(0.35, 0.1, 0.25, 1);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.menu-link .buttons button p:before,
+.menu-link .buttons button p:after {
+  position: absolute;
+  width: 100%;
+  transition: all 0.4s cubic-bezier(0.35, 0.1, 0.25, 1);
+  z-index: 1;
+  left: 0;
+}
+.menu-link .buttons button p:before {
+  content: attr(data-title);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.menu-link .buttons button p:after {
+  content: attr(data-text);
+  top: 150%;
+  color: rgb(55, 93, 187);
+}
+.menu-link .buttons button:hover:before,
+.menu-link .buttons button:hover:after {
+  width: 100%;
+}
+.menu-link .buttons button:hover span {
+  z-index: 1;
+}
+.menu-link .buttons button:hover span:before,
+.menu-link .buttons button:hover span:after {
+  height: 100%;
+}
+.menu-link .buttons button:hover p:before {
+  top: -50%;
+  transform: rotate(5deg);
+}
+.menu-link .buttons button:hover p:after {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.menu-link .buttons button.start {
+  background-color: rgb(55, 93, 187);
+  box-shadow: 0px 5px 10px -10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+.menu-link .buttons button.start p:before {
+  top: -50%;
+  transform: rotate(5deg);
+}
+.menu-link .buttons button.start p:after {
+  color: white;
+  transition: all 0s ease;
+  content: attr(data-start);
+  top: 50%;
+  transform: translateY(-50%);
+  animation: start 0.3s ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes start {
+  from {
+    top: -50%;
+  }
+}
+.menu-link .buttons button.start:hover:before,
+.menu-link .buttons button.start:hover:after {
+  display: none;
+}
+.menu-link .buttons button.start:hover span {
+  display: none;
+}
+.menu-link .buttons button:active {
+  outline: none;
+  border: none;
+}
+.menu-link .buttons button:focus {
+  outline: 0;
+}
+
+.loginBtnNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 15px;
+  background-color: rgb(55, 93, 187);
+  outline: 1px rgb(55, 93, 187) solid;
+  outline-offset: -3px;
+  border-radius: 1em;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.loginBtnNav .text {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1em;
+  transition: 400ms;
+}
+
+.loginBtnNav i {
+  font-size: 1.5em;
+  color: #fff;
+  padding-top: 5px;
+}
+
+.loginBtnNav:hover {
+  background-color: transparent;
+  outline: 1px #000 solid;
+}
+
+.loginBtnNav:hover .text {
+  color: #000;
+}
+
+.loginBtnNav:hover svg path {
+  fill: #000;
+}
+.close-menu{
+  z-index: 999;
+}
+.menu-mob{
+  display: none;
+}
+
+@media (max-width: 1023px){
+  .menu-mob{
+    display: block;
+  }
+}
