@@ -12,7 +12,7 @@
   width: 50%;
   background-color: rgb(55, 93, 187);
   min-height: 100%;
-  padding: 5%;
+  padding: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +28,7 @@
   flex-grow: 2;
   background-color: white;
   min-height: 100%;
-  padding: 5%;
+  /* padding: 5%; */
   background: url(https://i.imgur.com/BKyjjFa.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -43,9 +43,11 @@
 }
 
 .LoginPageInnerContainer .LoginFormContainer .Loginheader {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 500;
   color: #001451;
+  letter-spacing: 0px;
+  text-transform: uppercase;
 }
 
 .LoginPageInnerContainer .LoginFormContainer .subHeader {
