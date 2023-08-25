@@ -6,7 +6,8 @@ import { TfiEmail, TfiLock } from "react-icons/tfi";
 
 const Login = () => {
   const [showForgotPasswordPopup, setShowForgotPasswordPopup] = useState(false);
-
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const handleForgotPasswordClick = () => {
     setShowForgotPasswordPopup(true);
   };
@@ -14,6 +15,29 @@ const Login = () => {
   const handleClosePopup = () => {
     setShowForgotPasswordPopup(false);
   };
+
+  async function loginUser(event){
+    event.preventDefault();
+    const response = await fetch('http://localhost:8800/api/login',{
+    method: 'POST',  
+    headers:{
+        'Content-Type':'application/json',
+      },
+      body: JSON.stringify({
+        email, 
+        password
+        }),
+    })
+
+    const data = await response.json()
+    if(data.user){
+      alert("Login Successfully logged in!");
+    }
+    else{
+      alert("Please check your username and password & Try Again!");
+    }
+    console.log(data);
+  }
 
   return (
     <>
@@ -29,7 +53,7 @@ const Login = () => {
               <header className="subHeader">
                 Welcome to <b>BarterX!</b> Please Enter your Details
               </header>
-              <form>
+              <form onSubmit={loginUser}>
                 <div className="inputContainer">
                   <label className="label" htmlFor="emailAddress">
                     <i>
@@ -38,11 +62,19 @@ const Login = () => {
                     <span>Email Address*</span>
                   </label>
                   <input
+                    // type="email"
+                    // className="input"
+                    // id="emailAddress"
+                    // name="email"
+                    // placeholder="Enter your Email Address"
+                    // required
                     type="email"
+                    name="email"
+                    value={email}
+                    placeholder="Enter your Email Address"
+                    onChange={(e) => setEmail(e.target.value)}
                     className="input"
                     id="emailAddress"
-                    name="email"
-                    placeholder="Enter your Email Address"
                     required
                   />
                 </div>
@@ -54,11 +86,19 @@ const Login = () => {
                     <span>Password*</span>
                   </label>
                   <input
+                    // type="password"
+                    // className="input"
+                    // id="emailAddress"
+                    // name="password"
+                    // placeholder="Enter your Password"
+                    // required
                     type="password"
-                    className="input"
-                    id="emailAddress"
                     name="password"
+                    value={password}
                     placeholder="Enter your Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="input"
+                    id="password"
                     required
                   />
                 </div>
@@ -79,7 +119,8 @@ const Login = () => {
                     Forgot Password?
                   </a>
                 </div>
-                <button className="LoginButton">Login</button>
+                {/* <button className="LoginButton">Login</button> */}
+                <input type="submit" className="LoginButton" value="Login"></input>
                 <div className="HaveAnAcc">
                   <span>
                     {" "}
