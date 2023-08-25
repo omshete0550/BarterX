@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Landing.css";
 import NavbarL from "../../Components/NavbarL/NavbarL";
-import landing_vector from "../../assets/barter.jpg";
+import landing_vector from "../../assets/landingMainImg.png";
 import Footer from "../../Components/Footer/Footer";
 import {
   FaBriefcase,

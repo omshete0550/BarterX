@@ -51,6 +51,8 @@
   .VTContnetContainer {
     display: flex;
     flex-direction: column;
+    width: 90vw;
+    margin-top: 2em;
   }
   .VTContnetContainerImg {
     width: 75%;
@@ -60,5 +62,6 @@
   }
   .VTContnetContainerSteps {
     width: 100%;
+    margin-bottom: 1em;
   }
 }
