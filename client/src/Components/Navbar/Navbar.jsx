@@ -3,7 +3,7 @@ import { FaShoppingCart, FaUser, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png'
 import "./Navbar.css";
-import AccountMenu from "./AccountMenu";
+// import AccountMenu from "./AccountMenu";
 
 const Navbar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
@@ -120,7 +120,8 @@ const Navbar = () => {
           <div className="userAcc">
             <div className="UserAccItem">
               <i>
-                <AccountMenu />
+                {/* <AccountMenu /> */}
+                <FaUser />
               </i>
               <p>Account</p>
             </div>
