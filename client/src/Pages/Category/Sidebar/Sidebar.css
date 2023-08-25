@@ -10,11 +10,12 @@
 }
 
 .logo-container {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
-.logo-container h1 {
-  margin-top: 1.3rem;
+.logo-container img {
+  width: 10em;
+  padding-top: 1.5em;
 }
 
 @media (max-width: 835px) {

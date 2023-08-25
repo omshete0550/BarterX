@@ -249,9 +249,15 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="heading" data-aos="fade">
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}>
             Products
-          </h2>
+          </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
               <div className="arrows_wrapper">
@@ -428,9 +434,16 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="heading" data-aos="fade">
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+          >
             Weekly Popular Products
-          </h2>
+          </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
               <div className="arrows_wrapper">
@@ -534,9 +547,16 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="heading" data-aos="fade">
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+          >
             Todays Best Deals For You!
-          </h2>
+          </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
               <div className="arrows_wrapper">
@@ -640,9 +660,16 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="heading" data-aos="fade">
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+          >
             Most Selling Products
-          </h2>
+          </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
               <div className="arrows_wrapper">
