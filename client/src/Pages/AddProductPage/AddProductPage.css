@@ -1,0 +1,90 @@
+.addProductContainer{
+    margin-top: 7em;
+
+}
+.addProductContainer h1{
+    text-align: center;
+    color: rgb(18 19 65);
+    margin-bottom: 1.5em;
+}
+.addProductContainer p{
+    text-align: center;
+    color: #777;
+}
+.addProductInnerContainer{
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+.inputContainerProduct{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+}
+.inputContainerProduct p{
+    margin-top: 1em;
+    text-align: start;
+    color: #777;
+}
+.inputContainerProduct span,
+.fileUpload span{
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+.inputContainerProduct input {
+    width: 30rem;
+    padding: 10px;
+    border-radius: 0.5em;
+    border: 1px solid #ccc;
+}
+.inputContainerProductDesc textarea {
+    padding: 10px;
+    border-radius: 0.5em;
+    border: 1px solid #ccc;
+    width: 30rem;
+}
+.guZdik {
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    min-width: 30em !important;
+    max-width: 30em !important;
+    height: 5em !important;
+    border: 2px dashed rgb(18 19 65) !important;
+    padding: 8px 16px 8px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    margin-top: 1em !important;
+}
+.fileUpload p{
+    color: #777;
+    margin-top: 1em;
+}
+.fileUpload button{
+    margin-top: 1em;
+    padding: 15px 50px;
+    border: 1px solid rgb(18 19 65);
+    border-radius: 10px;
+}
+.fileUpload button:hover{
+    background-color: rgb(18 19 65);
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .inputContainerProduct input {
+        width: 20rem;
+    }
+    .inputContainerProductDesc textarea {
+        width: 20rem;
+    }
+    .guZdik{
+        max-width: 20rem !important;
+        min-width: 20rem !important;
+    }
+}

@@ -1,5 +1,5 @@
 import { AiFillStar } from "react-icons/ai";
-
+import camera from '../../../assets/camera.png'
 const data = [
   {
     img: "https://i.postimg.cc/cHgcX5zQ/nike.png",
@@ -16,7 +16,7 @@ const data = [
     category: "sneakers",
   },
   {
-    img: "https://o.remove.bg/downloads/b5ae25fa-eba6-40df-a7c9-0700b362da2d/pngtree-camera-digital-slr-electronics-png-image_5279952-removebg-preview.png",
+    img: camera,
     title: "Sony Camera Digital",
     owner: "Ram Shinde",
     OldNew: 'Old',
@@ -44,7 +44,7 @@ const data = [
     category: "sneakers",
   },
   {
-    img: "https://o.remove.bg/downloads/b5ae25fa-eba6-40df-a7c9-0700b362da2d/pngtree-camera-digital-slr-electronics-png-image_5279952-removebg-preview.png",
+    img:camera,
     title: "Sony Camera Digital",
     owner: "Ram Shinde",
     OldNew: 'Old',
@@ -72,7 +72,7 @@ const data = [
     category: "sneakers",
   },
   {
-    img: "https://o.remove.bg/downloads/b5ae25fa-eba6-40df-a7c9-0700b362da2d/pngtree-camera-digital-slr-electronics-png-image_5279952-removebg-preview.png",
+    img:camera,
     title: "Sony Camera Digital",
     owner: "Ram Shinde",
     OldNew: 'Old',
@@ -100,7 +100,7 @@ const data = [
     category: "sneakers",
   },
   {
-    img: "https://o.remove.bg/downloads/b5ae25fa-eba6-40df-a7c9-0700b362da2d/pngtree-camera-digital-slr-electronics-png-image_5279952-removebg-preview.png",
+    img:camera,
     title: "Sony Camera Digital",
     owner: "Ram Shinde",
     OldNew: 'Old',
@@ -128,7 +128,7 @@ const data = [
     category: "sneakers",
   },
   {
-    img: "https://o.remove.bg/downloads/b5ae25fa-eba6-40df-a7c9-0700b362da2d/pngtree-camera-digital-slr-electronics-png-image_5279952-removebg-preview.png",
+    img:camera,
     title: "Sony Camera Digital",
     owner: "Ram Shinde",
     OldNew: 'Old',
@@ -156,7 +156,7 @@ const data = [
     category: "sneakers",
   },
   {
-    img: "https://o.remove.bg/downloads/b5ae25fa-eba6-40df-a7c9-0700b362da2d/pngtree-camera-digital-slr-electronics-png-image_5279952-removebg-preview.png",
+    img:camera,
     title: "Sony Camera Digital",
     owner: "Ram Shinde",
     OldNew: 'Old',
@@ -184,7 +184,7 @@ const data = [
     category: "sneakers",
   },
   {
-    img: "https://o.remove.bg/downloads/b5ae25fa-eba6-40df-a7c9-0700b362da2d/pngtree-camera-digital-slr-electronics-png-image_5279952-removebg-preview.png",
+    img:camera,
     title: "Sony Camera Digital",
     owner: "Ram Shinde",
     OldNew: 'Old',

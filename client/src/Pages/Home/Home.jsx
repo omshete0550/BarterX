@@ -25,7 +25,8 @@ const Home = () => {
       alt: "hk",
       title: "U.S. Polo Assn.",
       mbtitle: "U.S. Polo Assn.",
-      desc: "Men White Solid Polo Collar Slim Fit T-shirt",
+      owner: "Ram Shinde",
+      desiredProduct: "Sonata Watch",
       price: 1499,
       link: "/categ",
     },
@@ -35,7 +36,8 @@ const Home = () => {
       alt: "hk",
       title: "Sony Camera",
       mbtitle: "Sony Camera",
-      desc: "Sony Professional Video Camera",
+      owner: "Ram Shinde",
+      desiredProduct: "Sonata Watch",
       price: 59999,
       link: "/categ",
     },
@@ -45,7 +47,8 @@ const Home = () => {
       alt: "hk",
       title: "Apple Watch Ultra",
       mbtitle: "Apple Watch Ultra",
-      desc: "Apple Watch Ultra [GPS + Cellular 49 mm]",
+      owner: "Ram Shinde",
+      desiredProduct: "Sonata Watch",
       price: 65789,
       link: "/categ",
     },
@@ -55,7 +58,8 @@ const Home = () => {
       alt: "hk",
       title: "Sony Camera",
       mbtitle: "Sony Camera",
-      desc: "Sony Professional Video Camera",
+      owner: "Ram Shinde",
+      desiredProduct: "Sonata Watch",
       price: 59999,
       link: "/categ",
     },
@@ -65,7 +69,8 @@ const Home = () => {
       alt: "hk",
       title: "U.S. Polo Assn.",
       mbtitle: "U.S. Polo Assn.",
-      desc: "Men White Solid Polo Collar Slim Fit T-shirt",
+      owner: "Ram Shinde",
+      desiredProduct: "Sonata Watch",
       price: 1499,
       link: "/categ",
     },
@@ -75,7 +80,8 @@ const Home = () => {
       alt: "hk",
       title: "Sony Camera",
       mbtitle: "Sony Camera",
-      desc: "Sony Professional Video Camera",
+      owner: "Ram Shinde",
+      desiredProduct: "Sonata Watch",
       price: 59999,
       link: "/categ",
     },
@@ -85,7 +91,8 @@ const Home = () => {
       alt: "hk",
       title: "Apple Watch Ultra",
       mbtitle: "Apple Watch Ultra",
-      desc: "Apple Watch Ultra [GPS + Cellular 49 mm]",
+      owner: "Ram Shinde",
+      desiredProduct: "Sonata Watch",
       price: 65789,
       link: "/categ",
     },
@@ -95,7 +102,8 @@ const Home = () => {
       alt: "hk",
       title: "Sony Camera",
       mbtitle: "Sony Camera",
-      desc: "Sony Professional Video Camera",
+      owner: "Ram Shinde",
+      desiredProduct: "Sonata Watch",
       price: 59999,
       link: "/categ",
     },
@@ -129,9 +137,9 @@ const Home = () => {
             />
           )}
           <p className="product_desc" data-aos="fade-up">
-            {item.desc}
+            Owner: {item.owner}
           </p>
-          <p className="product_desc">Rs. {item.price}</p>
+          <p className="product_desc">Required: {item.desiredProduct}</p>
         </div>
         <Link to={item.link} className="product_link">
           Know more
