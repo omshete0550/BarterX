@@ -4,8 +4,8 @@
 }
 .CategCardContainer .Categcard {
   position: relative;
-  width: 22em;
-  height: 30em;
+  width: 16em;
+  height: 25em;
   background: #fff;
   border-radius: 20px;
   overflow: hidden;
@@ -35,8 +35,8 @@
   right: 5%;
 }
 .content-1 img {
-  width: 300px;
-  height: 220px;
+  width: 15em;
+  height: auto;
   position: absolute;
   top: 55%;
   transform: translateY(-50%);
@@ -169,10 +169,10 @@
 }
 
 .price {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 5px;
+  align-items: center; */
+  margin-top: 1em;
   cursor: pointer;
 }
 .price span {
@@ -195,13 +195,18 @@
   display: flex;
   padding: 0px 20px;
   gap: 1em;
+  justify-content: center;
 }
 .likesContainerInner {
   display: flex;
   flex-direction: column;
+  margin-top: 1em;  
 }
 .likesContainerInner i {
-  font-size: 1.5em;
+  font-size: 1.2em;
+}
+.likesContainerInner span{
+  font-size: 0.8em;
 }
 @media (max-width: 600px) {
   .CategCardContainer .Categcard {

@@ -48,13 +48,16 @@ const Card = ({
                 <i>
                   <BsHeart />
                 </i>
-                {likes}
+                <span>{likes}</span>
               </div>
               <div className="likesContainerInner">
                 <i>
                   <BsHandThumbsUp />
                 </i>
                 {/* 1259 */}
+              </div>
+              <div className="price">
+                <span>Let's Swap</span>
               </div>
             </div>
             {/* <div className="ratings">
@@ -77,9 +80,7 @@ const Card = ({
               <span></span>
               <span></span>
             </div> */}
-            <div className="price">
-              <span>Let's Swap</span>
-            </div>
+
           </div>
         </div>
       </div>
