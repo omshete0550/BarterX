@@ -63,10 +63,11 @@ function Category() {
         title,
         star,
         reviews,
-        prevPrice,
+        likes,
         newPrice,
         owner,
         desiredProduct,
+        OldNew
       }) => (
         <Card
           key={Math.random()}
@@ -76,8 +77,9 @@ function Category() {
           owner={owner}
           star={star}
           reviews={reviews}
-          prevPrice={prevPrice}
+          likes={likes}
           newPrice={newPrice}
+          OldNew={OldNew}
         />
       )
     );

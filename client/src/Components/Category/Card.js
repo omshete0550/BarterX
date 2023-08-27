@@ -1,9 +1,16 @@
 import { BsCart, BsHandThumbsUp, BsHeart } from "react-icons/bs";
-
-const Card = ({ img, title, owner, desiredProduct, star, prevPrice, newPrice }) => {
+import "./Card.css";
+const Card = ({
+  img,
+  title,
+  owner,
+  desiredProduct,
+  likes,
+  OldNew,
+}) => {
   return (
     <>
-      <section className="card">
+      {/* <section className="card">
         <img src={img} alt={title} className="card-img" />
         <div className="card-details">
           <h3 className="card-title">{title}</h3>
@@ -12,17 +19,70 @@ const Card = ({ img, title, owner, desiredProduct, star, prevPrice, newPrice }) 
 
 
           <section className="card-price">
-            {/* <div className="price">
-              Rs. {newPrice}
-            </div> */}
             <div className="bag">
-              {/* <i><BsCart className="bag-icon" /></i> */}
               <i><BsHeart className="bag-icon" /></i>
               <i><BsHandThumbsUp className="bag-icon" /></i>       
             </div>
           </section>
         </div>
-      </section>
+      </section> */}
+      <div className="CategCardContainer">
+        <div className="Categcard">
+          <div className="content-1">
+            <div className="logo-img">
+              {/* <img src="https://i.postimg.cc/vBJtjtRC/nike-logo.png" alt="" /> */}
+            </div>
+            <img src={img} alt="" />
+          </div>
+          <div className="content-2">
+            <div className="branding">
+              <div className="brandingInner">
+                <span>{title}</span>
+                <span>{OldNew}</span>
+              </div>
+              <h4>Owner: {owner}</h4>
+              <h4>Required: {desiredProduct}</h4>
+            </div>
+            <div className="likesContainer">
+              <div className="likesContainerInner">
+                <i>
+                  <BsHeart />
+                </i>
+                {likes}
+              </div>
+              <div className="likesContainerInner">
+                <i>
+                  <BsHandThumbsUp />
+                </i>
+                {/* 1259 */}
+              </div>
+            </div>
+            {/* <div className="ratings">
+              <span><i className="fas fa-star"></i></span>
+              <span><i className="fas fa-star"></i></span>
+              <span><i className="fas fa-star"></i></span>
+              <span><i className="fas fa-star"></i></span>
+              <span><i className="fas fa-star"></i></span>
+            </div> */}
+            {/* <div className="size">
+              <h3>SIZE</h3>
+              <span>8</span>
+              <span>9</span>
+              <span>10</span>
+              <span>11</span>
+            </div>
+            <div className="color">
+              <h3>Color</h3>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div> */}
+            <div className="price">
+              <span>Let's Swap</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
