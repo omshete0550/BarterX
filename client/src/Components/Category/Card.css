@@ -16,16 +16,17 @@
   position: relative;
   width: 100%;
   height: 48%;
-  background-image: linear-gradient(to bottom right, #fd8f22, #feb11f, #ffc519);
+  background: linear-gradient(270deg, rgba(174,141,254,1) 0%, rgba(112,89,243,1) 35%, rgba(112,89,243,1) 100%);
 }
 .content-1::after {
   content: "Item";
   position: absolute;
-  left: -4%;
-  font-size: 12em;
+  left: -8%;
+  font-size: 9em;
   font-weight: 800;
+  opacity: 0.3;
   font-style: italic;
-  color: rgba(250, 208, 93, 0.493);
+  color: #ccc;
 }
 .content-1 .logo-img img {
   width: 30px;
@@ -176,7 +177,8 @@
   cursor: pointer;
 }
 .price span {
-  background-image: linear-gradient(to right, #0ab5cf, #17d1ee);
+  /* background-image: linear-gradient(to right, #0ab5cf, #17d1ee); */
+  background: linear-gradient(270deg, rgba(174,141,254,1) 0%, rgba(112,89,243,1) 35%, rgba(112,89,243,1) 100%);
   padding: 8px 20px;
   border-radius: 4px;
   color: #fff;
