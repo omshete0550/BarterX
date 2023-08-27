@@ -21,11 +21,8 @@ const Nav = ({ handleInputChange, query }) => {
         <Link to="/">
           <i><FaRegHeart /></i>
         </Link>
-        <Link to="/">
-          <i><FaShoppingCart /></i>
-        </Link>
         <Link to="">
-          <AiOutlineUserAdd className="nav-icons" />
+          <i><AiOutlineUserAdd /></i>
           {/* <AccountMenu /> */}
         </Link>
       </div>

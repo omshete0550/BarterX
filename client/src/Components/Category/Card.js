@@ -1,22 +1,24 @@
-import { BsFillBagFill } from "react-icons/bs";
+import { BsCart, BsHandThumbsUp, BsHeart } from "react-icons/bs";
 
-const Card = ({ img, title, star, reviews, prevPrice, newPrice }) => {
+const Card = ({ img, title, owner, desiredProduct, star, prevPrice, newPrice }) => {
   return (
     <>
       <section className="card">
         <img src={img} alt={title} className="card-img" />
         <div className="card-details">
           <h3 className="card-title">{title}</h3>
-          <section className="card-reviews">
-            {star} {star} {star} {star}
-            <span className="total-reviews">{reviews}</span>
-          </section>
+          <p className="card-desc"><strong>Owner</strong>: {owner}</p>
+          <p className="card-desc"><strong>Require</strong>: {desiredProduct}</p>
+
+
           <section className="card-price">
-            <div className="price">
+            {/* <div className="price">
               Rs. {newPrice}
-            </div>
+            </div> */}
             <div className="bag">
-              <BsFillBagFill className="bag-icon" />
+              {/* <i><BsCart className="bag-icon" /></i> */}
+              <i><BsHeart className="bag-icon" /></i>
+              <i><BsHandThumbsUp className="bag-icon" /></i>       
             </div>
           </section>
         </div>

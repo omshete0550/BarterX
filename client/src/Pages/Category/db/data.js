@@ -4,6 +4,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/6125yAfsJKL._AC_UX575_.jpg",
     title: "Nike Air Monarch IV",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -15,6 +17,8 @@ const data = [
   {
     img: "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/19446146/2023/8/23/de32f905-32ca-4337-a431-1cb4ea3c84291692786536597USPoloAssnMenWhiteSolidPoloCollarPureCottonSlimFitT-shirt1.jpg",
     title: "U S POLO T-Shirt",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -26,6 +30,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/519MRhRKGFL._AC_UX575_.jpg",
     title: "Nike Air Vapormax Plus",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -37,6 +43,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/51+P9uAvb1L._AC_UY695_.jpg",
     title: "Nike Waffle One Sneaker",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -48,6 +56,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71oEKkghg-L._AC_UX575_.jpg",
     title: "Nike Running Shoe",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -59,6 +69,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/41M54ztS6IL._AC_SY625._SX._UX._SY._UY_.jpg",
     title: "Flat Slip On Pumps",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -70,6 +82,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71zKuNICJAL._AC_UX625_.jpg",
     title: "Knit Ballet Flat",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -81,6 +95,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/61V9APfz97L._AC_UY695_.jpg",
     title: "Loafer Flats",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -92,6 +108,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71VaQ+V6XnL._AC_UY695_.jpg",
     title: "Nike Zoom Freak",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -103,6 +121,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/61-cBsLhJHL._AC_UY695_.jpg",
     title: "Nike Men's Sneaker",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -114,6 +134,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/81xXDjojYKS._AC_UX575_.jpg",
     title: "PUMA BLACK-OCE",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -125,6 +147,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71E75yRwCDL._AC_UY575_.jpg",
     title: "Pacer Future Sneaker",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -136,6 +160,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71jeoX0rMBL._AC_UX575_.jpg",
     title: "Unisex-Adult Super",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -147,6 +173,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/61TM6Q9dvxL._AC_UX575_.jpg",
     title: "Roma Basic Sneaker",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -158,6 +186,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/7128-af7joL._AC_UY575_.jpg",
     title: "Pacer Future Doubleknit",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -169,6 +199,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/81xXDjojYKS._AC_UX575_.jpg",
     title: "Fusion Evo Golf Shoe",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -180,6 +212,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/719gdz8lsTS._AC_UX575_.jpg",
     title: "Rainbow Chex Skate",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -191,6 +225,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71gpFHJlnoL._AC_UX575_.jpg",
     title: "Low-Top Trainers",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -202,6 +238,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71pf7VFs9CL._AC_UX575_.jpg",
     title: "Vans Unisex Low-Top",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -213,6 +251,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/61N4GyWcHPL._AC_UY575_.jpg",
     title: "Classic Bandana Sneakers",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -224,6 +264,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/61bncQ44yML._AC_UX695_.jpg",
     title: "Chunky High Heel",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -235,6 +277,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71czu7WgGuL._AC_UY695_.jpg",
     title: "Slip On Stiletto High Heel",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -246,6 +290,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/61men05KRxL._AC_UY625_.jpg",
     title: "DREAM PAIRS Court Shoes",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -257,6 +303,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/519MRhRKGFL._AC_UX575_.jpg",
     title: "Nike Air Vapormax Plus",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -268,6 +316,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/51PGWTXgf-L._AC_UY625_.jpg",
     title: "Low Mid Block Heels",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -279,6 +329,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/616sA5XUKtL._AC_UY675_.jpg",
     title: "Chunky High Heel",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -290,6 +342,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71h5+MbEK7L._AC_UY625_.jpg",
     title: "Amore Fashion Stilettos",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -301,6 +355,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/61uw5RDxKQL._AC_UY625_.jpg",
     title: "Bridal Sandals Glitter",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
@@ -312,6 +368,8 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71yhoZP0l6L._AC_UY695_.jpg",
     title: "Wedding Prom Bridal",
+    owner: "ABC",
+    desiredProduct: "Cameras",
     star: <AiFillStar className="rating-star" />,
     reviews: "(123 reviews)",
     prevPrice: "Rs. 140,00",
