@@ -70,6 +70,7 @@
 @media (max-width: 835px) {
   .card-container {
     margin-left: 0;
+    margin-top: 0;
     justify-content: center;
   }
   .card-img {

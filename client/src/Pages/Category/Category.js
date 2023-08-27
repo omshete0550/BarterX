@@ -85,6 +85,11 @@ function Category() {
 
   const result = filteredData(products, selectedCategory, query);
   const { width: windowWidth } = useWindowSize();
+  const [isSectionVisible, setIsSectionVisible] = useState(false);
+
+  const toggleSection = () => {
+    setIsSectionVisible(!isSectionVisible);
+  };
 
   return (
     <>
@@ -128,142 +133,151 @@ function Category() {
           </section>
 
           <section className="CategSec2">
-            <h1>Filters</h1>
-            <div className="filterCategContainer">
-              <div className="categDiv">
-                <h2>Catgeory</h2>
-                <div className="ml">
-                  <label className="sidebar-label-container">
-                    <input
-                      onChange={handleChange}
-                      type="radio"
-                      value=""
-                      name="test"
-                    />
-                    <span className="checkmark"></span>All
-                  </label>
-                  <Input
-                    handleChange={handleChange}
-                    value="sneakers"
-                    title="Sneakers"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="flats"
-                    title="Flats"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="sandals"
-                    title="Sandals"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="heels"
-                    title="Heels"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="T-shirt"
-                    title="T-shirt"
-                    name="test"
-                  />
-                </div>
-              </div>
-              
-              <div className="categDiv">
-                <h2>Catgeory</h2>
-                <div className="ml">
-                  <label className="sidebar-label-container">
-                    <input
-                      onChange={handleChange}
-                      type="radio"
-                      value=""
-                      name="test"
-                    />
-                    <span className="checkmark"></span>All
-                  </label>
-                  <Input
-                    handleChange={handleChange}
-                    value="sneakers"
-                    title="Sneakers"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="flats"
-                    title="Flats"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="sandals"
-                    title="Sandals"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="heels"
-                    title="Heels"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="T-shirt"
-                    title="T-shirt"
-                    name="test"
-                  />
-                </div>
-              </div>
-              <div className="categDiv">
-                <h2>Catgeory</h2>
-                <div className="ml">
-                  <label className="sidebar-label-container">
-                    <input
-                      onChange={handleChange}
-                      type="radio"
-                      value=""
-                      name="test"
-                    />
-                    <span className="checkmark"></span>All
-                  </label>
-                  <Input
-                    handleChange={handleChange}
-                    value="sneakers"
-                    title="Sneakers"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="flats"
-                    title="Flats"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="sandals"
-                    title="Sandals"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="heels"
-                    title="Heels"
-                    name="test"
-                  />
-                  <Input
-                    handleChange={handleChange}
-                    value="T-shirt"
-                    title="T-shirt"
-                    name="test"
-                  />
-                </div>
-              </div>
+            <div className="CategSec2Head">
+              <h1>Filters</h1>
+              <img
+                src="https://cdn.pixabay.com/photo/2019/11/06/05/02/icon-4605170_1280.png"
+                alt=""
+                onClick={toggleSection}
+              />
             </div>
+            {isSectionVisible && (
+              <div className="filterCategContainer">
+                <div className="categDiv">
+                  <h2>Catgeory</h2>
+                  <div className="ml">
+                    <label className="sidebar-label-container">
+                      <input
+                        onChange={handleChange}
+                        type="radio"
+                        value=""
+                        name="test"
+                      />
+                      <span className="checkmark"></span>All
+                    </label>
+                    <Input
+                      handleChange={handleChange}
+                      value="sneakers"
+                      title="Sneakers"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="flats"
+                      title="Flats"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="sandals"
+                      title="Sandals"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="heels"
+                      title="Heels"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="T-shirt"
+                      title="T-shirt"
+                      name="test"
+                    />
+                  </div>
+                </div>
+
+                <div className="categDiv">
+                  <h2>Catgeory</h2>
+                  <div className="ml">
+                    <label className="sidebar-label-container">
+                      <input
+                        onChange={handleChange}
+                        type="radio"
+                        value=""
+                        name="test"
+                      />
+                      <span className="checkmark"></span>All
+                    </label>
+                    <Input
+                      handleChange={handleChange}
+                      value="sneakers"
+                      title="Sneakers"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="flats"
+                      title="Flats"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="sandals"
+                      title="Sandals"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="heels"
+                      title="Heels"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="T-shirt"
+                      title="T-shirt"
+                      name="test"
+                    />
+                  </div>
+                </div>
+                <div className="categDiv">
+                  <h2>Catgeory</h2>
+                  <div className="ml">
+                    <label className="sidebar-label-container">
+                      <input
+                        onChange={handleChange}
+                        type="radio"
+                        value=""
+                        name="test"
+                      />
+                      <span className="checkmark"></span>All
+                    </label>
+                    <Input
+                      handleChange={handleChange}
+                      value="sneakers"
+                      title="Sneakers"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="flats"
+                      title="Flats"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="sandals"
+                      title="Sandals"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="heels"
+                      title="Heels"
+                      name="test"
+                    />
+                    <Input
+                      handleChange={handleChange}
+                      value="T-shirt"
+                      title="T-shirt"
+                      name="test"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </section>
 
           <Products result={result} />

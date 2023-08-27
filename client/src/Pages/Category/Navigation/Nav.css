@@ -38,14 +38,22 @@
 
 /* mOB */
 .CategSec2 {
-  margin-top: 2em;
+  margin-top: 1em;
   padding: 20px 40px;
 }
 .CategSec2 h1 {
   font-size: 2rem;
   color: rgb(18 19 65);
   margin-bottom: 1em;
-  /* text-align: center; */
+}
+.CategSec2Head {
+  display: flex;
+  justify-content: space-between;
+}
+.CategSec2Head img {
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
 }
 .categNavMob {
   display: flex;
@@ -62,7 +70,6 @@
 .filterCategContainer {
   width: 100%;
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
   align-items: center;
 }
@@ -79,13 +86,17 @@
 }
 
 @media (max-width: 600px) {
+  .CategSec2 {
+    margin-top: 1em;
+    padding: 20px 20px;
+  }
   .filterCategContainer {
     flex-direction: column;
     align-items: start;
   }
   .filterCategContainer .categDiv {
     align-items: start;
-}
+  }
   .categNavMob .logo img {
     width: 5em;
   }
