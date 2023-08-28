@@ -1,5 +1,7 @@
 import { BsCart, BsHandThumbsUp, BsHeart } from "react-icons/bs";
 import "./Card.css";
+import { Link } from 'react-router-dom';
+
 const Card = ({
   img,
   title,
@@ -57,7 +59,7 @@ const Card = ({
                 {/* 1259 */}
               </div>
               <div className="price">
-                <span>Let's Swap</span>
+                <span><Link to="/product-detail" style={{ color: '#fff' }}>Let's Swap</Link></span>
               </div>
             </div>
             {/* <div className="ratings">

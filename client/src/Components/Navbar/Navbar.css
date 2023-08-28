@@ -165,8 +165,8 @@ button {
   align-items: center;
 }
 .UserAccItem i{
-  color: #bdbdbd;
-  font-size: 1.7rem;
+  color: #777;
+  font-size: 1.8rem;
 }
 .UserAccItem p{
   margin-left: 1em;

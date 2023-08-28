@@ -21,12 +21,12 @@ const Home = () => {
   const homepageProduct = [
     {
       id: 1,
-      img: "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/19446146/2023/8/23/de32f905-32ca-4337-a431-1cb4ea3c84291692786536597USPoloAssnMenWhiteSolidPoloCollarPureCottonSlimFitT-shirt1.jpg",
+      img: "https://www.amazinginteriors.co.nz/cdn/shop/products/QL1003-01_2000x.jpg?v=1681420966",
       alt: "hk",
-      title: "U.S. Polo Assn.",
-      mbtitle: "U.S. Polo Assn.",
+      title: "Sofa",
+      mbtitle: "Sofa",
       owner: "Ram Shinde",
-      desiredProduct: "Sonata Watch",
+      desiredProduct: "Office Chair",
       price: 1499,
       link: "/categ",
     },

@@ -12,6 +12,7 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 import logo from "../../assets/logo.png";
 import Input from "../../Components/Category/Input";
 import Footer from "../../Components/Footer/Footer";
+import AccountMenu from "../../Components/Navbar/AccountMenu";
 
 function Category() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -125,10 +126,8 @@ function Category() {
                   </i>
                 </Link>
                 <Link to="">
-                  <i>
-                    <AiOutlineUserAdd />
-                  </i>
-                  {/* <AccountMenu /> */}
+                  
+                  <AccountMenu />
                 </Link>
               </div>
             </nav>

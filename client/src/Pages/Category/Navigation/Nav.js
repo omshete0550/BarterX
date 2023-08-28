@@ -1,7 +1,7 @@
 import { FiHeart } from "react-icons/fi";
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
 import "./Nav.css";
-// import AccountMenu from "../../../Components/Navbar/AccountMenu";
+import AccountMenu from "../../../Components/Navbar/AccountMenu";
 import { Link } from "react-router-dom";
 import { FaHeart, FaRegHeart, FaShoppingCart } from "react-icons/fa";
 
@@ -22,8 +22,7 @@ const Nav = ({ handleInputChange, query }) => {
           <i><FaRegHeart /></i>
         </Link>
         <Link to="">
-          <i><AiOutlineUserAdd /></i>
-          {/* <AccountMenu /> */}
+          <AccountMenu />
         </Link>
       </div>
     </nav>

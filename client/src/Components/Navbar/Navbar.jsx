@@ -1,8 +1,9 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { FaShoppingCart, FaUser, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import logo from '../../assets/logo.png'
+import logo from "../../assets/logo.png";
 import "./Navbar.css";
+import AccountMenu from "./AccountMenu";
 // import AccountMenu from "./AccountMenu";
 
 const Navbar = () => {
@@ -119,11 +120,7 @@ const Navbar = () => {
           </div>
           <div className="userAcc">
             <div className="UserAccItem">
-              <i>
-                {/* <AccountMenu /> */}
-                <FaUser />
-              </i>
-              <p>Account</p>
+              <AccountMenu  />
             </div>
             <div className="UserAccItem">
               <i>
@@ -143,7 +140,6 @@ const Navbar = () => {
           )}
         </nav>
       </header>
-
     </>
   );
 };
