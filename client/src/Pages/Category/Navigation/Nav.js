@@ -18,12 +18,10 @@ const Nav = ({ handleInputChange, query }) => {
         />
       </div>
       <div className="profile-container">
-        <Link to="/">
-          <i><FaRegHeart /></i>
-        </Link>
-        <Link to="">
-          <AccountMenu />
-        </Link>
+        <div className="profileInner">
+            <AccountMenu />
+            <p>Account</p>
+        </div>
       </div>
     </nav>
   );

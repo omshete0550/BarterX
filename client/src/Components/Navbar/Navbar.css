@@ -204,7 +204,11 @@ button {
   cursor: text;
   padding: 0px 12px;
 }
-
+.labelforsearch i{
+  font-size: 1.2em;
+  color: #777;
+  cursor: pointer;
+}
 .searchIcon {
   width: 13px;
 }

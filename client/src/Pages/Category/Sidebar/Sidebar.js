@@ -3,17 +3,18 @@ import Price from "./Price/Price";
 import Colors from "./Colors/Colors";
 import "./Sidebar.css";
 import logo from '../../../assets/logo.png';
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ handleChange }) => {
   return (
     <>
       <section className="sidebar">
         <div className="logo-container">
-          <img src={logo} alt="" />
+          <Link to="/"><img src={logo} alt="" /></Link>
         </div>
         <Category handleChange={handleChange} />
-        <Price handleChange={handleChange} />
-        {/* <Colors handleChange={handleChange} /> */}
+        <Category handleChange={handleChange} />
+        <Category handleChange={handleChange} />
       </section>
     </>
   );

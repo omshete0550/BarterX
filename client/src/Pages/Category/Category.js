@@ -108,7 +108,7 @@ function Category() {
           <section>
             <nav className="categNavMob">
               <div className="logo">
-                <img src={logo} alt="" />
+                <Link to="/"><img src={logo} alt="" /></Link>
               </div>
               <div className="nav-container">
                 <input
@@ -120,14 +120,8 @@ function Category() {
                 />
               </div>
               <div className="profile-container">
-                <Link to="/">
-                  <i>
-                    <FaRegHeart />
-                  </i>
-                </Link>
                 <Link to="">
-                  
-                  <AccountMenu />
+                  <AccountMenu />                 
                 </Link>
               </div>
             </nav>

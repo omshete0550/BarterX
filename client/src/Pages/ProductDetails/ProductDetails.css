@@ -1,14 +1,3 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-family: "Open Sans", sans-serif;
-}
-body {
-  line-height: 1.5;
-} */
 .productDetailContainer {
   margin-top: 7em;
   padding: 20px 80px;
@@ -26,21 +15,12 @@ body {
 }
 .img-showcase {
   display: flex;
-  width: 25em;
-  height: 25em;
+  height: auto;
   transition: all 0.5s ease;
 }
-/* .img-showcase img {
-  min-width: 100%;
-} */
 .img-select {
   display: flex;
-  height: 10em;
-  width: 10em;
-}
-.img-select img {
-  border: 1px solid #777;
-  padding: 10px;
+  width: 7em;
 }
 .img-item {
   margin: 0.3rem;
@@ -210,7 +190,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
   }
   .product-content {
     padding-top: 0;
