@@ -174,6 +174,91 @@
 }
 
 /* Category Section */
+.CategLandingcard {
+  width: 10em;
+  height: 10em;
+  background: linear-gradient(
+    270deg,
+    rgba(174, 141, 254, 1) 0%,
+    rgba(112, 89, 243, 1) 35%,
+    rgba(112, 89, 243, 1) 100%
+  );
+  transition: all 0.4s;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.09);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.CategLandingcard:hover {
+  border-radius: 15px;
+  cursor: pointer;
+  transform: scale(1.1);
+  /* box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705); */
+  background: linear-gradient(
+    270deg,
+    rgba(174, 141, 254, 1) 0%,
+    rgba(112, 89, 243, 1) 35%,
+    rgba(112, 89, 243, 1) 100%
+  );
+  color: #fff;
+}
+
+.first-content {
+  height: 100%;
+  width: 100%;
+  transition: all 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  border-radius: 15px;
+}
+.first-content img{
+  width: 10em;
+  height: 10em;
+}
+.CategLandingcard:hover .first-content {
+  height: 0px;
+  opacity: 0;
+}
+
+.second-content {
+  height: 0%;
+  width: 100%;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  gap: 1em;
+  transition: all 0.4s;
+  transform: rotate(90deg) scale(-1);
+}
+.second-content span{
+  font-size: 1.8rem;
+  color: rgb(18 19 65);
+}
+.second-content p{
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 400;
+}
+.second-content button{
+  padding: 10px 20px;
+  background-color: #fff;
+}
+.second-content button:hover{
+  background-color: rgb(18 19 65);
+  color: #fff;
+  font-weight: bold;
+}
+.CategLandingcard:hover .second-content {
+  opacity: 1;
+  height: 100%;
+  transform: rotate(0deg);
+}
 
 .Categcontainer {
   width: 100%;
@@ -202,7 +287,9 @@
 .Categrow {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  gap: 2em;
+  justify-items: center;
+  align-items: center;
 }
 .Categrow .service {
   padding: 25px 15px;
@@ -271,7 +358,7 @@
   margin-top: 5em;
   padding: 20px 80px;
 }
-.LandingSec5 h1{
+.LandingSec5 h1 {
   text-align: center;
   font-size: 3rem;
   color: rgb(55, 93, 187);

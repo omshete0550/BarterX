@@ -67,7 +67,6 @@ const CategoryArr = [
     categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
     categicon: "fas fa-tv",
   },
-
 ];
 
 const Landing = () => {
@@ -242,107 +241,137 @@ const Landing = () => {
             Categories
           </motion.h2>
 
-          {/* {categ} */}
-
           <div className="Categrow">
-            <motion.div
-              className="service"
-              variants={textVariants("up", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <i>
-                <FaDesktop />
-              </i>
-              <h3>Desktop</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </motion.div>
-            <motion.div
-              className="service"
-              variants={textVariants("up", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <i>
-                <FaCamera />
-              </i>
-              <h3>Camera</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </motion.div>
-            <motion.div
-              className="service"
-              variants={textVariants("up", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <i>
-                <FaTshirt />
-              </i>
-              <h3>Clothes</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </motion.div>
-            <motion.div
-              className="service"
-              variants={textVariants("up", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <i>
-                <FaTv />
-              </i>
-              <h3>Smart TV</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </motion.div>
-            <motion.div
-              className="service"
-              variants={textVariants("up", 0.4)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <i>
-                <FaDesktop />
-              </i>
-              <h3>Desktop</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </motion.div>
-            <motion.div
-              className="service"
-              variants={textVariants("up", 0.4)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <i>
-                <FaCamera />
-              </i>
-              <h3>Camera</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </motion.div>
-            <motion.div
-              className="service"
-              variants={textVariants("up", 0.4)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <i>
-                <FaTshirt />
-              </i>
-              <h3>Clothes</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </motion.div>
+            <div className="CategLandingcard">
+              <div className="first-content">
+                {/* <span>First</span> */}
+                <img
+                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                  alt=""
+                />
+              </div>
+              <div className="second-content">
+                <span>Cars</span>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Harum, enim.
+                </p>
+                <button>Explore More</button>
+              </div>
+            </div>
+
+            <div className="CategLandingcard">
+              <div className="first-content">
+                {/* <span>First</span> */}
+                <img
+                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                  alt=""
+                />
+              </div>
+              <div className="second-content">
+                <span>Cars</span>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Harum, enim.
+                </p>
+                <button>Explore More</button>
+              </div>
+            </div>
+
+            <div className="CategLandingcard">
+              <div className="first-content">
+                {/* <span>First</span> */}
+                <img
+                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                  alt=""
+                />
+              </div>
+              <div className="second-content">
+                <span>Cars</span>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Harum, enim.
+                </p>
+                <button>Explore More</button>
+              </div>
+            </div>
+
+            <div className="CategLandingcard">
+              <div className="first-content">
+                {/* <span>First</span> */}
+                <img
+                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                  alt=""
+                />
+              </div>
+              <div className="second-content">
+                <span>Cars</span>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Harum, enim.
+                </p>
+                <button>Explore More</button>
+              </div>
+            </div>
+
+            <div className="CategLandingcard">
+              <div className="first-content">
+                {/* <span>First</span> */}
+                <img
+                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                  alt=""
+                />
+              </div>
+              <div className="second-content">
+                <span>Cars</span>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Harum, enim.
+                </p>
+                <button>Explore More</button>
+              </div>
+            </div>
+            <div className="CategLandingcard">
+              <div className="first-content">
+                {/* <span>First</span> */}
+                <img
+                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                  alt=""
+                />
+              </div>
+              <div className="second-content">
+                <span>Cars</span>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Harum, enim.
+                </p>
+                <button>Explore More</button>
+              </div>
+            </div>
+
+            <div className="CategLandingcard">
+              <div className="first-content">
+                {/* <span>First</span> */}
+                <img src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440" alt="" />
+              </div>
+              <div className="second-content">
+                <span>Cars</span>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum, enim.</p>
+                <button>Explore More</button>
+              </div>
+            </div>
+
+            <div className="CategLandingcard">
+              <div className="first-content">
+                {/* <span>First</span> */}
+                <img src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440" alt="" />
+              </div>
+              <div className="second-content">
+                <span>Cars</span>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum, enim.</p>
+                <button>Explore More</button>
+              </div>
+            </div>
           </div>
         </section>
       </div>
