@@ -163,7 +163,7 @@ const Home = () => {
         >
           <div className="ban_img">
             <img
-              src="https://i.ibb.co/NVjsGWG/banner.jpg"
+              src="https://media.istockphoto.com/id/1210902717/photo/transportation-and-technology-concept-its-mobility-as-a-service.jpg?s=612x612&w=0&k=20&c=Z_XuPRbBRBVYOvf0gBR38TPOz7HWUmoZmEES1dpAslI="
               alt="banner"
               border="0"
             />
@@ -677,6 +677,910 @@ const Home = () => {
           transition={{ duration: 0.5 }}
           >
             Most Selling Products
+          </motion.h2>
+          <div className="product_row" data-aos="fade-up">
+            {width > 834 || width < 768 ? null : (
+              <div className="arrows_wrapper">
+                <img
+                  src={leftarrow}
+                  className="left_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                />
+                <img
+                  src={rightarrow}
+                  className="right_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                />
+              </div>
+            )}
+            <Swiper
+              className="productSwiper"
+              slidesPerView={3}
+              slidesPerGroup={1}
+              spaceBetween={98}
+              autoHeight={true}
+              modules={[Pagination, Navigation]}
+              pagination={{
+                type: "progressbar",
+              }}
+              navigation={{
+                nextEl: ".right_arrow",
+                prevEl: ".left_arrow",
+              }}
+              breakpoints={{
+                0: {
+                  spaceBetween: 0,
+                  slidesPerView: 1,
+                },
+                768: {
+                  spaceBetween: 60,
+                  slidesPerView: 2,
+                },
+                992: {
+                  spaceBetween: 50,
+                  slidesPerView: 3,
+                },
+                1280: {
+                  spaceBetween: 70,
+                  slidesPerView: 3,
+                },
+                1536: {
+                  spaceBetween: 80,
+                  slidesPerView: 3,
+                },
+                1600: {
+                  spaceBetween: 98,
+                  slidesPerView: 3,
+                },
+                1920: {
+                  spaceBetween: 99,
+                  slidesPerView: 3,
+                },
+                2250: {
+                  spaceBetween: 120,
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {productList}
+
+              {width <= 767 ? (
+                <div className="mbarrows_wrapper">
+                  {/* <img
+                    src={leftarrow}
+                    className="left_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                  />
+                  <img
+                    src={rightarrow}
+                    className="right_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                  /> */}
+                </div>
+              ) : null}
+              {/* <div className="cta_wrapper" data-aos="fade-up">
+                <Link to={productsURL} className="about-button">
+                  Know more
+                </Link>
+              </div> */}
+            </Swiper>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="home_sec4">
+        <motion.div
+          className="my_container"
+          variants={textVariants("up", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+          >
+            Category 1
+          </motion.h2>
+          <div className="product_row" data-aos="fade-up">
+            {width > 834 || width < 768 ? null : (
+              <div className="arrows_wrapper">
+                <img
+                  src={leftarrow}
+                  className="left_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                />
+                <img
+                  src={rightarrow}
+                  className="right_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                />
+              </div>
+            )}
+            <Swiper
+              className="productSwiper"
+              slidesPerView={3}
+              slidesPerGroup={1}
+              spaceBetween={98}
+              autoHeight={true}
+              modules={[Pagination, Navigation]}
+              pagination={{
+                type: "progressbar",
+              }}
+              navigation={{
+                nextEl: ".right_arrow",
+                prevEl: ".left_arrow",
+              }}
+              breakpoints={{
+                0: {
+                  spaceBetween: 0,
+                  slidesPerView: 1,
+                },
+                768: {
+                  spaceBetween: 60,
+                  slidesPerView: 2,
+                },
+                992: {
+                  spaceBetween: 50,
+                  slidesPerView: 3,
+                },
+                1280: {
+                  spaceBetween: 70,
+                  slidesPerView: 3,
+                },
+                1536: {
+                  spaceBetween: 80,
+                  slidesPerView: 3,
+                },
+                1600: {
+                  spaceBetween: 98,
+                  slidesPerView: 3,
+                },
+                1920: {
+                  spaceBetween: 99,
+                  slidesPerView: 3,
+                },
+                2250: {
+                  spaceBetween: 120,
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {productList}
+
+              {width <= 767 ? (
+                <div className="mbarrows_wrapper">
+                  {/* <img
+                    src={leftarrow}
+                    className="left_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                  />
+                  <img
+                    src={rightarrow}
+                    className="right_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                  /> */}
+                </div>
+              ) : null}
+              {/* <div className="cta_wrapper" data-aos="fade-up">
+                <Link to={productsURL} className="about-button">
+                  Know more
+                </Link>
+              </div> */}
+            </Swiper>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="home_sec4">
+        <motion.div
+          className="my_container"
+          variants={textVariants("up", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+          >
+            Category 2
+          </motion.h2>
+          <div className="product_row" data-aos="fade-up">
+            {width > 834 || width < 768 ? null : (
+              <div className="arrows_wrapper">
+                <img
+                  src={leftarrow}
+                  className="left_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                />
+                <img
+                  src={rightarrow}
+                  className="right_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                />
+              </div>
+            )}
+            <Swiper
+              className="productSwiper"
+              slidesPerView={3}
+              slidesPerGroup={1}
+              spaceBetween={98}
+              autoHeight={true}
+              modules={[Pagination, Navigation]}
+              pagination={{
+                type: "progressbar",
+              }}
+              navigation={{
+                nextEl: ".right_arrow",
+                prevEl: ".left_arrow",
+              }}
+              breakpoints={{
+                0: {
+                  spaceBetween: 0,
+                  slidesPerView: 1,
+                },
+                768: {
+                  spaceBetween: 60,
+                  slidesPerView: 2,
+                },
+                992: {
+                  spaceBetween: 50,
+                  slidesPerView: 3,
+                },
+                1280: {
+                  spaceBetween: 70,
+                  slidesPerView: 3,
+                },
+                1536: {
+                  spaceBetween: 80,
+                  slidesPerView: 3,
+                },
+                1600: {
+                  spaceBetween: 98,
+                  slidesPerView: 3,
+                },
+                1920: {
+                  spaceBetween: 99,
+                  slidesPerView: 3,
+                },
+                2250: {
+                  spaceBetween: 120,
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {productList}
+
+              {width <= 767 ? (
+                <div className="mbarrows_wrapper">
+                  {/* <img
+                    src={leftarrow}
+                    className="left_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                  />
+                  <img
+                    src={rightarrow}
+                    className="right_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                  /> */}
+                </div>
+              ) : null}
+              {/* <div className="cta_wrapper" data-aos="fade-up">
+                <Link to={productsURL} className="about-button">
+                  Know more
+                </Link>
+              </div> */}
+            </Swiper>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="home_sec4">
+        <motion.div
+          className="my_container"
+          variants={textVariants("up", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+          >
+            Category 3
+          </motion.h2>
+          <div className="product_row" data-aos="fade-up">
+            {width > 834 || width < 768 ? null : (
+              <div className="arrows_wrapper">
+                <img
+                  src={leftarrow}
+                  className="left_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                />
+                <img
+                  src={rightarrow}
+                  className="right_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                />
+              </div>
+            )}
+            <Swiper
+              className="productSwiper"
+              slidesPerView={3}
+              slidesPerGroup={1}
+              spaceBetween={98}
+              autoHeight={true}
+              modules={[Pagination, Navigation]}
+              pagination={{
+                type: "progressbar",
+              }}
+              navigation={{
+                nextEl: ".right_arrow",
+                prevEl: ".left_arrow",
+              }}
+              breakpoints={{
+                0: {
+                  spaceBetween: 0,
+                  slidesPerView: 1,
+                },
+                768: {
+                  spaceBetween: 60,
+                  slidesPerView: 2,
+                },
+                992: {
+                  spaceBetween: 50,
+                  slidesPerView: 3,
+                },
+                1280: {
+                  spaceBetween: 70,
+                  slidesPerView: 3,
+                },
+                1536: {
+                  spaceBetween: 80,
+                  slidesPerView: 3,
+                },
+                1600: {
+                  spaceBetween: 98,
+                  slidesPerView: 3,
+                },
+                1920: {
+                  spaceBetween: 99,
+                  slidesPerView: 3,
+                },
+                2250: {
+                  spaceBetween: 120,
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {productList}
+
+              {width <= 767 ? (
+                <div className="mbarrows_wrapper">
+                  {/* <img
+                    src={leftarrow}
+                    className="left_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                  />
+                  <img
+                    src={rightarrow}
+                    className="right_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                  /> */}
+                </div>
+              ) : null}
+              {/* <div className="cta_wrapper" data-aos="fade-up">
+                <Link to={productsURL} className="about-button">
+                  Know more
+                </Link>
+              </div> */}
+            </Swiper>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="home_sec4">
+        <motion.div
+          className="my_container"
+          variants={textVariants("up", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+          >
+            Category 4
+          </motion.h2>
+          <div className="product_row" data-aos="fade-up">
+            {width > 834 || width < 768 ? null : (
+              <div className="arrows_wrapper">
+                <img
+                  src={leftarrow}
+                  className="left_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                />
+                <img
+                  src={rightarrow}
+                  className="right_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                />
+              </div>
+            )}
+            <Swiper
+              className="productSwiper"
+              slidesPerView={3}
+              slidesPerGroup={1}
+              spaceBetween={98}
+              autoHeight={true}
+              modules={[Pagination, Navigation]}
+              pagination={{
+                type: "progressbar",
+              }}
+              navigation={{
+                nextEl: ".right_arrow",
+                prevEl: ".left_arrow",
+              }}
+              breakpoints={{
+                0: {
+                  spaceBetween: 0,
+                  slidesPerView: 1,
+                },
+                768: {
+                  spaceBetween: 60,
+                  slidesPerView: 2,
+                },
+                992: {
+                  spaceBetween: 50,
+                  slidesPerView: 3,
+                },
+                1280: {
+                  spaceBetween: 70,
+                  slidesPerView: 3,
+                },
+                1536: {
+                  spaceBetween: 80,
+                  slidesPerView: 3,
+                },
+                1600: {
+                  spaceBetween: 98,
+                  slidesPerView: 3,
+                },
+                1920: {
+                  spaceBetween: 99,
+                  slidesPerView: 3,
+                },
+                2250: {
+                  spaceBetween: 120,
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {productList}
+
+              {width <= 767 ? (
+                <div className="mbarrows_wrapper">
+                  {/* <img
+                    src={leftarrow}
+                    className="left_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                  />
+                  <img
+                    src={rightarrow}
+                    className="right_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                  /> */}
+                </div>
+              ) : null}
+              {/* <div className="cta_wrapper" data-aos="fade-up">
+                <Link to={productsURL} className="about-button">
+                  Know more
+                </Link>
+              </div> */}
+            </Swiper>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="home_sec4">
+        <motion.div
+          className="my_container"
+          variants={textVariants("up", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+          >
+            Category 5
+          </motion.h2>
+          <div className="product_row" data-aos="fade-up">
+            {width > 834 || width < 768 ? null : (
+              <div className="arrows_wrapper">
+                <img
+                  src={leftarrow}
+                  className="left_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                />
+                <img
+                  src={rightarrow}
+                  className="right_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                />
+              </div>
+            )}
+            <Swiper
+              className="productSwiper"
+              slidesPerView={3}
+              slidesPerGroup={1}
+              spaceBetween={98}
+              autoHeight={true}
+              modules={[Pagination, Navigation]}
+              pagination={{
+                type: "progressbar",
+              }}
+              navigation={{
+                nextEl: ".right_arrow",
+                prevEl: ".left_arrow",
+              }}
+              breakpoints={{
+                0: {
+                  spaceBetween: 0,
+                  slidesPerView: 1,
+                },
+                768: {
+                  spaceBetween: 60,
+                  slidesPerView: 2,
+                },
+                992: {
+                  spaceBetween: 50,
+                  slidesPerView: 3,
+                },
+                1280: {
+                  spaceBetween: 70,
+                  slidesPerView: 3,
+                },
+                1536: {
+                  spaceBetween: 80,
+                  slidesPerView: 3,
+                },
+                1600: {
+                  spaceBetween: 98,
+                  slidesPerView: 3,
+                },
+                1920: {
+                  spaceBetween: 99,
+                  slidesPerView: 3,
+                },
+                2250: {
+                  spaceBetween: 120,
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {productList}
+
+              {width <= 767 ? (
+                <div className="mbarrows_wrapper">
+                  {/* <img
+                    src={leftarrow}
+                    className="left_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                  />
+                  <img
+                    src={rightarrow}
+                    className="right_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                  /> */}
+                </div>
+              ) : null}
+              {/* <div className="cta_wrapper" data-aos="fade-up">
+                <Link to={productsURL} className="about-button">
+                  Know more
+                </Link>
+              </div> */}
+            </Swiper>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="home_sec4">
+        <motion.div
+          className="my_container"
+          variants={textVariants("up", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+          >
+            Category 6
+          </motion.h2>
+          <div className="product_row" data-aos="fade-up">
+            {width > 834 || width < 768 ? null : (
+              <div className="arrows_wrapper">
+                <img
+                  src={leftarrow}
+                  className="left_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                />
+                <img
+                  src={rightarrow}
+                  className="right_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                />
+              </div>
+            )}
+            <Swiper
+              className="productSwiper"
+              slidesPerView={3}
+              slidesPerGroup={1}
+              spaceBetween={98}
+              autoHeight={true}
+              modules={[Pagination, Navigation]}
+              pagination={{
+                type: "progressbar",
+              }}
+              navigation={{
+                nextEl: ".right_arrow",
+                prevEl: ".left_arrow",
+              }}
+              breakpoints={{
+                0: {
+                  spaceBetween: 0,
+                  slidesPerView: 1,
+                },
+                768: {
+                  spaceBetween: 60,
+                  slidesPerView: 2,
+                },
+                992: {
+                  spaceBetween: 50,
+                  slidesPerView: 3,
+                },
+                1280: {
+                  spaceBetween: 70,
+                  slidesPerView: 3,
+                },
+                1536: {
+                  spaceBetween: 80,
+                  slidesPerView: 3,
+                },
+                1600: {
+                  spaceBetween: 98,
+                  slidesPerView: 3,
+                },
+                1920: {
+                  spaceBetween: 99,
+                  slidesPerView: 3,
+                },
+                2250: {
+                  spaceBetween: 120,
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {productList}
+
+              {width <= 767 ? (
+                <div className="mbarrows_wrapper">
+                  {/* <img
+                    src={leftarrow}
+                    className="left_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                  />
+                  <img
+                    src={rightarrow}
+                    className="right_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                  /> */}
+                </div>
+              ) : null}
+              {/* <div className="cta_wrapper" data-aos="fade-up">
+                <Link to={productsURL} className="about-button">
+                  Know more
+                </Link>
+              </div> */}
+            </Swiper>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="home_sec4">
+        <motion.div
+          className="my_container"
+          variants={textVariants("up", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+          >
+            Category 7
+          </motion.h2>
+          <div className="product_row" data-aos="fade-up">
+            {width > 834 || width < 768 ? null : (
+              <div className="arrows_wrapper">
+                <img
+                  src={leftarrow}
+                  className="left_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                />
+                <img
+                  src={rightarrow}
+                  className="right_arrow"
+                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                />
+              </div>
+            )}
+            <Swiper
+              className="productSwiper"
+              slidesPerView={3}
+              slidesPerGroup={1}
+              spaceBetween={98}
+              autoHeight={true}
+              modules={[Pagination, Navigation]}
+              pagination={{
+                type: "progressbar",
+              }}
+              navigation={{
+                nextEl: ".right_arrow",
+                prevEl: ".left_arrow",
+              }}
+              breakpoints={{
+                0: {
+                  spaceBetween: 0,
+                  slidesPerView: 1,
+                },
+                768: {
+                  spaceBetween: 60,
+                  slidesPerView: 2,
+                },
+                992: {
+                  spaceBetween: 50,
+                  slidesPerView: 3,
+                },
+                1280: {
+                  spaceBetween: 70,
+                  slidesPerView: 3,
+                },
+                1536: {
+                  spaceBetween: 80,
+                  slidesPerView: 3,
+                },
+                1600: {
+                  spaceBetween: 98,
+                  slidesPerView: 3,
+                },
+                1920: {
+                  spaceBetween: 99,
+                  slidesPerView: 3,
+                },
+                2250: {
+                  spaceBetween: 120,
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {productList}
+
+              {width <= 767 ? (
+                <div className="mbarrows_wrapper">
+                  {/* <img
+                    src={leftarrow}
+                    className="left_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
+                  />
+                  <img
+                    src={rightarrow}
+                    className="right_arrow"
+                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
+                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
+                  /> */}
+                </div>
+              ) : null}
+              {/* <div className="cta_wrapper" data-aos="fade-up">
+                <Link to={productsURL} className="about-button">
+                  Know more
+                </Link>
+              </div> */}
+            </Swiper>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="home_sec4">
+        <motion.div
+          className="my_container"
+          variants={textVariants("up", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h2 
+          className="heading"
+          variants={textVariants("left", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ amount: 0.1 }}
+          transition={{ duration: 0.5 }}
+          >
+            Category 8
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (

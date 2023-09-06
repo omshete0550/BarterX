@@ -89,15 +89,7 @@ const Landing = () => {
 
   return (
     <>
-      {/* <motion.div
-        variants={textVariants("up", 0.2)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ amount: 0.1 }}
-        transition={{ duration: 0.5 }}
-      > */}
       <NavbarL />
-      {/* </motion.div> */}
 
       <div className="row LandingSec1">
         <motion.div
@@ -152,7 +144,6 @@ const Landing = () => {
             <div className="barndInfoBx1">
               <div>
                 <div className="icon_animation">
-                  {/* <img src={business} alt="Business" className="animation_img" /> */}
                   <i>
                     <FaBriefcase />
                   </i>
@@ -166,7 +157,6 @@ const Landing = () => {
             <div className="barndInfoBx1">
               <div>
                 <div className="icon_animation">
-                  {/* <img src={business} alt="Business" className="animation_img" /> */}
                   <i>
                     <FaUser />
                   </i>
@@ -180,7 +170,6 @@ const Landing = () => {
             <div className="barndInfoBx1">
               <div>
                 <div className="icon_animation">
-                  {/* <img src={business} alt="Business" className="animation_img" /> */}
                   <i>
                     <FaHandshake />
                   </i>
@@ -207,9 +196,10 @@ const Landing = () => {
           <h3>Introduction</h3>
           <h1>Why BarterX?</h1>
         </motion.div>
+
         <motion.div
           className="LandingSec2_content"
-          variants={textVariants("up", 0.2)}
+          variants={textVariants("down", 0.2)}
           initial="hidden"
           whileInView="show"
           viewport={{ amount: 0.1 }}
@@ -231,6 +221,7 @@ const Landing = () => {
 
       <div className="LandingCategSec">
         <section className="Categcontainer">
+
           <motion.h2
             variants={textVariants("up", 0.2)}
             initial="hidden"
@@ -242,9 +233,16 @@ const Landing = () => {
           </motion.h2>
 
           <div className="Categrow">
-            <div className="CategLandingcard">
+
+            <motion.div 
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+            className="CategLandingcard"
+            >
               <div className="first-content">
-                {/* <span>First</span> */}
                 <img
                   src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
                   alt=""
@@ -258,11 +256,17 @@ const Landing = () => {
                 </p>
                 <button>Explore More</button>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="CategLandingcard">
+            <motion.div 
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+            className="CategLandingcard"
+            >
               <div className="first-content">
-                {/* <span>First</span> */}
                 <img
                   src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
                   alt=""
@@ -276,11 +280,17 @@ const Landing = () => {
                 </p>
                 <button>Explore More</button>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="CategLandingcard">
+            <motion.div 
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+            className="CategLandingcard"
+            >
               <div className="first-content">
-                {/* <span>First</span> */}
                 <img
                   src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
                   alt=""
@@ -294,11 +304,17 @@ const Landing = () => {
                 </p>
                 <button>Explore More</button>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="CategLandingcard">
+            <motion.div 
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+            className="CategLandingcard"
+            >
               <div className="first-content">
-                {/* <span>First</span> */}
                 <img
                   src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
                   alt=""
@@ -312,11 +328,17 @@ const Landing = () => {
                 </p>
                 <button>Explore More</button>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="CategLandingcard">
+            <motion.div 
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+            className="CategLandingcard"
+            >
               <div className="first-content">
-                {/* <span>First</span> */}
                 <img
                   src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
                   alt=""
@@ -330,10 +352,17 @@ const Landing = () => {
                 </p>
                 <button>Explore More</button>
               </div>
-            </div>
-            <div className="CategLandingcard">
+            </motion.div>
+
+            <motion.div 
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+            className="CategLandingcard"
+            >
               <div className="first-content">
-                {/* <span>First</span> */}
                 <img
                   src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
                   alt=""
@@ -347,32 +376,58 @@ const Landing = () => {
                 </p>
                 <button>Explore More</button>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="CategLandingcard">
+            <motion.div 
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+            className="CategLandingcard"
+            >
               <div className="first-content">
-                {/* <span>First</span> */}
-                <img src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440" alt="" />
+                <img
+                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                  alt=""
+                />
               </div>
               <div className="second-content">
                 <span>Cars</span>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum, enim.</p>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Harum, enim.
+                </p>
                 <button>Explore More</button>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="CategLandingcard">
+            <motion.div 
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+            className="CategLandingcard"
+            >
               <div className="first-content">
-                {/* <span>First</span> */}
-                <img src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440" alt="" />
+                <img
+                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                  alt=""
+                />
               </div>
               <div className="second-content">
                 <span>Cars</span>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum, enim.</p>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Harum, enim.
+                </p>
                 <button>Explore More</button>
               </div>
-            </div>
+            </motion.div>
+            
           </div>
+
         </section>
       </div>
 

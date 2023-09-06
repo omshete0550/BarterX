@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./NotificationPage.css";
+// import Navbar from '../../Components/Navbar/Navbar';
+// import Footer from '../../Components/Footer/Footer'
 
 function NotificationsPage() {
   const [notifications, setNotifications] = useState([
@@ -91,6 +93,10 @@ function NotificationsPage() {
   }
 
   return (
+    <>
+
+    {/* <Navbar /> */}
+    
     <div className="NotificationApp">
       <div className="Notificationcontainer">
         <header className="NotificationHeader">
@@ -146,6 +152,10 @@ function NotificationsPage() {
         </div>
       </div>
     </div>
+
+    {/* <Footer /> */}
+
+    </>
   );
 }
 

@@ -36,7 +36,9 @@
   padding: var(--fs4) var(--fs2);
   display: grid;
   gap: 1.4rem;
-  max-width: 800px;
+  width: 100%;
+  max-width: 75%;
+  /* max-width: 800px; */
 }
 
 .NotificationApp a {

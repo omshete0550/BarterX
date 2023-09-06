@@ -8,6 +8,7 @@ import Home from './Pages/Home/Home';
 import NotificationPage from './Pages/Notification/NotificationPage'
 import AddProductPage from './Pages/AddProductPage/AddProductPage';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
+import UserProfile from './Pages/UserProfile/UserProfile'
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
             <Route exact path="/add-product" element={<AddProductPage />} />
             <Route exact path="/product-detail" element={<ProductDetails />} />
             <Route exact path="/notification" element={<NotificationPage />} />
+            <Route exact path="/user-profile" element={<UserProfile />} />
+            
           </Routes>
       </Router>
     </>

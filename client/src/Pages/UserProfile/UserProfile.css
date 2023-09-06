@@ -1,0 +1,15 @@
+.UserTabPanel{
+    margin-top: 8em;
+}
+.TabHeading{
+    padding-left: 3em;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+}
+.TabHeading h4{
+    margin-bottom: 2px;
+    font-size: 15px;
+}
+.TabHeading span{
+    font-size: 12px;
+}
