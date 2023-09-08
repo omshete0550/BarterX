@@ -5,11 +5,53 @@
     padding-left: 3em;
     padding-bottom: 15px;
     border-bottom: 1px solid #ccc;
+    color: rgb(55, 93, 187);
 }
 .TabHeading h4{
     margin-bottom: 2px;
-    font-size: 15px;
+    font-size: 2em;
 }
-.TabHeading span{
-    font-size: 12px;
+.profileContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2em;
+    margin-top: 3em;
+    padding: 20px 80px;
+    text-decoration: none;
+}
+.profileCard{
+    display: flex;
+    justify-content: space-between;
+    width: 25em;
+    height: 8em;
+    border: 1px solid #ccc;
+    padding: 20px 10px;
+    border-radius: 1em;
+}
+.profileContentLogo img{
+    width: 7em;
+    height: 5em;
+}
+.profileContentConatainer h3{
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+    color: rgb(18 19 65);
+}
+.profileContentConatainer p{
+    font-weight: 400;
+    font-size: 1em;
+    color: #000;
+}
+
+@media (max-width: 600px) {
+    .profileContainer {
+        justify-content: center;
+        padding: 20px 20px;
+    }
+    .profileCard {
+        width: 18em;
+    }
+    
 }
