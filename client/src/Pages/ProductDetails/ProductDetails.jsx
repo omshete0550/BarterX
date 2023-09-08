@@ -74,7 +74,7 @@ const ProductDetails = () => {
               <div className="product-content">
                 <h2 className="product-title">{pItem.pname}</h2>
                 <div className="product-rating">
-                  Traded: <span>(21)</span>
+                  Proposers: <span>(21)</span>
                 </div>
 
                 <div className="product-detail">

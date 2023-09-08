@@ -9,6 +9,7 @@ import NotificationPage from './Pages/Notification/NotificationPage'
 import AddProductPage from './Pages/AddProductPage/AddProductPage';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import UserProfile from './Pages/UserProfile/UserProfile'
+import Orders from './Pages/UserProfile/Orders/Orders';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route exact path="/product-detail" element={<ProductDetails />} />
             <Route exact path="/notification" element={<NotificationPage />} />
             <Route exact path="/user-profile" element={<UserProfile />} />
+            <Route exact path="/order-history" element={<Orders />} />
             
           </Routes>
       </Router>
