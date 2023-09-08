@@ -19,8 +19,8 @@ function VTcontent(props) {
           : { display: "none" }
       }
     >
-      {/* <h4>{data.position}</h4>
-      <h5>{data.period}</h5> */}
+      <h4>{data.position}</h4>
+      {/* <h5>{data.period}</h5> */}
       <div className="VTContnetContainer">
         <div className="VTContnetContainerSteps">
           {data.details.map((detail) => (
@@ -31,7 +31,7 @@ function VTcontent(props) {
           <AutoplaySlider
             play={true}
             cancelOnInteraction={false}
-            interval={6000}
+            interval={5000}
             buttons={false}
           >
             {data.images.map((images) => (

@@ -221,7 +221,6 @@ const Landing = () => {
 
       <div className="LandingCategSec">
         <section className="Categcontainer">
-
           <motion.h2
             variants={textVariants("up", 0.2)}
             initial="hidden"
@@ -233,14 +232,13 @@ const Landing = () => {
           </motion.h2>
 
           <div className="Categrow">
-
-            <motion.div 
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="CategLandingcard"
+            <motion.div
+              variants={textVariants("left", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="CategLandingcard"
             >
               <div className="first-content">
                 <img
@@ -258,13 +256,13 @@ const Landing = () => {
               </div>
             </motion.div>
 
-            <motion.div 
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="CategLandingcard"
+            <motion.div
+              variants={textVariants("left", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="CategLandingcard"
             >
               <div className="first-content">
                 <img
@@ -282,13 +280,13 @@ const Landing = () => {
               </div>
             </motion.div>
 
-            <motion.div 
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="CategLandingcard"
+            <motion.div
+              variants={textVariants("left", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="CategLandingcard"
             >
               <div className="first-content">
                 <img
@@ -306,13 +304,13 @@ const Landing = () => {
               </div>
             </motion.div>
 
-            <motion.div 
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="CategLandingcard"
+            <motion.div
+              variants={textVariants("left", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="CategLandingcard"
             >
               <div className="first-content">
                 <img
@@ -330,13 +328,13 @@ const Landing = () => {
               </div>
             </motion.div>
 
-            <motion.div 
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="CategLandingcard"
+            <motion.div
+              variants={textVariants("left", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="CategLandingcard"
             >
               <div className="first-content">
                 <img
@@ -354,13 +352,13 @@ const Landing = () => {
               </div>
             </motion.div>
 
-            <motion.div 
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="CategLandingcard"
+            <motion.div
+              variants={textVariants("left", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="CategLandingcard"
             >
               <div className="first-content">
                 <img
@@ -378,13 +376,13 @@ const Landing = () => {
               </div>
             </motion.div>
 
-            <motion.div 
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="CategLandingcard"
+            <motion.div
+              variants={textVariants("left", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="CategLandingcard"
             >
               <div className="first-content">
                 <img
@@ -402,13 +400,13 @@ const Landing = () => {
               </div>
             </motion.div>
 
-            <motion.div 
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="CategLandingcard"
+            <motion.div
+              variants={textVariants("left", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="CategLandingcard"
             >
               <div className="first-content">
                 <img
@@ -425,9 +423,7 @@ const Landing = () => {
                 <button>Explore More</button>
               </div>
             </motion.div>
-            
           </div>
-
         </section>
       </div>
 
@@ -444,7 +440,7 @@ const Landing = () => {
               transition={{ duration: 0.5 }}
             >
               <h1>
-                <CountUp end={4125} />+
+                <CountUp start={0} end={160527} duration={5} suffix=" +" />
               </h1>
               <h3>Number of Businesses</h3>
             </motion.div>
@@ -459,7 +455,7 @@ const Landing = () => {
               transition={{ duration: 0.5 }}
             >
               <h1>
-                <CountUp end={629800000} />+
+                <CountUp start={0} end={62900000} duration={5} suffix=" +" />
               </h1>
               <h3>Total Barter Transaction Volume</h3>
             </motion.div>
@@ -474,7 +470,7 @@ const Landing = () => {
               transition={{ duration: 0.5 }}
             >
               <h1>
-                <CountUp end={212000000} />+
+                <CountUp start={0} end={212000000} duration={5} suffix=" +" />
               </h1>
               <h3>Total Cash Saved By Businesses</h3>
             </motion.div>
@@ -489,7 +485,7 @@ const Landing = () => {
               transition={{ duration: 0.5 }}
             >
               <h1>
-                <CountUp end={95} />+
+              <CountUp start={0} end={95} duration={5} suffix=" +" />
               </h1>
               <h3>Number of Charities Supported</h3>
             </motion.div>
@@ -504,7 +500,7 @@ const Landing = () => {
               transition={{ duration: 0.5 }}
             >
               <h1>
-                <CountUp end={2737000} />+
+              <CountUp start={0} end={2737000} duration={5} suffix=" +" />
               </h1>
               <h3>Total Barter Donations by Businesses</h3>
             </motion.div>
@@ -519,7 +515,7 @@ const Landing = () => {
               transition={{ duration: 0.5 }}
             >
               <h1>
-                <CountUp end={2162000} />+
+              <CountUp start={0} end={2162000} duration={5} suffix=" +" />
               </h1>
               <h3>Total Cash Saved By Charities</h3>
             </motion.div>

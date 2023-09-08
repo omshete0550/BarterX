@@ -268,22 +268,23 @@
 .Categcontainer h2 {
   text-align: center;
   padding-top: 6%;
-  margin-bottom: 60px;
-  font-size: 1.8rem;
+  margin-bottom: 1em;
+  font-size: 3rem;
   font-weight: 600;
   position: relative;
+  color: rgb(55, 93, 187);
 }
-.Categcontainer h2::after {
+/* .Categcontainer h2::after {
   content: "";
   position: absolute;
-  bottom: -8px;
+  bottom: -0.5em;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
   height: 5px;
   background-color: rgb(55, 93, 187);
   border-radius: 20px;
-}
+} */
 .Categrow {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -324,13 +325,19 @@
 .LandingSec4 {
   margin-top: 10vh;
   padding: 5em 15em;
-  background: rgb(18 19 65);
+  background: linear-gradient(
+    270deg,
+    rgba(174, 141, 254, 1) 0%,
+    rgba(112, 89, 243, 1) 35%,
+    rgba(112, 89, 243, 1) 100%
+  );
 }
 .LandingSec4 h2 {
-  font-size: 2em;
-  padding-bottom: 2em;
+  font-size: 3rem;
   color: #fff;
+  padding-bottom: 2em;
 }
+
 .countUpContainerLeft {
   display: flex;
   justify-content: flex-start;
@@ -342,14 +349,14 @@
   margin-bottom: 2em;
 }
 .countUpBx h1 {
-  color: #c3ff7a;
+  color: #f2f2f3;
   font-size: 4rem;
   font-weight: 300;
 }
 .countUpBx h3 {
-  color: #fff;
+  color: rgb(18 19 65);
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /* Landing Sec 5 */

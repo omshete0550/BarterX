@@ -30,8 +30,8 @@ const data = [
     category: "T-shirt",
   },
   {
-    img: "https://o.remove.bg/downloads/98172663-9eb0-4a04-ba8b-9e499988dd0f/91z5KuonXrL._SX569_-removebg-preview.png",
-    title: "Apple Watch Series",
+    img: "https://i.postimg.cc/cHgcX5zQ/nike.png",
+    title: "Nike Air Monarch IV",
     owner: "Rohit Richards",
     OldNew: 'New',
     desiredProduct: "Sony Camera",
