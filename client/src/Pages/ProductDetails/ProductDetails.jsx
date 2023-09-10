@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./ProductDetails.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
+import Review from "../../Components/Review/Review";
 
 const ProductDetails = () => {
   const [imgId, setImgId] = useState(1);
@@ -110,6 +111,8 @@ const ProductDetails = () => {
           </div>
         </div>
       </section>
+
+      <Review />
 
       <Footer />
     </>
