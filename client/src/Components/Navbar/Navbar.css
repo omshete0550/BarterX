@@ -161,12 +161,14 @@ button {
 .UserAccItem{
   display: flex;
   margin-left: 2em;
+  gap: 1.5em;
   cursor: pointer;
   align-items: center;
+  justify-content: center;
 }
 .UserAccItem i{
-  color: #777;
-  font-size: 1.8rem;
+  color: rgb(55, 93, 187);
+  font-size: 2rem;
 }
 .UserAccItem p{
   margin-left: 1em;
@@ -244,7 +246,9 @@ button {
   background-color: rgb(255, 230, 230);
   transition-duration: .3s;
 }
-
+.close-icon {
+  width: 2em;
+}
 
 @media (max-width: 1023px) {
   .InputSearchContainer{

@@ -28,7 +28,7 @@ const Home = () => {
       owner: "Ram Shinde",
       desiredProduct: "Office Chair",
       price: 1499,
-      link: "/categ",
+      link: "/product-detail",
     },
     {
       id: 2,
@@ -39,7 +39,7 @@ const Home = () => {
       owner: "Ram Shinde",
       desiredProduct: "Sonata Watch",
       price: 59999,
-      link: "/categ",
+      link: "/product-detail",
     },
     {
       id: 3,
@@ -50,7 +50,7 @@ const Home = () => {
       owner: "Ram Shinde",
       desiredProduct: "Sonata Watch",
       price: 65789,
-      link: "/categ",
+      link: "/product-detail",
     },
     {
       id: 4,
@@ -61,7 +61,7 @@ const Home = () => {
       owner: "Ram Shinde",
       desiredProduct: "Sonata Watch",
       price: 59999,
-      link: "/categ",
+      link: "/product-detail",
     },
     {
       id: 5,
@@ -72,7 +72,7 @@ const Home = () => {
       owner: "Ram Shinde",
       desiredProduct: "Sonata Watch",
       price: 1499,
-      link: "/categ",
+      link: "/product-detail",
     },
     {
       id: 6,
@@ -83,7 +83,7 @@ const Home = () => {
       owner: "Ram Shinde",
       desiredProduct: "Sonata Watch",
       price: 59999,
-      link: "/categ",
+      link: "/product-detail",
     },
     {
       id: 7,
@@ -94,7 +94,7 @@ const Home = () => {
       owner: "Ram Shinde",
       desiredProduct: "Sonata Watch",
       price: 65789,
-      link: "/categ",
+      link: "/product-detail",
     },
     {
       id: 8,
@@ -105,7 +105,7 @@ const Home = () => {
       owner: "Ram Shinde",
       desiredProduct: "Sonata Watch",
       price: 59999,
-      link: "/categ",
+      link: "/product-detail",
     },
   ];
 
@@ -162,11 +162,11 @@ const Home = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="ban_img">
-            <img
-              src="https://media.istockphoto.com/id/1210902717/photo/transportation-and-technology-concept-its-mobility-as-a-service.jpg?s=612x612&w=0&k=20&c=Z_XuPRbBRBVYOvf0gBR38TPOz7HWUmoZmEES1dpAslI="
+            {/* <img
+              src="https://www.bgtrade.io/assets/cotactbg-c21c29e8.png"
               alt="banner"
               border="0"
-            />
+            /> */}
             <div className="ban_text">
               <strong>
                 <span>Shopping And</span>
@@ -195,56 +195,72 @@ const Home = () => {
         </motion.h1>
 
         <div className="HomeSec2CardContainer">
-          <motion.div
-            variants={textVariants("up", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="HomeSec2Card"
-          >
-            <p>Furniture</p>
-          </motion.div>
-          <motion.div
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="HomeSec2Card"
-          >
-            <p>Electronics</p>
-          </motion.div>
-          <motion.div
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="HomeSec2Card"
-          >
-            <p>Tech</p>
-          </motion.div>
-          <motion.div
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="HomeSec2Card"
-          >
-            <p>Hand Bag</p>
-          </motion.div>
-          <motion.div
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-            className="HomeSec2Card"
-          >
-            <p>Categ1</p>
-          </motion.div>
+
+          <Link to="/categ">
+            <motion.div
+              variants={textVariants("up", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="HomeSec2Card"
+            >
+              <p>Furniture</p>
+            </motion.div>
+          </Link>
+
+          <Link to="/categ">
+            <motion.div
+              variants={textVariants("up", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="HomeSec2Card"
+            >
+              <p>Furniture</p>
+            </motion.div>
+          </Link>
+
+          <Link to="/categ">
+            <motion.div
+              variants={textVariants("up", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="HomeSec2Card"
+            >
+              <p>Furniture</p>
+            </motion.div>
+          </Link>
+
+          <Link to="/categ">
+            <motion.div
+              variants={textVariants("up", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="HomeSec2Card"
+            >
+              <p>Furniture</p>
+            </motion.div>
+          </Link>
+
+          <Link to="/categ">
+            <motion.div
+              variants={textVariants("up", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="HomeSec2Card"
+            >
+              <p>Furniture</p>
+            </motion.div>
+          </Link>
+
         </div>
       </section>
 
@@ -257,13 +273,14 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}>
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+          >
             Products
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
@@ -442,13 +459,13 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
           >
             Weekly Popular Products
           </motion.h2>
@@ -555,13 +572,13 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
           >
             Todays Best Deals For You!
           </motion.h2>
@@ -668,13 +685,13 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
           >
             Most Selling Products
           </motion.h2>
@@ -781,13 +798,13 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
           >
             Category 1
           </motion.h2>
@@ -894,13 +911,13 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
           >
             Category 2
           </motion.h2>
@@ -1007,13 +1024,13 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
           >
             Category 3
           </motion.h2>
@@ -1120,13 +1137,13 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
           >
             Category 4
           </motion.h2>
@@ -1233,13 +1250,13 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
           >
             Category 5
           </motion.h2>
@@ -1346,13 +1363,13 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
           >
             Category 6
           </motion.h2>
@@ -1459,13 +1476,13 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
           >
             Category 7
           </motion.h2>
@@ -1572,13 +1589,13 @@ const Home = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-          className="heading"
-          variants={textVariants("left", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          <motion.h2
+            className="heading"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
           >
             Category 8
           </motion.h2>
@@ -1686,7 +1703,7 @@ const Home = () => {
           <div className="HomeSec5Image"></div>
         </div>
       </section> */}
-        
+
       <Footer />
     </>
   );

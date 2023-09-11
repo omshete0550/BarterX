@@ -3,6 +3,7 @@ import "./ProductDetails.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import Review from "../../Components/Review/Review";
+import Table from "../../Components/Table/Table";
 
 const ProductDetails = () => {
   const [imgId, setImgId] = useState(1);
@@ -111,6 +112,10 @@ const ProductDetails = () => {
           </div>
         </div>
       </section>
+
+      <div className="DataTable">
+        <Table />
+      </div>
 
       <Review />
 

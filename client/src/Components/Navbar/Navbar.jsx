@@ -1,5 +1,12 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { FaShoppingCart, FaUser, FaArrowRight, FaCamera, FaSearch } from "react-icons/fa";
+import {
+  FaShoppingCart,
+  FaUser,
+  FaArrowRight,
+  FaCamera,
+  FaSearch,
+  FaBell,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
@@ -93,40 +100,72 @@ const Navbar = () => {
                   />
 
                   <label htmlFor="inputSearch" className="labelforsearch">
-                    <i><FaSearch /></i>
+                    <i>
+                      <FaSearch />
+                    </i>
                   </label>
                   <div className="border"></div>
 
                   <button className="labelforsearch">
-                    <i><FaCamera /></i>
+                    <i>
+                      <FaCamera />
+                    </i>
                   </button>
                 </div>
               </li>
               <li className="menu-item menu-mob">
-                <Link className="menu-link" to="/">
-                  Account
-                </Link>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "1em",
+                    alignItems: "center",
+                    fontSize: "1.1rem",
+                    fontWeight: "500",
+                  }}
+                >
+                  <AccountMenu />
+                  <p>Account</p>
+                </div>
               </li>
               <li className="menu-item menu-mob">
-                <Link className="menu-link" to="/register">
-                  Cart
+                <Link to="/notification">
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "1em",
+                      alignItems: "center",
+                      fontSize: "1.1rem",
+                      fontWeight: "500",
+                      color: "#000",
+                    }}
+                  >
+                    <i className="NotificationBell">
+                      <FaBell />
+                    </i>
+                    <p>Account</p>
+                  </div>
                 </Link>
               </li>
             </ul>
           </div>
           <div className="userAcc">
             <div className="UserAccItem">
-              <AccountMenu  />
-              <p>Account</p>
+              <AccountMenu />
+              <Link to="/notification">
+                <i>
+                  <FaBell />
+                </i>
+              </Link>
             </div>
           </div>
-          {/* Close button */}
+
           {isMenuActive && (
             <button
               className="close-menu"
               onClick={() => setIsMenuActive(false)}
             >
-              <i className="close-icon">X</i>
+              <img className="close-icon" src="https://static.thenounproject.com/png/1479017-200.png" alt="" />
+              {/* <i className="close-icon">X</i> */}
             </button>
           )}
         </nav>

@@ -2,13 +2,14 @@
   margin-top: 8em;
 }
 .TabHeading {
-  padding-left: 10em;
+  /* padding-left: 10em; */
   padding-bottom: 15px;
   color: rgb(55, 93, 187);
 }
 .TabHeading h4 {
   margin-bottom: 2px;
   font-size: 2em;
+  text-align: center;
 }
 .profileContainer {
   display: flex;
@@ -152,7 +153,7 @@
 .stats li h4 {
   font-size: 0.75rem;
 }
-.links{
+.links {
   margin-top: 3em;
 }
 .links .view {
@@ -191,6 +192,9 @@
     padding: 20px 20px;
   }
   .profileCard {
-    width: 18em;
+    width: 20em;
+  }
+  .TabHeading {
+    padding-left: 1em;
   }
 }

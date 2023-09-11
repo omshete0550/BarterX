@@ -1,29 +1,15 @@
 import React, { useEffect } from "react";
 import "./Landing.css";
 import NavbarL from "../../Components/NavbarL/NavbarL";
-import landing_vector from "../../assets/landingMainImg.png";
 import Footer from "../../Components/Footer/Footer";
-import {
-  FaBriefcase,
-  FaCamera,
-  FaDesktop,
-  FaEnvelope,
-  FaHandHolding,
-  FaHandshake,
-  FaHome,
-  FaPhone,
-  FaStopwatch,
-  FaTshirt,
-  FaTv,
-  FaUber,
-  FaUser,
-} from "react-icons/fa";
+import { FaBriefcase, FaHandshake, FaUser } from "react-icons/fa";
 import CountUp from "react-countup";
 import { textVariants } from "../../Components/Motion";
 import { motion } from "framer-motion";
-// import TabPanel from "../../Components/VerticalTabPanel/TabPanel";
 import resumeData from "../../Components/VerticalTabPanel/Data";
 import VerticalTab from "../../Components/VerticalTabPanel/VerticalTab";
+import { Link } from "react-router-dom";
+
 const CategoryArr = [
   {
     id: 1,
@@ -70,64 +56,88 @@ const CategoryArr = [
 ];
 
 const Landing = () => {
-  const categ = CategoryArr.map((item) => {
-    <div className="Categrow">
-      <motion.div
-        className="service"
-        variants={textVariants("up", 0.2)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ amount: 0.1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <i className={item.categicon}></i>
-        <h3>{item.categName}</h3>
-        <p>{item.categDesc}</p>
-      </motion.div>
-    </div>;
-  });
+  // const categ = CategoryArr.map((item) => {
+  //   <div className="Categrow">
+  //     <motion.div
+  //       className="service"
+  //       variants={textVariants("up", 0.2)}
+  //       initial="hidden"
+  //       whileInView="show"
+  //       viewport={{ amount: 0.1 }}
+  //       transition={{ duration: 0.5 }}
+  //     >
+  //       <i className={item.categicon}></i>
+  //       <h3>{item.categName}</h3>
+  //       <p>{item.categDesc}</p>
+  //     </motion.div>
+  //   </div>;
+  // });
 
   return (
     <>
       <NavbarL />
 
-      <div className="row LandingSec1">
+      <div className="LandingSec1">
+        <div className="LandingSec1row">
+          <motion.div
+            className="img_sec1"
+            variants={textVariants("left", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <img
+              src="https://img.freepik.com/free-vector/international-trade-concept-illustration_114360-9661.jpg?w=2000"
+              alt=""
+            />
+          </motion.div>
+          <motion.div
+            className="content_sec1"
+            variants={textVariants("right", 0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1>
+              We connect you to <br />
+              people around you to <br />
+              <span className="underlined">barterX items</span> with
+            </h1>
+            <p>
+              Our feed is filled with listed items by varoius <br />
+              people all over the country
+            </p>
+            <div className="searchbox-wrap">
+              <input type="text" placeholder="Input your email address" />
+              <button>
+                <span>Sign Up</span>{" "}
+              </button>
+            </div>
+          </motion.div>
+        </div>
         <motion.div
-          className="img_sec1"
+          className="HomeBtnContainer"
           variants={textVariants("left", 0.2)}
           initial="hidden"
           whileInView="show"
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <img
-            src="https://img.freepik.com/free-vector/international-trade-concept-illustration_114360-9661.jpg?w=2000"
-            alt=""
-          />
-        </motion.div>
-        <motion.div
-          className="content_sec1"
-          variants={textVariants("right", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1>
-            We connect you to <br />
-            people around you to <br />
-            <span className="underlined">barterX items</span> with
-          </h1>
-          <p>
-            Our feed is filled with listed items by varoius <br />
-            people all over the country
-          </p>
-          <div className="searchbox-wrap">
-            <input type="text" placeholder="Input your email address" />
-            <button>
-              <span>Sign Up</span>{" "}
+          <Link to="/home ">
+            <button className="HomeBtn">
+              H O M E
+              <div id="clip">
+                <div id="leftTop" className="corner"></div>
+                <div id="rightBottom" className="corner"></div>
+                <div id="rightTop" className="corner"></div>
+                <div id="leftBottom" className="corner"></div>
+              </div>
+              <span id="rightArrow" className="arrow"></span>
+              <span id="leftArrow" className="arrow"></span>
             </button>
-          </div>
+          </Link>
         </motion.div>
       </div>
 
@@ -232,197 +242,215 @@ const Landing = () => {
           </motion.h2>
 
           <div className="Categrow">
-            <motion.div
-              variants={textVariants("left", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-              className="CategLandingcard"
-            >
-              <div className="first-content">
-                <img
-                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                  alt=""
-                />
-              </div>
-              <div className="second-content">
-                <span>Cars</span>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Harum, enim.
-                </p>
-                <button>Explore More</button>
-              </div>
-            </motion.div>
+            
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>Cars</span>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Harum, enim.
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
 
-            <motion.div
-              variants={textVariants("left", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-              className="CategLandingcard"
-            >
-              <div className="first-content">
-                <img
-                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                  alt=""
-                />
-              </div>
-              <div className="second-content">
-                <span>Cars</span>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Harum, enim.
-                </p>
-                <button>Explore More</button>
-              </div>
-            </motion.div>
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>Cars</span>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Harum, enim.
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
 
-            <motion.div
-              variants={textVariants("left", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-              className="CategLandingcard"
-            >
-              <div className="first-content">
-                <img
-                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                  alt=""
-                />
-              </div>
-              <div className="second-content">
-                <span>Cars</span>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Harum, enim.
-                </p>
-                <button>Explore More</button>
-              </div>
-            </motion.div>
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>Cars</span>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Harum, enim.
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
 
-            <motion.div
-              variants={textVariants("left", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-              className="CategLandingcard"
-            >
-              <div className="first-content">
-                <img
-                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                  alt=""
-                />
-              </div>
-              <div className="second-content">
-                <span>Cars</span>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Harum, enim.
-                </p>
-                <button>Explore More</button>
-              </div>
-            </motion.div>
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>Cars</span>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Harum, enim.
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
 
-            <motion.div
-              variants={textVariants("left", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-              className="CategLandingcard"
-            >
-              <div className="first-content">
-                <img
-                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                  alt=""
-                />
-              </div>
-              <div className="second-content">
-                <span>Cars</span>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Harum, enim.
-                </p>
-                <button>Explore More</button>
-              </div>
-            </motion.div>
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>Cars</span>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Harum, enim.
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
 
-            <motion.div
-              variants={textVariants("left", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-              className="CategLandingcard"
-            >
-              <div className="first-content">
-                <img
-                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                  alt=""
-                />
-              </div>
-              <div className="second-content">
-                <span>Cars</span>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Harum, enim.
-                </p>
-                <button>Explore More</button>
-              </div>
-            </motion.div>
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>Cars</span>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Harum, enim.
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
 
-            <motion.div
-              variants={textVariants("left", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-              className="CategLandingcard"
-            >
-              <div className="first-content">
-                <img
-                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                  alt=""
-                />
-              </div>
-              <div className="second-content">
-                <span>Cars</span>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Harum, enim.
-                </p>
-                <button>Explore More</button>
-              </div>
-            </motion.div>
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>Cars</span>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Harum, enim.
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
 
-            <motion.div
-              variants={textVariants("left", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-              className="CategLandingcard"
-            >
-              <div className="first-content">
-                <img
-                  src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                  alt=""
-                />
-              </div>
-              <div className="second-content">
-                <span>Cars</span>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Harum, enim.
-                </p>
-                <button>Explore More</button>
-              </div>
-            </motion.div>
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>Cars</span>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Harum, enim.
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
+
           </div>
         </section>
       </div>
@@ -485,7 +513,7 @@ const Landing = () => {
               transition={{ duration: 0.5 }}
             >
               <h1>
-              <CountUp start={0} end={95} duration={5} suffix=" +" />
+                <CountUp start={0} end={95} duration={5} suffix=" +" />
               </h1>
               <h3>Number of Charities Supported</h3>
             </motion.div>
@@ -500,7 +528,7 @@ const Landing = () => {
               transition={{ duration: 0.5 }}
             >
               <h1>
-              <CountUp start={0} end={2737000} duration={5} suffix=" +" />
+                <CountUp start={0} end={2737000} duration={5} suffix=" +" />
               </h1>
               <h3>Total Barter Donations by Businesses</h3>
             </motion.div>
@@ -515,7 +543,7 @@ const Landing = () => {
               transition={{ duration: 0.5 }}
             >
               <h1>
-              <CountUp start={0} end={2162000} duration={5} suffix=" +" />
+                <CountUp start={0} end={2162000} duration={5} suffix=" +" />
               </h1>
               <h3>Total Cash Saved By Charities</h3>
             </motion.div>

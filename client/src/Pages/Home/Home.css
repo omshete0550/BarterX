@@ -1,37 +1,41 @@
 .ban_sec {
+  margin-top: 5em;
   width: 100%;
 }
-.ban_img {
+/* .ban_img {
   width: 100%;
   position: relative;
-}
-.ban_img img {
+} */
+/* .ban_img img {
   width: 100%;
   height: 65vh;
-}
+} */
 .ban_text {
-  position: absolute;
-  top: 50%;
-  left: 6%;
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
+  background-image: url(https://www.bgtrade.io/assets/cotactbg-c21c29e8.png);
+  background-size: cover;
+  background-position: center center;
+  height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .ban_text strong {
   font: 800 62.22px/70px "Montserrat", sans-serif;
   color: #fff;
+  text-align: center;
   text-transform: uppercase;
 }
 .ban_text strong span {
   font: 400 44.44px/52px "Montserrat", sans-serif;
   letter-spacing: 3px;
+  text-align: center;
 }
 .ban_text p {
   font: 400 25px/30px "Montserrat", sans-serif;
   color: #fff;
   margin: 7px 0 25px;
+  text-align: center;
 }
 .ban_text a {
   display: inline-block;
@@ -78,7 +82,7 @@
 .HomeSec2Card p {
   color: #fff;
   text-align: center;
-  margin-top: 2em;
+  padding-top: 2em;
   font: 600 1.5rem/40px "Montserrat", sans-serif;
 }
 .HomeSec2Card:hover {
@@ -276,13 +280,12 @@
 
 /* Home Sec 5 */
 
-.HomeSec5Container{
+.HomeSec5Container {
   background-color: #ffe6cc;
   height: 40vh;
   padding: 40px 80px;
   display: flex;
 }
-
 
 /* Media Queries */
 
@@ -312,6 +315,11 @@
 @media only screen and (max-width: 991px) {
   .ban_sec {
     margin-top: 5em;
+  }
+  .ban_text {
+    height: 25vh;
+    background-size: cover;
+    background-position: center center;
   }
   .ban_text strong {
     font-size: 35px;
@@ -346,8 +354,13 @@
   }
 }
 @media only screen and (max-width: 575px) {
+  .ban_text {
+    height: 45vh;
+    background-size: cover;
+    background-position: center center;
+  }
   .ban_text strong {
-    background: rgba(0, 0, 0, 0.8);
+    /* background: rgba(0, 0, 0, 0.8); */
     padding: 10px;
     width: 100%;
     display: block;
@@ -375,7 +388,7 @@
   .home_sec4 .heading {
     font: 500 1.5rem/50px "Montserrat", sans-serif;
     margin-bottom: 1em;
-}
+  }
 }
 @media only screen and (max-width: 480px) {
   .ban_text strong span {
