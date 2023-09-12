@@ -1,6 +1,8 @@
 import React from "react";
-
+import "./Proposer.css";
 import DataTable, { createTheme } from "react-data-table-component";
+import Navbar from "../../../Components/Navbar/Navbar";
+import Footer from "../../../Components/Footer/Footer";
 
 const customStyles = {
   rows: {
@@ -44,6 +46,15 @@ const columns = [
     selector: (row) => row.price,
     sortable: true,
   },
+  {
+    name: "Status",
+    cell: (row) => (
+      <div className="TableBtnContainer">
+        <button className="AcceptBtn">✔</button>
+        <button className="DenyBtn">✘</button>
+      </div>
+    ),
+  },
 ];
 
 createTheme(
@@ -54,7 +65,7 @@ createTheme(
       secondary: "#2aa198",
     },
     background: {
-      default: "rgba(112, 89, 243, 1)",
+      default: "#000",
     },
     context: {
       background: "#cb4b16",
@@ -128,19 +139,27 @@ const data = [
     user: "Angela Yu",
     item: "Sofa",
     price: "5500",
-  },  
-
+  },
 ];
 
-const Table = () => {
+const Proposer = () => {
   return (
-    <DataTable
-      columns={columns}
-      data={data}
-      theme="solarized"
-      customStyles={customStyles}
-    />
+    <>
+      <Navbar />
+
+      <div className="proposerContainer">
+        <h1>Proposers</h1>
+        <DataTable
+          columns={columns}
+          data={data}
+          theme="solarized"
+          customStyles={customStyles}
+        />
+      </div>
+
+      <Footer />
+    </>
   );
 };
 
-export default Table;
+export default Proposer;

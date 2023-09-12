@@ -13,6 +13,7 @@ import Orders from './Pages/UserProfile/Orders/Orders';
 import Ads from './Pages/UserProfile/Ads/Ads';
 import Address from './Pages/UserProfile/Address/Address';
 import Profile from './Pages/UserProfile/Profile/Profile';
+import Proposer from './Pages/UserProfile/Proposer/Proposer';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
             <Route exact path="/your-ads" element={<Ads />} />
             <Route exact path="/edit-address" element={<Address />} />
             <Route exact path="/edit-profile" element={<Profile />} />
-            
+            <Route exact path="/proposers" element={<Proposer />} />
           </Routes>
       </Router>
     </>

@@ -111,7 +111,7 @@ const UserProfile = () => {
             </div>
           </Link>
 
-          <Link to="/orders">
+          <Link to="/proposers">
             <div className="profileCard">
               <div className="profileContentLogo">
                 <img
@@ -120,7 +120,7 @@ const UserProfile = () => {
                 />
               </div>
               <div className="profileContentConatainer">
-                <h3>Your Orders</h3>
+                <h3>Proposers</h3>
                 <p>Track, return, or buy things again</p>
               </div>
             </div>
