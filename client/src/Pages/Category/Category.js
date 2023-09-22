@@ -13,6 +13,9 @@ import logo from "../../assets/logo.png";
 import Input from "../../Components/Category/Input";
 import Footer from "../../Components/Footer/Footer";
 
+import AccountMenu from "../../Components/Navbar/AccountMenu";
+
+
 function Category() {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -107,7 +110,9 @@ function Category() {
           <section>
             <nav className="categNavMob">
               <div className="logo">
-                <img src={logo} alt="" />
+
+                <Link to="/"><img src={logo} alt="" /></Link>
+
               </div>
               <div className="nav-container">
                 <input
@@ -119,16 +124,10 @@ function Category() {
                 />
               </div>
               <div className="profile-container">
-                <Link to="/">
-                  <i>
-                    <FaRegHeart />
-                  </i>
-                </Link>
+
                 <Link to="">
-                  <i>
-                    <AiOutlineUserAdd />
-                  </i>
-                  {/* <AccountMenu /> */}
+                  <AccountMenu />                 
+
                 </Link>
               </div>
             </nav>

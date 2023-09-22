@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-// import { FileUploader } from "react-drag-drop-files";
+
 import "./AddProductPage.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import "react-datepicker/dist/react-datepicker.css";
+
 import axios from "axios";
 const options = ["Used", "Nearly New", "Mint"];
 const categOptions = ["Home Appliances", "Electronics", "Vehicles", "Furniture", "Art", "Miscellaneous"];
 const defaultOption = options[0];
 const defaultCategOption = categOptions[0];
 
+
 const fileTypes = ["JPG", "PNG", "GIF"];
 
 const AddProductPage = () => {
+
   const [prodname, setprodname] = useState("");
   const [desc, setdesc] = useState("");
   const [categ, setcateg] = useState(defaultOption);
@@ -127,6 +130,7 @@ const AddProductPage = () => {
   }
 
 
+
   return (
     <>
       <Navbar />
@@ -136,6 +140,7 @@ const AddProductPage = () => {
         <p>
           To start swapping, all you need is a name, required product, and file.
         </p>
+
         <form onSubmit={publishProduct}>
           <div className="addProductInnerCont">
             <div className="addProductInnerContainer">
@@ -220,6 +225,7 @@ const AddProductPage = () => {
             </div>
           </div>
         </form>
+
       </div>
 
       <Footer />

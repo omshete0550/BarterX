@@ -161,12 +161,14 @@ button {
 .UserAccItem{
   display: flex;
   margin-left: 2em;
+  gap: 1.5em;
   cursor: pointer;
   align-items: center;
+  justify-content: center;
 }
 .UserAccItem i{
   color: rgb(55, 93, 187);
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 .UserAccItem p{
   margin-left: 1em;
@@ -204,7 +206,11 @@ button {
   cursor: text;
   padding: 0px 12px;
 }
-
+.labelforsearch i{
+  font-size: 1.2em;
+  color: #777;
+  cursor: pointer;
+}
 .searchIcon {
   width: 13px;
 }
@@ -240,7 +246,9 @@ button {
   background-color: rgb(255, 230, 230);
   transition-duration: .3s;
 }
-
+.close-icon {
+  width: 2em;
+}
 
 @media (max-width: 1023px) {
   .InputSearchContainer{

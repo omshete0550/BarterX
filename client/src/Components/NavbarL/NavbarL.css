@@ -203,4 +203,8 @@
   .menu-mob{
     display: block;
   }
+  .NotificationBell{
+    font-size: 2.5rem;
+    color:rgb(55, 93, 187);
+  }
 }

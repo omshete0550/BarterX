@@ -10,7 +10,12 @@
 
 .LoginPageInnerContainer .ImageContianer {
   width: 50%;
-  background-color: rgb(55, 93, 187);
+  background: linear-gradient(
+    270deg,
+    rgba(174, 141, 254, 1) 0%,
+    rgba(112, 89, 243, 1) 35%,
+    rgba(112, 89, 243, 1) 100%
+  );
   min-height: 100%;
   padding: 10%;
   display: flex;

@@ -85,6 +85,7 @@
   font-weight: 400;
 }
 
+
 @media (max-width: 600px) {
   .CategSec2 {
     margin-top: 1em;
@@ -101,10 +102,12 @@
     width: 5em;
   }
   .search-input {
+
     width: 10em;
   }
   .profile-container i {
     font-size: 1.2rem;
     margin-left: 0.5rem;
   }
-}
+
+
