@@ -1,0 +1,36 @@
+/* body {
+    background: #90e0ef;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } */
+
+.search input[type="search" i]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.search-container {
+  min-width: 540px;
+}
+
+.search input {
+  border-radius: 1rem;
+  outline: 0;
+}
+
+.search__result {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: white;
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.search__content {
+  padding-top: 36px;
+  padding-bottom: 8px;
+}

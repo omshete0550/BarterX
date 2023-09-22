@@ -1,108 +1,173 @@
-import React, { useEffect } from "react";
-import { FaArrowLeft, FaSearch } from "react-icons/fa";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import {
+  FaShoppingCart,
+  FaUser,
+  FaArrowRight,
+  FaCamera,
+  FaSearch,
+  FaBell,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
 import "./Navbar.css";
+import AccountMenu from "./AccountMenu";
+// import AccountMenu from "./AccountMenu";
+
 const Navbar = () => {
+  const [isMenuActive, setIsMenuActive] = useState(false);
+  const toggleMenu = () => {
+    setIsMenuActive(!isMenuActive);
+  };
+
   useEffect(() => {
     const navbarMenu = document.getElementById("menu");
     const burgerMenu = document.getElementById("burger");
     const bgOverlay = document.querySelector(".overlay");
 
     if (burgerMenu && bgOverlay) {
-      burgerMenu.addEventListener("click", () => {
-        navbarMenu.classList.add("is-active");
-        bgOverlay.classList.toggle("is-active");
-      });
+      burgerMenu.addEventListener("click", toggleMenu);
 
       bgOverlay.addEventListener("click", () => {
-        navbarMenu.classList.remove("is-active");
-        bgOverlay.classList.toggle("is-active");
+        setIsMenuActive(false);
       });
     }
 
     document.querySelectorAll(".menu-link").forEach((link) => {
       link.addEventListener("click", () => {
-        navbarMenu.classList.remove("is-active");
-        bgOverlay.classList.remove("is-active");
+        setIsMenuActive(false);
       });
     });
-
-    const searchBlock = document.querySelector(".search-block");
-    const searchToggle = document.querySelector(".search-toggle");
-    const searchCancel = document.querySelector(".search-cancel");
-
-    if (searchToggle && searchCancel) {
-      searchToggle.addEventListener("click", () => {
-        searchBlock.classList.add("is-active");
-      });
-
-      searchCancel.addEventListener("click", () => {
-        searchBlock.classList.remove("is-active");
-      });
-    }
   }, []);
+
+  const [showBoxShadow, setShowBoxShadow] = useState(false);
+  const handleScroll = () => {
+    setShowBoxShadow(window.scrollY > 0);
+  };
+
+  useEffect(() => {
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <header className="header" id="header">
+      <header className={`header ${showBoxShadow ? "sticky" : ""}`} id="header">
         <nav className="navbar NavContainer">
           <Link to="/" className="brand">
-            BarterX
+            <img src={logo} alt="" />
           </Link>
           <div className="burger" id="burger">
-            <span className="burger-line"></span>
-            <span className="burger-line"></span>
-            <span className="burger-line"></span>
+            <span className="burgerLine1"></span>
+            <span className="burgerLine2"></span>
+            <span className="burgerLine3"></span>
           </div>
           <span className="overlay"></span>
-          <div className="menu" id="menu">
+          <div className={`menu ${isMenuActive ? "is-active" : ""}`} id="menu">
             <ul className="menu-inner">
               <li className="menu-item">
-                <Link className="menu-link" to="/">
-                  Home
+                <Link className="menu-link" to="/categ">
+                  Category
                 </Link>
               </li>
               <li className="menu-item">
                 <Link className="menu-link" to="/">
-                  About
+                  What's New
                 </Link>
               </li>
               <li className="menu-item">
                 <Link className="menu-link" to="/">
-                  Contact Us
+                  Deals
                 </Link>
               </li>
               <li className="menu-item">
                 <Link className="menu-link" to="/">
-                  Project
+                  Delivery
                 </Link>
               </li>
               <li className="menu-item">
-                <Link className="menu-link" to="/">
-                  Support
+                <div className="InputSearchContainer">
+                  <input
+                    type="text"
+                    name="text"
+                    className="input"
+                    id="input"
+                    placeholder="Search"
+                  />
+
+                  <label htmlFor="inputSearch" className="labelforsearch">
+                    <i>
+                      <FaSearch />
+                    </i>
+                  </label>
+                  <div className="border"></div>
+
+                  <button className="labelforsearch">
+                    <i>
+                      <FaCamera />
+                    </i>
+                  </button>
+                </div>
+              </li>
+              <li className="menu-item menu-mob">
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "1em",
+                    alignItems: "center",
+                    fontSize: "1.1rem",
+                    fontWeight: "500",
+                  }}
+                >
+                  <AccountMenu />
+                  <p>Account</p>
+                </div>
+              </li>
+              <li className="menu-item menu-mob">
+                <Link to="/notification">
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "1em",
+                      alignItems: "center",
+                      fontSize: "1.1rem",
+                      fontWeight: "500",
+                      color: "#000",
+                    }}
+                  >
+                    <i className="NotificationBell">
+                      <FaBell />
+                    </i>
+                    <p>Account</p>
+                  </div>
                 </Link>
               </li>
             </ul>
           </div>
-          <span>
-            <i>
-              <FaSearch className="search-toggle" />
-            </i>
-          </span>
-          <div className="search-block">
-            <form className="search-form">
-              <span>
+          <div className="userAcc">
+            <div className="UserAccItem">
+              <AccountMenu />
+              <Link to="/notification">
                 <i>
-                  <FaArrowLeft className="search-cancel" />
+                  <FaBell />
                 </i>
-              </span>
-              <input
-                type="search"
-                name="search"
-                className="search-input"
-                placeholder="Search here..."
-              />
-            </form>
+              </Link>
+            </div>
           </div>
+
+          {isMenuActive && (
+            <button
+              className="close-menu"
+              onClick={() => setIsMenuActive(false)}
+            >
+              <img className="close-icon" src="https://static.thenounproject.com/png/1479017-200.png" alt="" />
+              {/* <i className="close-icon">X</i> */}
+            </button>
+          )}
         </nav>
       </header>
     </>

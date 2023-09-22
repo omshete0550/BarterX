@@ -1,10 +1,13 @@
 .LandingSec1 {
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+}
+.LandingSec1row {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 90vh;
-  overflow-x: hidden;
+  margin-top: 5em;
 }
 .LandingSec1 .img_sec1 {
   width: 50%;
@@ -118,7 +121,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(https://w0.peakpx.com/wallpaper/366/933/HD-wallpaper-blue-abstraction-background-material-design-paper-texture-blue-creative-background-blue-lines-background.jpg);
+  background-image: url(../../assets/IntroBg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -174,6 +177,91 @@
 }
 
 /* Category Section */
+.CategLandingcard {
+  width: 10em;
+  height: 10em;
+  background: linear-gradient(
+    270deg,
+    rgba(174, 141, 254, 1) 0%,
+    rgba(112, 89, 243, 1) 35%,
+    rgba(112, 89, 243, 1) 100%
+  );
+  transition: all 0.4s;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.09);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.CategLandingcard:hover {
+  border-radius: 15px;
+  cursor: pointer;
+  transform: scale(1.1);
+  /* box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705); */
+  background: linear-gradient(
+    270deg,
+    rgba(174, 141, 254, 1) 0%,
+    rgba(112, 89, 243, 1) 35%,
+    rgba(112, 89, 243, 1) 100%
+  );
+  color: #fff;
+}
+
+.first-content {
+  height: 100%;
+  width: 100%;
+  transition: all 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  border-radius: 15px;
+}
+.first-content img {
+  width: 10em;
+  height: 10em;
+}
+.CategLandingcard:hover .first-content {
+  height: 0px;
+  opacity: 0;
+}
+
+.second-content {
+  height: 0%;
+  width: 100%;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  gap: 1em;
+  transition: all 0.4s;
+  transform: rotate(90deg) scale(-1);
+}
+.second-content span {
+  font-size: 1.8rem;
+  color: rgb(18 19 65);
+}
+.second-content p {
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 400;
+}
+.second-content button {
+  padding: 10px 20px;
+  background-color: #fff;
+}
+.second-content button:hover {
+  background-color: rgb(18 19 65);
+  color: #fff;
+  font-weight: bold;
+}
+.CategLandingcard:hover .second-content {
+  opacity: 1;
+  height: 100%;
+  transform: rotate(0deg);
+}
 
 .Categcontainer {
   width: 100%;
@@ -183,26 +271,18 @@
 .Categcontainer h2 {
   text-align: center;
   padding-top: 6%;
-  margin-bottom: 60px;
-  font-size: 1.8rem;
+  margin-bottom: 1em;
+  font-size: 3rem;
   font-weight: 600;
   position: relative;
-}
-.Categcontainer h2::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 5px;
-  background-color: rgb(55, 93, 187);
-  border-radius: 20px;
+  color: rgb(55, 93, 187);
 }
 .Categrow {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  gap: 2em;
+  justify-items: center;
+  align-items: center;
 }
 .Categrow .service {
   padding: 25px 15px;
@@ -237,13 +317,19 @@
 .LandingSec4 {
   margin-top: 10vh;
   padding: 5em 15em;
-  background: rgb(18 19 65);
+  background: linear-gradient(
+    270deg,
+    rgba(174, 141, 254, 1) 0%,
+    rgba(112, 89, 243, 1) 35%,
+    rgba(112, 89, 243, 1) 100%
+  );
 }
 .LandingSec4 h2 {
-  font-size: 2em;
-  padding-bottom: 2em;
+  font-size: 3rem;
   color: #fff;
+  padding-bottom: 2em;
 }
+
 .countUpContainerLeft {
   display: flex;
   justify-content: flex-start;
@@ -255,14 +341,14 @@
   margin-bottom: 2em;
 }
 .countUpBx h1 {
-  color: #c3ff7a;
+  color: #f2f2f3;
   font-size: 4rem;
   font-weight: 300;
 }
 .countUpBx h3 {
-  color: #fff;
+  color: rgb(18 19 65);
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /* Landing Sec 5 */
@@ -271,10 +357,132 @@
   margin-top: 5em;
   padding: 20px 80px;
 }
-.LandingSec5 h1{
+.LandingSec5 h1 {
   text-align: center;
   font-size: 3rem;
   color: rgb(55, 93, 187);
+}
+
+/* btn */
+.HomeBtnContainer{
+  display: flex;
+  justify-content: center;
+}
+.HomeButton {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  /* background-color: #000; */
+  color: #fff;
+  font-size: 13px;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 8px;
+  height: 65px;
+  padding: 12px;
+  border-radius: 15px 15px 12px 12px;
+  cursor: pointer;
+  position: relative;
+  will-change: transform;
+  transition: all 0.1s ease-in-out 0s;
+  user-select: none;
+  /* Add gradient shading to each side */
+  background-image: rgb(55, 93, 187);
+  background-position: bottom right, bottom right;
+  background-size: 100% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  box-shadow: inset -4px -10px 0px rgba(255, 255, 255, 0.4),
+    inset -4px -8px 0px rgba(0, 0, 0, 0.3), 0px 2px 1px rgba(0, 0, 0, 0.3),
+    0px 2px 1px rgba(255, 255, 255, 0.1);
+  transform: perspective(70px) rotateX(5deg) rotateY(0deg);
+}
+
+.HomeButton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(55, 93, 187);
+  z-index: -1;
+  border-radius: 15px;
+  box-shadow: inset 4px 0px 0px rgba(255, 255, 255, 0.1),
+    inset 4px -8px 0px rgba(0, 0, 0, 0.3);
+  transition: all 0.1s ease-in-out 0s;
+}
+
+.HomeButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0)
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  background-position: bottom right, bottom right;
+  background-size: 100% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  z-index: -1;
+  border-radius: 15px;
+  transition: all 0.1s ease-in-out 0s;
+}
+
+.HomeButton:active {
+  will-change: transform;
+  transform: perspective(80px) rotateX(5deg) rotateY(1deg) translateY(3px)
+    scale(0.96);
+  height: 64px;
+  border: 0.25px solid rgba(0, 0, 0, 0.2);
+  box-shadow: inset -4px -8px 0px rgba(255, 255, 255, 0.2),
+    inset -4px -6px 0px rgba(0, 0, 0, 0.8), 0px 1px 0px rgba(0, 0, 0, 0.9),
+    0px 1px 0px rgba(255, 255, 255, 0.2);
+  transition: all 0.1s ease-in-out 0s;
+}
+
+.HomeButton::after:active {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5),
+    rgba(255, 255, 255, 0.2)
+  );
+}
+
+.HomeButton:active::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 5%;
+  left: 20%;
+  width: 50%;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0.1);
+  animation: overlay 0.1s ease-in-out 0s;
+  pointer-events: none;
+}
+
+.HomeButton svg {
+  width: 15px;
+  height: 15px;
+}
+
+@keyframes overlay {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.button:focus {
+  outline: none;
 }
 
 /* media */
@@ -285,13 +493,18 @@
 }
 @media (max-width: 1023px) {
   .LandingSec1 {
+    height: 100vh;
+  }
+  .HomeBtnContainer {
+    margin-top: 3em;
+  }
+  .LandingSec1row {
     flex-direction: column;
-    padding-top: 10vh;
-    height: 95vh;
+    padding-top: 0vh;
   }
   .LandingSec1 .img_sec1 {
     width: 100%;
-    padding-bottom: 5vh;
+    /* padding-bottom: 5vh; */
   }
   .LandingSec1 .content_sec1 {
     width: 100%;
@@ -329,8 +542,12 @@
   }
 }
 @media (max-width: 600px) {
-  .LandingSec1 {
+  .LandingSec1row {
     flex-direction: column;
+    margin-top: 0;
+  }
+  .HomeBtnContainer {
+    margin-top: 3em;
   }
   .LandingSec1 .content_sec1 {
     width: 100%;

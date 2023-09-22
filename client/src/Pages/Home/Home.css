@@ -1,0 +1,402 @@
+.ban_sec {
+  margin-top: 5em;
+  width: 100%;
+}
+/* .ban_img {
+  width: 100%;
+  position: relative;
+} */
+/* .ban_img img {
+  width: 100%;
+  height: 65vh;
+} */
+.ban_text {
+  background-image: url(https://www.bgtrade.io/assets/cotactbg-c21c29e8.png);
+  background-size: cover;
+  background-position: center center;
+  height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ban_text strong {
+  font: 800 62.22px/70px "Montserrat", sans-serif;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+}
+.ban_text strong span {
+  font: 400 44.44px/52px "Montserrat", sans-serif;
+  letter-spacing: 3px;
+  text-align: center;
+}
+.ban_text p {
+  font: 400 25px/30px "Montserrat", sans-serif;
+  color: #fff;
+  margin: 7px 0 25px;
+  text-align: center;
+}
+.ban_text a {
+  display: inline-block;
+  font: 800 19.39px/24px "Montserrat", sans-serif;
+  background: #fff;
+  border-radius: 26px;
+  color: rgb(18 19 65);
+  padding: 12px 28px;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+.ban_text a:hover {
+  background: rgb(18 19 65);
+  color: #fff;
+}
+
+/* Home Sec 2 */
+
+.HomeSec2 {
+  padding: 20px 80px;
+}
+.HomeSec2 h1 {
+  font: 500 2rem/70px "Montserrat", sans-serif;
+}
+.HomeSec2CardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  padding-top: 2em;
+}
+.HomeSec2Card {
+  width: 15em;
+  height: 20em;
+  border-radius: 10px;
+  background-image: url(https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e570738029a725e686_Furniture-min.png);
+  background-size: cover;
+}
+.HomeSec2Card p {
+  color: #fff;
+  text-align: center;
+  padding-top: 2em;
+  font: 600 1.5rem/40px "Montserrat", sans-serif;
+}
+.HomeSec2Card:hover {
+  background-size: 110%;
+  transition: 0.5s all;
+}
+
+/* Home Sec 3 */
+
+.HomeSec3 {
+  padding: 40px 80px;
+}
+.HomeSec3 h1 {
+  font: 500 2rem/70px "Montserrat", sans-serif;
+  margin-bottom: 1em;
+}
+.HomeSec3Container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+.Sec3Card {
+  width: 25em;
+  height: 27em;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.Sec3Card .Sec3Content {
+  height: 12em;
+  padding: 10px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  background-color: #f5f6f6;
+}
+.Sec3Card .Sec3Content h3 {
+  font: 600 1.2rem/30px "Montserrat", sans-serif;
+  color: #333;
+  padding-bottom: 2em;
+}
+.Sec3Card .Sec3Content p {
+  font: 400 1rem/20px "Montserrat", sans-serif;
+  color: #333;
+}
+.Sec3Card .Sec3Image {
+  height: 15em;
+  background-image: url(https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e55b939fea169c0292_faq-min.png);
+}
+.Sec3Image3 {
+  background-image: url(https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e544663ba3d0fd2bb8_home%20delivery-min.png) !important;
+}
+
+.Sec3Card .Sec3Image:hover {
+  background-size: 110%;
+}
+/* Home Sec 4 */
+
+.home_sec4 {
+  /* text-align: center; */
+  padding: 40px 80px;
+  height: auto;
+}
+
+.home_sec4 .heading {
+  font: 500 2rem/70px "Montserrat", sans-serif;
+  margin-bottom: 1em;
+}
+
+.home_sec4 .text {
+  margin-bottom: 2.299999em;
+  width: 100%;
+  max-width: 51.4em;
+}
+
+.home_sec4 .product_row {
+  margin-bottom: 6.653em;
+  position: relative;
+}
+.home_sec4 .product_row .product_col .product_container {
+  height: 100%;
+  min-height: 10em;
+}
+
+.home_sec4 .product_row .product_col .img_wrapper {
+  position: relative;
+  border: 1px solid #adadad;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1.5em;
+  overflow: hidden;
+  padding: 20px 20px;
+}
+
+.home_sec4 .product_row .product_col .img_wrapper .product_img {
+  width: 100%;
+  max-width: 20.688em;
+  height: 20em;
+  display: block;
+  margin: 0 auto;
+  /* padding: 3.625em 0 1.063em; */
+  transform: scale(1);
+  transition: 0.3s ease-in-out;
+}
+
+.home_sec4 .product_row .product_col .img_wrapper .product_img:hover {
+  transform: scale(1.1);
+}
+
+.home_sec4 .product_row .product_col .product_title {
+  font-size: 1.5em;
+  line-height: 2.188rem;
+  color: #1b1b1b;
+  font-weight: 600;
+  margin-bottom: 0.8em;
+}
+
+.home_sec4 .product_row .product_col .product_desc {
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: 2.188rem;
+  color: #1b1b1b;
+}
+
+.home_sec4 .product_row .product_col .product_link {
+  display: block;
+  font-size: 1.25em;
+  font-weight: 500;
+  line-height: 1.8;
+  color: #1b1b1b;
+  text-decoration: underline;
+  /* margin-top: 1.2em; */
+}
+
+.home_sec4 .product_row .arrows_wrapper {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: -13.5%;
+  right: 0;
+}
+
+.home_sec4 .product_row .arrows_wrapper .left_arrow,
+.home_sec4 .product_row .arrows_wrapper .right_arrow {
+  width: 100%;
+  max-width: 4.938em;
+  height: 4.938em;
+  cursor: pointer;
+}
+
+.home_sec4 .product_row .arrows_wrapper .left_arrow {
+  margin-right: 1.75em;
+}
+
+.home_sec4 .product_row .mbarrows_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home_sec4 .product_row .mbarrows_wrapper .left_arrow,
+.home_sec4 .product_row .mbarrows_wrapper .right_arrow {
+  width: 100%;
+  max-width: 4.938em;
+  height: 4.938em;
+  cursor: pointer;
+}
+
+.home_sec4 .product_row .mbarrows_wrapper .left_arrow {
+  margin-right: 2.2em;
+}
+
+.home_sec4 .cta_wrapper {
+  width: 100%;
+  max-width: 16.938em;
+  margin: 0 auto;
+  margin-top: 3.5em;
+}
+.swiper-horizontal > .swiper-pagination-progressbar,
+.swiper-pagination-progressbar.swiper-pagination-horizontal,
+.swiper-vertical
+  > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite,
+.swiper-pagination-progressbar.swiper-pagination-vertical.swiper-pagination-progressbar-opposite {
+  bottom: 0 !important;
+  top: inherit !important;
+}
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: #1b1b1b !important;
+}
+.swiper-wrapper {
+  padding-bottom: 3em !important;
+}
+
+/* Home Sec 5 */
+
+.HomeSec5Container {
+  background-color: #ffe6cc;
+  height: 40vh;
+  padding: 40px 80px;
+  display: flex;
+}
+
+/* Media Queries */
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .ban_text p {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .ban_text p {
+    font-size: 17px;
+  }
+  .ban_text strong {
+    font-size: 50px;
+    line-height: 60px;
+  }
+  .ban_text strong span {
+    font-size: 37px;
+  }
+  .ban_text a {
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .ban_sec {
+    margin-top: 5em;
+  }
+  .ban_text {
+    height: 25vh;
+    background-size: cover;
+    background-position: center center;
+  }
+  .ban_text strong {
+    font-size: 35px;
+    line-height: 40px;
+  }
+  .ban_text strong span {
+    font-size: 28px;
+    line-height: 35px;
+    letter-spacing: 2px;
+  }
+  .ban_text p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .ban_text a {
+    font-size: 13.39px;
+    line-height: 15px;
+  }
+  .HomeSec2Card {
+    width: 20em;
+    height: 25em;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .ban_img img {
+    min-height: 290px;
+    object-fit: cover;
+  }
+  .HomeSec2Card {
+    width: 18em;
+    height: 23em;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .ban_text {
+    height: 45vh;
+    background-size: cover;
+    background-position: center center;
+  }
+  .ban_text strong {
+    /* background: rgba(0, 0, 0, 0.8); */
+    padding: 10px;
+    width: 100%;
+    display: block;
+  }
+  .HomeSec2 {
+    padding: 20px 20px;
+  }
+  .HomeSec2 h1 {
+    font: 500 1.5rem/50px "Montserrat", sans-serif;
+  }
+  .HomeSec2Card {
+    width: 20em;
+    height: 25em;
+  }
+  .HomeSec3 {
+    padding: 20px 20px;
+  }
+  .HomeSec3 h1 {
+    font: 500 1.5rem/50px "Montserrat", sans-serif;
+    margin-bottom: 1em;
+  }
+  .home_sec4 {
+    padding: 40px 20px;
+  }
+  .home_sec4 .heading {
+    font: 500 1.5rem/50px "Montserrat", sans-serif;
+    margin-bottom: 1em;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .ban_text strong span {
+    font-size: 22px;
+    line-height: 31px;
+    letter-spacing: 1px;
+  }
+  .ban_text {
+    left: 2%;
+  }
+}

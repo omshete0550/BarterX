@@ -1,0 +1,164 @@
+.OrderHistoryHeading {
+  margin-top: 4em;
+  margin-bottom: 1em;
+  padding-left: 5em;
+}
+.orderHistory {
+  padding: 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  align-items: center;
+  justify-content: center;
+}
+.OrderHistoryCard {
+  width: 75em;
+  height: auto;
+  border: 1px solid #ccc;
+}
+.orderNavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #ccc;
+}
+.OrderNavBarContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 75%;
+  padding: 10px 20px;
+}
+.OrderNavBarContentInner h4 {
+  font-size: 1.1em;
+  font-weight: 600;
+  padding-bottom: 0.5em;
+}
+.OrderNavBarContentInner p {
+  font-size: 1em;
+  font-weight: 400;
+}
+.OrderNavBarbtn {
+  display: flex;
+  justify-content: center;
+  width: 25%;
+}
+.OrderNavBarbtn button {
+  padding: 10px 80px;
+  background-color: #c62931;
+  color: #fff;
+  border-radius: 0.5em;
+}
+.HistoryMainContent {
+  padding: 20px 20px;
+}
+.ShipmentContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.deliverd {
+  background-color: #ebaeb1 !important;
+}
+.deliverd h3 {
+  color: #c62931 !important;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+.deliverd p {
+  color: #c62931 !important;
+  font-weight: 400;
+}
+.shipped {
+  background-color: #dff0d8;
+  padding: 10px;
+  border-radius: 0.5em;
+  width: 75%;
+}
+.shipped h3 {
+  color: #48a762;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+.shipped p {
+  color: #48a762;
+  font-weight: 400;
+}
+.Trackshipped {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Trackshipped button {
+  padding: 10px 40px;
+  border: 1px solid #ccc;
+  color: #000;
+  border-radius: 0.5em;
+}
+.OrderHistoryContent {
+  margin-top: 2em;
+}
+.OrderHistoryContentCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.OrderHistoryContentCard span {
+  color: #333;
+  font-size: 1.2em;
+}
+
+@media (max-width: 840px) {
+  .orderNavBar {
+    flex-direction: column;
+    gap: 1em;
+  }
+  .OrderHistoryCard {
+    width: 45em;
+  }
+  .OrderNavBarContent {
+    width: 100%;
+  }
+  .OrderNavBarbtn {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .ShipmentContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+  }
+  .shipped {
+    width: 100%;
+  }
+  .OrderHistoryContentCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    align-items: center;
+  }
+  .Trackshipped {
+    width: 100%;
+  }
+  .OrderHistoryHeading {
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .OrderNavBarContent {
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  .orderHistory {
+    padding: 20px 20px;
+  }
+  .OrderHistoryCard {
+    width: 22em;
+  }
+}

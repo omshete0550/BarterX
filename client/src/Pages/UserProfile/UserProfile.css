@@ -1,0 +1,200 @@
+.UserTabPanel {
+  margin-top: 8em;
+}
+.TabHeading {
+  /* padding-left: 10em; */
+  padding-bottom: 15px;
+  color: rgb(55, 93, 187);
+}
+.TabHeading h4 {
+  margin-bottom: 2px;
+  font-size: 2em;
+  text-align: center;
+}
+.profileContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  row-gap: 2em;
+  margin-top: 3em;
+  padding: 20px 120px;
+  text-decoration: none;
+}
+.profileCard {
+  display: flex;
+  justify-content: space-between;
+  width: 20em;
+  height: 8em;
+  border: 1px solid #ccc;
+  padding: 20px 10px;
+  border-radius: 1em;
+}
+.profileContentLogo img {
+  height: 5em;
+}
+.profileContentConatainer h3 {
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+  color: rgb(18 19 65);
+}
+.profileContentConatainer p {
+  font-weight: 400;
+  font-size: 1em;
+  color: #000;
+}
+
+.ProfileCardContainer {
+  font-family: "Poppins", sans-serif;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.ProfileCardContainer img {
+  max-width: 100%;
+  display: block;
+}
+.ProfileCardContainer ul {
+  list-style: none;
+}
+
+.ProfileCard::after,
+.ProfileCard img {
+  border-radius: 50%;
+}
+
+.ProfileCard,
+.stats {
+  display: flex;
+}
+
+.ProfileCard {
+  /* background: linear-gradient(
+    270deg,
+    rgba(174, 141, 254, 1) 0%,
+    rgba(112, 89, 243, 1) 35%,
+    rgba(112, 89, 243, 1) 100%
+  ); */
+  padding: 2.5rem 2rem;
+  border-radius: 10px;
+  background-color: rgba(174, 141, 254, 1);
+  max-width: 75em;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  margin: 1rem;
+  position: relative;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+.ProfileCard::before,
+.ProfileCard::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+}
+.ProfileCard::before {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  top: -0.7rem;
+  left: -0.7rem;
+}
+.ProfileCard::after {
+  height: 15rem;
+  width: 15rem;
+  background-color: rgba(112, 89, 243, 1);
+  top: -8rem;
+  right: -8rem;
+  box-shadow: 2rem 6rem 0 -3rem #fff;
+}
+
+.ProfileCard img {
+  width: 8rem;
+  min-width: 80px;
+  box-shadow: 0 0 0 5px #fff;
+}
+
+.infos {
+  margin-left: 1.5rem;
+}
+
+.name {
+  margin-bottom: 1rem;
+}
+.name h2 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 0.5em;
+}
+.name h4 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.5em;
+  color: #fff;
+}
+
+.Profiletext {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.stats {
+  margin-bottom: 1rem;
+}
+.stats li {
+  min-width: 5rem;
+  color: #fff;
+}
+.stats li h3 {
+  font-size: 0.99rem;
+}
+.stats li h4 {
+  font-size: 0.75rem;
+}
+.links {
+  margin-top: 3em;
+}
+.links .view {
+  font-family: "Poppins", sans-serif;
+  min-width: 120px;
+  padding: 0.7rem 2rem;
+  border: 1px solid #222;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s linear;
+  color: #fff;
+  background-color: #222;
+}
+.links .view:hover {
+  background-color: transparent;
+  color: #fff;
+}
+
+@media screen and (max-width: 450px) {
+  .ProfileCard {
+    display: block;
+  }
+  .infos {
+    margin-left: 0;
+    margin-top: 1.5rem;
+  }
+  .links button {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 600px) {
+  .profileContainer {
+    justify-content: center;
+    padding: 20px 20px;
+  }
+  .profileCard {
+    width: 20em;
+  }
+  .TabHeading {
+    padding-left: 1em;
+  }
+}
