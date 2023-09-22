@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // Import useHistory
 import ForgotPasswordPopup from "./ForgotPasswordPopup";
 import "../Login/Login.css";
 import { TfiEmail, TfiLock } from "react-icons/tfi";
@@ -8,6 +9,10 @@ const Login = () => {
   const [showForgotPasswordPopup, setShowForgotPasswordPopup] = useState(false);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  // const history = useHistory(); // Initialize useHistory
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const [accountName, setAccountName] = useState(""); // Store account name
+
   const handleForgotPasswordClick = () => {
     setShowForgotPasswordPopup(true);
   };
@@ -32,6 +37,14 @@ const Login = () => {
     const data = await response.json()
     if(data.user){
       alert("Login Successfully logged in!");
+      console.log(data.user);
+      window.location.href = `/addproduct?userid=${data.user}`;
+      
+      // // history.push("/home"); // Replace "/home" with your actual route for the Home page
+      // setIsLoggedIn(true);
+      // setAccountName(data.user.name); // Set the account name
+      // response.redirect("/home");
+      // localStorage.setItem("token", data.user);
     }
     else{
       alert("Please check your username and password & Try Again!");
@@ -135,9 +148,10 @@ const Login = () => {
           </div>
         </div>
       </div>
-      {showForgotPasswordPopup && (
+      {/* {showForgotPasswordPopup && (
         <ForgotPasswordPopup onClose={handleClosePopup} />
-      )}
+      )} */}
+      
     </>
   );
 };

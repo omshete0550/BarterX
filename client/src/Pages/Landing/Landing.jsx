@@ -21,9 +21,9 @@ import {
 import CountUp from "react-countup";
 import { textVariants } from "../../Components/Motion";
 import { motion } from "framer-motion";
-import TabPanel from "../../Components/VerticalTabPanel/TabPanel";
-import resumeData from "../../Components/VerticalTabPanel/Data";
-import VerticalTab from "../../Components/VerticalTabPanel/VerticalTab";
+// import TabPanel from "../../Components/VerticalTabPanel/TabPanel";
+// import resumeData from "../../Components/VerticalTabPanel/Data";
+// import VerticalTab from "../../Components/VerticalTabPanel/VerticalTab";
 const CategoryArr = [
   {
     id: 1,
@@ -450,7 +450,7 @@ const Landing = () => {
 
       <div className="LandingSec5">
         <h1>Guidelines</h1>
-        <VerticalTab data={resumeData.jobs} />
+        {/* <VerticalTab data={resumeData.jobs} /> */}
       </div>
 
       <Footer />
