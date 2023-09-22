@@ -16,12 +16,14 @@
   position: relative;
   width: 100%;
   height: 48%;
+
   background: linear-gradient(
     270deg,
     rgba(174, 141, 254, 1) 0%,
     rgba(112, 89, 243, 1) 35%,
     rgba(112, 89, 243, 1) 100%
   );
+
 }
 .content-1::after {
   content: "Item";
@@ -41,11 +43,12 @@
   right: 5%;
 }
 .content-1 img {
-  width: 12em;
+
+  width: 15em;
   height: auto;
   position: absolute;
   top: 55%;
-  left: 10%;
+
   transform: translateY(-50%);
   z-index: 100;
 }
@@ -184,12 +187,14 @@
 }
 .price span {
   /* background-image: linear-gradient(to right, #0ab5cf, #17d1ee); */
+
   background: linear-gradient(
     270deg,
     rgba(174, 141, 254, 1) 0%,
     rgba(112, 89, 243, 1) 35%,
     rgba(112, 89, 243, 1) 100%
   );
+
   padding: 8px 20px;
   border-radius: 4px;
   color: #fff;
@@ -213,11 +218,14 @@
 .likesContainerInner {
   display: flex;
   flex-direction: column;
+
   margin-top: 1em;
+
 }
 .likesContainerInner i {
   font-size: 1.2em;
 }
+
 .likesContainerInner span {
   font-size: 0.8em;
 }
@@ -232,5 +240,6 @@
   }
   .content-1 img {
     left: 15%;
+
   }
 }

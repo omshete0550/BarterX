@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./Home.css";
 import { useWindowSize } from "react-use";
@@ -12,11 +12,27 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import axios from "axios";
+// import { useEffect } from "react-router-dom";
 import leftarrow from "../../assets/left_arrow.svg";
 import rightarrow from "../../assets/right_arrow.svg";
 
 const Home = () => {
   const { width } = useWindowSize();
+
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // Fetch products from the backend API using Axios
+    axios
+      .get('http://localhost:8800/api/products')
+      .then((response) => {
+        setProducts(response.data);
+        console.log(response.data); // Log the array of products to the console
+      })
+      .catch((error) => console.error('Error fetching products:', error));
+  }, []);
 
   const homepageProduct = [
     {
@@ -139,11 +155,53 @@ const Home = () => {
           <p className="product_desc" data-aos="fade-up">
             Owner: {item.owner}
           </p>
-          <p className="product_desc">Required: {item.desiredProduct}</p>
+
+          <p className="product_desc">Category: {item.price}</p>
+
+
         </div>
         <Link to={item.link} className="product_link">
           Know more
         </Link>
+      </div>
+    </SwiperSlide>
+  ));
+
+  const productLists = products.map((item, i) => (
+    <SwiperSlide key={item._id}>
+      <div className="product_col" data-aos="fade-up">
+        <div className="img_wrapper">
+          {/* <Link to={} className="product_link"> */}
+            <img
+              src={item.images}
+              // alt={item.alt}
+              className="product_img"
+              data-aos="fade-up"
+            />
+          {/* </Link> */}
+        </div>
+        <div className="product_container">
+          {width > 391 ? (
+            <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.prodname }}
+              data-aos="fade-up"
+            />
+          ) : (
+            {/* <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.mbtitle }}
+              data-aos="fade-up"
+            /> */}
+          )}
+          <p className="product_desc" data-aos="fade-up">
+            {item.desc}
+          </p>
+          <p className="product_desc">Category: {item.categ}</p>
+        </div>
+        {/* <Link to={} className="product_link"> */}
+          Know more
+        {/* </Link> */}
       </div>
     </SwiperSlide>
   ));
@@ -349,7 +407,7 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {productLists}
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -535,7 +593,7 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {productLists}
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -648,7 +706,7 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {productLists}
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -761,7 +819,7 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {productLists}
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">

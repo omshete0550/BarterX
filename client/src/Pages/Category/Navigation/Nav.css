@@ -31,8 +31,8 @@
   gap: 0.5em;
 }
 .profile-container i {
-  font-size: 2rem;
-  color: #777;
+  font-size: 1.9rem;
+  color: #bdbdbd;
   margin-left: 1rem;
 }
 
@@ -84,12 +84,8 @@
   font-size: 1.5rem;
   font-weight: 400;
 }
-.profileInner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-}
+
+
 @media (max-width: 600px) {
   .CategSec2 {
     margin-top: 1em;
@@ -106,13 +102,12 @@
     width: 5em;
   }
   .search-input {
-    width: 14em;
+
+    width: 10em;
   }
   .profile-container i {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     margin-left: 0.5rem;
   }
-  .search-input {
-    margin-right: 10px;
-  }
-}
+
+

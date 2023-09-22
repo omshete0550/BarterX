@@ -6,9 +6,11 @@ import { FaBriefcase, FaHandshake, FaUser } from "react-icons/fa";
 import CountUp from "react-countup";
 import { textVariants } from "../../Components/Motion";
 import { motion } from "framer-motion";
+
 import resumeData from "../../Components/VerticalTabPanel/Data";
 import VerticalTab from "../../Components/VerticalTabPanel/VerticalTab";
 import { Link } from "react-router-dom";
+
 
 const CategoryArr = [
   {
@@ -565,7 +567,7 @@ const Landing = () => {
 
       <div className="LandingSec5">
         <h1>Guidelines</h1>
-        <VerticalTab data={resumeData.jobs} />
+        {/* <VerticalTab data={resumeData.jobs} /> */}
       </div>
 
       <Footer />
