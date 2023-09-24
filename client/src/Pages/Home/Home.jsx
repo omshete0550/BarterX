@@ -2,7 +2,7 @@ import React,{useState, useEffect} from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./Home.css";
 import { useWindowSize } from "react-use";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { textVariants } from "../../Components/Motion";
 import { motion } from "framer-motion";
 import banner from "../../assets/banner1.png";
@@ -20,6 +20,7 @@ import rightarrow from "../../assets/right_arrow.svg";
 const Home = () => {
   const { width } = useWindowSize();
 
+  const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
 
@@ -33,6 +34,23 @@ const Home = () => {
       })
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
+
+  const handleSingleProduct = (productId) => {
+    console.log(productId);
+    axios
+      .post(`http://localhost:8800/api/getproduct/${productId}`)
+      .then((response) => {
+        console.log(response);
+        if(response.status === 200) {
+          const productID = response.data._id;
+          console.log(productID);
+          navigate('/product-detail', { state: { id: productID } })
+        }
+      })
+      .catch((error) => console.error('Error fetching products:', error));
+
+    
+  }
 
   const homepageProduct = [
     {
@@ -200,9 +218,11 @@ const Home = () => {
           <p className="product_desc">Category: {item.categ}</p>
         </div>
         {/* <Link to={} className="product_link"> */}
-          Know more
+          {/* Know more */}
+          <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
         {/* </Link> */}
       </div>
+      
     </SwiperSlide>
   ));
 
@@ -254,7 +274,7 @@ const Home = () => {
 
         <div className="HomeSec2CardContainer">
 
-          <Link to="/categ">
+          <Link to="/categ/">
             <motion.div
               variants={textVariants("up", 0.2)}
               initial="hidden"
@@ -263,7 +283,7 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="HomeSec2Card"
             >
-              <p>Furniture</p>
+              <p>Electronics</p>
             </motion.div>
           </Link>
 
@@ -276,7 +296,7 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="HomeSec2Card"
             >
-              <p>Furniture</p>
+              <p>Vehicles</p>
             </motion.div>
           </Link>
 
@@ -289,7 +309,7 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="HomeSec2Card"
             >
-              <p>Furniture</p>
+              <p>Home Appliances</p>
             </motion.div>
           </Link>
 
@@ -302,7 +322,7 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="HomeSec2Card"
             >
-              <p>Furniture</p>
+              <p>Art</p>
             </motion.div>
           </Link>
 
@@ -315,7 +335,7 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="HomeSec2Card"
             >
-              <p>Furniture</p>
+              <p>Miscellaneous</p>
             </motion.div>
           </Link>
 

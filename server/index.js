@@ -105,8 +105,41 @@ app.get('/api/products/:categname', async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-})
+});
 
+
+app.post('/api/getproduct/:productId', async (req, res) => {
+    try {
+      const productId = req.params.productId;
+      console.log(productId);
+      const product = await Product.findOne({ _id: productId });
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      res.json(product);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
+app.get('/api/getproductdetails/:productId', async (req, res) => {
+    try
+    {
+        const productId = req.params.productId;
+
+        const product = await Product.findOne({ _id: productId });
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' });
+          }
+          res.json(product);
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ error: 'Internal Server Error' });
+        }
+    }
+);
+  
 
 app.listen(Port, () => {
     // connect();

@@ -1,11 +1,34 @@
 import React, { useState, useEffect } from "react";
 import "./ProductDetails.css";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import Review from "../../Components/Review/Review";
 import Table from "../../Components/Table/Table";
 
 const ProductDetails = () => {
+  // const location = useLocation();
+  // console.log(location.state.id);
+  // const { state } = useLocation();
+  // console.log(state);
+  const location = useLocation();
+  const { id } = location.state;
+  
+  const [product, setProduct] = useState([]);
+  // setProduct(props.id);
+  useEffect(() => {
+    // Fetch products from the backend API using Axios
+    axios
+      .get(`http://localhost:8800/api/getproductdetails/${id}`)
+      .then((response) => {
+        setProduct(response.data);
+        console.log(response.data); // Log the array of products to the console
+      })
+      .catch((error) => console.error('Error fetching products:', error));
+  }, []);
+
+
   const [imgId, setImgId] = useState(1);
 
   const handleImageClick = (event, id) => {
@@ -41,6 +64,43 @@ const ProductDetails = () => {
       alt: "shoe image",
     },
   ];
+  // const productdetails = product.map((pItem) => (
+  //   <div className="product-content" key={pItem._id}>
+  //     <h2 className="product-title">{pItem.prodname}</h2>
+  //     <div className="product-rating">
+  //       Proposers: <span>(21)</span>
+  //     </div>
+
+  //     <div className="product-detail">
+  //       <h2>about this item: </h2>
+  //       <p>
+  //         {pItem.desc}
+  //       </p>
+        
+  //       <ul>
+  //         <li>
+  //           Owner: <span>{pItem.postedBy}</span>
+  //         </li>
+  //         <li>
+  //           Required: <span>{pItem.desprodname}</span>
+  //         </li>
+  //         <li>
+  //           Date Of Purchase: <span>{pItem.datepurchase}</span>
+  //         </li>
+  //       </ul>
+  //     </div>
+
+  //     <div className="purchase-info">
+  //       <button type="button" className="btn">
+  //         Let's Swap
+  //       </button>
+  //       <button type="button" className="btn">
+  //         Let's Chat
+  //       </button>
+  //     </div>
+      
+  //   </div>
+  // ));
 
   return (
     <>
@@ -72,9 +132,9 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            {ProdcutDetailArr.map((pItem) => (
+            
               <div className="product-content">
-                <h2 className="product-title">{pItem.pname}</h2>
+                <h2 className="product-title">{product.prodname}</h2>
                 <div className="product-rating">
                   Proposers: <span>(21)</span>
                 </div>
@@ -82,18 +142,18 @@ const ProductDetails = () => {
                 <div className="product-detail">
                   <h2>about this item: </h2>
                   <p>
-                    {pItem.pdesc}
+                    {product.desc}
                   </p>
                   
                   <ul>
                     <li>
-                      Owner: <span>{pItem.powner}</span>
+                      Owner: <span>{product.postedBy}</span>
                     </li>
                     <li>
-                      Required: <span>{pItem.requiredment}</span>
+                      Required: <span>{product.desprodname}</span>
                     </li>
                     <li>
-                      Date Of Purchase: <span>{pItem.dateOfPurchase}</span>
+                      Date Of Purchase: <span>{product.datepurchase}</span>
                     </li>
                   </ul>
                 </div>
@@ -108,7 +168,8 @@ const ProductDetails = () => {
                 </div>
                 
               </div>
-            ))}
+       
+          
           </div>
         </div>
       </section>
