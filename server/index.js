@@ -12,8 +12,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 const jwt = require("jsonwebtoken");
-const mongodburl = 'mongodb+srv://m0hibsayed1393:BarterX@cluster0.hyssrie.mongodb.net/BarterX?retryWrites=true&w=majority';
-mongoose.connect(mongodburl);
+dotenv.config();
+// console.log(process.env.mongodburl);
+mongoose.connect(process.env.mongodburl);
 
 
 app.post('/api/register', async (req,res) => {
