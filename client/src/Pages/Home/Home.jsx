@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./Home.css";
 import { useWindowSize } from "react-use";
@@ -130,12 +130,17 @@ const Home = () => {
       <div className="product_col" data-aos="fade-up">
         <div className="img_wrapper">
           <Link to={item.link} className="product_link">
-            <img
-              src={item.img}
-              alt={item.alt}
-              className="product_img"
-              data-aos="fade-up"
-            />
+            {item.images && item.images.length > 0 ? (
+              <img
+                src={item.images[0].url}
+                alt={item.alt}
+                className="product_img"
+                data-aos="fade-up"
+              />
+            ) : (
+              <p>No images available</p>
+            )}
+
           </Link>
         </div>
         <div className="product_container">
@@ -172,12 +177,12 @@ const Home = () => {
       <div className="product_col" data-aos="fade-up">
         <div className="img_wrapper">
           {/* <Link to={} className="product_link"> */}
-            <img
-              src={item.images}
-              // alt={item.alt}
-              className="product_img"
-              data-aos="fade-up"
-            />
+          <img
+            src={item.images[0].url}
+            // alt={item.alt}
+            className="product_img"
+            data-aos="fade-up"
+          />
           {/* </Link> */}
         </div>
         <div className="product_container">
@@ -200,7 +205,7 @@ const Home = () => {
           <p className="product_desc">Category: {item.categ}</p>
         </div>
         {/* <Link to={} className="product_link"> */}
-          Know more
+        Know more
         {/* </Link> */}
       </div>
     </SwiperSlide>

@@ -60,7 +60,7 @@ const AddProductPage = () => {
     return userId;
   }
 
-  async function publishProduct(event){
+  async function publishProduct(event) {
     event.preventDefault();
     const userId = extractUserIdFromURL();
     setuserid(userId);
@@ -100,30 +100,30 @@ const AddProductPage = () => {
     }
 
 
-    const response = await fetch('http://localhost:8800/api/publish',{
-      method: 'POST',  
-      headers:{
-          'Content-Type':'application/json',
-        },
-        body: JSON.stringify({
-          prodname, 
-          desc, 
-          categ,
-          condn,
-          desprodname,
-          datepurchase,
-          userid,
-          imageURL
-          }),
-      })
+    const response = await fetch('http://localhost:8800/api/publish', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prodname,
+        desc,
+        categ,
+        condn,
+        desprodname,
+        datepurchase,
+        userid,
+        imageURL
+      }),
+    })
 
-      // console.log(file);
+    // console.log(file);
 
     const data = await response.json();
-    if(data.status === 'success'){
+    if (data.status === 'success') {
       console.log("Product Published");
     }
-    else{
+    else {
       console.log("ERROR!")
     }
     console.log(data);
@@ -216,11 +216,11 @@ const AddProductPage = () => {
                   onChange={handleChange}
                   required={true}
                 /> */}
-                <input type="file"   accept="image/png, image/jpeg" onChange={validateImg} />
+                <input type="file" accept="image/png, image/jpeg" onChange={validateImg} />
                 {/* <p>
                   {file ? `File name: ${file[0].name}` : "no files uploaded yet"}
                 </p> */}
-                <input type="submit" name="" value="Upload"/>
+                <input type="submit" name="" value="Upload" />
               </div>
             </div>
           </div>
