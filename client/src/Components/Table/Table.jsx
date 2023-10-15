@@ -6,11 +6,12 @@ const customStyles = {
   rows: {
     style: {
       minHeight: "72px",
-      background: "rgb(18 19 65)", // override the row height
+      background: "#eaeaea", // override the row height
     },
   },
   headCells: {
     style: {
+      color:"#fff",
       paddingLeft: "8px", // override the cell padding for head cells
       paddingRight: "8px",
     },
@@ -39,22 +40,22 @@ const columns = [
     selector: (row) => row.item,
     sortable: true,
   },
-  {
-    name: "Price",
-    selector: (row) => row.price,
-    sortable: true,
-  },
+  // {
+  //   name: "Price",
+  //   selector: (row) => row.price,
+  //   sortable: true,
+  // },
 ];
 
 createTheme(
   "solarized",
   {
     text: {
-      primary: "#fff",
+      primary: "#000",
       secondary: "#2aa198",
     },
     background: {
-      default: "rgba(112, 89, 243, 1)",
+      default: "rgb(18 19 65)",
     },
     context: {
       background: "#cb4b16",
