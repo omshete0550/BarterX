@@ -93,8 +93,7 @@ app.post('/api/publish', async (req, res) => {
         res.json({ status: 'error', error: 'Error in product publishing', details: err });
     }
 });
-
-
+//Get all products
 app.get('/api/products', async (req, res, next) => {
     try {
         // Fetch all products from your database
@@ -120,7 +119,17 @@ app.get('/api/products/:categname', async (req, res, next) => {
         next(error);
     }
 })
-
+//Get a user's all product
+app.get('/api/products/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId
+        const product = await Product.find({ postedBy: userId })
+        res.status(200).json(product)
+    } catch (error) {
+        next(error)
+    }
+})
+//Create a Barter Request
 app.post('/api/products/barter', async (req, res, next) => {
     const newBarter = new BarterModel(req.body)
     try {
@@ -130,7 +139,7 @@ app.post('/api/products/barter', async (req, res, next) => {
         next(error)
     }
 })
-
+//Get a user's all barter requests
 app.get('api/products/barter/:userId', async (req, res, next) => {
     try {
         const userId = req.params.userId
@@ -140,7 +149,7 @@ app.get('api/products/barter/:userId', async (req, res, next) => {
         next(error)
     }
 })
-
+//Get a product's all barter requests
 app.get('/api/products/:productId', async (req, res, next) => {
     try {
         const productId = req.params.productId
@@ -150,7 +159,7 @@ app.get('/api/products/:productId', async (req, res, next) => {
         next(error)
     }
 })
-
+//Update a barter request
 app.put('/api/products/barter/:barterId', async (req, res, next) => {
     try {
         const barterId = req.params.barterId;
