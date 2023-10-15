@@ -27,7 +27,6 @@ function App() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/home" element={<Home />} />
             <Route exact path="/categ" element={<Category />} />
-
             <Route exact path="/addproduct" element={<AddProductPage />} />
             <Route exact path="/product-detail" element={<ProductDetails />} />
             <Route exact path="/notification" element={<NotificationPage />} />
