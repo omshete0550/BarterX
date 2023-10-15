@@ -1,5 +1,6 @@
 import React from "react";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 
 const customStyles = {
@@ -27,17 +28,17 @@ const customStyles = {
 const columns = [
   {
     name: "Date",
-    selector: (row) => row.date,
+    selector: (row) => row.createdAt,
     sortable: true,
   },
   {
     name: "User",
-    selector: (row) => row.user,
+    selector: (row) => row.requester,
     sortable: true,
   },
   {
     name: "Item",
-    selector: (row) => row.item,
+    selector: (row) => row.myItem,
     sortable: true,
   },
   // {
@@ -133,11 +134,24 @@ const data = [
 
 ];
 
-const Table = () => {
+const Table = (props) => {
+  const  id  = props.id;
+  console.log("id", id);
+  const [productData, setProductData] = useState([]);
+  useEffect(() => {
+    // Fetch products from the backend API using Axios
+    axios
+      .get(`http://localhost:8800/api/productrequests/${id}`)
+      .then(response => {
+        setProductData(response.data);
+        console.log(productData);
+      })
+      .catch(error => console.error(error));
+  }, []);
   return (
     <DataTable
       columns={columns}
-      data={data}
+      data={productData}
       theme="solarized"
       customStyles={customStyles}
     />

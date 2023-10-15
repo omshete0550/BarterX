@@ -44,7 +44,7 @@ const Login = () => {
       // setIsLoggedIn(true);
       // setAccountName(data.user.name); // Set the account name
       // response.redirect("/home");
-      // localStorage.setItem("token", data.user);
+      localStorage.setItem("token", data.user);
     }
     else{
       alert("Please check your username and password & Try Again!");

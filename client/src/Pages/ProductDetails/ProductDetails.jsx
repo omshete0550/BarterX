@@ -11,14 +11,35 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 const ProductDetails = () => {
-  // const location = useLocation();
-  // console.log(location.state.id);
-  // const { state } = useLocation();
-  // console.log(state);
+ 
+
+  // const handleSwap = async () => {
+  //   const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
+  //   console.log(userId);
+  //   try {
+  //     // Make an Axios GET request to your API endpoint to fetch the products.
+      
+  //     const response = await axios.get(`http://localhost:8800/api/myproducts/${userId}`);
+  
+  //     // Assuming the API returns an array of products, you can access the data from the response.
+  //     const products = response.data;
+  
+  //     // Do something with the products data, e.g., log it to the console.
+  //     console.log(products);
+  //   } catch (error) {
+  //     // Handle any errors, e.g., display an error message.
+  //     console.error('Error fetching products:', error);
+  //   }
+  // }
+
+
+
+
   const location = useLocation();
   const { id } = location.state;
 
   const [product, setProduct] = useState([]);
+  const [myproduct, setMyProduct] = useState([]);
   // setProduct(props.id);
   useEffect(() => {
     // Fetch products from the backend API using Axios
@@ -37,6 +58,8 @@ const ProductDetails = () => {
     event.preventDefault();
     setImgId(id);
   };
+
+
 
   useEffect(() => {
     const displayWidth = document.querySelector(
@@ -142,6 +165,49 @@ const ProductDetails = () => {
       date: "30-10-2023"
     },
   ];
+  // const btn = document.querySelector('.swapbtn');
+  // btn.addEventListener('click', async () => {
+  //   const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
+  //   console.log(userId);
+  //   try {
+  //     // Make an Axios GET request to your API endpoint to fetch the products.
+      
+  //     const response = await axios.get(`http://localhost:8800/api/myproducts/${userId}`);
+  
+  //     // Assuming the API returns an array of products, you can access the data from the response.
+  //     setMyProduct(response.data);
+  
+  //     // Do something with the products data, e.g., log it to the console.
+  //     console.log(myproduct);
+  //   } catch (error) {
+  //     // Handle any errors, e.g., display an error message.
+  //     console.error('Error fetching products:', error);
+  //   }
+  // })
+  const [responseMessage, setResponseMessage] = useState('');
+  const sendProposal = async (item) => {
+    const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
+    // console.log(userId);
+    const barterRequest = {
+      requester: userId, // Replace with actual user ID
+      desiredItem: id, // Replace with actual desired item's IDs
+      myItem: item._id, // Assuming item._id is the ID of the item the user wants to barter
+    };
+    try {
+      const response = await axios.post('http://localhost:8800/api/products/barter', barterRequest);
+
+      if (response.status === 201) {
+        // Handle a successful response from the server, e.g., show a success message.
+        setResponseMessage('Barter proposal sent successfully!');
+      } else {
+        // Handle errors, e.g., show an error message.
+        setResponseMessage('Error sending barter proposal');
+      }
+    } catch (error) {
+      // Handle any network or other errors
+      setResponseMessage('Error sending barter proposal');
+    }
+  }
 
   return (
     <>
@@ -197,9 +263,9 @@ const ProductDetails = () => {
               </div>
 
               <div className="purchase-info">
-              
+              {/* <a onClick={handleSwap}>Swap kar</a> */}
                 <Popup
-                  trigger={<button className="btn"> Let's Swap </button>}
+                  trigger={<a className="btn swapbtn" > Let's Swap </a>}
                   modal
                   nested
                 >
@@ -213,7 +279,7 @@ const ProductDetails = () => {
                           <h2>Your Barter Items</h2>
                         </div>
                         <div className="contentGrid">
-                        {myItems.map((item) => (
+                        {myproduct.map((item) => (
                           <div className="CategCardContainer">
                             <div className="Categcard">
                               <div className="content-1">
@@ -225,15 +291,16 @@ const ProductDetails = () => {
                               <div className="content-2">
                                 <div className="branding">
                                   <div className="brandingInner">
-                                    <span>{item.productname}</span>
+                                    <span>{item.prodname}</span>
                                     {/* <span>Old</span> */}
                                   </div>
                                   {/* <h4>Owner: {owner}</h4> */}
                                   {/* <h4>Required: {desiredProduct}</h4> */}
-                                  <h4>Date: {item.date}</h4>
+                                  <h4>Date: {item.datepurchase}</h4>
                                 </div>
                                 <div className="likesContainer">
                                   <div className="price">
+                                  <a onClick={() => {sendProposal(item)}}>
                                     <span>
                                       {/* <Link
                                         to="/product-detail"
@@ -242,7 +309,7 @@ const ProductDetails = () => {
                                         Let's Swap
                                       </Link> */}
                                       Send Proposal
-                                    </span>
+                                    </span></a>
                                   </div>
                                 </div>
                               </div>
@@ -265,6 +332,7 @@ const ProductDetails = () => {
                     </div>
                   )}
                 </Popup>
+                
                 <button type="button" className="btn">
                   Let's Chat
                 </button>
@@ -275,7 +343,7 @@ const ProductDetails = () => {
       </section>
 
       <div className="DataTable">
-        <Table />
+        <Table id={id}/>
       </div>
 
       <Review />

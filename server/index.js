@@ -8,13 +8,13 @@ const request = require('request-promise');
 const Port = process.env.PORT || 8800;
 const User = require("./models/user.model.js");
 const Product = require("./models/product.model.js");
-
+const BarterModel = require("./models/Barter.model.js");
 const app = express();
 app.use(cors());
 app.use(express.json());
 const jwt = require("jsonwebtoken");
 dotenv.config();
-// const BarterModel = require("./models/Barter.model.js");
+
 console.log(process.env.mongodburl);
 mongoose.connect(process.env.mongodburl);
 
@@ -154,9 +154,10 @@ app.get('/api/getproductdetails/:productId', async (req, res) => {
     }
 );
   //Get a user's all product
-app.get('/api/products/:userId', async (req, res, next) => {
+app.get('/api/myproducts/:userId', async (req, res, next) => {
     try {
-        const userId = req.params.userId
+        const userId = req.params.userId;
+        console.log(userId);
         const product = await Product.find({ postedBy: userId })
         res.status(200).json(product)
     } catch (error) {
@@ -184,7 +185,7 @@ app.get('api/products/barter/:userId', async (req, res, next) => {
     }
 })
 //Get a product's all barter requests
-app.get('/api/products/:productId', async (req, res, next) => {
+app.get('/api/productrequests/:productId', async (req, res, next) => {
     try {
         const productId = req.params.productId
         const product = await BarterModel.find({ desiredItem: productId })
