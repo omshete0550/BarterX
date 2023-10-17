@@ -65,21 +65,6 @@ const AddProductPage = () => {
     const userId = extractUserIdFromURL();
     setuserid(userId);
 
-    // const datas = new FormData();  
-    // datas.append("file", file);
-    // datas.append("upload_preset", "uploads");
-    // // datas.append("cloud_name", "dtslqphfg");
-    // // console.log(file.target.files[0]);
-    // let res = await fetch("https://api.cloudinary.com/v1_1/deilddadk/image/upload",{
-    //   method: "POST",
-    //   body: datas
-    // });
-    // const urlData = await res.json();
-    // console.log(urlData);
-    // .then((res) => res.json())
-    // .then((data) => {console.log(data)})
-    // .catch((err)=>{console.log(err)})
-
     const datas = new FormData();
     datas.append("file", image);
     datas.append("upload_preset", "realtimeimages");
