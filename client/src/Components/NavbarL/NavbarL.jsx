@@ -71,17 +71,17 @@ const NavbarL = () => {
                 </Link>
               </li>
               <li className="menu-item">
-                <Link className="menu-link" to="/">
+                <Link className="menu-link" to="/maintainence">
                   Who It’s For
                 </Link>
               </li>
               <li className="menu-item">
-                <Link className="menu-link" to="/add-product">
+                <Link className="menu-link" to="/maintainence">
                   Where We Barter
                 </Link>
               </li>
               <li className="menu-item menu-mob">
-                <Link className="menu-link" to="/">
+                <Link className="menu-link" to="/maintainence">
                   How To Trade
                 </Link>
               </li>

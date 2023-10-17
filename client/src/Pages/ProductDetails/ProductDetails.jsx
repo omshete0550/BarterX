@@ -11,29 +11,6 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 const ProductDetails = () => {
- 
-
-  // const handleSwap = async () => {
-  //   const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
-  //   console.log(userId);
-  //   try {
-  //     // Make an Axios GET request to your API endpoint to fetch the products.
-      
-  //     const response = await axios.get(`http://localhost:8800/api/myproducts/${userId}`);
-  
-  //     // Assuming the API returns an array of products, you can access the data from the response.
-  //     const products = response.data;
-  
-  //     // Do something with the products data, e.g., log it to the console.
-  //     console.log(products);
-  //   } catch (error) {
-  //     // Handle any errors, e.g., display an error message.
-  //     console.error('Error fetching products:', error);
-  //   }
-  // }
-
-
-
 
   const location = useLocation();
   const { id } = location.state;
@@ -43,14 +20,23 @@ const ProductDetails = () => {
   // setProduct(props.id);
   useEffect(() => {
     // Fetch products from the backend API using Axios
-    axios
-      .get(`http://localhost:8800/api/getproductdetails/${id}`)
-      .then((response) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8800/api/getproductdetails/${id}`);
         setProduct(response.data);
         console.log(response.data); // Log the array of products to the console
-      })
-      .catch((error) => console.error("Error fetching products:", error));
+      }
+      catch (error) {
+        console.error("Error fetching products:", error);
+      }};
+      fetchData();
   }, []);
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const [imgId, setImgId] = useState(1);
 
@@ -58,8 +44,6 @@ const ProductDetails = () => {
     event.preventDefault();
     setImgId(id);
   };
-
-
 
   useEffect(() => {
     const displayWidth = document.querySelector(
@@ -70,120 +54,39 @@ const ProductDetails = () => {
     }px)`;
   }, [imgId]);
 
-  const ProdcutDetailArr = [
-    {
-      id: 1,
-      pname: "Sofa",
-      pdesc:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa! Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.",
-      powner: "Ram Shinde",
-      requiredment: "Office Chair",
-      dateOfPurchase: "12/10/2022",
-    },
-  ];
-
   const imgBtns = [
     {
       id: 1,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
+      src: "https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif",
       alt: "shoe image",
     },
   ];
-  // const productdetails = product.map((pItem) => (
-  //   <div className="product-content" key={pItem._id}>
-  //     <h2 className="product-title">{pItem.prodname}</h2>
-  //     <div className="product-rating">
-  //       Proposers: <span>(21)</span>
-  //     </div>
 
-  //     <div className="product-detail">
-  //       <h2>about this item: </h2>
-  //       <p>
-  //         {pItem.desc}
-  //       </p>
 
-  //       <ul>
-  //         <li>
-  //           Owner: <span>{pItem.postedBy}</span>
-  //         </li>
-  //         <li>
-  //           Required: <span>{pItem.desprodname}</span>
-  //         </li>
-  //         <li>
-  //           Date Of Purchase: <span>{pItem.datepurchase}</span>
-  //         </li>
-  //       </ul>
-  //     </div>
 
-  //     <div className="purchase-info">
-  //       <button type="button" className="btn">
-  //         Let's Swap
-  //       </button>
-  //       <button type="button" className="btn">
-  //         Let's Chat
-  //       </button>
-  //     </div>
+  document.addEventListener("DOMContentLoaded", () => {
+   const btn = document.querySelector('.swapbtn');
+  btn.addEventListener('click', async () => {
+    const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
+    console.log(userId);
+    try {
+      // Make an Axios GET request to your API endpoint to fetch the products.
 
-  //   </div>
-  // ));
+      const response = await axios.get(`http://localhost:8800/api/myproducts/${userId}`);
 
-  const myItems = [
-    {
-      id: 1,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product One",
-      date: "23-08-2023"
-    },
-    {
-      id: 2,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product Two",
-      date: "02-03-2023"
-    },
-    {
-      id: 3,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product Three",
-      date: "30-10-2023"
-    },
-    {
-      id: 4,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product Three",
-      date: "30-10-2023"
-    },
-    {
-      id: 5,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product Three",
-      date: "30-10-2023"
-    },
-    {
-      id: 6,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product Three",
-      date: "30-10-2023"
-    },
-  ];
-  // const btn = document.querySelector('.swapbtn');
-  // btn.addEventListener('click', async () => {
-  //   const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
-  //   console.log(userId);
-  //   try {
-  //     // Make an Axios GET request to your API endpoint to fetch the products.
-      
-  //     const response = await axios.get(`http://localhost:8800/api/myproducts/${userId}`);
-  
-  //     // Assuming the API returns an array of products, you can access the data from the response.
-  //     setMyProduct(response.data);
-  
-  //     // Do something with the products data, e.g., log it to the console.
-  //     console.log(myproduct);
-  //   } catch (error) {
-  //     // Handle any errors, e.g., display an error message.
-  //     console.error('Error fetching products:', error);
-  //   }
-  // })
+      // Assuming the API returns an array of products, you can access the data from the response.
+      setMyProduct(response.data);
+
+      // Do something with the products data, e.g., log it to the console.
+      console.log("Products", myproduct);
+    } catch (error) {
+      // Handle any errors, e.g., display an error message.
+      console.error('Error fetching products:', error);
+    }
+  })
+});
+
+
   const [responseMessage, setResponseMessage] = useState('');
   const sendProposal = async (item) => {
     const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
@@ -219,9 +122,18 @@ const ProductDetails = () => {
             <div className="product-imgs">
               <div className="img-display">
                 <div className="img-showcase">
-                  {imgBtns.map((imgItem) => (
+                  {/* {imgBtns.map((imgItem) => ( 
                     <img key={imgItem.id} src={imgItem.src} alt={imgItem.alt} />
-                  ))}
+                    
+                   ))} */}
+                   {product.images && product.images.length > 0 ? (
+                      <img src={product.images[0].url} alt="Alt text" />
+                    ) : (
+                      
+                    <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" width={500}  />
+                    
+                  
+                    )}
                 </div>
               </div>
               <div className="img-select">
@@ -232,7 +144,7 @@ const ProductDetails = () => {
                       data-id={imgItem.id}
                       onClick={(event) => handleImageClick(event, imgItem.id)}
                     >
-                      <img src={imgItem.src} alt={imgItem.alt} />
+                      <img src={imgItem.src} alt={imgItem.alt} className="gif"/>
                     </a>
                   </div>
                 ))}
@@ -279,12 +191,13 @@ const ProductDetails = () => {
                           <h2>Your Barter Items</h2>
                         </div>
                         <div className="contentGrid">
-                        {myproduct.map((item) => (
+                        {myproduct.length > 0 ? (
+                        myproduct.map((item) => (
                           <div className="CategCardContainer">
                             <div className="Categcard">
                               <div className="content-1">
                                 <div className="logo-img">
-                                  <img src={item.src} alt="" />
+                                  <img src={item.images[0].url} alt="" />
                                 </div>
                                 <img src="" alt="" />
                               </div>
@@ -302,19 +215,16 @@ const ProductDetails = () => {
                                   <div className="price">
                                   <a onClick={() => {sendProposal(item)}}>
                                     <span>
-                                      {/* <Link
-                                        to="/product-detail"
-                                        style={{ color: "#fff" }}
-                                      >
-                                        Let's Swap
-                                      </Link> */}
+                                     
                                       Send Proposal
                                     </span></a>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>))}
+                          </div>))):(
+  <h2>Kindly Login to proceed with the Swap</h2>
+)}
                         </div>
                       </div>
 

@@ -231,6 +231,130 @@ const Home = () => {
     </SwiperSlide>
   ));
 
+  const filteredElectronicProducts = products.filter(item => item.categ === "Electronics");
+  const ElectronicLists = filteredElectronicProducts.map((item, i) => (
+    <SwiperSlide key={item._id}>
+      <div className="product_col" data-aos="fade-up">
+        <div className="img_wrapper">
+          {/* <Link to={} className="product_link"> */}
+          <img
+            src={item.images[0].url}
+            // alt={item.alt}
+            className="product_img"
+            data-aos="fade-up"
+          />
+          {/* </Link> */}
+        </div>
+        <div className="product_container">
+          {width > 391 ? (
+            <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.prodname }}
+              data-aos="fade-up"
+            />
+          ) : (
+            {/* <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.mbtitle }}
+              data-aos="fade-up"
+            /> */}
+          )}
+          <p className="product_desc" data-aos="fade-up">
+            {item.desc}
+          </p>
+          <p className="product_desc">Category: {item.categ}</p>
+        </div>
+        {/* <Link to={} className="product_link"> */}
+          {/* Know more */}
+          <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
+        {/* </Link> */}
+      </div>
+      
+    </SwiperSlide>
+  ));
+  const filteredVehicleProducts = products.filter(item => item.categ === "Vehicles");
+  const VehicleLists = filteredVehicleProducts.map((item, i) => (
+    <SwiperSlide key={item._id}>
+      <div className="product_col" data-aos="fade-up">
+        <div className="img_wrapper">
+          {/* <Link to={} className="product_link"> */}
+          <img
+            src={item.images[0].url}
+            // alt={item.alt}
+            className="product_img"
+            data-aos="fade-up"
+          />
+          {/* </Link> */}
+        </div>
+        <div className="product_container">
+          {width > 391 ? (
+            <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.prodname }}
+              data-aos="fade-up"
+            />
+          ) : (
+            {/* <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.mbtitle }}
+              data-aos="fade-up"
+            /> */}
+          )}
+          <p className="product_desc" data-aos="fade-up">
+            {item.desc}
+          </p>
+          <p className="product_desc">Category: {item.categ}</p>
+        </div>
+        {/* <Link to={} className="product_link"> */}
+          {/* Know more */}
+          <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
+        {/* </Link> */}
+      </div>
+      
+    </SwiperSlide>
+  ));
+
+  const filteredFurnitureProducts = products.filter(item => item.categ === "Furniture");
+  const FurnitureLists = filteredFurnitureProducts.map((item, i) => (
+    <SwiperSlide key={item._id}>
+      <div className="product_col" data-aos="fade-up">
+        <div className="img_wrapper">
+          {/* <Link to={} className="product_link"> */}
+          <img
+            src={item.images[0].url}
+            // alt={item.alt}
+            className="product_img"
+            data-aos="fade-up"
+          />
+          {/* </Link> */}
+        </div>
+        <div className="product_container">
+          {width > 391 ? (
+            <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.prodname }}
+              data-aos="fade-up"
+            />
+          ) : (
+            {/* <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.mbtitle }}
+              data-aos="fade-up"
+            /> */}
+          )}
+          <p className="product_desc" data-aos="fade-up">
+            {item.desc}
+          </p>
+          <p className="product_desc">Category: {item.categ}</p>
+        </div>
+        {/* <Link to={} className="product_link"> */}
+          {/* Know more */}
+          <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
+        {/* </Link> */}
+      </div>
+      
+    </SwiperSlide>
+  ));
   return (
     <>
       <Navbar />
@@ -288,7 +412,20 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="HomeSec2Card"
             >
-              <p>Electronics</p>
+              <p>ELECTRONICS</p>
+            </motion.div>
+          </Link>
+
+          <Link to="/categ">
+            <motion.div
+              variants={textVariants("up", 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.1 }}
+              transition={{ duration: 0.5 }}
+              className="HomeSec3Card"
+            >
+              <p>VEHICLES</p>
             </motion.div>
           </Link>
 
@@ -301,7 +438,7 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="HomeSec2Card"
             >
-              <p>Vehicles</p>
+              <p>HOME APPLIANCES</p>
             </motion.div>
           </Link>
 
@@ -314,7 +451,7 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="HomeSec2Card"
             >
-              <p>Home Appliances</p>
+              <p>ART</p>
             </motion.div>
           </Link>
 
@@ -327,20 +464,7 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="HomeSec2Card"
             >
-              <p>Art</p>
-            </motion.div>
-          </Link>
-
-          <Link to="/categ">
-            <motion.div
-              variants={textVariants("up", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ amount: 0.1 }}
-              transition={{ duration: 0.5 }}
-              className="HomeSec2Card"
-            >
-              <p>Miscellaneous</p>
+              <p>MISCELLANEOUS</p>
             </motion.div>
           </Link>
 
@@ -432,7 +556,9 @@ const Home = () => {
                 },
               }}
             >
-              {productLists}
+              {productLists.length > 0 ? (productLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -618,7 +744,9 @@ const Home = () => {
                 },
               }}
             >
-              {productLists}
+              {productLists.length > 0 ? (productLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -731,7 +859,9 @@ const Home = () => {
                 },
               }}
             >
-              {productLists}
+              {productLists.length > 0 ? (productLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -889,7 +1019,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 1
+            Electronics
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -957,7 +1087,9 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {ElectronicLists.length > 0 ? (ElectronicLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -1002,7 +1134,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 2
+            Vehicles
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -1070,7 +1202,9 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {VehicleLists.length > 0 ? (VehicleLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -1115,7 +1249,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 3
+            Furniture
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -1183,7 +1317,9 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {FurnitureLists.length > 0 ? (FurnitureLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -1228,7 +1364,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 4
+            Art
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -1296,7 +1432,9 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {FurnitureLists.length > 0 ? (FurnitureLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -1341,7 +1479,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 5
+            Art
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -1409,7 +1547,9 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+               {FurnitureLists.length > 0 ? (FurnitureLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -1454,7 +1594,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 6
+            MISCELLANEOUS
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -1522,7 +1662,9 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {FurnitureLists.length > 0 ? (FurnitureLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -1549,244 +1691,7 @@ const Home = () => {
           </div>
         </motion.div>
       </section>
-
-      <section className="home_sec4">
-        <motion.div
-          className="my_container"
-          variants={textVariants("up", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.h2
-            className="heading"
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-          >
-            Category 7
-          </motion.h2>
-          <div className="product_row" data-aos="fade-up">
-            {width > 834 || width < 768 ? null : (
-              <div className="arrows_wrapper">
-                <img
-                  src={leftarrow}
-                  className="left_arrow"
-                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                />
-                <img
-                  src={rightarrow}
-                  className="right_arrow"
-                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                />
-              </div>
-            )}
-            <Swiper
-              className="productSwiper"
-              slidesPerView={3}
-              slidesPerGroup={1}
-              spaceBetween={98}
-              autoHeight={true}
-              modules={[Pagination, Navigation]}
-              pagination={{
-                type: "progressbar",
-              }}
-              navigation={{
-                nextEl: ".right_arrow",
-                prevEl: ".left_arrow",
-              }}
-              breakpoints={{
-                0: {
-                  spaceBetween: 0,
-                  slidesPerView: 1,
-                },
-                768: {
-                  spaceBetween: 60,
-                  slidesPerView: 2,
-                },
-                992: {
-                  spaceBetween: 50,
-                  slidesPerView: 3,
-                },
-                1280: {
-                  spaceBetween: 70,
-                  slidesPerView: 3,
-                },
-                1536: {
-                  spaceBetween: 80,
-                  slidesPerView: 3,
-                },
-                1600: {
-                  spaceBetween: 98,
-                  slidesPerView: 3,
-                },
-                1920: {
-                  spaceBetween: 99,
-                  slidesPerView: 3,
-                },
-                2250: {
-                  spaceBetween: 120,
-                  slidesPerView: 3,
-                },
-              }}
-            >
-              {productList}
-
-              {width <= 767 ? (
-                <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
-                </div>
-              ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
-            </Swiper>
-          </div>
-        </motion.div>
-      </section>
-
-      <section className="home_sec4">
-        <motion.div
-          className="my_container"
-          variants={textVariants("up", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.h2
-            className="heading"
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-          >
-            Category 8
-          </motion.h2>
-          <div className="product_row" data-aos="fade-up">
-            {width > 834 || width < 768 ? null : (
-              <div className="arrows_wrapper">
-                <img
-                  src={leftarrow}
-                  className="left_arrow"
-                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                />
-                <img
-                  src={rightarrow}
-                  className="right_arrow"
-                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                />
-              </div>
-            )}
-            <Swiper
-              className="productSwiper"
-              slidesPerView={3}
-              slidesPerGroup={1}
-              spaceBetween={98}
-              autoHeight={true}
-              modules={[Pagination, Navigation]}
-              pagination={{
-                type: "progressbar",
-              }}
-              navigation={{
-                nextEl: ".right_arrow",
-                prevEl: ".left_arrow",
-              }}
-              breakpoints={{
-                0: {
-                  spaceBetween: 0,
-                  slidesPerView: 1,
-                },
-                768: {
-                  spaceBetween: 60,
-                  slidesPerView: 2,
-                },
-                992: {
-                  spaceBetween: 50,
-                  slidesPerView: 3,
-                },
-                1280: {
-                  spaceBetween: 70,
-                  slidesPerView: 3,
-                },
-                1536: {
-                  spaceBetween: 80,
-                  slidesPerView: 3,
-                },
-                1600: {
-                  spaceBetween: 98,
-                  slidesPerView: 3,
-                },
-                1920: {
-                  spaceBetween: 99,
-                  slidesPerView: 3,
-                },
-                2250: {
-                  spaceBetween: 120,
-                  slidesPerView: 3,
-                },
-              }}
-            >
-              {productList}
-
-              {width <= 767 ? (
-                <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
-                </div>
-              ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
-            </Swiper>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* <section className="HomeSec5">
-        <div className="HomeSec5Container">
-          <div className="HomeSec5content">
-              <h1>Get 5% Cash Back</h1>
-              <h5>on BarterX.in</h5>
-              <button>Learn More</button>
-          </div>  
-          <div className="HomeSec5Image"></div>
-        </div>
-      </section> */}
-
+     
       <Footer />
     </>
   );

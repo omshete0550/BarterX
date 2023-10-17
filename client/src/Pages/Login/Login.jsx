@@ -39,13 +39,13 @@ const Login = () => {
       alert("Login Successfully logged in!");
       console.log(data.user);
       localStorage.setItem("token", data.user);
-      window.location.href = `/addproduct?userid=${data.user}`;
-
+      // window.location.href = `/addproduct?userid=${data.user}`;
+      window.location.href = `/home?userid=${data.user}`;
       // // history.push("/home"); // Replace "/home" with your actual route for the Home page
       // setIsLoggedIn(true);
       // setAccountName(data.user.name); // Set the account name
       // response.redirect("/home");
-      localStorage.setItem("token", data.user);
+      // localStorage.setItem("token", data.user);
     }
     else {
       alert("Please check your username and password & Try Again!");

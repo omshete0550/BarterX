@@ -7,15 +7,21 @@
   margin: 0 auto;
 }
 .ProductcardWrapper img {
-  width: 100%;
+  /* width: 100%; */
   display: block;
+}
+.gif{
+  width: 100px;
 }
 .img-display {
   overflow: hidden;
 }
 .img-showcase {
   display: flex;
-  height: auto;
+  height: 400px;
+  text-align: center;
+  /* align-items: center; */
+  justify-content: center;
   transition: all 0.5s ease;
 }
 .img-select {
