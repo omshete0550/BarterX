@@ -21,32 +21,33 @@ const Login = () => {
     setShowForgotPasswordPopup(false);
   };
 
-  async function loginUser(event){
+  async function loginUser(event) {
     event.preventDefault();
-    const response = await fetch('http://localhost:8800/api/login',{
-    method: 'POST',  
-    headers:{
-        'Content-Type':'application/json',
+    const response = await fetch('http://localhost:8800/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email, 
+        email,
         password
-        }),
+      }),
     })
 
     const data = await response.json()
-    if(data.user){
+    if (data.user) {
       alert("Login Successfully logged in!");
       console.log(data.user);
+      localStorage.setItem("token", data.user);
       window.location.href = `/addproduct?userid=${data.user}`;
-      
+
       // // history.push("/home"); // Replace "/home" with your actual route for the Home page
       // setIsLoggedIn(true);
       // setAccountName(data.user.name); // Set the account name
       // response.redirect("/home");
       localStorage.setItem("token", data.user);
     }
-    else{
+    else {
       alert("Please check your username and password & Try Again!");
     }
     console.log(data);
@@ -151,7 +152,7 @@ const Login = () => {
       {/* {showForgotPasswordPopup && (
         <ForgotPasswordPopup onClose={handleClosePopup} />
       )} */}
-      
+
     </>
   );
 };
