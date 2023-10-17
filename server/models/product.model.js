@@ -19,7 +19,7 @@ const productSchema = new mongoose.Schema({
         // enum: ['New', 'Used', 'Refurbished'],
         // required: true,
     },
-    postedBy:{
+    postedBy: {
         type: String,
         required: true,
     },
@@ -27,37 +27,34 @@ const productSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    requests: [
-        {
-            userId: String, 
-            message: String,
-            status: String, 
-            created_at: Date,
-        }
-    ],
     desprodname: {
         type: String,
         category: String
     },
     estvalue: {
-		type: Number,
-		// required: true
-	},
+        type: Number,
+        // required: true
+    },
     datepurchase: {
         type: Date,
     },
     images: [
         {
-            type: String, 
-            embedding: String,
-            url: String
-        },
+            embedding: {
+                type: [Number],
+                required: true,
+            },
+            url: {
+                type: String,
+                required: true,
+            }
+        }
     ],
-    
+
     tags: [String],
-    
+
 },
-{timestamp: true}
+    { timestamp: true }
 );
 
 // Create the Product model

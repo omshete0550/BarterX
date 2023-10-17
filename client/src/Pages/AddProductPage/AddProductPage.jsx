@@ -60,25 +60,10 @@ const AddProductPage = () => {
     return userId;
   }
 
-  async function publishProduct(event){
+  async function publishProduct(event) {
     event.preventDefault();
     const userId = extractUserIdFromURL();
     setuserid(userId);
-
-    // const datas = new FormData();  
-    // datas.append("file", file);
-    // datas.append("upload_preset", "uploads");
-    // // datas.append("cloud_name", "dtslqphfg");
-    // // console.log(file.target.files[0]);
-    // let res = await fetch("https://api.cloudinary.com/v1_1/deilddadk/image/upload",{
-    //   method: "POST",
-    //   body: datas
-    // });
-    // const urlData = await res.json();
-    // console.log(urlData);
-    // .then((res) => res.json())
-    // .then((data) => {console.log(data)})
-    // .catch((err)=>{console.log(err)})
 
     const datas = new FormData();
     datas.append("file", image);
@@ -100,30 +85,30 @@ const AddProductPage = () => {
     }
 
 
-    const response = await fetch('http://localhost:8800/api/publish',{
-      method: 'POST',  
-      headers:{
-          'Content-Type':'application/json',
-        },
-        body: JSON.stringify({
-          prodname, 
-          desc, 
-          categ,
-          condn,
-          desprodname,
-          datepurchase,
-          userid,
-          imageURL
-          }),
-      })
+    const response = await fetch('http://localhost:8800/api/publish', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prodname,
+        desc,
+        categ,
+        condn,
+        desprodname,
+        datepurchase,
+        userid,
+        imageURL
+      }),
+    })
 
-      // console.log(file);
+    // console.log(file);
 
     const data = await response.json();
-    if(data.status === 'success'){
+    if (data.status === 'success') {
       console.log("Product Published");
     }
-    else{
+    else {
       console.log("ERROR!")
     }
     console.log(data);
@@ -216,11 +201,11 @@ const AddProductPage = () => {
                   onChange={handleChange}
                   required={true}
                 /> */}
-                <input type="file"   accept="image/png, image/jpeg" onChange={validateImg} />
+                <input type="file" accept="image/png, image/jpeg" onChange={validateImg} />
                 {/* <p>
                   {file ? `File name: ${file[0].name}` : "no files uploaded yet"}
                 </p> */}
-                <input type="submit" name="" value="Upload"/>
+                <input type="submit" name="" value="Upload" />
               </div>
             </div>
           </div>

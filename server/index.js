@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const bcrypt = require('bcrypt');
+const request = require('request-promise');
 
 const Port = process.env.PORT || 8800;
 const User = require("./models/user.model.js");
@@ -12,14 +13,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 const jwt = require("jsonwebtoken");
+const BarterModel = require("./models/Barter.model.js");
 const mongodburl = 'mongodb+srv://m0hibsayed1393:BarterX@cluster0.hyssrie.mongodb.net/BarterX?retryWrites=true&w=majority';
 mongoose.connect(mongodburl);
 
 
-app.post('/api/register', async (req,res) => {
+app.post('/api/register', async (req, res) => {
     console.log(req.body);
     const hashedPassword = await bcrypt.hash(req.body.password, 10); // 10 is the number of salt rounds
-    try{
+    try {
         await User.create({
             name: req.body.name,
             email: req.body.email,
@@ -27,71 +29,83 @@ app.post('/api/register', async (req,res) => {
             password: hashedPassword,
             pincode: req.body.pincode,
         })
-    }catch(err){
-        res.json({status:'error', error:'Duplicate Email Found'});
+    } catch (err) {
+        res.json({ status: 'error', error: 'Duplicate Email Found' });
     }
-    res.json({status: 'ok'});
+    res.json({ status: 'ok' });
 
 })
 
-app.post('/api/login', async (req,res) => {
+app.post('/api/login', async (req, res) => {
     // console.log("API has HIT");
     const user = await User.findOne({
-            email: req.body.email,
-            // password: req.body.password
+        email: req.body.email,
+        // password: req.body.password
     })
-    if(user){
+    if (user) {
         console.log("User found")
         const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
-        if(isPasswordValid){
+        if (isPasswordValid) {
             const token = jwt.sign({
                 name: user.name,
                 email: user.email
             }, 'secret123')
-    
-            return res.json({status: 'ok', user: user._id})
+
+            return res.json({ status: 'ok', user: user._id })
             // res.redirect(`http://localhost:3000/add-product?userid=${user._id}`);
         }
-        
-    }
-    else{
-        return res.json({status: 'error', user: false})
-    }
-})
 
-app.post('/api/publish', async (req,res) => {
-    console.log("API HIT");
-    try{
-        await Product.create({
-            prodname: req.body.prodname,
-            desc: req.body.desc,
-            categ: req.body.categ,
-            condn: req.body.condn,
-            desprodname: req.body.desprodname,
-            postedBy: req.body.userid,
-            // estvalue: req.body.estvalue,
-            datepurchase: req.body.datepurchase,
-            images: req.body.imageURL,
-        });
-        res.json({status:'success', error:'Product Published'});
-    }catch(err){
-        res.json({status:'error', error:'Error in product'});
+    }
+    else {
+        return res.json({ status: 'error', user: false })
     }
 })
 
+app.post('/api/publish', async (req, res) => {
+    const savedProduct = new Product({
+        postedBy: req.body.userid,
+        prodname: req.body.prodname,
+        desc: req.body.desc,
+        categ: req.body.categ,
+        condn: req.body.condn,
+        desprodname: req.body.desprodname,
+        datepurchase: req.body.datepurchase,
+    });
+    try {
 
+        const imageUrl = req.body.imageURL;
+        const flaskApiUrl = 'http://localhost:5000/calculate_embedding';
+        const options = {
+            method: 'POST',
+            uri: flaskApiUrl,
+            body: {
+                image_url: imageUrl,
+            },
+            json: true,
+        };
+        const embeddingResponse = await request(options);
+        const embedding = embeddingResponse.embedding;
+        savedProduct.images.push({ url: imageUrl, embedding: embedding });
+        await savedProduct.save();
+
+        res.json({ status: 'success', message: 'Product Published' });
+    } catch (err) {
+        res.json({ status: 'error', error: 'Error in product publishing', details: err });
+    }
+});
+//Get all products
 app.get('/api/products', async (req, res, next) => {
     try {
-      // Fetch all products from your database
-      const allProducts = await Product.find();
-      res.status(200).json(allProducts);
+        // Fetch all products from your database
+        const allProducts = await Product.find();
+        res.status(200).json(allProducts);
     } catch (err) {
-      next(err);
+        next(err);
     }
-  });
+});
 
 app.get('/api/products/:categname', async (req, res, next) => {
-    try{
+    try {
         const categname = req.params.categname;
         const categProducts = await Product.find({ category: categname });
 
@@ -105,9 +119,60 @@ app.get('/api/products/:categname', async (req, res, next) => {
         next(error);
     }
 })
-
+//Get a user's all product
+app.get('/api/products/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId
+        const product = await Product.find({ postedBy: userId })
+        res.status(200).json(product)
+    } catch (error) {
+        next(error)
+    }
+})
+//Create a Barter Request
+app.post('/api/products/barter', async (req, res, next) => {
+    const newBarter = new BarterModel(req.body)
+    try {
+        const savedBarter = await newBarter.save()
+        res.status(201).json(savedBarter)
+    } catch (error) {
+        next(error)
+    }
+})
+//Get a user's all barter requests
+app.get('api/products/barter/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId
+        const barterRequests = await BarterModel.find({ requester: userId })
+        res.status(200).json(barterRequests)
+    } catch (error) {
+        next(error)
+    }
+})
+//Get a product's all barter requests
+app.get('/api/products/:productId', async (req, res, next) => {
+    try {
+        const productId = req.params.productId
+        const product = await BarterModel.find({ desiredItem: productId })
+        res.status(200).json(product)
+    } catch (error) {
+        next(error)
+    }
+})
+//Update a barter request
+app.put('/api/products/barter/:barterId', async (req, res, next) => {
+    try {
+        const barterId = req.params.barterId;
+        const updatedBarter = await BarterModel.findByIdAndUpdate(
+            barterId,
+            { status: req.body.status },
+        );
+        res.status(200).json(updatedBarter);
+    } catch (error) {
+        next(error);
+    }
+});
 
 app.listen(Port, () => {
-    // connect();
     console.log("Server started on Port " + Port);
 });
