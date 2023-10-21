@@ -12,7 +12,7 @@ const customStyles = {
   },
   headCells: {
     style: {
-      color:"#fff",
+      color: "#fff",
       paddingLeft: "8px", // override the cell padding for head cells
       paddingRight: "8px",
     },
@@ -130,13 +130,12 @@ const data = [
     user: "Angela Yu",
     item: "Sofa",
     price: "5500",
-  },  
+  },
 
 ];
 
 const Table = (props) => {
-  const  id  = props.id;
-  console.log("id", id);
+  const id = props.id;
   const [productData, setProductData] = useState([]);
   useEffect(() => {
     // Fetch products from the backend API using Axios
@@ -144,7 +143,6 @@ const Table = (props) => {
       .get(`http://localhost:8800/api/productrequests/${id}`)
       .then(response => {
         setProductData(response.data);
-        console.log(productData);
       })
       .catch(error => console.error(error));
   }, []);

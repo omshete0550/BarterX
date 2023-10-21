@@ -11,33 +11,9 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 const ProductDetails = () => {
- 
-
-  // const handleSwap = async () => {
-  //   const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
-  //   console.log(userId);
-  //   try {
-  //     // Make an Axios GET request to your API endpoint to fetch the products.
-      
-  //     const response = await axios.get(`http://localhost:8800/api/myproducts/${userId}`);
-  
-  //     // Assuming the API returns an array of products, you can access the data from the response.
-  //     const products = response.data;
-  
-  //     // Do something with the products data, e.g., log it to the console.
-  //     console.log(products);
-  //   } catch (error) {
-  //     // Handle any errors, e.g., display an error message.
-  //     console.error('Error fetching products:', error);
-  //   }
-  // }
-
-
-
-
   const location = useLocation();
   const { id } = location.state;
-
+  const [userName, setUserName] = useState('');
   const [product, setProduct] = useState([]);
   const [myproduct, setMyProduct] = useState([]);
   // setProduct(props.id);
@@ -47,10 +23,10 @@ const ProductDetails = () => {
       .get(`http://localhost:8800/api/getproductdetails/${id}`)
       .then((response) => {
         setProduct(response.data);
-        console.log(response.data); // Log the array of products to the console
       })
       .catch((error) => console.error("Error fetching products:", error));
   }, []);
+
 
   const [imgId, setImgId] = useState(1);
 
@@ -59,135 +35,33 @@ const ProductDetails = () => {
     setImgId(id);
   };
 
-
-
   useEffect(() => {
-    const displayWidth = document.querySelector(
-      ".img-showcase img:first-child"
-    ).clientWidth;
-    document.querySelector(".img-showcase").style.transform = `translateX(${
-      -(imgId - 1) * displayWidth
-    }px)`;
-  }, [imgId]);
+    const getUserName = async () => {
+      try {
+        const userId = product.postedBy;
+        const userData = await axios.get(`http://localhost:8800/api/users/${userId}`);
+        const userName = userData.data.name;
+        setUserName(userName);
+      } catch (error) {
+        console.error('Error fetching user data:', error.message);
+      }
+    }
+    getUserName();
+  }, [product])
 
-  const ProdcutDetailArr = [
-    {
-      id: 1,
-      pname: "Sofa",
-      pdesc:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa! Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.",
-      powner: "Ram Shinde",
-      requiredment: "Office Chair",
-      dateOfPurchase: "12/10/2022",
-    },
-  ];
+  // useEffect(() => {
+  //   const displayWidth = document.querySelector(
+  //     ".img-showcase img:first-child"
+  //   ).clientWidth;
+  //   document.querySelector(".img-showcase").style.transform = `translateX(${-(imgId - 1) * displayWidth
+  //     }px)`;
+  // }, [imgId]);
 
-  const imgBtns = [
-    {
-      id: 1,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      alt: "shoe image",
-    },
-  ];
-  // const productdetails = product.map((pItem) => (
-  //   <div className="product-content" key={pItem._id}>
-  //     <h2 className="product-title">{pItem.prodname}</h2>
-  //     <div className="product-rating">
-  //       Proposers: <span>(21)</span>
-  //     </div>
+  const imgBtns = product.images
 
-  //     <div className="product-detail">
-  //       <h2>about this item: </h2>
-  //       <p>
-  //         {pItem.desc}
-  //       </p>
-
-  //       <ul>
-  //         <li>
-  //           Owner: <span>{pItem.postedBy}</span>
-  //         </li>
-  //         <li>
-  //           Required: <span>{pItem.desprodname}</span>
-  //         </li>
-  //         <li>
-  //           Date Of Purchase: <span>{pItem.datepurchase}</span>
-  //         </li>
-  //       </ul>
-  //     </div>
-
-  //     <div className="purchase-info">
-  //       <button type="button" className="btn">
-  //         Let's Swap
-  //       </button>
-  //       <button type="button" className="btn">
-  //         Let's Chat
-  //       </button>
-  //     </div>
-
-  //   </div>
-  // ));
-
-  const myItems = [
-    {
-      id: 1,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product One",
-      date: "23-08-2023"
-    },
-    {
-      id: 2,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product Two",
-      date: "02-03-2023"
-    },
-    {
-      id: 3,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product Three",
-      date: "30-10-2023"
-    },
-    {
-      id: 4,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product Three",
-      date: "30-10-2023"
-    },
-    {
-      id: 5,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product Three",
-      date: "30-10-2023"
-    },
-    {
-      id: 6,
-      src: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      productname: "Product Three",
-      date: "30-10-2023"
-    },
-  ];
-  // const btn = document.querySelector('.swapbtn');
-  // btn.addEventListener('click', async () => {
-  //   const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
-  //   console.log(userId);
-  //   try {
-  //     // Make an Axios GET request to your API endpoint to fetch the products.
-      
-  //     const response = await axios.get(`http://localhost:8800/api/myproducts/${userId}`);
-  
-  //     // Assuming the API returns an array of products, you can access the data from the response.
-  //     setMyProduct(response.data);
-  
-  //     // Do something with the products data, e.g., log it to the console.
-  //     console.log(myproduct);
-  //   } catch (error) {
-  //     // Handle any errors, e.g., display an error message.
-  //     console.error('Error fetching products:', error);
-  //   }
-  // })
   const [responseMessage, setResponseMessage] = useState('');
   const sendProposal = async (item) => {
-    const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
-    // console.log(userId);
+    const userId = localStorage.getItem("token");
     const barterRequest = {
       requester: userId, // Replace with actual user ID
       desiredItem: id, // Replace with actual desired item's IDs
@@ -219,23 +93,23 @@ const ProductDetails = () => {
             <div className="product-imgs">
               <div className="img-display">
                 <div className="img-showcase">
-                  {imgBtns.map((imgItem) => (
-                    <img key={imgItem.id} src={imgItem.src} alt={imgItem.alt} />
-                  ))}
+                  {imgBtns ? imgBtns.map((imgItem, id) => (
+                    <img key={id} src={imgItem.url} alt="alt" />
+                  )) : "Loading..."}
                 </div>
               </div>
               <div className="img-select">
-                {imgBtns.map((imgItem) => (
-                  <div className="img-item" key={imgItem.id}>
+                {imgBtns ? imgBtns.map((imgItem) => (
+                  <div className="img-item" key={id}>
                     <a
                       href="#"
-                      data-id={imgItem.id}
-                      onClick={(event) => handleImageClick(event, imgItem.id)}
+                      data-id={id}
+                      onClick={(event) => handleImageClick(event, id)}
                     >
-                      <img src={imgItem.src} alt={imgItem.alt} />
+                      <img src={imgItem.url} alt="alt" />
                     </a>
                   </div>
-                ))}
+                )) : "Loading..."}
               </div>
             </div>
 
@@ -251,7 +125,7 @@ const ProductDetails = () => {
 
                 <ul>
                   <li>
-                    Owner: <span>{product.postedBy}</span>
+                    Owner: <span>{userName ? userName : "loading.."}</span>
                   </li>
                   <li>
                     Required: <span>{product.desprodname}</span>
@@ -263,7 +137,7 @@ const ProductDetails = () => {
               </div>
 
               <div className="purchase-info">
-              {/* <a onClick={handleSwap}>Swap kar</a> */}
+                {/* <a onClick={handleSwap}>Swap kar</a> */}
                 <Popup
                   trigger={<a className="btn swapbtn" > Let's Swap </a>}
                   modal
@@ -279,42 +153,42 @@ const ProductDetails = () => {
                           <h2>Your Barter Items</h2>
                         </div>
                         <div className="contentGrid">
-                        {myproduct.map((item) => (
-                          <div className="CategCardContainer">
-                            <div className="Categcard">
-                              <div className="content-1">
-                                <div className="logo-img">
-                                  <img src={item.src} alt="" />
-                                </div>
-                                <img src="" alt="" />
-                              </div>
-                              <div className="content-2">
-                                <div className="branding">
-                                  <div className="brandingInner">
-                                    <span>{item.prodname}</span>
-                                    {/* <span>Old</span> */}
+                          {myproduct.map((item) => (
+                            <div className="CategCardContainer">
+                              <div className="Categcard">
+                                <div className="content-1">
+                                  <div className="logo-img">
+                                    <img src={item.src} alt="" />
                                   </div>
-                                  {/* <h4>Owner: {owner}</h4> */}
-                                  {/* <h4>Required: {desiredProduct}</h4> */}
-                                  <h4>Date: {item.datepurchase}</h4>
+                                  <img src="" alt="" />
                                 </div>
-                                <div className="likesContainer">
-                                  <div className="price">
-                                  <a onClick={() => {sendProposal(item)}}>
-                                    <span>
-                                      {/* <Link
+                                <div className="content-2">
+                                  <div className="branding">
+                                    <div className="brandingInner">
+                                      <span>{item.prodname}</span>
+                                      {/* <span>Old</span> */}
+                                    </div>
+                                    {/* <h4>Owner: {owner}</h4> */}
+                                    {/* <h4>Required: {desiredProduct}</h4> */}
+                                    <h4>Date: {item.datepurchase}</h4>
+                                  </div>
+                                  <div className="likesContainer">
+                                    <div className="price">
+                                      <a onClick={() => { sendProposal(item) }}>
+                                        <span>
+                                          {/* <Link
                                         to="/product-detail"
                                         style={{ color: "#fff" }}
                                       >
                                         Let's Swap
                                       </Link> */}
-                                      Send Proposal
-                                    </span></a>
+                                          Send Proposal
+                                        </span></a>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>))}
+                            </div>))}
                         </div>
                       </div>
 
@@ -322,7 +196,6 @@ const ProductDetails = () => {
                         <button
                           className="btn"
                           onClick={() => {
-                            console.log("modal closed ");
                             close();
                           }}
                         >
@@ -332,7 +205,7 @@ const ProductDetails = () => {
                     </div>
                   )}
                 </Popup>
-                
+
                 <button type="button" className="btn">
                   Let's Chat
                 </button>
@@ -343,10 +216,10 @@ const ProductDetails = () => {
       </section>
 
       <div className="DataTable">
-        <Table id={id}/>
+        <Table id={id} />
       </div>
 
-      <Review />
+      <Review product={id} />
 
       <Footer />
     </>
