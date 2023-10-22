@@ -201,7 +201,7 @@ app.post('/api/products/barter', async (req, res, next) => {
     }
 })
 //Get a user's all barter requests
-app.get('api/products/barter/:userId', async (req, res, next) => {
+app.get('/api/products/barter/:userId', async (req, res, next) => {
     try {
         const userId = req.params.userId
         const barterRequests = await BarterModel.find({ requester: userId })
