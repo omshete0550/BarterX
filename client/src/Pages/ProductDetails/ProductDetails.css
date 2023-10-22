@@ -7,7 +7,7 @@
   margin: 0 auto;
 }
 .ProductcardWrapper img {
-  width: 100%;
+  width: 55%;
   display: block;
 }
 .img-display {
@@ -125,7 +125,8 @@
   margin: 1.5rem 0;
 }
 .purchase-info input,
-.purchase-info .btn {
+.purchase-info .btn,
+.actions .btn {
   border-radius: 5px;
   text-align: center;
   padding: 10px 20px;
@@ -137,19 +138,23 @@
   width: 5em;
   border: 1.5px solid #777;
 }
-.purchase-info .btn {
+.purchase-info .btn,
+.actions .btn {
   cursor: pointer;
   color: #fff;
 }
 .purchase-info .btn:first-of-type {
   background: rgb(18 19 65);
 }
-.purchase-info .btn:last-of-type {
+.purchase-info .btn:last-of-type,
+.actions .btn {
   background: #f64749;
 }
-.purchase-info .btn:hover {
+.purchase-info .btn:hover,
+.actions .btn:hover {
   opacity: 0.9;
 }
+
 .social-links {
   display: flex;
   align-items: center;
@@ -173,7 +178,7 @@
   border-color: transparent;
   color: #fff;
 }
-.DataTable{
+.DataTable {
   padding: 20px 80px;
 }
 @media screen and (min-width: 992px) {
@@ -208,7 +213,7 @@
   .product-content {
     padding: 1rem 1rem;
   }
-  .DataTable{
+  .DataTable {
     padding: 20px 40px;
   }
 }
@@ -220,7 +225,74 @@
     width: 20em;
     height: 20em;
   }
-  .DataTable{
+  .DataTable {
     padding: 20px 20px;
   }
 }
+
+.popup-content {
+  width: 70vw !important;
+  height: 80vh !important;
+}
+.modal {
+  font-size: 12px;
+}
+/* .modal .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+} */
+.modal .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: rgb(18 19 65);
+  border-radius: 18px;
+  /* border: 1px solid #cfcece; */
+}
+.contentheader {
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.contentGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 60vh;
+  align-items: center;
+  overflow-y: auto;
+}
+/* .contentGrid::-webkit-scrollbar {
+  width: 10px;
+}
+.contentGrid::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+
+.contentGrid::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+
+.contentGrid::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+} */

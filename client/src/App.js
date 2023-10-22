@@ -21,23 +21,22 @@ function App() {
   return (
     <>
       <Router>
-        <Routes>
-          <Route exact path="/" element={<Landing />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/home" element={<Home />} />
-          <Route exact path="/categ" element={<Category />} />
-
-          <Route exact path="/addproduct" element={<AddProductPage />} />
-          <Route exact path="/product-detail" element={<ProductDetails />} />
-          <Route exact path="/notification" element={<NotificationPage />} />
-          <Route exact path="/user-profile" element={<UserProfile />} />
-          <Route exact path="/order-history" element={<Orders />} />
-          <Route exact path="/your-ads" element={<Ads />} />
-          <Route exact path="/edit-address" element={<Address />} />
-          <Route exact path="/edit-profile" element={<Profile />} />
-          <Route exact path="/proposers" element={<Proposer />} />
-        </Routes>
+          <Routes>
+            <Route exact path="/" element={<Landing />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/home" element={<Home />} />
+            <Route exact path="/categ" element={<Category />} />
+            <Route exact path="/addproduct" element={<AddProductPage />} />
+            <Route exact path="/product-detail" element={<ProductDetails />} />
+            <Route exact path="/notification" element={<NotificationPage />} />
+            <Route exact path="/user-profile" element={<UserProfile />} />
+            <Route exact path="/order-history" element={<Orders />} />
+            <Route exact path="/your-ads" element={<Ads />} />
+            <Route exact path="/edit-address" element={<Address />} />
+            <Route exact path="/edit-profile" element={<Profile />} />
+            <Route exact path="/proposers" element={<Proposer />} />
+          </Routes>
       </Router>
     </>
   );

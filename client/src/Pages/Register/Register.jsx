@@ -37,32 +37,31 @@ const Register = () => {
     } else {
       setIsUsernameCorrect(false);
     }
-    console.log(isUsernameCorrect);
   };
 
 
-  async function registerUser(event){
+  async function registerUser(event) {
     event.preventDefault();
-    const response = await fetch('http://localhost:8800/api/register',{
-    method: 'POST',  
-    headers:{
-        'Content-Type':'application/json',
+    const response = await fetch('http://localhost:8800/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name, 
-        email, 
-        password, 
-        pincode}),
+        name,
+        email,
+        password,
+        pincode
+      }),
     })
 
     const data = await response.json();
-    if(data.status === 'ok'){
-      window.location.href='/login';
+    if (data.status === 'ok') {
+      window.location.href = '/login';
     }
-    else{
+    else {
       window.location.reload();
     }
-    console.log(data);
   }
 
   return (
@@ -190,7 +189,7 @@ const Register = () => {
                 <input type="submit" className="LoginButton" value='Register'></input>
 
                 {/* <button className="LoginButton">Register</button> */}
-                
+
                 <div className="HaveAnAcc">
                   <span>
                     {" "}

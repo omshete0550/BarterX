@@ -1,16 +1,18 @@
 import React from "react";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 
 const customStyles = {
   rows: {
     style: {
       minHeight: "72px",
-      background: "rgb(18 19 65)", // override the row height
+      background: "#eaeaea", // override the row height
     },
   },
   headCells: {
     style: {
+      color: "#fff",
       paddingLeft: "8px", // override the cell padding for head cells
       paddingRight: "8px",
     },
@@ -26,35 +28,35 @@ const customStyles = {
 const columns = [
   {
     name: "Date",
-    selector: (row) => row.date,
+    selector: (row) => row.createdAt,
     sortable: true,
   },
   {
     name: "User",
-    selector: (row) => row.user,
+    selector: (row) => row.requester,
     sortable: true,
   },
   {
     name: "Item",
-    selector: (row) => row.item,
+    selector: (row) => row.myItem,
     sortable: true,
   },
-  {
-    name: "Price",
-    selector: (row) => row.price,
-    sortable: true,
-  },
+  // {
+  //   name: "Price",
+  //   selector: (row) => row.price,
+  //   sortable: true,
+  // },
 ];
 
 createTheme(
   "solarized",
   {
     text: {
-      primary: "#fff",
+      primary: "#000",
       secondary: "#2aa198",
     },
     background: {
-      default: "rgba(112, 89, 243, 1)",
+      default: "rgb(18 19 65)",
     },
     context: {
       background: "#cb4b16",
@@ -128,15 +130,26 @@ const data = [
     user: "Angela Yu",
     item: "Sofa",
     price: "5500",
-  },  
+  },
 
 ];
 
-const Table = () => {
+const Table = (props) => {
+  const id = props.id;
+  const [productData, setProductData] = useState([]);
+  useEffect(() => {
+    // Fetch products from the backend API using Axios
+    axios
+      .get(`http://localhost:8800/api/productrequests/${id}`)
+      .then(response => {
+        setProductData(response.data);
+      })
+      .catch(error => console.error(error));
+  }, []);
   return (
     <DataTable
       columns={columns}
-      data={data}
+      data={productData}
       theme="solarized"
       customStyles={customStyles}
     />

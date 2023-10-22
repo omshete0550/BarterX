@@ -37,7 +37,6 @@ const Login = () => {
     const data = await response.json()
     if (data.user) {
       alert("Login Successfully logged in!");
-      console.log(data.user);
       localStorage.setItem("token", data.user);
       window.location.href = `/addproduct?userid=${data.user}`;
 
@@ -45,11 +44,11 @@ const Login = () => {
       // setIsLoggedIn(true);
       // setAccountName(data.user.name); // Set the account name
       // response.redirect("/home");
+      localStorage.setItem("token", data.user);
     }
     else {
       alert("Please check your username and password & Try Again!");
     }
-    console.log(data);
   }
 
   return (

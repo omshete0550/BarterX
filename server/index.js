@@ -8,18 +8,17 @@ const request = require('request-promise');
 const Port = process.env.PORT || 8800;
 const User = require("./models/user.model.js");
 const Product = require("./models/product.model.js");
-
+const BarterModel = require("./models/Barter.model.js");
+const Rating = require("./models/Rating.model.js");
 const app = express();
 app.use(cors());
 app.use(express.json());
 const jwt = require("jsonwebtoken");
-const BarterModel = require("./models/Barter.model.js");
-const mongodburl = 'mongodb+srv://m0hibsayed1393:BarterX@cluster0.hyssrie.mongodb.net/BarterX?retryWrites=true&w=majority';
-mongoose.connect(mongodburl);
+dotenv.config();
 
+mongoose.connect(process.env.mongodburl);
 
 app.post('/api/register', async (req, res) => {
-    console.log(req.body);
     const hashedPassword = await bcrypt.hash(req.body.password, 10); // 10 is the number of salt rounds
     try {
         await User.create({
@@ -37,13 +36,11 @@ app.post('/api/register', async (req, res) => {
 })
 
 app.post('/api/login', async (req, res) => {
-    // console.log("API has HIT");
     const user = await User.findOne({
         email: req.body.email,
         // password: req.body.password
     })
     if (user) {
-        console.log("User found")
         const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
         if (isPasswordValid) {
             const token = jwt.sign({
@@ -93,6 +90,15 @@ app.post('/api/publish', async (req, res) => {
         res.json({ status: 'error', error: 'Error in product publishing', details: err });
     }
 });
+//Find a user
+app.get('/api/users/:userId', async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.userId);
+        res.status(200).json(user);
+    } catch (err) {
+        next(err);
+    }
+});
 //Get all products
 app.get('/api/products', async (req, res, next) => {
     try {
@@ -104,6 +110,20 @@ app.get('/api/products', async (req, res, next) => {
     }
 });
 
+app.get('/api/products', async (req, res, next) => {
+    try {
+        const categProducts = await Product.find();
+
+        if (!categProducts || categProducts.length === 0) {
+            return res.status(404).json({ message: 'No products found in this category.' });
+        }
+
+        res.json(categProducts);
+
+    } catch (error) {
+        next(error);
+    }
+});
 app.get('/api/products/:categname', async (req, res, next) => {
     try {
         const categname = req.params.categname;
@@ -118,11 +138,42 @@ app.get('/api/products/:categname', async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-})
-//Get a user's all product
-app.get('/api/products/:userId', async (req, res, next) => {
+});
+
+
+app.post('/api/getproduct/:productId', async (req, res) => {
     try {
-        const userId = req.params.userId
+        const productId = req.params.productId;
+        const product = await Product.findOne({ _id: productId });
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+        res.json(product);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get('/api/getproductdetails/:productId', async (req, res) => {
+    try {
+        const productId = req.params.productId;
+
+        const product = await Product.findOne({ _id: productId });
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+        res.json(product);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+);
+//Get a user's all product
+app.get('/api/myproducts/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
         const product = await Product.find({ postedBy: userId })
         res.status(200).json(product)
     } catch (error) {
@@ -150,7 +201,7 @@ app.get('api/products/barter/:userId', async (req, res, next) => {
     }
 })
 //Get a product's all barter requests
-app.get('/api/products/:productId', async (req, res, next) => {
+app.get('/api/productrequests/:productId', async (req, res, next) => {
     try {
         const productId = req.params.productId
         const product = await BarterModel.find({ desiredItem: productId })
@@ -172,6 +223,27 @@ app.put('/api/products/barter/:barterId', async (req, res, next) => {
         next(error);
     }
 });
+//Create Rating
+app.post('/api/ratings', async (req, res, next) => {
+    const newRating = new Rating(req.body)
+
+    try {
+        const savedRating = await newRating.save()
+        res.status(201).json(savedRating)
+    } catch (error) {
+        next(error)
+    }
+})
+//Get a product's all ratings
+app.get('/api/ratings/:productId', async (req, res, next) => {
+    try {
+        const productId = req.params.productId
+        const ratings = await Rating.find({ product: productId })
+        res.status(200).json(ratings)
+    } catch (error) {
+        next(error)
+    }
+})
 
 app.listen(Port, () => {
     console.log("Server started on Port " + Port);
