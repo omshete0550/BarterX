@@ -17,6 +17,7 @@ const ProductDetails = () => {
 
   const [product, setProduct] = useState([]);
   const [myproduct, setMyProduct] = useState([]);
+  const [username, setUsername] = useState([]);
   // setProduct(props.id);
   useEffect(() => {
     // Fetch products from the backend API using Axios
@@ -29,10 +30,25 @@ const ProductDetails = () => {
       catch (error) {
         console.error("Error fetching products:", error);
       }};
+
+
+      const fetchUserData = async () => {
+        try {
+          const userResponse = await axios.get(`http://localhost:8800/api/users/${product.postedBy}`);
+          console.log(userResponse)
+          setUsername(userResponse.data);
+        } catch (error) {
+          console.error("Error fetching user details:", error);
+        }
+      };
+
+
       fetchData();
+      fetchUserData();
   }, []);
 
   const { pathname } = useLocation();
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -66,24 +82,19 @@ const ProductDetails = () => {
 
   document.addEventListener("DOMContentLoaded", () => {
    const btn = document.querySelector('.swapbtn');
-  btn.addEventListener('click', async () => {
-    const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
-    console.log(userId);
-    try {
-      // Make an Axios GET request to your API endpoint to fetch the products.
-
-      const response = await axios.get(`http://localhost:8800/api/myproducts/${userId}`);
-
-      // Assuming the API returns an array of products, you can access the data from the response.
-      setMyProduct(response.data);
-
-      // Do something with the products data, e.g., log it to the console.
-      console.log("Products", myproduct);
-    } catch (error) {
-      // Handle any errors, e.g., display an error message.
-      console.error('Error fetching products:', error);
-    }
-  })
+    btn.addEventListener('click', async () => {
+      const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
+      console.log(userId);
+      console.log("Fetching products")
+      try {
+        const response = await axios.get(`http://localhost:8800/api/myproducts/${userId}`);
+        setMyProduct(response.data);
+        console.log("Products", myproduct);
+      } catch (error) {
+        // Handle any errors, e.g., display an error message.
+        console.error('Error fetching products:', error);
+      }
+    })
 });
 
 
@@ -163,7 +174,7 @@ const ProductDetails = () => {
 
                 <ul>
                   <li>
-                    Owner: <span>{product.postedBy}</span>
+                    Owner: <span>{username.name}</span>
                   </li>
                   <li>
                     Required: <span>{product.desprodname}</span>
@@ -177,7 +188,7 @@ const ProductDetails = () => {
               <div className="purchase-info">
               {/* <a onClick={handleSwap}>Swap kar</a> */}
                 <Popup
-                  trigger={<a className="btn swapbtn" > Let's Swap </a>}
+                  trigger={<a className="btn swapbtn"> Let's Swap </a>}
                   modal
                   nested
                 >
@@ -196,7 +207,7 @@ const ProductDetails = () => {
                           <div className="CategCardContainer">
                             <div className="Categcard">
                               <div className="content-1">
-                                <div className="logo-img">
+                                <div className="logo-img myitemsimg">
                                   <img src={item.images[0].url} alt="" />
                                 </div>
                                 <img src="" alt="" />

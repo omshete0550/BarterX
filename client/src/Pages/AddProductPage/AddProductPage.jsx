@@ -164,7 +164,7 @@ const AddProductPage = () => {
 
               <div className="inputContainerProduct inputContainerProductDesc">
                 <span>Description *</span>
-                <textarea type="text" rows={10} name="desc" id="desc" onChange={(e) => setdesc(e.target.value)} />
+                <textarea type="text" rows={6} name="desc" id="desc" onChange={(e) => setdesc(e.target.value)} />
                 <p>
                   Do not exceed 100 characters when entering the product
                   description.
@@ -201,11 +201,11 @@ const AddProductPage = () => {
                   onChange={handleChange}
                   required={true}
                 /> */}
-                <input type="file" accept="image/png, image/jpeg" onChange={validateImg} />
+                <input className="fileUpBtn" type="file" accept="image/png, image/jpeg" onChange={validateImg} />
                 {/* <p>
                   {file ? `File name: ${file[0].name}` : "no files uploaded yet"}
                 </p> */}
-                <input type="submit" name="" value="Upload" />
+                <input className="pubProductBtn" type="submit" name="" value="Publish Product" />
               </div>
             </div>
           </div>

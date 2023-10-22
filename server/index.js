@@ -105,6 +105,18 @@ app.get('/api/products', async (req, res, next) => {
     }
 });
 
+app.get('/api/users/:userId', async (req, res, next) => {
+    const userId = req.params.userId;
+    try {
+        console.log(userId);
+        // Fetch all products from your database
+        const user = await User.findById(userId);
+        res.status(200).json(user);
+    } catch (err) {
+        next(err);
+    }
+});
+
 app.get('/api/products/:categname', async (req, res, next) => {
     try {
         const categname = req.params.categname;
@@ -153,12 +165,14 @@ app.get('/api/getproductdetails/:productId', async (req, res) => {
         }
     }
 );
+
   //Get a user's all product
 app.get('/api/myproducts/:userId', async (req, res, next) => {
     try {
         const userId = req.params.userId;
         console.log(userId);
         const product = await Product.find({ postedBy: userId })
+        console.log(product);
         res.status(200).json(product)
     } catch (error) {
         next(error)

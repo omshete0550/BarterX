@@ -85,8 +85,8 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="menu-item">
-                <Link className="menu-link" to="/">
-                  Delivery
+                <Link className="menu-link" to="/addproduct">
+                  Publish Product
                 </Link>
               </li>
               <li className="menu-item">

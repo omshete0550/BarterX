@@ -304,3 +304,11 @@
 .contentGrid::-webkit-scrollbar-thumb:hover {
   background: #555; 
 } */
+
+.myitemsimg img {
+  width: 15em  !important;
+  height: 10em !important;
+  position: absolute !important;
+  top: 52% !important;
+  right: 3% !important;
+}

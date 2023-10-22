@@ -128,7 +128,7 @@ const Landing = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <Link to="/home ">
+          {/* <Link to="/home ">
             <button class="HomeButton">
               <svg
                 stroke="#ffffff"
@@ -154,7 +154,7 @@ const Landing = () => {
               </svg>
               Let's get started
             </button>
-          </Link>
+          </Link> */}
         </motion.div>
       </div>
 
@@ -559,10 +559,10 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* <div className="LandingSec5">
+      <div className="LandingSec5">
         <h1>Guidelines</h1>
         <VerticalTab data={resumeData.jobs} />
-      </div> */}
+      </div>
 
       <Footer />
     </>
