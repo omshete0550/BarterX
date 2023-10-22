@@ -180,6 +180,16 @@ app.get('/api/myproducts/:userId', async (req, res, next) => {
         next(error)
     }
 })
+app.get('/api/num_barter/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
+        const products = await Product.find({ postedBy: userId });
+        const numberOfProducts = products.length;
+        res.status(200).json({ numberOfProducts });
+    } catch (error) {
+        next(error);
+    }
+});
 //Create a Barter Request
 app.post('/api/products/barter', async (req, res, next) => {
     const newBarter = new BarterModel(req.body)
@@ -200,11 +210,32 @@ app.get('api/products/barter/:userId', async (req, res, next) => {
         next(error)
     }
 })
+//Get length of user's all sucess barter requests
+app.get('/api/sucessBarter/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId
+        const barterRequests = await BarterModel.find({ requester: userId, status: "success" })
+        const numberOfProducts = barterRequests.length;
+        res.status(200).json({ numberOfProducts });
+    } catch (error) {
+        next(error)
+    }
+})
 //Get a product's all barter requests
 app.get('/api/productrequests/:productId', async (req, res, next) => {
     try {
         const productId = req.params.productId
         const product = await BarterModel.find({ desiredItem: productId })
+        res.status(200).json(product)
+    } catch (error) {
+        next(error)
+    }
+})
+//Get a product's all sucess barter requests
+app.get('/api/productrequests/:productId', async (req, res, next) => {
+    try {
+        const productId = req.params.productId
+        const product = await BarterModel.find({ desiredItem: productId, status: "success" })
         res.status(200).json(product)
     } catch (error) {
         next(error)
