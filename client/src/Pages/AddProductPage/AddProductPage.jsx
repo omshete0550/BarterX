@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "./AddProductPage.css";
@@ -26,6 +26,24 @@ const AddProductPage = () => {
   const [desprodname, setdesprodname] = useState("");
   const [userid, setuserid] = useState("");
   const [datepurchase, setdatepurchase] = useState(new Date());
+  const [sellerName, setSellerName] = useState("");
+  const[postedBy, setPostedBy] = useState("");
+
+  useEffect(() => {
+    const getUserName = async () => {
+      try {
+        const userId = localStorage.getItem("token");
+        const userData = await axios.get(`http://localhost:8800/api/users/${userId}`);
+        const userName = userData.data.name;
+        setSellerName(userName);
+        console.log(sellerName);
+        setPostedBy(userId);
+      } catch (error) {
+        console.error('Error fetching user data:', error.message);
+      }
+    }
+    getUserName();
+  }, [])  
   // const [file, setFile] = useState(null);
   // const reader = new FileReader();
   // const handleChange = (e) => {
@@ -60,10 +78,13 @@ const AddProductPage = () => {
     return userId;
   }
 
+  
+
   async function publishProduct(event) {
     event.preventDefault();
     const userId = extractUserIdFromURL();
     setuserid(userId);
+    console.log(userid);
 
     const datas = new FormData();
     datas.append("file", image);
@@ -96,8 +117,10 @@ const AddProductPage = () => {
         condn,
         desprodname,
         datepurchase,
-        userid,
-        imageURL
+        postedBy,
+        // userid,
+        imageURL,
+        sellerName
       }),
     })
 
@@ -109,6 +132,8 @@ const AddProductPage = () => {
       console.log("ERROR!")
     }
   }
+
+  
 
 
 

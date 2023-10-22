@@ -6,8 +6,11 @@ from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 import requests
 from pymongo import MongoClient
 from sklearn.metrics.pairwise import cosine_similarity
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+cors = CORS(app, resources={r"/calculate_embedding": {"origins": "*"}})
 
 model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
 model.trainable = False
