@@ -37,7 +37,6 @@ const Login = () => {
     const data = await response.json()
     if (data.user) {
       alert("Login Successfully logged in!");
-      console.log(data.user);
       localStorage.setItem("token", data.user);
       // window.location.href = `/addproduct?userid=${data.user}`;
       window.location.href = `/home?userid=${data.user}`;
@@ -50,7 +49,6 @@ const Login = () => {
     else {
       alert("Please check your username and password & Try Again!");
     }
-    console.log(data);
   }
 
   return (

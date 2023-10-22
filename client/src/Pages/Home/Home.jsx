@@ -30,26 +30,22 @@ const Home = () => {
       .get('http://localhost:8800/api/products')
       .then((response) => {
         setProducts(response.data);
-        console.log(response.data); // Log the array of products to the console
       })
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
 
   const handleSingleProduct = (productId) => {
-    console.log(productId);
     axios
       .post(`http://localhost:8800/api/getproduct/${productId}`)
       .then((response) => {
-        console.log(response);
-        if(response.status === 200) {
+        if (response.status === 200) {
           const productID = response.data._id;
-          console.log(productID);
           navigate('/product-detail', { state: { id: productID } })
         }
       })
       .catch((error) => console.error('Error fetching products:', error));
 
-    
+
   }
 
   const homepageProduct = [
@@ -223,11 +219,11 @@ const Home = () => {
           <p className="product_desc">Category: {item.categ}</p>
         </div>
         {/* <Link to={} className="product_link"> */}
-          {/* Know more */}
-          <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
+        {/* Know more */}
+        <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
         {/* </Link> */}
       </div>
-      
+
     </SwiperSlide>
   ));
 

@@ -77,7 +77,6 @@ const AddProductPage = () => {
       });
       const fileUrl = await res.json();
       setUploadingImg(false);
-      console.log(fileUrl.url);
       imageURL = fileUrl.url;
     } catch (error) {
       setUploadingImg(false);
@@ -102,8 +101,6 @@ const AddProductPage = () => {
       }),
     })
 
-    // console.log(file);
-
     const data = await response.json();
     if (data.status === 'success') {
       console.log("Product Published");
@@ -111,7 +108,6 @@ const AddProductPage = () => {
     else {
       console.log("ERROR!")
     }
-    console.log(data);
   }
 
 

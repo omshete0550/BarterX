@@ -131,7 +131,7 @@
   margin: 1.5rem 0;
 }
 .purchase-info input,
-.purchase-info .btn, 
+.purchase-info .btn,
 .actions .btn {
   border-radius: 5px;
   text-align: center;
@@ -156,7 +156,7 @@
 .actions .btn {
   background: #f64749;
 }
-.purchase-info .btn:hover ,
+.purchase-info .btn:hover,
 .actions .btn:hover {
   opacity: 0.9;
 }
@@ -184,7 +184,7 @@
   border-color: transparent;
   color: #fff;
 }
-.DataTable{
+.DataTable {
   padding: 20px 80px;
 }
 @media screen and (min-width: 992px) {
@@ -219,7 +219,7 @@
   .product-content {
     padding: 1rem 1rem;
   }
-  .DataTable{
+  .DataTable {
     padding: 20px 40px;
   }
 }
@@ -231,19 +231,17 @@
     width: 20em;
     height: 20em;
   }
-  .DataTable{
+  .DataTable {
     padding: 20px 20px;
   }
 }
 
-
-.popup-content{
+.popup-content {
   width: 70vw !important;
-  height: 80vh!important;
+  height: 80vh !important;
 }
 .modal {
   font-size: 12px;
-
 }
 /* .modal .header {
   width: 100%;
@@ -275,17 +273,17 @@
   border-radius: 18px;
   /* border: 1px solid #cfcece; */
 }
-.contentheader{
+.contentheader {
   padding: 10px;
   text-transform: uppercase;
 }
 
-.contentGrid{
+.contentGrid {
   display: flex;
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content: center;
   height: 60vh;
-  align-items:center;
+  align-items: center;
   overflow-y: auto;
 }
 /* .contentGrid::-webkit-scrollbar {

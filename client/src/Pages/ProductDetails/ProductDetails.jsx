@@ -14,7 +14,7 @@ const ProductDetails = () => {
 
   const location = useLocation();
   const { id } = location.state;
-
+  const [userName, setUserName] = useState('');
   const [product, setProduct] = useState([]);
   const [myproduct, setMyProduct] = useState([]);
   const [username, setUsername] = useState([]);
@@ -62,46 +62,32 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-    const displayWidth = document.querySelector(
-      ".img-showcase img:first-child"
-    ).clientWidth;
-    document.querySelector(".img-showcase").style.transform = `translateX(${
-      -(imgId - 1) * displayWidth
-    }px)`;
-  }, [imgId]);
-
-  const imgBtns = [
-    {
-      id: 1,
-      src: "https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif",
-      alt: "shoe image",
-    },
-  ];
-
-
-
-  document.addEventListener("DOMContentLoaded", () => {
-   const btn = document.querySelector('.swapbtn');
-    btn.addEventListener('click', async () => {
-      const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
-      console.log(userId);
-      console.log("Fetching products")
+    const getUserName = async () => {
       try {
-        const response = await axios.get(`http://localhost:8800/api/myproducts/${userId}`);
-        setMyProduct(response.data);
-        console.log("Products", myproduct);
+        const userId = product.postedBy;
+        const userData = await axios.get(`http://localhost:8800/api/users/${userId}`);
+        const userName = userData.data.name;
+        setUserName(userName);
       } catch (error) {
-        // Handle any errors, e.g., display an error message.
-        console.error('Error fetching products:', error);
+        console.error('Error fetching user data:', error.message);
       }
-    })
-});
+    }
+    getUserName();
+  }, [product])
 
+  // useEffect(() => {
+  //   const displayWidth = document.querySelector(
+  //     ".img-showcase img:first-child"
+  //   ).clientWidth;
+  //   document.querySelector(".img-showcase").style.transform = `translateX(${-(imgId - 1) * displayWidth
+  //     }px)`;
+  // }, [imgId]);
+
+  const imgBtns = product.images
 
   const [responseMessage, setResponseMessage] = useState('');
   const sendProposal = async (item) => {
-    const userId = localStorage.getItem("token"); // Replace with the actual user ID or get it dynamically.
-    // console.log(userId);
+    const userId = localStorage.getItem("token");
     const barterRequest = {
       requester: userId, // Replace with actual user ID
       desiredItem: id, // Replace with actual desired item's IDs
@@ -148,17 +134,17 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div className="img-select">
-                {imgBtns.map((imgItem) => (
-                  <div className="img-item" key={imgItem.id}>
+                {imgBtns ? imgBtns.map((imgItem) => (
+                  <div className="img-item" key={id}>
                     <a
                       href="#"
-                      data-id={imgItem.id}
-                      onClick={(event) => handleImageClick(event, imgItem.id)}
+                      data-id={id}
+                      onClick={(event) => handleImageClick(event, id)}
                     >
                       <img src={imgItem.src} alt={imgItem.alt} className="gif"/>
                     </a>
                   </div>
-                ))}
+                )) : "Loading..."}
               </div>
             </div>
 
@@ -186,7 +172,7 @@ const ProductDetails = () => {
               </div>
 
               <div className="purchase-info">
-              {/* <a onClick={handleSwap}>Swap kar</a> */}
+                {/* <a onClick={handleSwap}>Swap kar</a> */}
                 <Popup
                   trigger={<a className="btn swapbtn"> Let's Swap </a>}
                   modal
@@ -243,7 +229,6 @@ const ProductDetails = () => {
                         <button
                           className="btn"
                           onClick={() => {
-                            console.log("modal closed ");
                             close();
                           }}
                         >
@@ -253,7 +238,7 @@ const ProductDetails = () => {
                     </div>
                   )}
                 </Popup>
-                
+
                 <button type="button" className="btn">
                   Let's Chat
                 </button>
@@ -264,10 +249,10 @@ const ProductDetails = () => {
       </section>
 
       <div className="DataTable">
-        <Table id={id}/>
+        <Table id={id} />
       </div>
 
-      <Review />
+      <Review product={id} />
 
       <Footer />
     </>

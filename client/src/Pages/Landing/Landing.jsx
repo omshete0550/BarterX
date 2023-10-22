@@ -11,69 +11,7 @@ import resumeData from "../../Components/VerticalTabPanel/Data";
 import VerticalTab from "../../Components/VerticalTabPanel/VerticalTab";
 import { Link } from "react-router-dom";
 
-
-const CategoryArr = [
-  {
-    id: 1,
-    categName: "SmartTV",
-    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    categicon: "fas fa-tv",
-  },
-  {
-    id: 2,
-    categName: "Desktop",
-    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    categicon: "fas fa-tv",
-  },
-  {
-    id: 3,
-    categName: "Camera",
-    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    categicon: "fas fa-tv",
-  },
-  {
-    id: 4,
-    categName: "SmartTV",
-    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    categicon: "fas fa-tv",
-  },
-  {
-    id: 5,
-    categName: "SmartTV",
-    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    categicon: "fas fa-tv",
-  },
-  {
-    id: 6,
-    categName: "Desktop",
-    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    categicon: "fas fa-tv",
-  },
-  {
-    id: 7,
-    categName: "Camera",
-    categDesc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    categicon: "fas fa-tv",
-  },
-];
-
 const Landing = () => {
-  // const categ = CategoryArr.map((item) => {
-  //   <div className="Categrow">
-  //     <motion.div
-  //       className="service"
-  //       variants={textVariants("up", 0.2)}
-  //       initial="hidden"
-  //       whileInView="show"
-  //       viewport={{ amount: 0.1 }}
-  //       transition={{ duration: 0.5 }}
-  //     >
-  //       <i className={item.categicon}></i>
-  //       <h3>{item.categName}</h3>
-  //       <p>{item.categDesc}</p>
-  //     </motion.div>
-  //   </div>;
-  // });
 
   return (
     <>
