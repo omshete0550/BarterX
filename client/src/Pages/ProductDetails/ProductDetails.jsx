@@ -6,7 +6,6 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import Review from "../../Components/Review/Review";
 import Table from "../../Components/Table/Table";
-
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
@@ -75,13 +74,6 @@ const ProductDetails = () => {
     getUserName();
   }, [product])
 
-  // useEffect(() => {
-  //   const displayWidth = document.querySelector(
-  //     ".img-showcase img:first-child"
-  //   ).clientWidth;
-  //   document.querySelector(".img-showcase").style.transform = `translateX(${-(imgId - 1) * displayWidth
-  //     }px)`;
-  // }, [imgId]);
 
   const imgBtns = product.images
 
