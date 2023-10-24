@@ -19,10 +19,10 @@
     max-width: 1000px; */
     /* width: 95vw; */
     /* padding: 25px; */
-    padding: 0 0px 10px 0;
+    padding: 0 0px 0px 0;
     height: 100vh;
     min-height: 300px;
-    max-height: 720px;
+    /* max-height: 720px; */
     background: #E6EAEA;
   }
   @media screen and (max-width: 360px) {
@@ -570,7 +570,7 @@
   #frame .content .messages ul li {
     display: inline-block;
     clear: both;
-    float: left;
+    /* float: left; */
     margin: 15px 15px 5px 15px;
     width: calc(100% - 25px);
     font-size: 0.9em;
