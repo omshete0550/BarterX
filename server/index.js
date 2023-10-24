@@ -60,18 +60,19 @@ app.post('/api/login', async (req, res) => {
 
 app.post('/api/publish', async (req, res) => {
     const savedProduct = new Product({
-        postedBy: req.body.userid,
+        postedBy: req.body.postedBy,
         prodname: req.body.prodname,
         desc: req.body.desc,
         categ: req.body.categ,
         condn: req.body.condn,
         desprodname: req.body.desprodname,
         datepurchase: req.body.datepurchase,
+        sellerName: req.body.sellerName,
     });
     try {
 
         const imageUrl = req.body.imageURL;
-        const flaskApiUrl = 'http://localhost:5000/calculate_embedding';
+        const flaskApiUrl = 'http://127.0.0.1:5000/calculate_embedding';
         const options = {
             method: 'POST',
             uri: flaskApiUrl,

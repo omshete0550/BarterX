@@ -37,10 +37,10 @@ def calculate_embedding():
         if response.status_code != 200:
             return jsonify({"error": "Failed to download the image"})
 
-        with open('temp_image.jpg', 'wb') as f:
+        with open('uploads/temp_image.jpg', 'wb') as f:
             f.write(response.content)
 
-        extracted_features = extract_features('temp_image.jpg')
+        extracted_features = extract_features('uploads/temp_image.jpg')
 
         return jsonify({"embedding": extracted_features.tolist()})
     except Exception as e:
