@@ -10,6 +10,7 @@ const User = require("./models/user.model.js");
 const Product = require("./models/product.model.js");
 const BarterModel = require("./models/Barter.model.js");
 const Rating = require("./models/Rating.model.js");
+const ChatMessage = require("./models/Chat.model.js");
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -17,6 +18,8 @@ const jwt = require("jsonwebtoken");
 dotenv.config();
 
 mongoose.connect(process.env.mongodburl);
+
+
 
 app.post('/api/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10); // 10 is the number of salt rounds

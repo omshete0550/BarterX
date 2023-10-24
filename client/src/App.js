@@ -39,7 +39,7 @@ function App() {
             <Route exact path="/edit-profile" element={<Profile />} />
             <Route exact path="/proposers" element={<Proposer />} />
             <Route exact path="/maintainence" element={<Maintainence />} />
-            <Route exact path="/chat" element={<Chat />} />
+            <Route exact path="/chat/:id" element={<Chat />} />
           </Routes>
       </Router>
     </>

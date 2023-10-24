@@ -1,19 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {BiPhoneCall, BiVideo, BiInfoCircle} from "react-icons/bi"
+import { useParams } from 'react-router-dom';
+import axios from "axios";
 import "./Chat.css";
 const Chat = () => {
-  const [messages, setMessages] = useState([]);
-  const [messageInput, setMessageInput] = useState('');
-const [message, sendMessage] = useState("");
-  // Define functions to handle input changes and message sending
-
+    const [profileName, setProfileName] = useState('');
+    const [receiverName, setReceiverName] = useState('');
+    const [messages, setMessages] = useState([]);
+    const [messageInput, setMessageInput] = useState('');
+    const [message, sendMessage] = useState("");
+    const userid = localStorage.getItem("token");
+    const sellerid = useParams();
+    console.log(sellerid.id);
+    useEffect(() => {
+        const getUserName = async () => {
+          try {
+            const userData = await axios.get(`http://localhost:8800/api/users/${userid}`);
+            const userName = userData.data.name;
+            console.log(userName);
+            setProfileName(userName);
+          } catch (error) {
+            console.error('Error fetching user data:', error.message);
+          }
+        }
+        const getReceiverName = async () => {
+            try {
+              const recvData = await axios.get(`http://localhost:8800/api/users/${sellerid.id}`);
+              const recvName = recvData.data.name;
+              console.log(recvName);
+              setReceiverName(recvName);
+            } catch (error) {
+              console.error('Error fetching user data:', error.message);
+            }
+          }
+        getUserName();
+        getReceiverName();
+      }, [])
   return (
     <div id="frame">
       <div id="sidepanel">
         <div id="profile">
             <div className="wrap">
             <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" className="online" alt="" />
-            <p>Mike Ross</p>
+            <p>{profileName}</p>
             <i className="fa fa-chevron-down expand-button" aria-hidden="true"></i>
             <div id="status-options">
                 <ul>
@@ -71,7 +100,7 @@ const [message, sendMessage] = useState("");
         <div className="contact-profile">
           {/* Contact profile content */}
           <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-            <p>Harvey Specter</p>
+            <p>{receiverName}</p>
             <div className="social-media">
                 <BiPhoneCall size="1.3em" className="icon" />
                 <BiVideo size="1.3em" className="icon" />

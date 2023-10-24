@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./ProductDetails.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -13,10 +14,12 @@ const ProductDetails = () => {
 
   const location = useLocation();
   const { id } = location.state;
-  const [userName, setUserName] = useState('');
+  // const [userName, setUserName] = useState('');
   const [product, setProduct] = useState([]);
   const [myproduct, setMyProduct] = useState([]);
-  const [username, setUsername] = useState([]);
+  const [username, setUsername] = useState("");
+  const [seller, setSellerName] = useState('');
+  const [sellerid, setSellerNameId] = useState('');
   // setProduct(props.id);
   useEffect(() => {
     // Fetch products from the backend API using Axios
@@ -25,25 +28,32 @@ const ProductDetails = () => {
         const response = await axios.get(`http://localhost:8800/api/getproductdetails/${id}`);
         setProduct(response.data);
         console.log(response.data); // Log the array of products to the console
+        console.log(response.data.postedBy);
+        setSellerName(response.data.sellerName);
+        setSellerNameId(response.data.postedBy);
+
+        // const userResponse = await axios.get(`http://localhost:8800/api/users/${seller}`);
+        //   console.log(userResponse);
+        //   setUsername(userResponse.data);
       }
       catch (error) {
         console.error("Error fetching products:", error);
       }};
 
 
-      const fetchUserData = async () => {
-        try {
-          const userResponse = await axios.get(`http://localhost:8800/api/users/${product.postedBy}`);
-          console.log(userResponse)
-          setUsername(userResponse.data);
-        } catch (error) {
-          console.error("Error fetching user details:", error);
-        }
-      };
+      // const fetchUserData = async () => {
+      //   try {
+      //     const userResponse = await axios.get(`http://localhost:8800/api/users/${seller}`);
+      //     console.log(userResponse)
+      //     setUsername(userResponse.data);
+      //   } catch (error) {
+      //     console.error("Error fetching user details:", error);
+      //   }
+      // };
 
 
       fetchData();
-      fetchUserData();
+      // fetchUserData();
   }, []);
 
   const { pathname } = useLocation();
@@ -60,19 +70,19 @@ const ProductDetails = () => {
     setImgId(id);
   };
 
-  useEffect(() => {
-    const getUserName = async () => {
-      try {
-        const userId = product.postedBy;
-        const userData = await axios.get(`http://localhost:8800/api/users/${userId}`);
-        const userName = userData.data.name;
-        setUserName(userName);
-      } catch (error) {
-        console.error('Error fetching user data:', error.message);
-      }
-    }
-    getUserName();
-  }, [product])
+  // useEffect(() => {
+  //   const getUserName = async () => {
+  //     try {
+  //       const userId = product.postedBy;
+  //       const userData = await axios.get(`http://localhost:8800/api/users/${userId}`);
+  //       const userName = userData.data.name;
+  //       setUserName(userName);
+  //     } catch (error) {
+  //       console.error('Error fetching user data:', error.message);
+  //     }
+  //   }
+  //   getUserName();
+  // }, [product])
 
 
   const imgBtns = product.images
@@ -152,7 +162,7 @@ const ProductDetails = () => {
 
                 <ul>
                   <li>
-                    Owner: <span>{username.name}</span>
+                    Owner: <span>{seller}</span>
                   </li>
                   <li>
                     Required: <span>{product.desprodname}</span>
@@ -230,10 +240,10 @@ const ProductDetails = () => {
                     </div>
                   )}
                 </Popup>
-
+                <Link to={`/chat/${sellerid}`}>
                 <button type="button" className="btn">
                   Let's Chat
-                </button>
+                </button></Link>
               </div>
             </div>
           </div>
