@@ -305,6 +305,40 @@ app.get('/api/ratings/:productId', async (req, res, next) => {
     }
 })
 
+
+app.post('/api/chat/sendMessage', async(req, res, next) => {
+    const { toUserId, fromUserId, messageInput } = req.body; // Get these values from your frontend
+
+    console.log(messageInput);
+  // Create a new message object
+  const newMessage = {
+    to: toUserId,
+    from: fromUserId,
+    type: "Text", 
+    text: messageInput,
+  };
+
+  let chat = await ChatMessage.findOne({ participants: { $all: [toUserId, fromUserId] } });
+
+  if (!chat) {
+    chat = new ChatMessage({
+      participants: [toUserId, fromUserId],
+      messages: [],
+    });
+  }
+  console.log(newMessage);
+
+  chat.messages.push(newMessage); // Add the new message to the chat's messages array
+
+  try {
+    await chat.save(); // Save the chat with the new message
+    res.status(200).send('Message sent.');
+  } catch (err) {
+    // Handle any errors
+    console.error(err);
+    res.status(500).send('Message not sent.');
+  }
+});
 app.listen(Port, () => {
     console.log("Server started on Port " + Port);
 });

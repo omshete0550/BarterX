@@ -7,7 +7,7 @@ const Chat = () => {
     const [profileName, setProfileName] = useState('');
     const [receiverName, setReceiverName] = useState('');
     const [messages, setMessages] = useState([]);
-    const [messageInput, setMessageInput] = useState('');
+    // const [messageInput, setMessageInput] = useState('');
     const [message, sendMessage] = useState("");
     const userid = localStorage.getItem("token");
     const sellerid = useParams();
@@ -36,6 +36,27 @@ const Chat = () => {
         getUserName();
         getReceiverName();
       }, [])
+
+      const [messageInput, setMessageInput] = useState('');
+      const toUserId = sellerid.id; 
+      const fromUserId = userid; 
+    
+      const sendMsg = () => {
+        fetch('http://localhost:8800/api/chat/sendMessage', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ messageInput, toUserId, fromUserId }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
   return (
     <div id="frame">
       <div id="sidepanel">
@@ -131,7 +152,7 @@ const Chat = () => {
             <i className="fa fa-paperclip attachment" aria-hidden="true"></i>
             <button
               className="submit"
-              onClick={() => sendMessage(messageInput)}
+              onClick={sendMsg}
             >
               <i className="fa fa-paper-plane" aria-hidden="true"></i>
             </button>
