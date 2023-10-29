@@ -339,6 +339,25 @@ app.post('/api/chat/sendMessage', async(req, res, next) => {
     res.status(500).send('Message not sent.');
   }
 });
+
+app.get('/api/chat/retrieveMessages/:toUserId/:fromUserId', async(req, res, next) => {
+    try {
+        const toUserId = req.params.toUserId;
+        const fromUserId = req.params.fromUserId;
+        
+        const messages = await ChatMessage.findOne({
+          participants: { $all: [toUserId, fromUserId] }
+        });
+        
+        if (messages) {
+          res.json(messages);
+        } else {
+          res.status(404).json({ message: 'No chat messages found for these participants' });
+        }
+      } catch (error) {
+        next(error);
+      }
+})
 app.listen(Port, () => {
     console.log("Server started on Port " + Port);
 });

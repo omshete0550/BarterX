@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {BiPhoneCall, BiVideo, BiInfoCircle} from "react-icons/bi"
 import { useParams } from 'react-router-dom';
 import axios from "axios";
 import "./Chat.css";
 const Chat = () => {
+  const lastMessageRef = useRef(null);
     const [profileName, setProfileName] = useState('');
     const [receiverName, setReceiverName] = useState('');
     const [messages, setMessages] = useState([]);
@@ -12,6 +13,64 @@ const Chat = () => {
     const userid = localStorage.getItem("token");
     const sellerid = useParams();
     console.log(sellerid.id);
+    const [messageInput, setMessageInput] = useState('');
+    const toUserId = sellerid.id; 
+    const fromUserId = userid; 
+    const [chatMessages, setChatMessages] = useState([]);
+    const [fetchTrigger, setFetchTrigger] = useState(false);
+    // const scrollToBottom = () => {
+    //   const messagesContainer = document.querySelector('.messages-container');
+    //   if (messagesContainer) {
+    //     const lastMessage = messagesContainer.lastElementChild;
+    //     if (lastMessage) {
+    //       lastMessage.scrollIntoView({ behavior: 'smooth' });
+    //     }
+    //   }
+    // };
+    const scrollToLastMessage = () => {
+      if (lastMessageRef.current) {
+        lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+    useEffect(() => {
+      const getChatMessages = async () => {
+        try {
+          
+          const response = await axios.get(`http://localhost:8800/api/chat/retrieveMessages/${toUserId}/${fromUserId}`);
+          if(response.status === 200){
+            setChatMessages(response.data.messages);
+            // console.log(response);
+            console.log(chatMessages);
+            console.log("5seconds");
+          }
+          setFetchTrigger(false);
+          
+        } catch (error) {
+          console.error('Error fetching user chats:', error.message);
+        }
+      }
+      // getChatMessages();
+      if (fetchTrigger) {
+        getChatMessages();
+        setFetchTrigger(false); // Reset the fetchTrigger
+      }
+
+      const fetchChatMessagesPeriodically = () => {
+        getChatMessages();
+        setFetchTrigger(false); // Reset the fetchTrigger
+      };
+  
+      // Initially fetch chat messages
+      fetchChatMessagesPeriodically();
+  
+      // Set up an interval to fetch chat messages every 5 seconds
+      const intervalId = setInterval(fetchChatMessagesPeriodically, 10000); // 5000 milliseconds = 5 seconds
+  
+      // Clean up the interval when the component unmounts
+      return () => clearInterval(intervalId);
+    },[fetchTrigger]);
+
+
     useEffect(() => {
         const getUserName = async () => {
           try {
@@ -35,11 +94,10 @@ const Chat = () => {
           }
         getUserName();
         getReceiverName();
-      }, [])
-
-      const [messageInput, setMessageInput] = useState('');
-      const toUserId = sellerid.id; 
-      const fromUserId = userid; 
+        scrollToLastMessage();
+      }, []);
+      
+      
     
       const sendMsg = () => {
         fetch('http://localhost:8800/api/chat/sendMessage', {
@@ -49,9 +107,15 @@ const Chat = () => {
           },
           body: JSON.stringify({ messageInput, toUserId, fromUserId }),
         })
-          .then((response) => response.json())
+          .then((response) => {response.json()
+          console.log("data gaya")
+          // scrollToBottom();
+          scrollToLastMessage();
+          setFetchTrigger(true);
+          })
           .then((data) => {
             console.log(data);
+            // window.location.reload();
           })
           .catch((error) => {
             console.error(error);
@@ -128,26 +192,19 @@ const Chat = () => {
                 <BiInfoCircle size="1.3em" className="icon" />
             </div>
         </div>
-        <div className="messages">
+        <div className="messages messages-container">
           <ul>
-            {/* {messages.map((message, index) => (
+            {chatMessages.map((message, index) => (
               <li
+               ref={index === chatMessages.length -1 ? lastMessageRef : null}
                 key={index}
-                className={message.sender === 'Mike' ? 'sent' : 'replies'}
+                className={message.from === fromUserId ? 'replies' : 'sent'}
               >
                 <img src={message.senderAvatar} alt={message.sender} />
                 <p>{message.text}</p>
               </li>
-            ))} */}
+            ))}
            
-              <li
-                
-                className='replies'
-              >
-                {/* <img src={message.senderAvatar} alt={message.sender} /> */}
-                <p>Hi</p>
-              </li>
-            {/* ))} */}
           </ul>
         </div>
         <div className="message-input">
