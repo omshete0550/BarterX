@@ -111,6 +111,21 @@ const ProductDetails = () => {
     }
   }
 
+  const [isPopupVisible, setPopupVisible] = useState(false);
+
+  const swap = () => {
+    console.log("Hi");
+  }
+
+  const openPopup = () => {
+    setPopupVisible(true);
+    swap();
+  }
+
+  const closePopup = () => {
+    setPopupVisible(false);
+  }
+
   return (
     <>
       <Navbar />
@@ -175,7 +190,7 @@ const ProductDetails = () => {
 
               <div className="purchase-info">
                 {/* <a onClick={handleSwap}>Swap kar</a> */}
-                <Popup
+                {/* <Popup
                   trigger={<a className="btn swapbtn"> Let's Swap </a>}
                   modal
                   nested
@@ -204,10 +219,9 @@ const ProductDetails = () => {
                                 <div className="branding">
                                   <div className="brandingInner">
                                     <span>{item.prodname}</span>
-                                    {/* <span>Old</span> */}
+                                   
                                   </div>
-                                  {/* <h4>Owner: {owner}</h4> */}
-                                  {/* <h4>Required: {desiredProduct}</h4> */}
+                                 
                                   <h4>Date: {item.datepurchase}</h4>
                                 </div>
                                 <div className="likesContainer">
@@ -239,7 +253,24 @@ const ProductDetails = () => {
                       </div>
                     </div>
                   )}
-                </Popup>
+                </Popup> */}
+
+      
+                <button type="button" className="swapbtn btn" onClick={openPopup}>
+                  Let's Swap
+                </button>
+                {isPopupVisible && (
+                    <div className="popup-overlay">
+                      <div className="popup">
+                        <div className="popup-content">
+                          <h2>Popup Content</h2>
+                          <p>This is your popup content.</p>
+                          <button onClick={closePopup}>Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                 <Link to={`/chat/${sellerid}`}>
                 <button type="button" className="btn">
                   Let's Chat

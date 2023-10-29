@@ -130,7 +130,7 @@ const Chat = () => {
         </div>
         <div className="messages">
           <ul>
-            {messages.map((message, index) => (
+            {/* {messages.map((message, index) => (
               <li
                 key={index}
                 className={message.sender === 'Mike' ? 'sent' : 'replies'}
@@ -138,7 +138,16 @@ const Chat = () => {
                 <img src={message.senderAvatar} alt={message.sender} />
                 <p>{message.text}</p>
               </li>
-            ))}
+            ))} */}
+           
+              <li
+                
+                className='replies'
+              >
+                {/* <img src={message.senderAvatar} alt={message.sender} /> */}
+                <p>Hi</p>
+              </li>
+            {/* ))} */}
           </ul>
         </div>
         <div className="message-input">
