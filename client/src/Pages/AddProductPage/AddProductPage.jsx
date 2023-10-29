@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "./AddProductPage.css";
@@ -26,14 +26,24 @@ const AddProductPage = () => {
   const [desprodname, setdesprodname] = useState("");
   const [userid, setuserid] = useState("");
   const [datepurchase, setdatepurchase] = useState(new Date());
-  // const [file, setFile] = useState(null);
-  // const reader = new FileReader();
-  // const handleChange = (e) => {
-  //   const ownfile = e.target.files[0];
-  //   // const ownfile = 
-  //     setFile(ownfile);
-  //     console.log(file);
-  // };
+  const [sellerName, setSellerName] = useState("");
+  const [postedBy, setPostedBy] = useState("");
+
+  useEffect(() => {
+    const getUserName = async () => {
+      try {
+        const userId = localStorage.getItem("token");
+        const userData = await axios.get(`http://localhost:8800/api/users/${userId}`);
+        const userName = userData.data.name;
+        setSellerName(userName);
+        setPostedBy(userId);
+      } catch (error) {
+        console.error('Error fetching user data:', error.message);
+      }
+    }
+    getUserName();
+  }, [])
+
   const [image, setImage] = useState(null);
   const [uplodingImg, setUploadingImg] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
@@ -96,8 +106,9 @@ const AddProductPage = () => {
         condn,
         desprodname,
         datepurchase,
-        userid,
-        imageURL
+        postedBy,
+        imageURL,
+        sellerName
       }),
     })
 
