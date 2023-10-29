@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "./AddProductPage.css";
@@ -118,7 +119,6 @@ const AddProductPage = () => {
         desprodname,
         datepurchase,
         postedBy,
-        // userid,
         imageURL,
         sellerName
       }),
