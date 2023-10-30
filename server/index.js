@@ -10,6 +10,7 @@ const User = require("./models/user.model.js");
 const Product = require("./models/product.model.js");
 const BarterModel = require("./models/Barter.model.js");
 const Rating = require("./models/Rating.model.js");
+const ChatMessage = require("./models/Chat.model.js");
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -17,6 +18,8 @@ const jwt = require("jsonwebtoken");
 dotenv.config();
 
 mongoose.connect(process.env.mongodburl);
+
+
 
 app.post('/api/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10); // 10 is the number of salt rounds
@@ -117,6 +120,30 @@ app.get('/api/products', async (req, res, next) => {
     }
 });
 
+app.get('/api/users/:userId', async (req, res, next) => {
+    const userId = req.params.userId;
+    try {
+        console.log(userId);
+        // Fetch all products from your database
+        const user = await User.findById(userId);
+        res.status(200).json(user);
+    } catch (err) {
+        next(err);
+    }
+});
+
+app.get('/api/users/:userId', async (req, res, next) => {
+    const userId = req.params.userId;
+    try {
+        console.log(userId);
+        // Fetch all products from your database
+        const user = await User.findById(userId);
+        res.status(200).json(user);
+    } catch (err) {
+        next(err);
+    }
+});
+
 app.get('/api/products', async (req, res, next) => {
     try {
         const categProducts = await Product.find();
@@ -177,11 +204,13 @@ app.get('/api/getproductdetails/:productId', async (req, res) => {
     }
 }
 );
-//Get a user's all product
+
+  //Get a user's all product
 app.get('/api/myproducts/:userId', async (req, res, next) => {
     try {
         const userId = req.params.userId;
         const product = await Product.find({ postedBy: userId })
+        console.log(product);
         res.status(200).json(product)
     } catch (error) {
         next(error)
@@ -283,6 +312,59 @@ app.get('/api/ratings/:productId', async (req, res, next) => {
     }
 })
 
+
+app.post('/api/chat/sendMessage', async(req, res, next) => {
+    const { toUserId, fromUserId, messageInput } = req.body; // Get these values from your frontend
+
+    console.log(messageInput);
+  // Create a new message object
+  const newMessage = {
+    to: toUserId,
+    from: fromUserId,
+    type: "Text", 
+    text: messageInput,
+  };
+
+  let chat = await ChatMessage.findOne({ participants: { $all: [toUserId, fromUserId] } });
+
+  if (!chat) {
+    chat = new ChatMessage({
+      participants: [toUserId, fromUserId],
+      messages: [],
+    });
+  }
+  console.log(newMessage);
+
+  chat.messages.push(newMessage); // Add the new message to the chat's messages array
+
+  try {
+    await chat.save(); // Save the chat with the new message
+    res.status(200).send('Message sent.');
+  } catch (err) {
+    // Handle any errors
+    console.error(err);
+    res.status(500).send('Message not sent.');
+  }
+});
+
+app.get('/api/chat/retrieveMessages/:toUserId/:fromUserId', async(req, res, next) => {
+    try {
+        const toUserId = req.params.toUserId;
+        const fromUserId = req.params.fromUserId;
+        
+        const messages = await ChatMessage.findOne({
+          participants: { $all: [toUserId, fromUserId] }
+        });
+        
+        if (messages) {
+          res.json(messages);
+        } else {
+          res.status(404).json({ message: 'No chat messages found for these participants' });
+        }
+      } catch (error) {
+        next(error);
+      }
+})
 app.listen(Port, () => {
     console.log("Server started on Port " + Port);
 });

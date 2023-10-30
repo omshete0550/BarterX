@@ -19,6 +19,7 @@ const customStyles = {
   },
   cells: {
     style: {
+      color:"#000",
       paddingLeft: "8px", // override the cell padding for data cells
       paddingRight: "8px",
     },

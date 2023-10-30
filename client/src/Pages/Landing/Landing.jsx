@@ -47,12 +47,13 @@ const Landing = () => {
             </h1>
             <p>
               Our feed is filled with listed items by varoius <br />
-              people all over the country
+              users all over India in 8 categories
             </p>
             <div className="searchbox-wrap">
               <input type="text" placeholder="Input your email address" />
               <button>
-                <span>Sign Up</span>{" "}
+              <Link to="/register">
+                <span>Sign Up</span>{" "}</Link>
               </button>
             </div>
           </motion.div>
@@ -65,7 +66,7 @@ const Landing = () => {
           viewport={{ amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
-          <Link to="/home ">
+          {/* <Link to="/home ">
             <button class="HomeButton">
               <svg
                 stroke="#ffffff"
@@ -91,7 +92,7 @@ const Landing = () => {
               </svg>
               Let's get started
             </button>
-          </Link>
+          </Link> */}
         </motion.div>
       </div>
 
@@ -112,9 +113,9 @@ const Landing = () => {
                     <FaBriefcase />
                   </i>
                 </div>
-                <h2 className="barndInfo_heading">Quality</h2>
+                <h2 className="barndInfo_heading">Hit the Desire</h2>
                 <p className="barndInfo_desc">
-                  Our products are developed to cater to global standards
+                  Get your desired products at single click
                 </p>
               </div>
             </div>
@@ -125,9 +126,9 @@ const Landing = () => {
                     <FaUser />
                   </i>
                 </div>
-                <h2 className="barndInfo_heading">Quality</h2>
+                <h2 className="barndInfo_heading">User Reliance  </h2>
                 <p className="barndInfo_desc">
-                  Our products are developed to cater to global standards
+                Stable and dependable quality for our customers
                 </p>
               </div>
             </div>
@@ -138,9 +139,9 @@ const Landing = () => {
                     <FaHandshake />
                   </i>
                 </div>
-                <h2 className="barndInfo_heading">Reliability & Assurance</h2>
+                <h2 className="barndInfo_heading">Assurance</h2>
                 <p className="barndInfo_desc">
-                  Stable and dependable quality for our customers
+                  Find the right item at the right exchange
                 </p>
               </div>
             </div>
@@ -192,7 +193,7 @@ const Landing = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Categories
+            CATEGORIES
           </motion.h2>
 
           <div className="Categrow">
@@ -207,12 +208,137 @@ const Landing = () => {
               >
                 <div className="first-content">
                   <img
-                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                    src="https://previews.123rf.com/images/mihmihmal/mihmihmal1907/mihmihmal190700012/127163108-vector-for-electronics-store-black-decorative-price-tag-with-illustration-of-set-modern-electronic.jpg"
                     alt=""
                   />
                 </div>
                 <div className="second-content">
-                  <span>Cars</span>
+                  <span>ELECTRONICS</span>
+                  <p>
+                  Welcome to our electronics shop where innovation meets affordability!
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
+
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://irantarh.com/uploads/designs/vector-images38/2227.jpg"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>HOME APPLIANCES</span>
+                  <p>
+                  Unleash the power of hassle-free cleaning!
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
+
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://previews.123rf.com/images/butenkov/butenkov1905/butenkov190500053/124554788-vector-logo-for-shop-selling-furniture-sofa.jpg"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>FURNITURE</span>
+                  <p>
+                  Furnish your lifestyle & make your room perfect.
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
+
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://st2.depositphotos.com/1292719/6504/v/450/depositphotos_65045015-stock-illustration-art-hand-lettering-and-doodles.jpg"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>ART</span>
+                  <p>
+                  Keeping it simple yet very beautiful
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
+
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://png.pngtree.com/png-vector/20230823/ourlarge/pngtree-tesla-model-s-car-icon-in-line-artwork-vector-png-image_6857206.png"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>VEHICLES</span>
+                  <p>
+                  Accelerating the Future.
+                  </p>
+                  <button>Explore More</button>
+                </div>
+              </motion.div>
+            </Link>
+
+            <Link to="/categ">
+              <motion.div
+                variants={textVariants("left", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="CategLandingcard"
+              >
+                <div className="first-content">
+                  <img
+                    src="https://static.vecteezy.com/system/resources/thumbnails/002/002/879/small_2x/sports-time-poster-with-purple-athletes-silhouettes-free-vector.jpg"
+                    alt=""
+                  />
+                </div>
+                <div className="second-content">
+                  <span>SPORTS</span>
                   <p>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                     Harum, enim.
@@ -233,15 +359,14 @@ const Landing = () => {
               >
                 <div className="first-content">
                   <img
-                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                    src="https://img.freepik.com/premium-vector/education-concept-template-modern-design-style-contains-such-icons-as-graduation-microscope-quiz-school-bus_159242-6729.jpg?size=338&ext=jpg&ga=GA1.1.1413502914.1697068800&semt=ais"
                     alt=""
                   />
                 </div>
                 <div className="second-content">
-                  <span>Cars</span>
+                  <span>EDUCATION</span>
                   <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Harum, enim.
+                    Educate within
                   </p>
                   <button>Explore More</button>
                 </div>
@@ -259,145 +384,14 @@ const Landing = () => {
               >
                 <div className="first-content">
                   <img
-                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
+                    src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX10794487.jpg"
                     alt=""
                   />
                 </div>
                 <div className="second-content">
-                  <span>Cars</span>
+                  <span>MISCELLANEOUS</span>
                   <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Harum, enim.
-                  </p>
-                  <button>Explore More</button>
-                </div>
-              </motion.div>
-            </Link>
-
-            <Link to="/categ">
-              <motion.div
-                variants={textVariants("left", 0.2)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ amount: 0.1 }}
-                transition={{ duration: 0.5 }}
-                className="CategLandingcard"
-              >
-                <div className="first-content">
-                  <img
-                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                    alt=""
-                  />
-                </div>
-                <div className="second-content">
-                  <span>Cars</span>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Harum, enim.
-                  </p>
-                  <button>Explore More</button>
-                </div>
-              </motion.div>
-            </Link>
-
-            <Link to="/categ">
-              <motion.div
-                variants={textVariants("left", 0.2)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ amount: 0.1 }}
-                transition={{ duration: 0.5 }}
-                className="CategLandingcard"
-              >
-                <div className="first-content">
-                  <img
-                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                    alt=""
-                  />
-                </div>
-                <div className="second-content">
-                  <span>Cars</span>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Harum, enim.
-                  </p>
-                  <button>Explore More</button>
-                </div>
-              </motion.div>
-            </Link>
-
-            <Link to="/categ">
-              <motion.div
-                variants={textVariants("left", 0.2)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ amount: 0.1 }}
-                transition={{ duration: 0.5 }}
-                className="CategLandingcard"
-              >
-                <div className="first-content">
-                  <img
-                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                    alt=""
-                  />
-                </div>
-                <div className="second-content">
-                  <span>Cars</span>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Harum, enim.
-                  </p>
-                  <button>Explore More</button>
-                </div>
-              </motion.div>
-            </Link>
-
-            <Link to="/categ">
-              <motion.div
-                variants={textVariants("left", 0.2)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ amount: 0.1 }}
-                transition={{ duration: 0.5 }}
-                className="CategLandingcard"
-              >
-                <div className="first-content">
-                  <img
-                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                    alt=""
-                  />
-                </div>
-                <div className="second-content">
-                  <span>Cars</span>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Harum, enim.
-                  </p>
-                  <button>Explore More</button>
-                </div>
-              </motion.div>
-            </Link>
-
-            <Link to="/categ">
-              <motion.div
-                variants={textVariants("left", 0.2)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ amount: 0.1 }}
-                transition={{ duration: 0.5 }}
-                className="CategLandingcard"
-              >
-                <div className="first-content">
-                  <img
-                    src="https://bmw.scene7.com/is/image/BMW/2560x1440?wid=2560&hei=1440"
-                    alt=""
-                  />
-                </div>
-                <div className="second-content">
-                  <span>Cars</span>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Harum, enim.
+                  All the world's treasures, right at your grasp.
                   </p>
                   <button>Explore More</button>
                 </div>
@@ -505,7 +499,7 @@ const Landing = () => {
 
       <div className="LandingSec5">
         <h1>Guidelines</h1>
-        {/* <VerticalTab data={resumeData.jobs} /> */}
+        <VerticalTab data={resumeData.jobs} />
       </div>
 
       <Footer />
