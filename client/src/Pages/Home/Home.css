@@ -76,19 +76,44 @@
   width: 15em;
   height: 20em;
   border-radius: 10px;
-  background-image: url(https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e570738029a725e686_Furniture-min.png);
+  background-image: url(https://cdn.create.vista.com/api/media/small/470828726/stock-vector-barter-blue-gradient-vector-icon);
   background-size: cover;
 }
-.HomeSec2Card p {
+.HomeSec3Card {
+  width: 15em;
+  height: 20em;
+  border-radius: 10px;
+  background-image: url(https://cdn.create.vista.com/api/media/small/470828726/stock-vector-barter-blue-gradient-vector-icon);
+  background-size: cover;
+}
+.HomeSec4Card {
+  width: 15em;
+  height: 20em;
+  border-radius: 10px;
+  background-image: url(https://previews.123rf.com/images/mihmihmal/mihmihmal1907/mihmihmal190700012/127163108-vector-for-electronics-store-black-decorative-price-tag-with-illustration-of-set-modern-electronic.jpg);
+  background-size: cover;
+}
+.HomeSec5Card {
+  width: 15em;
+  height: 20em;
+  border-radius: 10px;
+  background-image: url(https://previews.123rf.com/images/mihmihmal/mihmihmal1907/mihmihmal190700012/127163108-vector-for-electronics-store-black-decorative-price-tag-with-illustration-of-set-modern-electronic.jpg);
+  background-size: cover;
+}
+.HomeSec6Card {
+  width: 15em;
+  height: 20em;
+  border-radius: 10px;
+  background-image: url(https://previews.123rf.com/images/mihmihmal/mihmihmal1907/mihmihmal190700012/127163108-vector-for-electronics-store-black-decorative-price-tag-with-illustration-of-set-modern-electronic.jpg);
+  background-size: cover;
+}
+.HomeSec2Card p, .HomeSec3Card p,.HomeSec4Card p,.HomeSec5Card p,.HomeSec6Card p {
   color: #fff;
   text-align: center;
   padding-top: 2em;
-  font: 600 1.5rem/40px "Montserrat", sans-serif;
+  font: 20PX "Montserrat", sans-serif;
 }
-.HomeSec2Card:hover {
-  background-size: 110%;
-  transition: 0.5s all;
-}
+
 
 /* Home Sec 3 */
 

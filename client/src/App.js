@@ -15,6 +15,8 @@ import Ads from './Pages/UserProfile/Ads/Ads';
 import Address from './Pages/UserProfile/Address/Address';
 import Profile from './Pages/UserProfile/Profile/Profile';
 import Proposer from './Pages/UserProfile/Proposer/Proposer';
+import Maintainence from './Components/Maintainence/Maintainence';
+import Chat from './Pages/Chat/Chat';
 
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
             <Route exact path="/edit-address" element={<Address />} />
             <Route exact path="/edit-profile" element={<Profile />} />
             <Route exact path="/proposers" element={<Proposer />} />
+            <Route exact path="/maintainence" element={<Maintainence />} />
+            <Route exact path="/chat/:id" element={<Chat />} />
           </Routes>
       </Router>
     </>

@@ -142,6 +142,66 @@ const UserProfile = () => {
               </div>
             </div>
           </Link>
+
+          {/* <Link to="/orders">
+            <div className="profileCard">
+              <div className="profileContentLogo">
+                <img
+                  src="https://m.media-amazon.com/images/G/31/x-locale/cs/ya/images/Box._CB485927553_.png"
+                  alt=""
+                />
+              </div>
+              <div className="profileContentConatainer">
+                <h3>Your Orders</h3>
+                <p>Track, return, or buy things again</p>
+              </div>
+            </div>
+          </Link>
+
+          <Link to="/orders">
+            <div className="profileCard">
+              <div className="profileContentLogo">
+                <img
+                  src="https://m.media-amazon.com/images/G/31/x-locale/cs/ya/images/Box._CB485927553_.png"
+                  alt=""
+                />
+              </div>
+              <div className="profileContentConatainer">
+                <h3>Your Orders</h3>
+                <p>Track, return, or buy things again</p>
+              </div>
+            </div>
+          </Link>
+
+          <Link to="/orders">
+            <div className="profileCard">
+              <div className="profileContentLogo">
+                <img
+                  src="https://m.media-amazon.com/images/G/31/x-locale/cs/ya/images/Box._CB485927553_.png"
+                  alt=""
+                />
+              </div>
+              <div className="profileContentConatainer">
+                <h3>Your Orders</h3>
+                <p>Track, return, or buy things again</p>
+              </div>
+            </div>
+          </Link> */}
+
+          <Link to="/orders">
+            <div className="profileCard">
+              <div className="profileContentLogo">
+                <img
+                  src="https://m.media-amazon.com/images/G/31/x-locale/cs/ya/images/Box._CB485927553_.png"
+                  alt=""
+                />
+              </div>
+              <div className="profileContentConatainer">
+                <h3>Your Orders</h3>
+                <p>Track, return, or buy things again</p>
+              </div>
+            </div>
+          </Link>
         </div>
       </div>
 
