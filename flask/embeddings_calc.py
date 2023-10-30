@@ -72,10 +72,10 @@ def get_similar_products():
 
         similarities = []
         for product in products:
-            print(product)
             product_features = product.get("images", [])[0].get("embedding")
             similarity = cosine_similarity([uploaded_features], [product_features])[0][0]
-            similarities.append({"product_id": product["_id"], "similarity": similarity})
+            product_id_str = str(product["_id"])
+            similarities.append({"product_id": product_id_str, "similarity": similarity})
 
         similarities.sort(key=lambda x: x["similarity"], reverse=True)
 
@@ -83,6 +83,7 @@ def get_similar_products():
 
         response = jsonify({"similar_products": top_n_similar_products})
         return response
+
     except Exception as e:
         error_message = str(e)
         print("Error:", error_message) 
