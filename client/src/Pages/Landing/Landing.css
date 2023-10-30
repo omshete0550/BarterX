@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5em;
+  margin-top: 7em;
 }
 .LandingSec1 .img_sec1 {
   width: 48%;
@@ -25,6 +25,7 @@
 }
 .LandingSec1 .content_sec1 h1 {
   font-size: 3rem;
+  line-height: 1.23em;
 }
 .LandingSec1 .content_sec1 h1 span {
   color: rgb(55, 93, 187);
@@ -85,16 +86,16 @@
 .searchbox-wrap button span {
   margin-left: 50px;
   padding: 15px 45px;
-  font-size: 0.9em;
+  font-size: 1em;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 600;
   color: #fff;
   background-color: rgb(55, 93, 187);
   border-radius: 10px;
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.19);
 }
 .searchbox-wrap button span:hover {
-  background-color: #000;
+  background-color: rgb(134, 168, 255);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.19);
 }
 .underlined {
@@ -113,7 +114,26 @@
   border-radius: 90%;
   font-size: 200%;
 }
-
+.barterNowBtn {
+  display: flex;
+  align-items: center;
+  margin-left: 10vw;
+  margin-top: 3em;
+}
+.barterNowBtn button {
+  padding: 15px 25px;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fff;
+  background-color: rgb(18 19 65);
+  border-radius: 10px;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.19);
+}
+.barterNowBtn button:hover{
+  background-color: rgb(134, 168, 255);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.19);
+}
 /* LandingSec2 */
 
 .LandingSec2 {
@@ -146,7 +166,7 @@
 }
 
 /* LandingSec3 */
-.landingSec3{
+.landingSec3 {
   margin: 40px 0;
 }
 .landingSec3_row {
@@ -368,7 +388,7 @@
 }
 
 /* btn */
-.HomeBtnContainer{
+.HomeBtnContainer {
   display: flex;
   justify-content: center;
 }
@@ -544,11 +564,21 @@
     display: flex;
     justify-content: flex-start;
   }
+  .barterNowBtn {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    margin-top: 3em;
+    margin-left: 20vw;
+  }
 }
 @media (max-width: 600px) {
+  .LandingSec1{
+    height: 85vh;
+  }
   .LandingSec1row {
     flex-direction: column;
-    margin-top: 0;
+    margin-top: 5em;
   }
   .HomeBtnContainer {
     margin-top: 3em;
@@ -576,6 +606,13 @@
   }
   .searchbox-wrap button {
     padding-right: 5px;
+  }
+  .barterNowBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3em;
+    margin-left: 0;
   }
   .LandingSec2 {
     padding: 2em;

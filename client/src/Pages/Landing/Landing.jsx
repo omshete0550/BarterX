@@ -6,7 +6,6 @@ import { FaBriefcase, FaHandshake, FaUser } from "react-icons/fa";
 import CountUp from "react-countup";
 import { textVariants } from "../../Components/Motion";
 import { motion } from "framer-motion";
-
 import resumeData from "../../Components/VerticalTabPanel/Data";
 import VerticalTab from "../../Components/VerticalTabPanel/VerticalTab";
 import { Link } from "react-router-dom";
@@ -55,6 +54,11 @@ const Landing = () => {
               <Link to="/register">
                 <span>Sign Up</span>{" "}</Link>
               </button>
+            </div>
+            <div className="barterNowBtn">
+              <Link to='/home'>
+              <button>Barter Now</button>
+              </Link>
             </div>
           </motion.div>
         </div>
