@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   FaShoppingCart,
   FaUser,
@@ -15,6 +15,11 @@ import AccountMenu from "./AccountMenu";
 
 const Navbar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
+  const [image, setImage] = useState(null);
+  const [uplodingImg, setUploadingImg] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
+  const fileInputRef = useRef(null);
+
   const toggleMenu = () => {
     setIsMenuActive(!isMenuActive);
   };
@@ -53,6 +58,43 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const validateAndPublish = async () => {
+    const fileInput = fileInputRef.current;
+    const file = fileInput.files[0];
+
+    if (file && file.size < 1048576) {
+      setImage(file);
+      setImagePreview(URL.createObjectURL(file));
+
+      try {
+        setUploadingImg(true);
+
+        let formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "realtimeimages");
+
+        let res = await fetch("https://api.cloudinary.com/v1_1/dtslqphfg/image/upload", {
+          method: "post",
+          body: formData,
+        });
+
+        const fileUrl = await res.json();
+        setUploadingImg(false);
+
+        const imageURL = fileUrl.url;
+        setImage(imageURL)
+
+        // Your additional logic with the imageURL
+      } catch (error) {
+        setUploadingImg(false);
+        console.error(error);
+      }
+    } else {
+      alert("Please select a valid image (max size: 1mb).");
+    }
+  };
+
 
   return (
     <>
@@ -105,8 +147,13 @@ const Navbar = () => {
                     </i>
                   </label>
                   <div className="border"></div>
-
-                  <button className="labelforsearch">
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: 'none' }}
+                    onChange={() => validateAndPublish()}
+                  />
+                  <button className="labelforsearch" onClick={() => fileInputRef.current.click()}>
                     <i>
                       <FaCamera />
                     </i>

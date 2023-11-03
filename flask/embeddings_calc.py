@@ -6,7 +6,12 @@ from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 import requests
 from pymongo import MongoClient
 from sklearn.metrics.pairwise import cosine_similarity
-from flask_cors import CORS
+import pickle
+
+popular_df = pickle.load(open('data/popular.pkl','rb'))
+pt = pickle.load(open('data/pt.pkl','rb'))
+products = pickle.load(open('data/products.pkl','rb'))
+similarity_scores = pickle.load(open('data/similarity_scores.pkl','rb'))
 
 app = Flask(__name__)
 
@@ -66,10 +71,10 @@ def get_similar_products():
         if response.status_code != 200:
             return jsonify({"error": "Failed to download the image"})
 
-        with open('temp_image.jpg', 'wb') as f:
+        with open('uploads/temp_image.jpg', 'wb') as f:
             f.write(response.content)
 
-        uploaded_features = extract_features('temp_image.jpg')
+        uploaded_features = extract_features('uploads/temp_image.jpg')
 
         products = list(products_collection.find({"categ": "Electronics" }).limit(10))  # Fetch all products
 
@@ -92,6 +97,25 @@ def get_similar_products():
         print("Error:", error_message) 
         error_response = jsonify({"error": error_message})
         return error_response
+    
+@app.route('/recommend',methods=['post'])
+def recommend():
+    user_input = request.form.get('user_input')
+    index = np.where(pt.index==user_input)[0][0]
+    
+    index = np.where(pt.index==user_input)[0][0]
+    similar_items = sorted(list(enumerate(similarity_scores[index])),key=lambda x:x[1],reverse=True)[1:5]
+    
+    data = []
+    for i in similar_items:
+        item = []
+        temp_df = products[products['prodname'] == pt.index[i[0]]]
+        item.extend(list(temp_df.drop_duplicates('prodname')['prodname'].values))
+        item.extend(list(temp_df.drop_duplicates('prodname')['postedBy'].values))
+        
+        data.append(item)
+    
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)
