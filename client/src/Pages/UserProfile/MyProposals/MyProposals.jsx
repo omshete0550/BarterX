@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import "./Proposer.css";
+import "../Proposer/Proposer.css";
 import DataTable, { createTheme } from "react-data-table-component";
 import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
@@ -35,21 +35,21 @@ const columns = [
     sortable: true,
   },
   {
-    name: "Proposer",
-    selector: (row) => row.proposerName,
+    name: "Former Item",
+    selector: (row) => row.desiredItemName,
     sortable: true,
   },
   {
-    name: "Proposed Item",
-    selector: (row) => row.itemName,
+    name: "My Proposed Item",
+    selector: (row) => row.myItemName,
     sortable: true,
   },
   {
     name: "Status",
     cell: (row) => (
       <div className="TableBtnContainer">
-        <button className="AcceptBtn" >✔</button>
-        <button className="DenyBtn" >✘</button>
+        <button className="AcceptBtn" >Withdraw</button>
+        {/* <button className="DenyBtn" >✘</button> */}
       </div>
     ),
   },
@@ -140,7 +140,7 @@ const data = [
   },
 ];
 
-const Proposer = () => {
+const MyProposals = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -151,22 +151,22 @@ const Proposer = () => {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8800/api/barterrequests/incoming/${id}`);
+        const response = await axios.get(`http://localhost:8800/api/products/barter/all/${id}`);
         const proposals = response.data;
         // setProductData(proposals)
         // console.log(proposals);
         const requestsWithNames = await Promise.all(
           proposals.map(async (request) => {
             // Fetch requester name
-            const proposerData = await axios.get(`http://localhost:8800/api/users/${request.requester}`);
+            const desiredData = await axios.get(`http://localhost:8800/api/getproductdetails/${request.desiredItem}`);
             // Fetch item name
             const itemData = await axios.get(`http://localhost:8800/api/getproductdetails/${request.myItem}`);
   
             // Update the request object with names
             return {
               ...request,
-              proposerName: proposerData.data.name,
-              itemName: itemData.data.prodname,
+              desiredItemName: desiredData.data.prodname,
+              myItemName: itemData.data.prodname,
             };
           })
         );
@@ -178,7 +178,7 @@ const Proposer = () => {
     };
   
     fetchProductData();
-  }, [productData]);
+  }, []);
   console.log(productData);
   // Function to update the status of a barter request
   const updateRequestStatus = async (requestId) => {
@@ -201,22 +201,9 @@ const Proposer = () => {
       <Navbar />
 
       <div className="proposerContainer">
-        <h1>PROPOSERS</h1>
+        <h1>MY PROPOSALS</h1>
         <DataTable
-            columns={columns.map(column => {
-            if (column.name === 'Status') {
-              return {
-                ...column,
-                cell: (row) => (
-                  <div className="TableBtnContainer">
-                    <button className="AcceptBtn" onClick={() => updateRequestStatus(row._id)}>✔</button>
-                    <button className="DenyBtn" >✘</button>
-                  </div>
-                ),
-              };
-            }
-            return column;
-          })}
+            columns={columns}
           data={productData}
           theme="solarized"
           customStyles={customStyles}
@@ -228,4 +215,4 @@ const Proposer = () => {
   );
 };
 
-export default Proposer;
+export default MyProposals;

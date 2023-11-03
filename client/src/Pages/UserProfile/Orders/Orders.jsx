@@ -12,7 +12,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const userData = await axios.get(`http://localhost:8800/api/products/barter/${userId}`);
+        const userData = await axios.get(`http://localhost:8800/api/products/barter/success/${userId}`);
         const orders = userData.data;
 
         const updatedOrders = await Promise.all(
@@ -32,7 +32,7 @@ const Orders = () => {
         console.error('Error fetching user data:', error.message);
       }
     };
-    console.log(orders);
+    // console.log(orders);
     const fetchuserData = async () => {
       try {
         const userData = await axios.get(`http://localhost:8800/api/users/${userId}`);
@@ -46,12 +46,12 @@ const Orders = () => {
     fetchuserData();
   }, []);
 
-  console.log(orders);
+  // console.log(orders);
   return (
     <>
       <Navbar />
 
-      <h1 className="OrderHistoryHeading">Your Orders</h1>
+      <h1 className="OrderHistoryHeading">Your Barters</h1>
 
       <section className="orderHistory">
         {orders?.map((order) => (

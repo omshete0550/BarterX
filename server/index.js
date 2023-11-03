@@ -103,16 +103,7 @@ app.get('/api/users/:userId', async (req, res, next) => {
         next(err);
     }
 });
-//Get all products
-app.get('/api/products', async (req, res, next) => {
-    try {
-        // Fetch all products from your database
-        const allProducts = await Product.find();
-        res.status(200).json(allProducts);
-    } catch (err) {
-        next(err);
-    }
-});
+
 
 app.get('/api/users/:userId', async (req, res, next) => {
     const userId = req.params.userId;
@@ -140,7 +131,7 @@ app.get('/api/users/:userId', async (req, res, next) => {
 
 app.get('/api/products', async (req, res, next) => {
     try {
-        const categProducts = await Product.find();
+        const categProducts = await Product.find().limit(4);
 
         if (!categProducts || categProducts.length === 0) {
             return res.status(404).json({ message: 'No products found in this category.' });
@@ -230,10 +221,38 @@ app.post('/api/products/barter', async (req, res, next) => {
         next(error)
     }
 })
-//Get a user's all success barter requests
-app.get('/api/products/barter/:userId', async (req, res, next) => {
+app.get('/api/barterrequests/incoming/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
+        const products = await Product.find({ postedBy: userId });
+        const productIds = products.map(product => product._id);
+        const barters = await BarterModel.find({ desiredItem: { $in: productIds }, status:"pending" });
+        res.status(200).json(barters);
+        // console.log("Barters")
+        console.log(userId)
+        console.log(productIds);
+        console.log(barters);
+    } catch (error) {
+        next(error);
+    }
+});
+//Get a user's all  barter requests
+app.get('/api/products/barter/all/:userId', async (req, res, next) => {
     try {
         const userId = req.params.userId
+        const barterRequests = await BarterModel.find({ requester: userId, status: "pending" })
+        res.status(200).json(barterRequests)
+    } catch (error) {
+        next(error)
+    }
+})
+//Get a user's all success barter requests
+app.get('/api/products/barter/success/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId
+        // const products = await Product.find({ postedBy: userId });
+        // const productIds = products.map(product => product._id);
+        // const barters = await BarterModel.find({ desiredItem: { $in: productIds }, status:"success" });
         const barterRequests = await BarterModel.find({ requester: userId, status: "success" })
         res.status(200).json(barterRequests)
     } catch (error) {
@@ -261,8 +280,18 @@ app.get('/api/productrequests/:productId', async (req, res, next) => {
         next(error)
     }
 })
+//Get a product's all pending barter requests
+app.get('/api/productrequests/pending/:productId', async (req, res, next) => {
+    try {
+        const productId = req.params.productId
+        const product = await BarterModel.find({ desiredItem: productId, status: "pending" })
+        res.status(200).json(product)
+    } catch (error) {
+        next(error)
+    }
+})
 //Get a product's all sucess barter requests
-app.get('/api/productrequests/:productId', async (req, res, next) => {
+app.get('/api/productrequests/success/:productId', async (req, res, next) => {
     try {
         const productId = req.params.productId
         const product = await BarterModel.find({ desiredItem: productId, status: "success" })

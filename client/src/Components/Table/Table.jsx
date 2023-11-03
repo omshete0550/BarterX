@@ -141,7 +141,7 @@ const Table = (props) => {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8800/api/productrequests/${id}`);
+        const response = await axios.get(`http://localhost:8800/api/productrequests/pending/${id}`);
         const products = response.data
         const requestsWithNames = await Promise.all(
           products.map(async (request) => {

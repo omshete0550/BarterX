@@ -3,6 +3,7 @@ import "./UserProfile.css";
 import { Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const UserProfile = () => {
@@ -23,6 +24,11 @@ const UserProfile = () => {
     }
     fetchUser();
   }, []);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
 
   return (
@@ -41,8 +47,8 @@ const UserProfile = () => {
             </div>
             <div className="infos">
               <div className="name">
-                <h2><strong>Name:</strong> {userData ? userData.name : "..."}</h2>
-                <h4><strong>Email:</strong> {userData ? userData.email : "..."}</h4>
+                <h2><strong>Name:</strong> {userData ? userData.name : "...loading..."}</h2>
+                <h4><strong>Email:</strong> {userData ? userData.email : "...loading..."}</h4>
                 <h4><strong>Phone:</strong> +91 88953 88963</h4>
               </div>
               <p className="Profiletext">
@@ -77,7 +83,7 @@ const UserProfile = () => {
                 />
               </div>
               <div className="profileContentConatainer">
-                <h3>Your Orders</h3>
+                <h3>Your Barters</h3>
                 <p>Track, return, or buy things again</p>
               </div>
             </div>
@@ -137,13 +143,14 @@ const UserProfile = () => {
                 />
               </div>
               <div className="profileContentConatainer">
-                <h3>Proposers</h3>
+                <h3>Inc. Proposals</h3>
                 <p>Track, return, or buy things again</p>
               </div>
             </div>
           </Link>
 
-          {/* <Link to="/orders">
+         
+          <Link to="/myproposals">
             <div className="profileCard">
               <div className="profileContentLogo">
                 <img
@@ -152,52 +159,7 @@ const UserProfile = () => {
                 />
               </div>
               <div className="profileContentConatainer">
-                <h3>Your Orders</h3>
-                <p>Track, return, or buy things again</p>
-              </div>
-            </div>
-          </Link>
-
-          <Link to="/orders">
-            <div className="profileCard">
-              <div className="profileContentLogo">
-                <img
-                  src="https://m.media-amazon.com/images/G/31/x-locale/cs/ya/images/Box._CB485927553_.png"
-                  alt=""
-                />
-              </div>
-              <div className="profileContentConatainer">
-                <h3>Your Orders</h3>
-                <p>Track, return, or buy things again</p>
-              </div>
-            </div>
-          </Link>
-
-          <Link to="/orders">
-            <div className="profileCard">
-              <div className="profileContentLogo">
-                <img
-                  src="https://m.media-amazon.com/images/G/31/x-locale/cs/ya/images/Box._CB485927553_.png"
-                  alt=""
-                />
-              </div>
-              <div className="profileContentConatainer">
-                <h3>Your Orders</h3>
-                <p>Track, return, or buy things again</p>
-              </div>
-            </div>
-          </Link> */}
-
-          <Link to="/orders">
-            <div className="profileCard">
-              <div className="profileContentLogo">
-                <img
-                  src="https://m.media-amazon.com/images/G/31/x-locale/cs/ya/images/Box._CB485927553_.png"
-                  alt=""
-                />
-              </div>
-              <div className="profileContentConatainer">
-                <h3>Your Orders</h3>
+                <h3>Out. Proposals</h3>
                 <p>Track, return, or buy things again</p>
               </div>
             </div>
