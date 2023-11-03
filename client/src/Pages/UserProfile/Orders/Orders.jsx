@@ -14,6 +14,7 @@ const Orders = () => {
       try {
         const userData = await axios.get(`http://localhost:8800/api/products/barter/${userId}`);
         const orders = userData.data;
+
         const updatedOrders = await Promise.all(
           orders.map(async (order) => {
             const desiredItemData = await axios.get(`http://localhost:8800/api/getproductdetails/${order.desiredItem}`);
@@ -31,6 +32,7 @@ const Orders = () => {
         console.error('Error fetching user data:', error.message);
       }
     };
+    console.log(orders);
     const fetchuserData = async () => {
       try {
         const userData = await axios.get(`http://localhost:8800/api/users/${userId}`);
@@ -68,7 +70,7 @@ const Orders = () => {
                 </div>
                 <div className="OrderNavBarContentInner">
                   <h4>Swapped For</h4>
-                  <p>{order.myItemDetails.desprodname}</p>
+                  <p>{order.desiredItemDetails.prodname}</p>
                 </div>
               </div>
               <div className="OrderNavBarbtn">
@@ -90,7 +92,7 @@ const Orders = () => {
 
               <div className="OrderHistoryContent">
                 <div className="OrderHistoryContentCard">
-                  <span><strong>Seller:</strong>{order.myItemDetails.sellerName}</span>
+                  <span><strong>Seller:</strong>{order.desiredItemDetails.sellerName}</span>
 
                   <span><strong>Buyer:</strong>{user.name}</span>
 

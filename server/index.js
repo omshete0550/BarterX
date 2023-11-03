@@ -236,11 +236,11 @@ app.post('/api/products/barter', async (req, res, next) => {
         next(error)
     }
 })
-//Get a user's all barter requests
+//Get a user's all success barter requests
 app.get('/api/products/barter/:userId', async (req, res, next) => {
     try {
         const userId = req.params.userId
-        const barterRequests = await BarterModel.find({ requester: userId })
+        const barterRequests = await BarterModel.find({ requester: userId, status: "success" })
         res.status(200).json(barterRequests)
     } catch (error) {
         next(error)
