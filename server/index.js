@@ -107,7 +107,7 @@ app.get('/api/users/:userId', async (req, res, next) => {
 app.get('/api/products', async (req, res, next) => {
     try {
         // Fetch all products from your database
-        const allProducts = await Product.find();
+        const allProducts = await Product.find().limit(4);
         res.status(200).json(allProducts);
     } catch (err) {
         next(err);
@@ -155,7 +155,7 @@ app.get('/api/products', async (req, res, next) => {
 app.get('/api/products/:categname', async (req, res, next) => {
     try {
         const categname = req.params.categname;
-        const categProducts = await Product.find({ category: categname });
+        const categProducts = await Product.find({ category: categname }).limit(4);
 
         if (!categProducts || categProducts.length === 0) {
             return res.status(404).json({ message: 'No products found in this category.' });
@@ -199,7 +199,7 @@ app.get('/api/getproductdetails/:productId', async (req, res) => {
 }
 );
 
-  //Get a user's all product
+//Get a user's all product
 app.get('/api/myproducts/:userId', async (req, res, next) => {
     try {
         const userId = req.params.userId;
@@ -240,6 +240,18 @@ app.get('/api/products/barter/:userId', async (req, res, next) => {
         next(error)
     }
 })
+app.get('/api/myproducts/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
+        const products = await Product.find({ postedBy: userId });
+        const productIds = products.map(product => product._id);
+        const barters = await BarterModel.find({ desiredItem: { $in: productIds } });
+        res.status(200).json(barters);
+    } catch (error) {
+        next(error);
+    }
+});
+
 //Get length of user's all sucess barter requests
 app.get('/api/sucessBarter/:userId', async (req, res, next) => {
     try {
@@ -307,57 +319,57 @@ app.get('/api/ratings/:productId', async (req, res, next) => {
 })
 
 
-app.post('/api/chat/sendMessage', async(req, res, next) => {
+app.post('/api/chat/sendMessage', async (req, res, next) => {
     const { toUserId, fromUserId, messageInput } = req.body; // Get these values from your frontend
 
     console.log(messageInput);
-  // Create a new message object
-  const newMessage = {
-    to: toUserId,
-    from: fromUserId,
-    type: "Text", 
-    text: messageInput,
-  };
+    // Create a new message object
+    const newMessage = {
+        to: toUserId,
+        from: fromUserId,
+        type: "Text",
+        text: messageInput,
+    };
 
-  let chat = await ChatMessage.findOne({ participants: { $all: [toUserId, fromUserId] } });
+    let chat = await ChatMessage.findOne({ participants: { $all: [toUserId, fromUserId] } });
 
-  if (!chat) {
-    chat = new ChatMessage({
-      participants: [toUserId, fromUserId],
-      messages: [],
-    });
-  }
-  console.log(newMessage);
+    if (!chat) {
+        chat = new ChatMessage({
+            participants: [toUserId, fromUserId],
+            messages: [],
+        });
+    }
+    console.log(newMessage);
 
-  chat.messages.push(newMessage); // Add the new message to the chat's messages array
+    chat.messages.push(newMessage); // Add the new message to the chat's messages array
 
-  try {
-    await chat.save(); // Save the chat with the new message
-    res.status(200).send('Message sent.');
-  } catch (err) {
-    // Handle any errors
-    console.error(err);
-    res.status(500).send('Message not sent.');
-  }
+    try {
+        await chat.save(); // Save the chat with the new message
+        res.status(200).send('Message sent.');
+    } catch (err) {
+        // Handle any errors
+        console.error(err);
+        res.status(500).send('Message not sent.');
+    }
 });
 
-app.get('/api/chat/retrieveMessages/:toUserId/:fromUserId', async(req, res, next) => {
+app.get('/api/chat/retrieveMessages/:toUserId/:fromUserId', async (req, res, next) => {
     try {
         const toUserId = req.params.toUserId;
         const fromUserId = req.params.fromUserId;
-        
+
         const messages = await ChatMessage.findOne({
-          participants: { $all: [toUserId, fromUserId] }
+            participants: { $all: [toUserId, fromUserId] }
         });
-        
+
         if (messages) {
-          res.json(messages);
+            res.json(messages);
         } else {
-          res.status(404).json({ message: 'No chat messages found for these participants' });
+            res.status(404).json({ message: 'No chat messages found for these participants' });
         }
-      } catch (error) {
+    } catch (error) {
         next(error);
-      }
+    }
 })
 app.listen(Port, () => {
     console.log("Server started on Port " + Port);
