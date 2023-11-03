@@ -113,7 +113,7 @@ app.get('/api/users/:userId', async (req, res, next) => {
 app.get('/api/products', async (req, res, next) => {
     try {
         // Fetch all products from your database
-        const allProducts = await Product.find();
+        const allProducts = await Product.find().limit(5);
         res.status(200).json(allProducts);
     } catch (err) {
         next(err);

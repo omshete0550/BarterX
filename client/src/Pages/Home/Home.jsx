@@ -432,7 +432,7 @@ const Home = () => {
               whileInView="show"
               viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
-              className="HomeSec2Card"
+              className="HomeSec4Card"
             >
               <p>HOME APPLIANCES</p>
             </motion.div>
@@ -445,9 +445,9 @@ const Home = () => {
               whileInView="show"
               viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
-              className="HomeSec2Card"
+              className="HomeSec5Card"
             >
-              <p>ART</p>
+              <p>FURNITURE</p>
             </motion.div>
           </Link>
 
@@ -458,9 +458,9 @@ const Home = () => {
               whileInView="show"
               viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
-              className="HomeSec2Card"
+              className="HomeSec6Card"
             >
-              <p>MISCELLANEOUS</p>
+              <p>ART</p>
             </motion.div>
           </Link>
 
@@ -655,7 +655,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="home_sec4">
+      {/* <section className="home_sec4">
         <motion.div
           className="my_container"
           variants={textVariants("up", 0.2)}
@@ -746,31 +746,14 @@ const Home = () => {
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
             </Swiper>
           </div>
         </motion.div>
-      </section>
+      </section> */}
 
-      <section className="home_sec4">
+      {/* <section className="home_sec4">
         <motion.div
           className="my_container"
           variants={textVariants("up", 0.2)}
@@ -861,31 +844,15 @@ const Home = () => {
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
             </Swiper>
           </div>
         </motion.div>
-      </section>
+      </section> */}
 
-      <section className="home_sec4">
+      {/* <section className="home_sec4">
         <motion.div
           className="my_container"
           variants={textVariants("up", 0.2)}
@@ -974,25 +941,10 @@ const Home = () => {
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+    
             </Swiper>
           </div>
         </motion.div>
@@ -1089,25 +1041,10 @@ const Home = () => {
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+
             </Swiper>
           </div>
         </motion.div>
@@ -1204,25 +1141,9 @@ const Home = () => {
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+
             </Swiper>
           </div>
         </motion.div>
@@ -1319,25 +1240,8 @@ const Home = () => {
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
             </Swiper>
           </div>
         </motion.div>
@@ -1434,25 +1338,10 @@ const Home = () => {
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+
             </Swiper>
           </div>
         </motion.div>
@@ -1549,25 +1438,10 @@ const Home = () => {
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+                 
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+
             </Swiper>
           </div>
         </motion.div>
@@ -1664,29 +1538,14 @@ const Home = () => {
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+     
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+ 
             </Swiper>
           </div>
         </motion.div>
-      </section>
+      </section> */}
      
       <Footer />
     </>
