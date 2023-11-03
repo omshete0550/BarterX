@@ -27,7 +27,7 @@ const AddProductPage = () => {
   const [userid, setuserid] = useState("");
   const [datepurchase, setdatepurchase] = useState(new Date());
   const [sellerName, setSellerName] = useState("");
-  const [postedBy, setPostedBy] = useState("");
+  const[postedBy, setPostedBy] = useState("");
 
   useEffect(() => {
     const getUserName = async () => {
@@ -36,14 +36,22 @@ const AddProductPage = () => {
         const userData = await axios.get(`http://localhost:8800/api/users/${userId}`);
         const userName = userData.data.name;
         setSellerName(userName);
+        console.log(sellerName);
         setPostedBy(userId);
       } catch (error) {
         console.error('Error fetching user data:', error.message);
       }
     }
     getUserName();
-  }, [])
-
+  }, [])  
+  // const [file, setFile] = useState(null);
+  // const reader = new FileReader();
+  // const handleChange = (e) => {
+  //   const ownfile = e.target.files[0];
+  //   // const ownfile = 
+  //     setFile(ownfile);
+  //     console.log(file);
+  // };
   const [image, setImage] = useState(null);
   const [uplodingImg, setUploadingImg] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
@@ -70,10 +78,13 @@ const AddProductPage = () => {
     return userId;
   }
 
+  
+
   async function publishProduct(event) {
     event.preventDefault();
     const userId = extractUserIdFromURL();
     setuserid(userId);
+    console.log(userid);
 
     const datas = new FormData();
     datas.append("file", image);
@@ -120,6 +131,8 @@ const AddProductPage = () => {
       console.log("ERROR!")
     }
   }
+
+  
 
 
 

@@ -6,7 +6,6 @@ import { FaBriefcase, FaHandshake, FaUser } from "react-icons/fa";
 import CountUp from "react-countup";
 import { textVariants } from "../../Components/Motion";
 import { motion } from "framer-motion";
-
 import resumeData from "../../Components/VerticalTabPanel/Data";
 import VerticalTab from "../../Components/VerticalTabPanel/VerticalTab";
 import { Link } from "react-router-dom";
@@ -55,6 +54,11 @@ const Landing = () => {
               <Link to="/register">
                 <span>Sign Up</span>{" "}</Link>
               </button>
+            </div>
+            <div className="barterNowBtn">
+              <Link to='/home'>
+              <button>Barter Now</button>
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -208,7 +212,7 @@ const Landing = () => {
               >
                 <div className="first-content">
                   <img
-                    src="https://previews.123rf.com/images/mihmihmal/mihmihmal1907/mihmihmal190700012/127163108-vector-for-electronics-store-black-decorative-price-tag-with-illustration-of-set-modern-electronic.jpg"
+                    src="https://img.freepik.com/premium-photo/futuristic-gadgets-showcase-lineup-sleek-modern-technological-devices_977107-682.jpg"
                     alt=""
                   />
                 </div>
@@ -233,7 +237,7 @@ const Landing = () => {
               >
                 <div className="first-content">
                   <img
-                    src="https://irantarh.com/uploads/designs/vector-images38/2227.jpg"
+                    src="https://media.istockphoto.com/id/1174598609/photo/set-of-contemporary-house-appliances-isolated-on-white.jpg?s=612x612&w=0&k=20&c=bBMILbCpLkhIxbL7sAAXaFOaFaSXFCt80ccHgl7iiWM="
                     alt=""
                   />
                 </div>
@@ -258,7 +262,7 @@ const Landing = () => {
               >
                 <div className="first-content">
                   <img
-                    src="https://previews.123rf.com/images/butenkov/butenkov1905/butenkov190500053/124554788-vector-logo-for-shop-selling-furniture-sofa.jpg"
+                    src="https://img.freepik.com/free-vector/furniture-icons-set_1284-4237.jpg?size=338&ext=jpg&ga=GA1.1.1826414947.1698969600&semt=ais"
                     alt=""
                   />
                 </div>
@@ -283,7 +287,7 @@ const Landing = () => {
               >
                 <div className="first-content">
                   <img
-                    src="https://st2.depositphotos.com/1292719/6504/v/450/depositphotos_65045015-stock-illustration-art-hand-lettering-and-doodles.jpg"
+                    src="https://m.media-amazon.com/images/I/71QE5aRRC4L._AC_UF1000,1000_QL80_.jpg"
                     alt=""
                   />
                 </div>
@@ -308,7 +312,7 @@ const Landing = () => {
               >
                 <div className="first-content">
                   <img
-                    src="https://png.pngtree.com/png-vector/20230823/ourlarge/pngtree-tesla-model-s-car-icon-in-line-artwork-vector-png-image_6857206.png"
+                    src="https://etimg.etb2bimg.com/photo/98444504.cms"
                     alt=""
                   />
                 </div>
@@ -333,7 +337,7 @@ const Landing = () => {
               >
                 <div className="first-content">
                   <img
-                    src="https://static.vecteezy.com/system/resources/thumbnails/002/002/879/small_2x/sports-time-poster-with-purple-athletes-silhouettes-free-vector.jpg"
+                    src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg"
                     alt=""
                   />
                 </div>

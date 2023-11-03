@@ -72,10 +72,13 @@ app.post('/api/publish', async (req, res) => {
         datepurchase: req.body.datepurchase,
         sellerName: req.body.sellerName,
     });
+    console.log('1');
+
     try {
 
         const imageUrl = req.body.imageURL;
         const flaskApiUrl = 'http://127.0.0.1:5000/calculate_embedding';
+
         const options = {
             method: 'POST',
             uri: flaskApiUrl,
@@ -84,11 +87,14 @@ app.post('/api/publish', async (req, res) => {
             },
             json: true,
         };
+
         const embeddingResponse = await request(options);
+        console.log(embeddingResponse);
+        console.log('2');
         const embedding = embeddingResponse.embedding;
         savedProduct.images.push({ url: imageUrl, embedding: embedding });
         await savedProduct.save();
-
+        console.log('3');
         res.json({ status: 'success', message: 'Product Published' });
     } catch (err) {
         res.json({ status: 'error', error: 'Error in product publishing', details: err });

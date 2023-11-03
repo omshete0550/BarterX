@@ -76,39 +76,40 @@
   width: 15em;
   height: 20em;
   border-radius: 10px;
-  background-image: url(https://cdn.create.vista.com/api/media/small/470828726/stock-vector-barter-blue-gradient-vector-icon);
+  background-image: url(https://img.freepik.com/premium-photo/futuristic-gadgets-showcase-lineup-sleek-modern-technological-devices_977107-682.jpg);
   background-size: cover;
 }
 .HomeSec3Card {
   width: 15em;
   height: 20em;
   border-radius: 10px;
-  background-image: url(https://cdn.create.vista.com/api/media/small/470828726/stock-vector-barter-blue-gradient-vector-icon);
+  background-image: url(https://etimg.etb2bimg.com/photo/98444504.cms);
   background-size: cover;
 }
 .HomeSec4Card {
   width: 15em;
   height: 20em;
   border-radius: 10px;
-  background-image: url(https://previews.123rf.com/images/mihmihmal/mihmihmal1907/mihmihmal190700012/127163108-vector-for-electronics-store-black-decorative-price-tag-with-illustration-of-set-modern-electronic.jpg);
+  background-image: url(https://static-assets.business.amazon.com/assets/in/24th-jan/705_Website_Blog_Appliances_1450x664.jpg.transform/1450x664/image.jpg);
   background-size: cover;
 }
 .HomeSec5Card {
   width: 15em;
   height: 20em;
   border-radius: 10px;
-  background-image: url(https://previews.123rf.com/images/mihmihmal/mihmihmal1907/mihmihmal190700012/127163108-vector-for-electronics-store-black-decorative-price-tag-with-illustration-of-set-modern-electronic.jpg);
+  background-image: url(https://img.freepik.com/free-vector/furniture-icons-set_1284-4237.jpg?size=338&ext=jpg&ga=GA1.1.1826414947.1698969600&semt=ais);
   background-size: cover;
 }
 .HomeSec6Card {
   width: 15em;
   height: 20em;
   border-radius: 10px;
-  background-image: url(https://previews.123rf.com/images/mihmihmal/mihmihmal1907/mihmihmal190700012/127163108-vector-for-electronics-store-black-decorative-price-tag-with-illustration-of-set-modern-electronic.jpg);
+  background-image: url(https://m.media-amazon.com/images/I/71QE5aRRC4L._AC_UF1000,1000_QL80_.jpg);
   background-size: cover;
 }
 .HomeSec2Card p, .HomeSec3Card p,.HomeSec4Card p,.HomeSec5Card p,.HomeSec6Card p {
-  color: #fff;
+  color: #000;
+  font-weight: 600;
   text-align: center;
   padding-top: 2em;
   font: 20PX "Montserrat", sans-serif;
