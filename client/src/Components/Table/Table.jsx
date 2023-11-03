@@ -34,12 +34,12 @@ const columns = [
   },
   {
     name: "User",
-    selector: (row) => row.requester,
+    selector: (row) => row.requesterName,
     sortable: true,
   },
   {
     name: "Item",
-    selector: (row) => row.myItem,
+    selector: (row) => row.itemName,
     sortable: true,
   },
   // {
@@ -139,14 +139,35 @@ const Table = (props) => {
   const id = props.id;
   const [productData, setProductData] = useState([]);
   useEffect(() => {
-    // Fetch products from the backend API using Axios
-    axios
-      .get(`http://localhost:8800/api/productrequests/${id}`)
-      .then(response => {
-        setProductData(response.data);
-      })
-      .catch(error => console.error(error));
+    const fetchProductData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8800/api/productrequests/${id}`);
+        const products = response.data
+        const requestsWithNames = await Promise.all(
+          products.map(async (request) => {
+            // Fetch requester name
+            const requesterData = await axios.get(`http://localhost:8800/api/users/${request.requester}`);
+            // Fetch item name
+            const itemData = await axios.get(`http://localhost:8800/api/getproductdetails/${request.myItem}`);
+  
+            // Update the request object with names
+            return {
+              ...request,
+              requesterName: requesterData.data.name,
+              itemName: itemData.data.prodname,
+            };
+          })
+        );
+        setProductData(requestsWithNames);
+        
+      } catch (error) {
+        console.error('Error fetching product data:', error.message);
+      }
+    };
+  
+    fetchProductData();
   }, []);
+  console.log(productData);
   return (
     <DataTable
       columns={columns}

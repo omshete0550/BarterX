@@ -7,57 +7,45 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import Review from "../../Components/Review/Review";
 import Table from "../../Components/Table/Table";
+import Products from "../Category/Products/Products";
+import { BsCart, BsHandThumbsUp, BsHeart } from "react-icons/bs";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 const ProductDetails = () => {
-
   const location = useLocation();
   const { id } = location.state;
-  // const [userName, setUserName] = useState('');
+
   const [product, setProduct] = useState([]);
   const [myproduct, setMyProduct] = useState([]);
   const [username, setUsername] = useState("");
-  const [seller, setSellerName] = useState('');
-  const [sellerid, setSellerNameId] = useState('');
-  // setProduct(props.id);
+  const [seller, setSellerName] = useState("");
+  const [sellerid, setSellerNameId] = useState("");
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
     // Fetch products from the backend API using Axios
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8800/api/getproductdetails/${id}`);
+        const response = await axios.get(
+          `http://localhost:8800/api/getproductdetails/${id}`
+        );
         setProduct(response.data);
         console.log(response.data); // Log the array of products to the console
         console.log(response.data.postedBy);
         setSellerName(response.data.sellerName);
         setSellerNameId(response.data.postedBy);
 
-        // const userResponse = await axios.get(`http://localhost:8800/api/users/${seller}`);
-        //   console.log(userResponse);
-        //   setUsername(userResponse.data);
-      }
-      catch (error) {
+      } catch (error) {
         console.error("Error fetching products:", error);
-      }};
+      }
+    };
 
-
-      // const fetchUserData = async () => {
-      //   try {
-      //     const userResponse = await axios.get(`http://localhost:8800/api/users/${seller}`);
-      //     console.log(userResponse)
-      //     setUsername(userResponse.data);
-      //   } catch (error) {
-      //     console.error("Error fetching user details:", error);
-      //   }
-      // };
-
-
-      fetchData();
-      // fetchUserData();
+    fetchData();
+    // fetchUserData();
   }, []);
 
   const { pathname } = useLocation();
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -70,24 +58,9 @@ const ProductDetails = () => {
     setImgId(id);
   };
 
-  // useEffect(() => {
-  //   const getUserName = async () => {
-  //     try {
-  //       const userId = product.postedBy;
-  //       const userData = await axios.get(`http://localhost:8800/api/users/${userId}`);
-  //       const userName = userData.data.name;
-  //       setUserName(userName);
-  //     } catch (error) {
-  //       console.error('Error fetching user data:', error.message);
-  //     }
-  //   }
-  //   getUserName();
-  // }, [product])
+  const imgBtns = product.images;
 
-
-  const imgBtns = product.images
-
-  const [responseMessage, setResponseMessage] = useState('');
+  const [responseMessage, setResponseMessage] = useState("");
   const sendProposal = async (item) => {
     const userId = localStorage.getItem("token");
     const barterRequest = {
@@ -96,35 +69,74 @@ const ProductDetails = () => {
       myItem: item._id, // Assuming item._id is the ID of the item the user wants to barter
     };
     try {
-      const response = await axios.post('http://localhost:8800/api/products/barter', barterRequest);
+      const response = await axios.post(
+        "http://localhost:8800/api/products/barter",
+        barterRequest
+      );
 
       if (response.status === 201) {
         // Handle a successful response from the server, e.g., show a success message.
-        setResponseMessage('Barter proposal sent successfully!');
+        setResponseMessage("Barter proposal sent successfully!");
+        setPopupVisible(false);
       } else {
         // Handle errors, e.g., show an error message.
-        setResponseMessage('Error sending barter proposal');
+        setResponseMessage("Error sending barter proposal");
       }
     } catch (error) {
       // Handle any network or other errors
-      setResponseMessage('Error sending barter proposal');
+      setResponseMessage("Error sending barter proposal");
     }
-  }
+  };
 
   const [isPopupVisible, setPopupVisible] = useState(false);
 
-  const swap = () => {
-    console.log("Hi");
-  }
+  const swap = async () => {
+    try {
+      const userId = localStorage.getItem("token");
+      const response = await axios.get(
+        `http://localhost:8800/api/myproducts/${userId}`
+      );
+      setProducts(response.data);
+      console.log(products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
   const openPopup = () => {
     setPopupVisible(true);
     swap();
-  }
+  };
 
   const closePopup = () => {
     setPopupVisible(false);
-  }
+  };
+
+  // const [proposalData, setProposalData] = useState({
+  //   desiredItem: '', // You need to set the desired product ID
+  //   myItem: '', // You need to set the user's product ID
+  // });
+
+  // const handleProposalChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setProposalData({
+  //     ...proposalData,
+  //     [name]: value,
+  //   });
+  // };
+
+  // const handleSendProposal = (id) => {
+  //   myitem = id;
+  //   desiredItem = 
+  //   axios
+  //     .post('http://localhost:8800/api/products/barter', proposalData)
+  //     .then((response) => {
+  //       // Handle success, e.g., inform the user that the proposal was sent
+  //     })
+  //     .catch((error) => {
+  //       // Handle errors, e.g., display an error message to the user
+  //     });
+  // };
 
   return (
     <>
@@ -136,32 +148,34 @@ const ProductDetails = () => {
             <div className="product-imgs">
               <div className="img-display">
                 <div className="img-showcase">
-                  {/* {imgBtns.map((imgItem) => ( 
-                    <img key={imgItem.id} src={imgItem.src} alt={imgItem.alt} />
-                    
-                   ))} */}
-                   {product.images && product.images.length > 0 ? (
-                      <img src={product.images[0].url} alt="Alt text" />
-                    ) : (
-                      
-                    <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" width={500}  />
-                    
-                  
-                    )}
+                  {product.images && product.images.length > 0 ? (
+                    <img src={product.images[0].url} alt="Alt text" />
+                  ) : (
+                    <img
+                      src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif"
+                      width={500}
+                    />
+                  )}
                 </div>
               </div>
               <div className="img-select">
-                {imgBtns ? imgBtns.map((imgItem) => (
-                  <div className="img-item" key={id}>
-                    <a
-                      href="#"
-                      data-id={id}
-                      onClick={(event) => handleImageClick(event, id)}
-                    >
-                      <img src={imgItem.src} alt={imgItem.alt} className="gif"/>
-                    </a>
-                  </div>
-                )) : "Loading..."}
+                {imgBtns
+                  ? imgBtns.map((imgItem) => (
+                      <div className="img-item" key={id}>
+                        <a
+                          href="#"
+                          data-id={id}
+                          onClick={(event) => handleImageClick(event, id)}
+                        >
+                          <img
+                            src={imgItem.src}
+                            alt={imgItem.alt}
+                            className="gif"
+                          />
+                        </a>
+                      </div>
+                    ))
+                  : "Loading..."}
               </div>
             </div>
 
@@ -189,92 +203,67 @@ const ProductDetails = () => {
               </div>
 
               <div className="purchase-info">
-                {/* <a onClick={handleSwap}>Swap kar</a> */}
-                {/* <Popup
-                  trigger={<a className="btn swapbtn"> Let's Swap </a>}
-                  modal
-                  nested
+          
+
+                <button
+                  type="button"
+                  className="swapbtn btn"
+                  onClick={openPopup}
                 >
-                  {(close) => (
-                    <div className="modal">
-                      <button className="close" onClick={close}>
-                        &times;
-                      </button>
-                      <div className="content">
-                        <div className="contentheader">
-                          <h2>Your Barter Items</h2>
-                        </div>
-                        <div className="contentGrid">
-                        {myproduct.length > 0 ? (
-                        myproduct.map((item) => (
-                          <div className="CategCardContainer">
-                            <div className="Categcard">
+                  Let's Swap
+                </button>
+                {isPopupVisible && (
+                  <div className="popup-overlay">
+                    <div className="popup">
+                      <div className="popup-content" style={{"display": "flex","flexDirection":"column","justifyContent":"center", "alignItems": "center"}}>
+                        <h2 style={{"padding":"10px"}}>YOUR READY - TO - BARTER ITEMS</h2>
+                        <div className="gridItems">
+                          {/* <Products result={products} /> */}
+                          <div className="CategCardContainer myitems" >
+                          {products.length > 0 ? (
+                          products.map((item, index) => (
+                            <div className="Categcard" key={index} style={{"height":"22em", "width":"15em"}}>
                               <div className="content-1">
-                                <div className="logo-img myitemsimg">
-                                  <img src={item.images[0].url} alt="" />
+                                <div className="logo-img">
+                                  {/* <img src="https://i.postimg.cc/vBJtjtRC/nike-logo.png" alt="" /> */}
                                 </div>
-                                <img src="" alt="" />
+                                <img src={item.images[0].url} alt="" style={{"width": "5em", "alignItems":"center", "justifyContent":"center", "left":"35%"}}/>
                               </div>
                               <div className="content-2">
                                 <div className="branding">
                                   <div className="brandingInner">
                                     <span>{item.prodname}</span>
-                                   
+                                    <span>{}</span>
                                   </div>
-                                 
-                                  <h4>Date: {item.datepurchase}</h4>
+                                  <h4></h4>
+                                  <h4>Category: {item.categ}</h4>
                                 </div>
                                 <div className="likesContainer">
                                   <div className="price">
-                                  <a onClick={() => {sendProposal(item)}}>
-                                    <span>
-                                     
+                                  <button onClick={() => sendProposal(item)} style={{"background":"transparent"}}>
+                                  <span>
                                       Send Proposal
-                                    </span></a>
+                                  </span>
+                                  </button>
+                                    
                                   </div>
                                 </div>
+                       
                               </div>
-                            </div>
-                          </div>))):(
-  <h2>Kindly Login to proceed with the Swap</h2>
-)}
+                            </div>))) : (<img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>)}
+                          </div>
                         </div>
-                      </div>
-
-                      <div className="actions">
-                        <button
-                          className="btn"
-                          onClick={() => {
-                            close();
-                          }}
-                        >
-                          CLOSE
-                        </button>
+                        <button onClick={closePopup}>Close</button>
                       </div>
                     </div>
-                  )}
-                </Popup> */}
-
-      
-                <button type="button" className="swapbtn btn" onClick={openPopup}>
-                  Let's Swap
-                </button>
-                {isPopupVisible && (
-                    <div className="popup-overlay">
-                      <div className="popup">
-                        <div className="popup-content">
-                          <h2>Popup Content</h2>
-                          <p>This is your popup content.</p>
-                          <button onClick={closePopup}>Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  </div>
+                )}
 
                 <Link to={`/chat/${sellerid}`}>
-                <button type="button" className="btn">
-                  Let's Chat
-                </button></Link>
+                  <button type="button" className="btn">
+                    Let's Chat
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
