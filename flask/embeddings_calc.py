@@ -71,7 +71,7 @@ def get_similar_products():
 
         uploaded_features = extract_features('temp_image.jpg')
 
-        products = list(products_collection.find({}).limit(5))  # Fetch all products
+        products = list(products_collection.find({"categ": "Electronics" }).limit(10))  # Fetch all products
 
         similarities = []
         for product in products:
