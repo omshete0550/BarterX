@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
 import AccountMenu from "./AccountMenu";
+import axios from "axios"
 // import AccountMenu from "./AccountMenu";
 
 const Navbar = () => {
@@ -19,6 +20,7 @@ const Navbar = () => {
   const [uplodingImg, setUploadingImg] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
+  const [ userName, setUserName] = useState(null)
 
   const toggleMenu = () => {
     setIsMenuActive(!isMenuActive);
@@ -42,8 +44,24 @@ const Navbar = () => {
         setIsMenuActive(false);
       });
     });
-  }, []);
 
+    const getUserName = async (id) => {
+     axios
+      .get(`http://localhost:8800/api/users/${id}`)
+      .then((response) => {
+        // setProducts(response.data);
+        console.log(response.data)
+        setUserName(response.data.name)
+      })
+      .catch((error) => console.error('Error fetching username', error));
+    }
+    const userId = localStorage.getItem("token")
+    if(userId){
+      getUserName(userId)
+      
+    }
+  }, []);
+console.log(userName);
   const [showBoxShadow, setShowBoxShadow] = useState(false);
   const handleScroll = () => {
     setShowBoxShadow(window.scrollY > 0);
@@ -58,6 +76,19 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const hitSearchImage = async(url) => {
+    const reqbody = {
+      image_url: url
+    }
+    try{
+      const response = await axios.post(`http://localhost:5000/get_similar_products`, reqbody);
+      console.log(response.data);
+    }
+    catch(error){
+      console.log(error);
+    }
+    
+  }
 
   const validateAndPublish = async () => {
     const fileInput = fileInputRef.current;
@@ -84,7 +115,7 @@ const Navbar = () => {
 
         const imageURL = fileUrl.url;
         setImage(imageURL)
-
+        hitSearchImage(imageURL);
         // Your additional logic with the imageURL
       } catch (error) {
         setUploadingImg(false);
@@ -160,6 +191,9 @@ const Navbar = () => {
                   </button>
                 </div>
               </li>
+              <li className="menu-item">
+                <p style={{"paddingTop":"10px", "textAlign":"center"}}>{userName}</p>
+              </li>
               <li className="menu-item menu-mob">
                 <div
                   style={{
@@ -171,9 +205,10 @@ const Navbar = () => {
                   }}
                 >
                   <AccountMenu />
-                  <p>Account</p>
+              
                 </div>
               </li>
+              
               <li className="menu-item menu-mob">
                 <Link to="/notification">
                   <div
@@ -189,6 +224,7 @@ const Navbar = () => {
                     <i className="NotificationBell">
                       <FaBell />
                     </i>
+                    <p>{userName}</p>
                     <p>Account</p>
                   </div>
                 </Link>

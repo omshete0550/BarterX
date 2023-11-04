@@ -158,7 +158,7 @@ button {
 }
 .userAcc{
   display: flex;
-  margin-left: 2em;
+  /* margin-left: 2em; */
 }
 .UserAccItem{
   display: flex;

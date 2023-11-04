@@ -7,6 +7,7 @@ import requests
 from pymongo import MongoClient
 from sklearn.metrics.pairwise import cosine_similarity
 import pickle
+import pandas
 
 popular_df = pickle.load(open('data/popular.pkl','rb'))
 pt = pickle.load(open('data/pt.pkl','rb'))

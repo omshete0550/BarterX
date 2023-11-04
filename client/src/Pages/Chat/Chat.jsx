@@ -18,6 +18,7 @@ const Chat = () => {
     const fromUserId = userid; 
     const [chatMessages, setChatMessages] = useState([]);
     const [fetchTrigger, setFetchTrigger] = useState(false);
+    const [chatNames, setChatNames] = useState([])
     // const scrollToBottom = () => {
     //   const messagesContainer = document.querySelector('.messages-container');
     //   if (messagesContainer) {
@@ -92,7 +93,34 @@ const Chat = () => {
               console.error('Error fetching user data:', error.message);
             }
           }
+          const getChats = async () => {
+            try {
+              const recvChatsData = await axios.get(`http://localhost:8800/api/chat/retrieveChats/${userid}`);
+              // const recvName = recvChatsData.data.name;
+              console.log(recvChatsData.data[0]);
+              // const chatData = recvChatsData.data[0];
+              // setChatNames(recvChatsData.data[0])
+
+              // // Filter out chat data where participants' IDs match with IDs in local storage
+              // const filteredMessages = chatData.participants.filter(participants => {
+              //   const listparticipants = chatData.participants;
+              //   console.log(listparticipants);
+              //   console.log(userid)
+              //   const filteredpart = listparticipants.filter(participantId => participantId != userid);
+              //   console.log(filteredpart);
+              //   return filteredpart;
+              // });
+              // console.log(filteredMessages);
+              // // Create a new chat object with the filtered messages
+              // // const filteredChat = {participants: filteredMessages };
+
+              // // console.log(filteredChat);
+            } catch (error) {
+              console.error('Error fetching user data:', error.message);
+            }
+          }
         getUserName();
+        getChats();
         getReceiverName();
         scrollToLastMessage();
       }, []);
@@ -116,6 +144,7 @@ const Chat = () => {
           .then((data) => {
             console.log(data);
             // window.location.reload();
+            setMessageInput('')
           })
           .catch((error) => {
             console.error(error);
