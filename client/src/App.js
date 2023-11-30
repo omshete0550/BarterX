@@ -5,6 +5,7 @@ import Landing from './Pages/Landing/Landing';
 import Register from './Pages/Register/Register';
 import Category from './Pages/Category/Category';
 import Home from './Pages/Home/Home';
+
 import NotificationPage from './Pages/Notification/NotificationPage'
 import AddProductPage from './Pages/AddProductPage/AddProductPage';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
@@ -14,6 +15,10 @@ import Ads from './Pages/UserProfile/Ads/Ads';
 import Address from './Pages/UserProfile/Address/Address';
 import Profile from './Pages/UserProfile/Profile/Profile';
 import Proposer from './Pages/UserProfile/Proposer/Proposer';
+import MyProposals from './Pages/UserProfile/MyProposals/MyProposals';
+import Maintainence from './Components/Maintainence/Maintainence';
+import Chat from './Pages/Chat/Chat';
+
 
 function App() {
   return (
@@ -25,7 +30,7 @@ function App() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/home" element={<Home />} />
             <Route exact path="/categ" element={<Category />} />
-            <Route exact path="/add-product" element={<AddProductPage />} />
+            <Route exact path="/addproduct" element={<AddProductPage />} />
             <Route exact path="/product-detail" element={<ProductDetails />} />
             <Route exact path="/notification" element={<NotificationPage />} />
             <Route exact path="/user-profile" element={<UserProfile />} />
@@ -34,6 +39,9 @@ function App() {
             <Route exact path="/edit-address" element={<Address />} />
             <Route exact path="/edit-profile" element={<Profile />} />
             <Route exact path="/proposers" element={<Proposer />} />
+            <Route exact path="/myproposals" element={<MyProposals />} />
+            <Route exact path="/maintainence" element={<Maintainence />} />
+            <Route exact path="/chat/:id" element={<Chat />} />
           </Routes>
       </Router>
     </>

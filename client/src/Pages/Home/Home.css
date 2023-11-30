@@ -76,19 +76,45 @@
   width: 15em;
   height: 20em;
   border-radius: 10px;
-  background-image: url(https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e570738029a725e686_Furniture-min.png);
+  background-image: url(https://img.freepik.com/premium-photo/futuristic-gadgets-showcase-lineup-sleek-modern-technological-devices_977107-682.jpg);
   background-size: cover;
 }
-.HomeSec2Card p {
-  color: #fff;
+.HomeSec3Card {
+  width: 15em;
+  height: 20em;
+  border-radius: 10px;
+  background-image: url(https://etimg.etb2bimg.com/photo/98444504.cms);
+  background-size: cover;
+}
+.HomeSec4Card {
+  width: 15em;
+  height: 20em;
+  border-radius: 10px;
+  background-image: url(https://static-assets.business.amazon.com/assets/in/24th-jan/705_Website_Blog_Appliances_1450x664.jpg.transform/1450x664/image.jpg);
+  background-size: cover;
+}
+.HomeSec5Card {
+  width: 15em;
+  height: 20em;
+  border-radius: 10px;
+  background-image: url(https://img.freepik.com/free-vector/furniture-icons-set_1284-4237.jpg?size=338&ext=jpg&ga=GA1.1.1826414947.1698969600&semt=ais);
+  background-size: cover;
+}
+.HomeSec6Card {
+  width: 15em;
+  height: 20em;
+  border-radius: 10px;
+  background-image: url(https://m.media-amazon.com/images/I/71QE5aRRC4L._AC_UF1000,1000_QL80_.jpg);
+  background-size: cover;
+}
+.HomeSec2Card p, .HomeSec3Card p,.HomeSec4Card p,.HomeSec5Card p,.HomeSec6Card p {
+  color: #000;
+  font-weight: 600;
   text-align: center;
   padding-top: 2em;
-  font: 600 1.5rem/40px "Montserrat", sans-serif;
+  font: 20PX "Montserrat", sans-serif;
 }
-.HomeSec2Card:hover {
-  background-size: 110%;
-  transition: 0.5s all;
-}
+
 
 /* Home Sec 3 */
 

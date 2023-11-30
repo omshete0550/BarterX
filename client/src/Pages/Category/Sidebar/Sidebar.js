@@ -3,7 +3,9 @@ import Price from "./Price/Price";
 import Colors from "./Colors/Colors";
 import "./Sidebar.css";
 import logo from '../../../assets/logo.png';
+
 import { Link } from "react-router-dom";
+
 
 const Sidebar = ({ handleChange }) => {
   return (
@@ -15,6 +17,7 @@ const Sidebar = ({ handleChange }) => {
         <Category handleChange={handleChange} />
         <Category handleChange={handleChange} />
         <Category handleChange={handleChange} />
+
       </section>
     </>
   );

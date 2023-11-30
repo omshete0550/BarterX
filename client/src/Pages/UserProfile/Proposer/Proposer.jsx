@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
 import "./Proposer.css";
 import DataTable, { createTheme } from "react-data-table-component";
 import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
+import { useLocation } from "react-router-dom";
 
 const customStyles = {
   rows: {
     style: {
-      minHeight: "72px",
+      minHeight: "55px",
       background: "rgb(18 19 65)", // override the row height
     },
   },
@@ -19,8 +21,9 @@ const customStyles = {
   },
   cells: {
     style: {
-      paddingLeft: "8px", // override the cell padding for data cells
-      paddingRight: "8px",
+      paddingTop:"0px",
+      paddingLeft: "5px", // override the cell padding for data cells
+      paddingRight: "5px",
     },
   },
 };
@@ -28,30 +31,25 @@ const customStyles = {
 const columns = [
   {
     name: "Date",
-    selector: (row) => row.date,
+    selector: (row) => row.createdAt,
     sortable: true,
   },
   {
-    name: "User",
-    selector: (row) => row.user,
+    name: "Proposer",
+    selector: (row) => row.proposerName,
     sortable: true,
   },
   {
-    name: "Item",
-    selector: (row) => row.item,
-    sortable: true,
-  },
-  {
-    name: "Price",
-    selector: (row) => row.price,
+    name: "Proposed Item",
+    selector: (row) => row.itemName,
     sortable: true,
   },
   {
     name: "Status",
     cell: (row) => (
       <div className="TableBtnContainer">
-        <button className="AcceptBtn">✔</button>
-        <button className="DenyBtn">✘</button>
+        <button className="AcceptBtn" >✔</button>
+        <button className="DenyBtn" >✘</button>
       </div>
     ),
   },
@@ -143,15 +141,83 @@ const data = [
 ];
 
 const Proposer = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  const id = localStorage.getItem("token")
+  const [productData, setProductData] = useState([]);
+  useEffect(() => {
+    const fetchProductData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8800/api/barterrequests/incoming/${id}`);
+        const proposals = response.data;
+        // setProductData(proposals)
+        // console.log(proposals);
+        const requestsWithNames = await Promise.all(
+          proposals.map(async (request) => {
+            // Fetch requester name
+            const proposerData = await axios.get(`http://localhost:8800/api/users/${request.requester}`);
+            // Fetch item name
+            const itemData = await axios.get(`http://localhost:8800/api/getproductdetails/${request.myItem}`);
+  
+            // Update the request object with names
+            return {
+              ...request,
+              proposerName: proposerData.data.name,
+              itemName: itemData.data.prodname,
+            };
+          })
+        );
+        setProductData(requestsWithNames);
+        
+      } catch (error) {
+        console.error('Error fetching product data:', error.message);
+      }
+    };
+  
+    fetchProductData();
+  }, [productData]);
+  console.log(productData);
+  // Function to update the status of a barter request
+  const updateRequestStatus = async (requestId) => {
+    try {
+      // Send an HTTP request to update the status to "success"
+      await axios.put(`http://localhost:8800/api/products/barter/${requestId}`, {
+        status: 'success',
+      });
+      // After the status is updated, you may want to refresh the data or handle it as needed.
+      // You can call fetchProductData() again to refresh the data.
+      // fetchProductData();
+    } catch (error) {
+      console.error('Error updating request status:', error.message);
+    }
+  };
+  
   return (
+  
     <>
       <Navbar />
 
       <div className="proposerContainer">
-        <h1>Proposers</h1>
+        <h1>PROPOSERS</h1>
         <DataTable
-          columns={columns}
-          data={data}
+            columns={columns.map(column => {
+            if (column.name === 'Status') {
+              return {
+                ...column,
+                cell: (row) => (
+                  <div className="TableBtnContainer">
+                    <button className="AcceptBtn" onClick={() => updateRequestStatus(row._id)}>✔</button>
+                    <button className="DenyBtn" >✘</button>
+                  </div>
+                ),
+              };
+            }
+            return column;
+          })}
+          data={productData}
           theme="solarized"
           customStyles={customStyles}
         />

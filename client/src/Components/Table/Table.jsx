@@ -1,22 +1,25 @@
 import React from "react";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 
 const customStyles = {
   rows: {
     style: {
       minHeight: "72px",
-      background: "rgb(18 19 65)", // override the row height
+      background: "#eaeaea", // override the row height
     },
   },
   headCells: {
     style: {
+      color: "#fff",
       paddingLeft: "8px", // override the cell padding for head cells
       paddingRight: "8px",
     },
   },
   cells: {
     style: {
+      color:"#000",
       paddingLeft: "8px", // override the cell padding for data cells
       paddingRight: "8px",
     },
@@ -26,35 +29,35 @@ const customStyles = {
 const columns = [
   {
     name: "Date",
-    selector: (row) => row.date,
+    selector: (row) => row.createdAt,
     sortable: true,
   },
   {
     name: "User",
-    selector: (row) => row.user,
+    selector: (row) => row.requesterName,
     sortable: true,
   },
   {
     name: "Item",
-    selector: (row) => row.item,
+    selector: (row) => row.itemName,
     sortable: true,
   },
-  {
-    name: "Price",
-    selector: (row) => row.price,
-    sortable: true,
-  },
+  // {
+  //   name: "Price",
+  //   selector: (row) => row.price,
+  //   sortable: true,
+  // },
 ];
 
 createTheme(
   "solarized",
   {
     text: {
-      primary: "#fff",
+      primary: "#000",
       secondary: "#2aa198",
     },
     background: {
-      default: "rgba(112, 89, 243, 1)",
+      default: "rgb(18 19 65)",
     },
     context: {
       background: "#cb4b16",
@@ -128,15 +131,47 @@ const data = [
     user: "Angela Yu",
     item: "Sofa",
     price: "5500",
-  },  
+  },
 
 ];
 
-const Table = () => {
+const Table = (props) => {
+  const id = props.id;
+  const [productData, setProductData] = useState([]);
+  useEffect(() => {
+    const fetchProductData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8800/api/productrequests/pending/${id}`);
+        const products = response.data
+        const requestsWithNames = await Promise.all(
+          products.map(async (request) => {
+            // Fetch requester name
+            const requesterData = await axios.get(`http://localhost:8800/api/users/${request.requester}`);
+            // Fetch item name
+            const itemData = await axios.get(`http://localhost:8800/api/getproductdetails/${request.myItem}`);
+  
+            // Update the request object with names
+            return {
+              ...request,
+              requesterName: requesterData.data.name,
+              itemName: itemData.data.prodname,
+            };
+          })
+        );
+        setProductData(requestsWithNames);
+        
+      } catch (error) {
+        console.error('Error fetching product data:', error.message);
+      }
+    };
+  
+    fetchProductData();
+  }, []);
+  console.log(productData);
   return (
     <DataTable
       columns={columns}
-      data={data}
+      data={productData}
       theme="solarized"
       customStyles={customStyles}
     />

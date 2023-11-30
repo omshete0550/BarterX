@@ -34,7 +34,7 @@ const Footer = () => {
                 </Link>
               </div>
               <div className="footer-menu">
-                {/* <h2 className="footer-menu-name"> Get Started</h2> */}
+                <h2 className="footer-menu-name"> Get Started</h2>
                 <ul id="menu-get-started" className="footer-menu-list">
                   <li className="menu-item menu-item-type-post_type menu-item-object-product">
                     <Link to="/">Home</Link>
@@ -43,7 +43,7 @@ const Footer = () => {
                     <Link to="/">Who It's For</Link>
                   </li>
                   <li className="menu-item menu-item-type-post_type menu-item-object-product">
-                    <Link to="/">Where We Barter</Link>
+                    <Link to="/addproduct">Publish Product</Link>
                   </li>
                   <li className="menu-item menu-item-type-post_type menu-item-object-product">
                     <Link to="/">How It Works</Link>

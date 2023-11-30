@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import "./Home.css";
 import { useWindowSize } from "react-use";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { textVariants } from "../../Components/Motion";
 import { motion } from "framer-motion";
 import banner from "../../assets/banner1.png";
@@ -12,11 +12,41 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import axios from "axios";
+// import { useEffect } from "react-router-dom";
 import leftarrow from "../../assets/left_arrow.svg";
 import rightarrow from "../../assets/right_arrow.svg";
 
 const Home = () => {
   const { width } = useWindowSize();
+
+  const navigate = useNavigate();
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // Fetch products from the backend API using Axios
+    axios
+      .get('http://localhost:8800/api/products')
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => console.error('Error fetching products:', error));
+  }, []);
+
+  const handleSingleProduct = (productId) => {
+    axios
+      .post(`http://localhost:8800/api/getproduct/${productId}`)
+      .then((response) => {
+        if (response.status === 200) {
+          const productID = response.data._id;
+          navigate('/product-detail', { state: { id: productID } })
+        }
+      })
+      .catch((error) => console.error('Error fetching products:', error));
+
+
+  }
 
   const homepageProduct = [
     {
@@ -114,12 +144,17 @@ const Home = () => {
       <div className="product_col" data-aos="fade-up">
         <div className="img_wrapper">
           <Link to={item.link} className="product_link">
-            <img
-              src={item.img}
-              alt={item.alt}
-              className="product_img"
-              data-aos="fade-up"
-            />
+            {item.images && item.images.length > 0 ? (
+              <img
+                src={item.images[0].url}
+                alt={item.alt}
+                className="product_img"
+                data-aos="fade-up"
+              />
+            ) : (
+              <p>No images available</p>
+            )}
+
           </Link>
         </div>
         <div className="product_container">
@@ -139,7 +174,10 @@ const Home = () => {
           <p className="product_desc" data-aos="fade-up">
             Owner: {item.owner}
           </p>
-          <p className="product_desc">Required: {item.desiredProduct}</p>
+
+          <p className="product_desc">Category: {item.price}</p>
+
+
         </div>
         <Link to={item.link} className="product_link">
           Know more
@@ -148,6 +186,171 @@ const Home = () => {
     </SwiperSlide>
   ));
 
+  const productLists = products.map((item, i) => (
+    <SwiperSlide key={item._id}>
+      <div className="product_col" data-aos="fade-up">
+        <div className="img_wrapper">
+          {/* <Link to={} className="product_link"> */}
+          <img
+            src={item.images[0].url}
+            // alt={item.alt}
+            className="product_img"
+            data-aos="fade-up"
+          />
+          {/* </Link> */}
+        </div>
+        <div className="product_container">
+          {width > 391 ? (
+            <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.prodname }}
+              data-aos="fade-up"
+            />
+          ) : (
+            {/* <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.mbtitle }}
+              data-aos="fade-up"
+            /> */}
+          )}
+          <p className="product_desc" data-aos="fade-up">
+            {item.desc}
+          </p>
+          <p className="product_desc">Category: {item.categ}</p>
+        </div>
+        {/* <Link to={} className="product_link"> */}
+        {/* Know more */}
+        <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
+        {/* </Link> */}
+      </div>
+
+    </SwiperSlide>
+  ));
+
+  const filteredElectronicProducts = products.filter(item => item.categ === "Electronics");
+  const ElectronicLists = filteredElectronicProducts.map((item, i) => (
+    <SwiperSlide key={item._id}>
+      <div className="product_col" data-aos="fade-up">
+        <div className="img_wrapper">
+          {/* <Link to={} className="product_link"> */}
+          <img
+            src={item.images[0].url}
+            // alt={item.alt}
+            className="product_img"
+            data-aos="fade-up"
+          />
+          {/* </Link> */}
+        </div>
+        <div className="product_container">
+          {width > 391 ? (
+            <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.prodname }}
+              data-aos="fade-up"
+            />
+          ) : (
+            {/* <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.mbtitle }}
+              data-aos="fade-up"
+            /> */}
+          )}
+          <p className="product_desc" data-aos="fade-up">
+            {item.desc}
+          </p>
+          <p className="product_desc">Category: {item.categ}</p>
+        </div>
+        {/* <Link to={} className="product_link"> */}
+          {/* Know more */}
+          <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
+        {/* </Link> */}
+      </div>
+      
+    </SwiperSlide>
+  ));
+  const filteredVehicleProducts = products.filter(item => item.categ === "Vehicles");
+  const VehicleLists = filteredVehicleProducts.map((item, i) => (
+    <SwiperSlide key={item._id}>
+      <div className="product_col" data-aos="fade-up">
+        <div className="img_wrapper">
+          {/* <Link to={} className="product_link"> */}
+          <img
+            src={item.images[0].url}
+            // alt={item.alt}
+            className="product_img"
+            data-aos="fade-up"
+          />
+          {/* </Link> */}
+        </div>
+        <div className="product_container">
+          {width > 391 ? (
+            <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.prodname }}
+              data-aos="fade-up"
+            />
+          ) : (
+            {/* <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.mbtitle }}
+              data-aos="fade-up"
+            /> */}
+          )}
+          <p className="product_desc" data-aos="fade-up">
+            {item.desc}
+          </p>
+          <p className="product_desc">Category: {item.categ}</p>
+        </div>
+        {/* <Link to={} className="product_link"> */}
+          {/* Know more */}
+          <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
+        {/* </Link> */}
+      </div>
+      
+    </SwiperSlide>
+  ));
+
+  const filteredFurnitureProducts = products.filter(item => item.categ === "Furniture");
+  const FurnitureLists = filteredFurnitureProducts.map((item, i) => (
+    <SwiperSlide key={item._id}>
+      <div className="product_col" data-aos="fade-up">
+        <div className="img_wrapper">
+          {/* <Link to={} className="product_link"> */}
+          <img
+            src={item.images[0].url}
+            // alt={item.alt}
+            className="product_img"
+            data-aos="fade-up"
+          />
+          {/* </Link> */}
+        </div>
+        <div className="product_container">
+          {width > 391 ? (
+            <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.prodname }}
+              data-aos="fade-up"
+            />
+          ) : (
+            {/* <h2
+              className="product_title"
+              dangerouslySetInnerHTML={{ __html: item.mbtitle }}
+              data-aos="fade-up"
+            /> */}
+          )}
+          <p className="product_desc" data-aos="fade-up">
+            {item.desc}
+          </p>
+          <p className="product_desc">Category: {item.categ}</p>
+        </div>
+        {/* <Link to={} className="product_link"> */}
+          {/* Know more */}
+          <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
+        {/* </Link> */}
+      </div>
+      
+    </SwiperSlide>
+  ));
   return (
     <>
       <Navbar />
@@ -196,7 +399,7 @@ const Home = () => {
 
         <div className="HomeSec2CardContainer">
 
-          <Link to="/categ">
+          <Link to="/categ/">
             <motion.div
               variants={textVariants("up", 0.2)}
               initial="hidden"
@@ -205,7 +408,7 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="HomeSec2Card"
             >
-              <p>Furniture</p>
+              <p>ELECTRONICS</p>
             </motion.div>
           </Link>
 
@@ -216,9 +419,9 @@ const Home = () => {
               whileInView="show"
               viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
-              className="HomeSec2Card"
+              className="HomeSec3Card"
             >
-              <p>Furniture</p>
+              <p>VEHICLES</p>
             </motion.div>
           </Link>
 
@@ -229,9 +432,9 @@ const Home = () => {
               whileInView="show"
               viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
-              className="HomeSec2Card"
+              className="HomeSec4Card"
             >
-              <p>Furniture</p>
+              <p>HOME APPLIANCES</p>
             </motion.div>
           </Link>
 
@@ -242,9 +445,9 @@ const Home = () => {
               whileInView="show"
               viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
-              className="HomeSec2Card"
+              className="HomeSec5Card"
             >
-              <p>Furniture</p>
+              <p>FURNITURE</p>
             </motion.div>
           </Link>
 
@@ -255,9 +458,9 @@ const Home = () => {
               whileInView="show"
               viewport={{ amount: 0.1 }}
               transition={{ duration: 0.5 }}
-              className="HomeSec2Card"
+              className="HomeSec6Card"
             >
-              <p>Furniture</p>
+              <p>ART</p>
             </motion.div>
           </Link>
 
@@ -349,7 +552,9 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {productLists.length > 0 ? (productLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -450,7 +655,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="home_sec4">
+      {/* <section className="home_sec4">
         <motion.div
           className="my_container"
           variants={textVariants("up", 0.2)}
@@ -535,35 +740,20 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {productLists.length > 0 ? (productLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
             </Swiper>
           </div>
         </motion.div>
-      </section>
+      </section> */}
 
-      <section className="home_sec4">
+      {/* <section className="home_sec4">
         <motion.div
           className="my_container"
           variants={textVariants("up", 0.2)}
@@ -648,35 +838,21 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {productLists.length > 0 ? (productLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
             </Swiper>
           </div>
         </motion.div>
-      </section>
+      </section> */}
 
-      <section className="home_sec4">
+      {/* <section className="home_sec4">
         <motion.div
           className="my_container"
           variants={textVariants("up", 0.2)}
@@ -761,29 +937,14 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {productLists}
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+    
             </Swiper>
           </div>
         </motion.div>
@@ -806,7 +967,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 1
+            Electronics
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -874,29 +1035,16 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {ElectronicLists.length > 0 ? (ElectronicLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+
             </Swiper>
           </div>
         </motion.div>
@@ -919,7 +1067,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 2
+            Vehicles
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -987,29 +1135,15 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {VehicleLists.length > 0 ? (VehicleLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+
             </Swiper>
           </div>
         </motion.div>
@@ -1032,7 +1166,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 3
+            Furniture
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -1100,29 +1234,14 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {FurnitureLists.length > 0 ? (FurnitureLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
             </Swiper>
           </div>
         </motion.div>
@@ -1145,7 +1264,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 4
+            Art
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -1213,29 +1332,16 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {FurnitureLists.length > 0 ? (FurnitureLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+
             </Swiper>
           </div>
         </motion.div>
@@ -1258,7 +1364,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 5
+            Art
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -1326,29 +1432,16 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+               {FurnitureLists.length > 0 ? (FurnitureLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+                 
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+
             </Swiper>
           </div>
         </motion.div>
@@ -1371,7 +1464,7 @@ const Home = () => {
             viewport={{ amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
-            Category 6
+            MISCELLANEOUS
           </motion.h2>
           <div className="product_row" data-aos="fade-up">
             {width > 834 || width < 768 ? null : (
@@ -1439,271 +1532,21 @@ const Home = () => {
                 },
               }}
             >
-              {productList}
+              {FurnitureLists.length > 0 ? (FurnitureLists) : (
+                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
+              ) }
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
+     
                 </div>
               ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
+ 
             </Swiper>
           </div>
         </motion.div>
-      </section>
-
-      <section className="home_sec4">
-        <motion.div
-          className="my_container"
-          variants={textVariants("up", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.h2
-            className="heading"
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-          >
-            Category 7
-          </motion.h2>
-          <div className="product_row" data-aos="fade-up">
-            {width > 834 || width < 768 ? null : (
-              <div className="arrows_wrapper">
-                <img
-                  src={leftarrow}
-                  className="left_arrow"
-                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                />
-                <img
-                  src={rightarrow}
-                  className="right_arrow"
-                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                />
-              </div>
-            )}
-            <Swiper
-              className="productSwiper"
-              slidesPerView={3}
-              slidesPerGroup={1}
-              spaceBetween={98}
-              autoHeight={true}
-              modules={[Pagination, Navigation]}
-              pagination={{
-                type: "progressbar",
-              }}
-              navigation={{
-                nextEl: ".right_arrow",
-                prevEl: ".left_arrow",
-              }}
-              breakpoints={{
-                0: {
-                  spaceBetween: 0,
-                  slidesPerView: 1,
-                },
-                768: {
-                  spaceBetween: 60,
-                  slidesPerView: 2,
-                },
-                992: {
-                  spaceBetween: 50,
-                  slidesPerView: 3,
-                },
-                1280: {
-                  spaceBetween: 70,
-                  slidesPerView: 3,
-                },
-                1536: {
-                  spaceBetween: 80,
-                  slidesPerView: 3,
-                },
-                1600: {
-                  spaceBetween: 98,
-                  slidesPerView: 3,
-                },
-                1920: {
-                  spaceBetween: 99,
-                  slidesPerView: 3,
-                },
-                2250: {
-                  spaceBetween: 120,
-                  slidesPerView: 3,
-                },
-              }}
-            >
-              {productList}
-
-              {width <= 767 ? (
-                <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
-                </div>
-              ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
-            </Swiper>
-          </div>
-        </motion.div>
-      </section>
-
-      <section className="home_sec4">
-        <motion.div
-          className="my_container"
-          variants={textVariants("up", 0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.h2
-            className="heading"
-            variants={textVariants("left", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ amount: 0.1 }}
-            transition={{ duration: 0.5 }}
-          >
-            Category 8
-          </motion.h2>
-          <div className="product_row" data-aos="fade-up">
-            {width > 834 || width < 768 ? null : (
-              <div className="arrows_wrapper">
-                <img
-                  src={leftarrow}
-                  className="left_arrow"
-                  onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                  onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                />
-                <img
-                  src={rightarrow}
-                  className="right_arrow"
-                  onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                  onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                />
-              </div>
-            )}
-            <Swiper
-              className="productSwiper"
-              slidesPerView={3}
-              slidesPerGroup={1}
-              spaceBetween={98}
-              autoHeight={true}
-              modules={[Pagination, Navigation]}
-              pagination={{
-                type: "progressbar",
-              }}
-              navigation={{
-                nextEl: ".right_arrow",
-                prevEl: ".left_arrow",
-              }}
-              breakpoints={{
-                0: {
-                  spaceBetween: 0,
-                  slidesPerView: 1,
-                },
-                768: {
-                  spaceBetween: 60,
-                  slidesPerView: 2,
-                },
-                992: {
-                  spaceBetween: 50,
-                  slidesPerView: 3,
-                },
-                1280: {
-                  spaceBetween: 70,
-                  slidesPerView: 3,
-                },
-                1536: {
-                  spaceBetween: 80,
-                  slidesPerView: 3,
-                },
-                1600: {
-                  spaceBetween: 98,
-                  slidesPerView: 3,
-                },
-                1920: {
-                  spaceBetween: 99,
-                  slidesPerView: 3,
-                },
-                2250: {
-                  spaceBetween: 120,
-                  slidesPerView: 3,
-                },
-              }}
-            >
-              {productList}
-
-              {width <= 767 ? (
-                <div className="mbarrows_wrapper">
-                  {/* <img
-                    src={leftarrow}
-                    className="left_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = leftarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = leftarrow)}
-                  />
-                  <img
-                    src={rightarrow}
-                    className="right_arrow"
-                    onMouseOver={(e) => (e.currentTarget.src = rightarrow)}
-                    onMouseOut={(e) => (e.currentTarget.src = rightarrow)}
-                  /> */}
-                </div>
-              ) : null}
-              {/* <div className="cta_wrapper" data-aos="fade-up">
-                <Link to={productsURL} className="about-button">
-                  Know more
-                </Link>
-              </div> */}
-            </Swiper>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* <section className="HomeSec5">
-        <div className="HomeSec5Container">
-          <div className="HomeSec5content">
-              <h1>Get 5% Cash Back</h1>
-              <h5>on BarterX.in</h5>
-              <button>Learn More</button>
-          </div>  
-          <div className="HomeSec5Image"></div>
-        </div>
       </section> */}
-
+     
       <Footer />
     </>
   );

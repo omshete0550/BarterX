@@ -2,20 +2,33 @@
   margin-top: 7em;
   padding: 20px 80px;
 }
+.myitems{
+  display: flex;flex-wrap: wrap;
+  justify-content: center;
+  height: 60vh !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 .ProductcardWrapper {
   /* max-width: 1100px; */
   margin: 0 auto;
 }
 .ProductcardWrapper img {
-  width: 100%;
+  /* width: 100%; */
   display: block;
+}
+.gif{
+  width: 100px;
 }
 .img-display {
   overflow: hidden;
 }
 .img-showcase {
   display: flex;
-  height: auto;
+  height: 400px;
+  text-align: center;
+  /* align-items: center; */
+  justify-content: center;
   transition: all 0.5s ease;
 }
 .img-select {
@@ -125,7 +138,8 @@
   margin: 1.5rem 0;
 }
 .purchase-info input,
-.purchase-info .btn {
+.purchase-info .btn,
+.actions .btn {
   border-radius: 5px;
   text-align: center;
   padding: 10px 20px;
@@ -137,19 +151,23 @@
   width: 5em;
   border: 1.5px solid #777;
 }
-.purchase-info .btn {
+.purchase-info .btn,
+.actions .btn {
   cursor: pointer;
   color: #fff;
 }
-.purchase-info .btn:first-of-type {
-  background: rgb(18 19 65);
+.swapbtn {
+  background: rgb(18 19 65) !important;
 }
-.purchase-info .btn:last-of-type {
+.purchase-info .btn:last-of-type,
+.actions .btn {
   background: #f64749;
 }
-.purchase-info .btn:hover {
+.purchase-info .btn:hover,
+.actions .btn:hover {
   opacity: 0.9;
 }
+
 .social-links {
   display: flex;
   align-items: center;
@@ -173,7 +191,7 @@
   border-color: transparent;
   color: #fff;
 }
-.DataTable{
+.DataTable {
   padding: 20px 80px;
 }
 @media screen and (min-width: 992px) {
@@ -208,7 +226,7 @@
   .product-content {
     padding: 1rem 1rem;
   }
-  .DataTable{
+  .DataTable {
     padding: 20px 40px;
   }
 }
@@ -220,7 +238,119 @@
     width: 20em;
     height: 20em;
   }
-  .DataTable{
+  .DataTable {
     padding: 20px 20px;
   }
+}
+
+.popup-content {
+  width: 70vw !important;
+  height: 80vh !important;
+}
+.modal {
+  font-size: 12px;
+}
+/* .modal .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+} */
+.modal .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: rgb(18 19 65);
+  border-radius: 18px;
+  /* border: 1px solid #cfcece; */
+}
+.contentheader {
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.contentGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 60vh;
+  align-items: center;
+  overflow-y: auto;
+}
+/* .contentGrid::-webkit-scrollbar {
+  width: 10px;
+}
+.contentGrid::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+
+.contentGrid::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+
+.contentGrid::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+} */
+
+.myitemsimg img {
+  width: 15em  !important;
+  height: 10em !important;
+  position: absolute !important;
+  top: 52% !important;
+  right: 3% !important;
+}
+
+
+/* Center the popup vertically and horizontally */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure the popup is above other elements */
+}
+
+.popup {
+  background-color: #fff; /* Background color for the popup */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure the popup is above the overlay */
+}
+
+/* Style the close button */
+.popup button {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background-color: #f44336;
 }

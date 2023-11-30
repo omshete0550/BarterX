@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../../Components/Navbar/Navbar";
 import Footer from "../../../Components/Footer/Footer";
 import "./Profile.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Profile = () => {
+  const user = localStorage.getItem('token');
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const userData = await axios.get(`http://localhost:8800/api/users/${user}`);
+      setUserData(userData.data);
+    }
+    fetchUser();
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -53,16 +65,12 @@ const Profile = () => {
                         <input
                           type="text"
                           id="user-name"
-                          value="Bradley Steve"
+                          value={userData ? userData.name : "..."}
                           autocomplete="username"
                           required
                         />
                       </div>
                       <div id="user-name-helper" className="helper">
-                        {/* <p>
-                          Your name can appear on the platform, in your
-                          contributions or where it is mentioned.
-                        </p> */}
                       </div>
                     </div>
                     <div className="fieldset">
@@ -89,7 +97,7 @@ const Profile = () => {
                         <input
                           type="email"
                           id="email"
-                          value="Bradley@gmail.com"
+                          value={userData ? userData.email : "..."}
                           autocomplete="username"
                         />
                       </div>
