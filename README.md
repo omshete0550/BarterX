@@ -3,7 +3,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/MohibSayed/BarterX">
-    <img src="client/assets/logo.png" alt="Logo" width="80" height="80">
+    <img src="./client/src/assets/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">BarterX</h3>
@@ -15,11 +15,11 @@
     <a href="https://github.com/MohibSayed/BarterX"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
-    <a href="https://github.com/MohibSayed/BarterX">View Demo</a>
+    <a href="https://github.com/MohibSayed/BarterX">Architecture</a>
     .
-    <a href="https://github.com/MohibSayed/BarterX/issues">Report Bug</a>
+    <a href="https://github.com/MohibSayed/BarterX/issues">Features</a>
     .
-    <a href="https://github.com/MohibSayed/BarterX/issues">Request Feature</a>
+    <a href="https://github.com/MohibSayed/BarterX/issues">Local Setup</a>
   </p>
 </p>
 
