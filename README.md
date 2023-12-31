@@ -1,27 +1,26 @@
 # BarterX
 
 <br/>
+
 <p align="center">
-  <a href="https://github.com/MohibSayed/BarterX">
-    <img src="./client/src/assets/logo.png" alt="Logo" width="120" height="80">
-  </a>
-
-  <h3 align="center">BarterX</h3>
-
-  <p align="center">
-    "Innovating Exchange, Igniting Trade"
-    <br/>
-    <br/>
-    <a href="https://github.com/MohibSayed/BarterX"><strong>Explore the docs »</strong></a>
-    <br/>
-    <br/>
-    <a href="https://github.com/MohibSayed/BarterX">Architecture</a>
-    .
-    <a href="https://github.com/MohibSayed/BarterX/issues">Features</a>
-    .
-    <a href="https://github.com/MohibSayed/BarterX/issues">Local Setup</a>
-  </p>
+  <img src="./client/src/assets/logo.png" width="20%" />
 </p>
+
+<p align="center">
+  Innovating Exchange, Igniting Trade.
+  <br />
+  <br />
+  <a href="#table-of-content"><b>Explore the docs »</b></a>
+  <br />
+  <br />
+  <a href="#architecture-and-design">Architecture</a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="#demonstration">Features</a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="#contributing">Local Setup</a>
+  <br />
+</p>
+
 
 
 https://github.com/MohibSayed/BarterX/assets/95119784/f2e57a56-982c-47c6-b9b9-cf0257d4c0d9
@@ -29,9 +28,9 @@ https://github.com/MohibSayed/BarterX/assets/95119784/f2e57a56-982c-47c6-b9b9-cf
 ## Table Of Contents
 
 - [About the Project](#about-the-project)
-- [Architecture](#built-with)
-- [Demonstration & Features](#usage)
-- [Technologies Used](#roadmap)
+- [Architecture](#architecture)
+- [Demonstration & Features](#demonstration)
+- [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
 - [License](#license)
 - [Authors](#authors)
@@ -58,9 +57,11 @@ The architecture and workflow was built using smartdraw.
 
 <img src="./client/src/assets/architecture.png" alt="architecture">
 
-## Demonstration & Features
+## Demonstration
 
-![Sign Up Page](image-12.png)
+https://github.com/MohibSayed/BarterX/assets/95119784/f2e57a56-982c-47c6-b9b9-cf0257d4c0d9
+
+<!-- ![Sign Up Page](image-12.png)
 ![Login Page](image-13.png)
 
 ![Landing Page](image.png)
@@ -76,7 +77,7 @@ The architecture and workflow was built using smartdraw.
 (image-10.png)
 (image-9.png)
 
-![Publish Product Page](image-11.png)
+![Publish Product Page](image-11.png) -->
 
 
 ### Technologies Used
@@ -134,12 +135,13 @@ Structure
 ```
 src
 ├───assets
-├───components
-├───containers
+├───Components
+├───Pages
+├───App.js
 └───index.js
 ```
 
-Individual Component & Container Structure
+Individual Component & Pages Structure
 
 ```
 component
@@ -147,9 +149,47 @@ component
 └───component.css
 ```
 
+```
+Pages
+├───page.jsx
+└───page.css
+```
+
 <br />
 <br />
 
+**Server**
+
+For local setup of backend:
+- `cd server`
+- `npm i`
+- `npm start`
+
+```
+server
+├───models
+├───index.js
+└───package.json
+```
+
+<br />
+<br />
+
+**Flask**
+
+For local setup of flask:
+- `cd flsk`
+- `npm i`
+- `python embeddings_calc.py`
+
+```
+flask
+├───data
+└───embeddings_calc.py
+```
+
+<br />
+<br />
 
 
 ## License
@@ -163,7 +203,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com/MohibSayed/B
 - Mohib Abbas Sayed
   - [LinkedIn](https://www.linkedin.com/in/mohib-abbas-sayed-83837422a/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
 - Hamza Sayyed
-  - [Twitter](https://shorturl.at/hjAEI) 
+  - [LinkedIn](https://shorturl.at/hjAEI) 
 
 Profiles of my Team
 
