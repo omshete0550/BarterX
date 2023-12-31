@@ -3,7 +3,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/MohibSayed/BarterX">
-    <img src="./client/src/assets/logo.png" alt="Logo" width="80" height="80">
+    <img src="./client/src/assets/logo.png" alt="Logo" width="120" height="80">
   </a>
 
   <h3 align="center">BarterX</h3>
@@ -29,98 +29,128 @@ https://github.com/MohibSayed/BarterX/assets/95119784/f2e57a56-982c-47c6-b9b9-cf
 ## Table Of Contents
 
 - [About the Project](#about-the-project)
-- [Built With](#built-with)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Roadmap](#roadmap)
+- [Architecture](#built-with)
+- [Demonstration & Features](#usage)
+- [Technologies Used](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
 - [Authors](#authors)
-- [Acknowledgements](#acknowledgements)
 
 ## About The Project
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need.
+Traditional commerce lacks sustainable alternatives, leading to excessive unnecessary consumption and waste. Our society needs an innovative and sustainable solution/platform to empower individuals to exchange goods or items, promoting a more eco-friendly, community-oriented, conscious and responsible lifestyle.
 
-Here's why:
+Objectives:
 
-- Your time should be focused on creating something amazing. A project that solves a problem and helps others
-- You shouldn't be doing the same tasks over and over like creating a README from scratch
-- You should element DRY principles to the rest of your life :smile:
+- The primary objective of BarterX is to provide a user-friendly platform that facilitates meaningful exchanges of goods and services.
+- Encourage users to swap items they no longer need, promoting a culture of sustainability and reducing unnecessary waste.
+- Encourage regular engagement through features like one to one chats, and user proposals.
+- Who says you need to know all the trends by name to shop? If you see something you like, take a picture, upload and start trading.
+
 
 Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
 
 A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
-## Built With
+## Architecture
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+The architecture and workflow was built using smartdraw.
 
-## Getting Started
+<img src="./client/src/assets/architecture.png" alt="architecture">
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+## Demonstration & Features
 
-### Prerequisites
+![Sign Up Page](image-12.png)
+![Login Page](image-13.png)
 
-This is an example of how to list things you need to use the software and how to install them.
+![Landing Page](image.png)
+(image-1.png)
+(image-2.png)
+(image-3.png)
+(image-4.png)
 
-- npm
+![Home Page](image-5.png)
+(image-6.png)
+(image-7.png)
+![Single Product Page](image-8.png)
+(image-10.png)
+(image-9.png)
 
-```sh
-npm install npm@latest -g
-```
+![Publish Product Page](image-11.png)
 
-### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+### Technologies Used
 
-2. Clone the repo
+- Workflow and Architecture Design
+  - SmartDraw
+- Frontend
+  - React.js
+  - CSS
+- Backend
+  - Node.js (Express.js)
+  - MongoDB
+- Machine Learning
+  - pickle
+  - Tensorflow_hub
+  - Flask
+  - sklearn
 
-```sh
-git clone https://github.com/your_username_/Project-Name.git
-```
 
-3. Install NPM packages
-
-```sh
-npm install
-```
-
-4. Enter your API in `config.js`
-
-```JS
-const API_KEY = 'ENTER YOUR API';
-```
-
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-## Roadmap
-
-See the [open issues](https://github.com/MohibSayed/BarterX/issues) for a list of proposed features (and known issues).
+<br />
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+**Local Setup || Project Structure**
 
-- If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/MohibSayed/BarterX/issues/new) to discuss it, or directly create a pull request after you edit the _README.md_ file with necessary changes.
-- Please make sure you check your spelling and grammar.
-- Create individual PR for each suggestion.
-- Please also read through the [Code Of Conduct](https://github.com/MohibSayed/BarterX/blob/main/CODE_OF_CONDUCT.md) before posting your first idea as well.
+NOTE: Individual instructions can be found in respective directories.
 
-### Creating A Pull Request
+- The project contains 4 broad directories.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+```
+*
+├───client
+├───extension
+├───model
+└───server
+```
+
+- `client`: The frontend for the application.
+- `extension`: Chrome/Edge extension to keep a track of browser tabs.
+- `model`: Model APIs for Machine Learning.
+- `server`: The backend for the application.
+
+<br />
+
+**Client**
+
+For local setup of frontend:
+- `cd client`
+- `npm i`
+- `npm start`
+- Go to `localhost:3000`
+
+Structure
+
+```
+src
+├───assets
+├───components
+├───containers
+└───index.js
+```
+
+Individual Component & Container Structure
+
+```
+component
+├───component.jsx
+└───component.css
+```
+
+<br />
+<br />
+
+
 
 ## License
 
@@ -128,10 +158,14 @@ Distributed under the MIT License. See [LICENSE](https://github.com/MohibSayed/B
 
 ## Authors
 
-- **Shaan Khan** - _Comp Sci Student_ - [Shaan Khan](https://github.com/ShaanCoding/) - _Built ReadME Template_
+- Om Shete
+  - [LinkedIn](https://www.linkedin.com/in/om-shete-25748522a/)
+- Mohib Abbas Sayed
+  - [LinkedIn](https://www.linkedin.com/in/mohib-abbas-sayed-83837422a/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
+- Hamza Sayyed
+  - [Twitter](https://shorturl.at/hjAEI) 
 
-## Acknowledgements
+Profiles of my Team
 
-- [ShaanCoding](https://github.com/ShaanCoding/)
-- [Othneil Drew](https://github.com/othneildrew/Best-README-Template)
-- [ImgShields](https://shields.io/)
+
+
