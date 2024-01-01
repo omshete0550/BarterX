@@ -10,7 +10,7 @@
   Innovating Exchange, Igniting Trade.
   <br />
   <br />
-  <a href="#table-of-content"><b>Explore the docs »</b></a>
+  <a href="#table-of-contents"><b>Explore the docs »</b></a>
   <br />
   <br />
   <a href="#architecture-and-design">Architecture</a>
@@ -29,7 +29,7 @@ https://github.com/MohibSayed/BarterX/assets/95119784/f2e57a56-982c-47c6-b9b9-cf
 
 - [About the Project](#about-the-project)
 - [Architecture](#architecture)
-- [Demonstration & Features](#demonstration)
+<!-- - [Demonstration & Features](#demonstration) -->
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
 - [License](#license)
@@ -57,9 +57,7 @@ The architecture and workflow was built using smartdraw.
 
 <img src="./client/src/assets/architecture.png" alt="architecture">
 
-## Demonstration
-
-https://github.com/MohibSayed/BarterX/assets/95119784/f2e57a56-982c-47c6-b9b9-cf0257d4c0d9
+<!-- ## Demonstration -->
 
 <!-- ![Sign Up Page](image-12.png)
 ![Login Page](image-13.png)
@@ -110,9 +108,8 @@ NOTE: Individual instructions can be found in respective directories.
 ```
 *
 ├───client
-├───extension
-├───model
-└───server
+├───server
+└───flask
 ```
 
 - `client`: The frontend for the application.
@@ -178,7 +175,7 @@ server
 **Flask**
 
 For local setup of flask:
-- `cd flsk`
+- `cd flask`
 - `npm i`
 - `python embeddings_calc.py`
 
@@ -205,7 +202,6 @@ Distributed under the MIT License. See [LICENSE](https://github.com/MohibSayed/B
 - Hamza Sayyed
   - [LinkedIn](https://shorturl.at/hjAEI) 
 
-Profiles of my Team
 
 
 
