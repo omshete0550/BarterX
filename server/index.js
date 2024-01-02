@@ -406,6 +406,25 @@ app.get('/api/chat/retrieveMessages/:toUserId/:fromUserId', async (req, res, nex
         next(error);
     }
 })
+app.get('/api/chat/retrieveChats/:userId', async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
+        // const fromUserId = req.params.fromUserId;
+
+        const messages = await ChatMessage.find({
+            // participants: { $all: [userId] }
+            participants: { $in: [userId] }
+        });
+
+        if (messages) {
+            res.json(messages);
+        } else {
+            res.status(404).json({ message: 'No chats found for this user' });
+        }
+    } catch (error) {
+        next(error);
+    }
+})
 app.listen(Port, () => {
     console.log("Server started on Port " + Port);
 });

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Landing.css";
 import NavbarL from "../../Components/NavbarL/NavbarL";
 import Footer from "../../Components/Footer/Footer";
@@ -11,7 +11,14 @@ import VerticalTab from "../../Components/VerticalTabPanel/VerticalTab";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
-
+  // const [userId, setUserId] = useState("")
+  // useEffect = (()=>{
+  //   const id = localStorage.getItem("token")
+  //   if(id){
+  //     setUserId(id);
+  //   }
+  // }, [userId]);
+  
   return (
     <>
       <NavbarL />
