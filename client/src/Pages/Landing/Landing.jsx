@@ -18,7 +18,7 @@ const Landing = () => {
   //     setUserId(id);
   //   }
   // }, [userId]);
-  
+
   return (
     <>
       <NavbarL />
@@ -34,7 +34,7 @@ const Landing = () => {
             transition={{ duration: 0.5 }}
           >
             <img
-              src="https://img.freepik.com/free-vector/international-trade-concept-illustration_114360-9661.jpg?w=2000"
+              src="https://cdn-icons-png.flaticon.com/512/7325/7325332.png"
               alt=""
             />
           </motion.div>
@@ -58,13 +58,31 @@ const Landing = () => {
             <div className="searchbox-wrap">
               <input type="text" placeholder="Input your email address" />
               <button>
-              <Link to="/register">
-                <span>Sign Up</span>{" "}</Link>
+                <Link to="/register">
+                  <span>Sign Up</span>{" "}
+                </Link>
               </button>
             </div>
             <div className="barterNowBtn">
-              <Link to='/home'>
-              <button>Barter Now</button>
+              <Link to="/home">
+                {/* <button>Barter Now</button> */}
+                <button class="cta">
+                  <span class="hover-underline-animation"> Shop now </span>
+                  <svg
+                    id="arrow-horizontal"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="10"
+                    viewBox="0 0 46 16"
+                  >
+                    <path
+                      id="Path_10"
+                      data-name="Path 10"
+                      d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                      transform="translate(30)"
+                    ></path>
+                  </svg>
+                </button>
               </Link>
             </div>
           </motion.div>
@@ -137,9 +155,9 @@ const Landing = () => {
                     <FaUser />
                   </i>
                 </div>
-                <h2 className="barndInfo_heading">User Reliance  </h2>
+                <h2 className="barndInfo_heading">User Reliance </h2>
                 <p className="barndInfo_desc">
-                Stable and dependable quality for our customers
+                  Stable and dependable quality for our customers
                 </p>
               </div>
             </div>
@@ -226,7 +244,8 @@ const Landing = () => {
                 <div className="second-content">
                   <span>ELECTRONICS</span>
                   <p>
-                  Welcome to our electronics shop where innovation meets affordability!
+                    Welcome to our electronics shop where innovation meets
+                    affordability!
                   </p>
                   <button>Explore More</button>
                 </div>
@@ -250,9 +269,7 @@ const Landing = () => {
                 </div>
                 <div className="second-content">
                   <span>HOME APPLIANCES</span>
-                  <p>
-                  Unleash the power of hassle-free cleaning!
-                  </p>
+                  <p>Unleash the power of hassle-free cleaning!</p>
                   <button>Explore More</button>
                 </div>
               </motion.div>
@@ -275,9 +292,7 @@ const Landing = () => {
                 </div>
                 <div className="second-content">
                   <span>FURNITURE</span>
-                  <p>
-                  Furnish your lifestyle & make your room perfect.
-                  </p>
+                  <p>Furnish your lifestyle & make your room perfect.</p>
                   <button>Explore More</button>
                 </div>
               </motion.div>
@@ -300,9 +315,7 @@ const Landing = () => {
                 </div>
                 <div className="second-content">
                   <span>ART</span>
-                  <p>
-                  Keeping it simple yet very beautiful
-                  </p>
+                  <p>Keeping it simple yet very beautiful</p>
                   <button>Explore More</button>
                 </div>
               </motion.div>
@@ -325,9 +338,7 @@ const Landing = () => {
                 </div>
                 <div className="second-content">
                   <span>VEHICLES</span>
-                  <p>
-                  Accelerating the Future.
-                  </p>
+                  <p>Accelerating the Future.</p>
                   <button>Explore More</button>
                 </div>
               </motion.div>
@@ -376,9 +387,7 @@ const Landing = () => {
                 </div>
                 <div className="second-content">
                   <span>EDUCATION</span>
-                  <p>
-                    Educate within
-                  </p>
+                  <p>Educate within</p>
                   <button>Explore More</button>
                 </div>
               </motion.div>
@@ -401,9 +410,7 @@ const Landing = () => {
                 </div>
                 <div className="second-content">
                   <span>MISCELLANEOUS</span>
-                  <p>
-                  All the world's treasures, right at your grasp.
-                  </p>
+                  <p>All the world's treasures, right at your grasp.</p>
                   <button>Explore More</button>
                 </div>
               </motion.div>

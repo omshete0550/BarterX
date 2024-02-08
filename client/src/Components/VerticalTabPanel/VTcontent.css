@@ -13,7 +13,6 @@
 
 .section__Jobs-styledContent h5 {
   font-size: 1em;
-  font-family: "Roboto Mono", monospace;
   letter-spacing: 0.05em;
   margin-bottom: 30px;
   color: #000;
@@ -21,7 +20,6 @@
 
 .section__Jobs-styledContent p {
   font-size: 1.1em;
-  font-family: "Roboto", sans-serif;
   margin-bottom: 1em;
   margin-right: 1em;
 }

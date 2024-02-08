@@ -15,8 +15,8 @@ const Sidebar = ({ handleChange }) => {
           <Link to="/"><img src={logo} alt="" /></Link>
         </div>
         <Category handleChange={handleChange} />
-        <Category handleChange={handleChange} />
-        <Category handleChange={handleChange} />
+        <Colors handleChange={handleChange} />
+        {/* <Category handleChange={handleChange} /> */}
 
       </section>
     </>
