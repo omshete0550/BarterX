@@ -28,7 +28,7 @@ const Home = () => {
   useEffect(() => {
     // Fetch products from the backend API using Axios
     axios
-      .get("https://barter-x-taupe.vercel.app/api/products")
+      .get("http://localhost:8800/api/products")
       .then((response) => {
         setProducts(response.data);
       })
@@ -37,7 +37,7 @@ const Home = () => {
 
   const handleSingleProduct = (productId) => {
     axios
-      .post(`https://barter-x-taupe.vercel.app/api/getproduct/${productId}`)
+      .post(`http://localhost:8800/api/getproduct/${productId}`)
       .then((response) => {
         if (response.status === 200) {
           const productID = response.data._id;
