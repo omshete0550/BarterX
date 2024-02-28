@@ -28,7 +28,7 @@
   position: absolute;
   width: 0;
   height: 2px;
-  background-color: rgb(55, 93, 187);
+  background-color: rgb(152 122 251);
   transition: all 0.3s cubic-bezier(0.35, 0.1, 0.25, 1);
 }
 .menu-link .buttons button:before {
@@ -56,7 +56,7 @@
   position: absolute;
   width: 2px;
   height: 0;
-  background-color: rgb(55, 93, 187);
+  background-color: rgb(152 122 251);
   transition: all 0.3s cubic-bezier(0.35, 0.1, 0.25, 1);
 }
 .menu-link .buttons button span:before {
@@ -92,7 +92,7 @@
 .menu-link .buttons button p:after {
   content: attr(data-text);
   top: 150%;
-  color: rgb(55, 93, 187);
+  color: rgb(152 122 251);
 }
 .menu-link .buttons button:hover:before,
 .menu-link .buttons button:hover:after {
@@ -114,7 +114,7 @@
   transform: translateY(-50%);
 }
 .menu-link .buttons button.start {
-  background-color: rgb(55, 93, 187);
+  background-color: rgb(152 122 251);
   box-shadow: 0px 5px 10px -10px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
 }
@@ -158,8 +158,8 @@
   align-items: center;
   padding: 10px 20px;
   gap: 15px;
-  background-color: rgb(55, 93, 187);
-  outline: 1px rgb(55, 93, 187) solid;
+  background-color: rgb(152 122 251);
+  outline: 1px rgb(152 122 251) solid;
   outline-offset: -3px;
   border-radius: 1em;
   border: none;
@@ -205,6 +205,6 @@
   }
   .NotificationBell{
     font-size: 2.5rem;
-    color:rgb(55, 93, 187);
+    color:rgb(152 122 251);
   }
 }

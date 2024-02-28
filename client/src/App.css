@@ -42,7 +42,7 @@ li {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: rgb(152 122 251);
 }
 
 /* Handle on hover */

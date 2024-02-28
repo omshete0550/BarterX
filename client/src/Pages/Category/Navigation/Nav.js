@@ -14,7 +14,7 @@ const Nav = ({ handleInputChange, query }) => {
           type="text"
           onChange={handleInputChange}
           value={query}
-          placeholder="Enter your search shoes."
+          placeholder="Enter your search...."
         />
       </div>
       <div className="profile-container">
@@ -23,7 +23,7 @@ const Nav = ({ handleInputChange, query }) => {
           <i><FaRegHeart /></i>
         </Link>
         <Link to="">
-          <i><AiOutlineUserAdd /></i>
+          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
           {/* <AccountMenu /> */}
         </Link>
 

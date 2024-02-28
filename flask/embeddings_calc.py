@@ -8,6 +8,7 @@ from pymongo import MongoClient
 from sklearn.metrics.pairwise import cosine_similarity
 import pickle
 import pandas
+from flask_cors import CORS
 
 popular_df = pickle.load(open('data/popular.pkl','rb'))
 pt = pickle.load(open('data/pt.pkl','rb'))

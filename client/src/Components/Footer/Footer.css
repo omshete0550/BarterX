@@ -83,7 +83,7 @@
   margin-right: 0;
 }
 .footer-call-to-action-button {
-  background-color: rgb(134, 168, 255);
+  background-color: rgb(152 122 251);
   border-radius: 21px;
   color: #fff;
   display: inline-block;
@@ -141,7 +141,7 @@
 }
 
 .footer-social-amoeba-path {
-  fill: rgb(134, 168, 255);
+  fill: rgb(152 122 251);
 }
 
 .footer-social-link.linkedin {
@@ -202,7 +202,7 @@
 }
 
 .footer-copyright {
-  background-color: rgb(134, 168, 255);
+  background-color: rgb(152 122 251);
   color: #fff;
   padding: 15px 30px;
   text-align: center;

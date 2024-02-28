@@ -16,6 +16,7 @@ import axios from "axios";
 // import { useEffect } from "react-router-dom";
 import leftarrow from "../../assets/left_arrow.svg";
 import rightarrow from "../../assets/right_arrow.svg";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const Home = () => {
   const { width } = useWindowSize();
@@ -27,11 +28,11 @@ const Home = () => {
   useEffect(() => {
     // Fetch products from the backend API using Axios
     axios
-      .get('http://localhost:8800/api/products')
+      .get("http://localhost:8800/api/products")
       .then((response) => {
         setProducts(response.data);
       })
-      .catch((error) => console.error('Error fetching products:', error));
+      .catch((error) => console.error("Error fetching products:", error));
   }, []);
 
   const handleSingleProduct = (productId) => {
@@ -40,13 +41,11 @@ const Home = () => {
       .then((response) => {
         if (response.status === 200) {
           const productID = response.data._id;
-          navigate('/product-detail', { state: { id: productID } })
+          navigate("/product-detail", { state: { id: productID } });
         }
       })
-      .catch((error) => console.error('Error fetching products:', error));
-
-
-  }
+      .catch((error) => console.error("Error fetching products:", error));
+  };
 
   const homepageProduct = [
     {
@@ -154,7 +153,6 @@ const Home = () => {
             ) : (
               <p>No images available</p>
             )}
-
           </Link>
         </div>
         <div className="product_container">
@@ -176,8 +174,6 @@ const Home = () => {
           </p>
 
           <p className="product_desc">Category: {item.price}</p>
-
-
         </div>
         <Link to={item.link} className="product_link">
           Know more
@@ -207,11 +203,13 @@ const Home = () => {
               data-aos="fade-up"
             />
           ) : (
-            {/* <h2
+            {
+              /* <h2
               className="product_title"
               dangerouslySetInnerHTML={{ __html: item.mbtitle }}
               data-aos="fade-up"
-            /> */}
+            /> */
+            }
           )}
           <p className="product_desc" data-aos="fade-up">
             {item.desc}
@@ -223,11 +221,12 @@ const Home = () => {
         <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
         {/* </Link> */}
       </div>
-
     </SwiperSlide>
   ));
 
-  const filteredElectronicProducts = products.filter(item => item.categ === "Electronics");
+  const filteredElectronicProducts = products.filter(
+    (item) => item.categ === "Electronics"
+  );
   const ElectronicLists = filteredElectronicProducts.map((item, i) => (
     <SwiperSlide key={item._id}>
       <div className="product_col" data-aos="fade-up">
@@ -249,11 +248,13 @@ const Home = () => {
               data-aos="fade-up"
             />
           ) : (
-            {/* <h2
+            {
+              /* <h2
               className="product_title"
               dangerouslySetInnerHTML={{ __html: item.mbtitle }}
               data-aos="fade-up"
-            /> */}
+            /> */
+            }
           )}
           <p className="product_desc" data-aos="fade-up">
             {item.desc}
@@ -261,14 +262,15 @@ const Home = () => {
           <p className="product_desc">Category: {item.categ}</p>
         </div>
         {/* <Link to={} className="product_link"> */}
-          {/* Know more */}
-          <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
+        {/* Know more */}
+        <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
         {/* </Link> */}
       </div>
-      
     </SwiperSlide>
   ));
-  const filteredVehicleProducts = products.filter(item => item.categ === "Vehicles");
+  const filteredVehicleProducts = products.filter(
+    (item) => item.categ === "Vehicles"
+  );
   const VehicleLists = filteredVehicleProducts.map((item, i) => (
     <SwiperSlide key={item._id}>
       <div className="product_col" data-aos="fade-up">
@@ -290,11 +292,13 @@ const Home = () => {
               data-aos="fade-up"
             />
           ) : (
-            {/* <h2
+            {
+              /* <h2
               className="product_title"
               dangerouslySetInnerHTML={{ __html: item.mbtitle }}
               data-aos="fade-up"
-            /> */}
+            /> */
+            }
           )}
           <p className="product_desc" data-aos="fade-up">
             {item.desc}
@@ -302,15 +306,16 @@ const Home = () => {
           <p className="product_desc">Category: {item.categ}</p>
         </div>
         {/* <Link to={} className="product_link"> */}
-          {/* Know more */}
-          <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
+        {/* Know more */}
+        <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
         {/* </Link> */}
       </div>
-      
     </SwiperSlide>
   ));
 
-  const filteredFurnitureProducts = products.filter(item => item.categ === "Furniture");
+  const filteredFurnitureProducts = products.filter(
+    (item) => item.categ === "Furniture"
+  );
   const FurnitureLists = filteredFurnitureProducts.map((item, i) => (
     <SwiperSlide key={item._id}>
       <div className="product_col" data-aos="fade-up">
@@ -332,11 +337,13 @@ const Home = () => {
               data-aos="fade-up"
             />
           ) : (
-            {/* <h2
+            {
+              /* <h2
               className="product_title"
               dangerouslySetInnerHTML={{ __html: item.mbtitle }}
               data-aos="fade-up"
-            /> */}
+            /> */
+            }
           )}
           <p className="product_desc" data-aos="fade-up">
             {item.desc}
@@ -344,11 +351,10 @@ const Home = () => {
           <p className="product_desc">Category: {item.categ}</p>
         </div>
         {/* <Link to={} className="product_link"> */}
-          {/* Know more */}
-          <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
+        {/* Know more */}
+        <a onClick={() => handleSingleProduct(item._id)}>Know More</a>
         {/* </Link> */}
       </div>
-      
     </SwiperSlide>
   ));
   return (
@@ -398,7 +404,6 @@ const Home = () => {
         </motion.h1>
 
         <div className="HomeSec2CardContainer">
-
           <Link to="/categ/">
             <motion.div
               variants={textVariants("up", 0.2)}
@@ -463,7 +468,6 @@ const Home = () => {
               <p>ART</p>
             </motion.div>
           </Link>
-
         </div>
       </section>
 
@@ -552,9 +556,22 @@ const Home = () => {
                 },
               }}
             >
-              {productLists.length > 0 ? (productLists) : (
-                <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" height={250}/>
-              ) }
+              {productLists.length > 0 ? (
+                productLists
+              ) : (
+                <img src="https://cdn.dribbble.com/users/546766/screenshots/4790425/progress-circle.gif" height={250}/>
+                // <SkeletonTheme baseColor="#fafafe" highlightColor="#eee">
+                //   <div>
+                //     <Skeleton count={1} height="10em" width="18em" />
+                //     <div style={{ marginTop: "1em" }}>
+                //       <Skeleton count={2} width={"18em"} />
+                //     </div>
+                //     <div style={{ marginTop: "3em" }}>
+                //       <Skeleton count={1} width={"18em"} />
+                //     </div>
+                //   </div>
+                // </SkeletonTheme>
+              )}
 
               {width <= 767 ? (
                 <div className="mbarrows_wrapper">
@@ -1546,7 +1563,7 @@ const Home = () => {
           </div>
         </motion.div>
       </section> */}
-     
+
       <Footer />
     </>
   );

@@ -213,10 +213,10 @@ const data = [
     newPrice: "5999",
     company: "Nike",
     color: "white",
-    category: "sneakers",
+    category: "sports",
   },
   {
-    img: "https://assets.stickpng.com/images/580b57fbd9996e24bc43bfe5.png",
+    img: "https://i1.adis.ws/i/canon/eos-700d-frt-w-ef-s-18-135mm-is-stm_b0d7e3f18e6d4cbf87259e1783757bd1",
     title: "Canon EOS R5",
     owner: "Jessica Johnson",
     OldNew: 'New',
@@ -227,7 +227,7 @@ const data = [
     newPrice: "2499",
     company: "Canon",
     color: "black",
-    category: "cameras",
+    category: "electronics",
   },
   {
     img: "https://images.samsung.com/is/image/samsung/in-french-door-rf60j9090sl-rf60j9090sl-tl-001-front-silver?$650_519_PNG$",

@@ -16,7 +16,7 @@ const AccountMenu = () => {
         <MenuButton>
           <Avatar
             facebook-id="invalidfacebookusername"
-            src="http://www.gravatar.com/avatar/a16a38cdfe8b2cbd38e8a56ab93238d3"
+            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
             size="40"
             round={true}
           />

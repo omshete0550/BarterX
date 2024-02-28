@@ -31,11 +31,15 @@
   gap: 0.5em;
 }
 .profile-container i {
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   color: #bdbdbd;
   margin-left: 1rem;
 }
-
+.profile-container img{
+  width: 3em;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}
 /* mOB */
 .CategSec2 {
   margin-top: 1em;
