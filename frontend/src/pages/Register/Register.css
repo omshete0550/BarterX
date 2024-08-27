@@ -1,0 +1,36 @@
+.register-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.register-img-container {
+  width: 50vw;
+}
+.register-img-container  img{
+    height: 100vh;
+}
+.register-items-container {
+  width: 50%;
+  padding: 20px 60px;
+}
+
+.register-logo img {
+    width: 12em;
+    margin-bottom: 3em;
+}
+.register-headline h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 1.5em;
+}
+
+.register-input{
+    margin-bottom: 1.2em;
+}
+.signup-btn{
+    margin-top: 2em;
+}
+.signin-btn{
+    margin-top: 1em;
+    text-align: center;
+}

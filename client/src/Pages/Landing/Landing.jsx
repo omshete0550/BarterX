@@ -10,6 +10,7 @@ import resumeData from "../../Components/VerticalTabPanel/Data";
 import VerticalTab from "../../Components/VerticalTabPanel/VerticalTab";
 import { Link } from "react-router-dom";
 import Counteritem from "../../Components/CounterItem/CounterItem";
+import hero from '../../assets/hero.jpg'
 const Landing = () => {
   // const [userId, setUserId] = useState("")
   // useEffect = (()=>{
@@ -34,7 +35,7 @@ const Landing = () => {
             transition={{ duration: 0.5 }}
           >
             <img
-              src="https://www.shutterstock.com/image-illustration/exchange-trade-conceptual-illustration-3d-600nw-45014272.jpg"
+              src={hero}
               alt=""
             />
           </motion.div>
