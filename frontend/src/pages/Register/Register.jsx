@@ -18,7 +18,8 @@ const Register = () => {
     username: undefined,
     email: undefined,
     phone: undefined,
-    passwords: undefined,
+    city: undefined,
+    password: undefined,
   });
 
   const handleChange = (e) => {
@@ -57,14 +58,16 @@ const Register = () => {
             <div className="register-input">
               <Input
                 type="name"
-                label="Name"
+                label="Username"
                 fullWidth
                 onChange={handleChange}
+                id="username"
               />
             </div>
             <div className="register-input">
               <Input
                 type="email"
+                id="email"
                 label="Email"
                 fullWidth
                 onChange={handleChange}
@@ -72,8 +75,18 @@ const Register = () => {
             </div>
             <div className="register-input">
               <Input
+                type="text"
+                id="city"
+                label="City"
+                fullWidth
+                onChange={handleChange}
+              />
+            </div>
+            <div className="register-input">
+              <Input
                 type="number"
-                label="Phone No."
+                id="phone"
+                label="Phone Number"
                 fullWidth
                 onChange={handleChange}
               />
@@ -81,6 +94,7 @@ const Register = () => {
             <div className="register-input">
               <Input
                 label="Password"
+                id="password"
                 fullWidth
                 onChange={handleChange}
                 endContent={
@@ -106,7 +120,7 @@ const Register = () => {
             <Button color="secondary" fullWidth onClick={handleClick}>
               Sign Up
             </Button>
-            <Divider className="my-4" />
+            {/* <Divider className="my-4" />
             <Button
               className="bg-neutral-900 text-white"
               variant="bordered"
@@ -117,7 +131,7 @@ const Register = () => {
                 size="sm"
               />{" "}
               Or sign up with Google
-            </Button>
+            </Button> */}
           </div>
 
           <div className="signin-btn">

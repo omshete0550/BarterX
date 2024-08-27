@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Register/Register.css";
 import { Button, Image } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
@@ -8,8 +8,21 @@ import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { Divider } from "@nextui-org/divider";
 import { Avatar } from "@nextui-org/react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/apiCalls";
 
 const Login = () => {
+  // Integration
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.user);
+  const handleClick = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+  };
+
   const [isVisible, setIsVisible] = React.useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -34,13 +47,18 @@ const Login = () => {
 
           <div>
             <div className="register-input">
-              <Input type="email" label="Email" fullWidth />
+              <Input
+                type="text"
+                label="Username"
+                fullWidth
+                onChange={(e) => setUsername(e.target.value)}
+              />
             </div>
             <div className="register-input">
               <Input
                 label="Password"
                 fullWidth
-                // placeholder="Enter your password"
+                onChange={(e) => setPassword(e.target.value)}
                 endContent={
                   <button
                     className="focus:outline-none"
@@ -61,20 +79,8 @@ const Login = () => {
           </div>
 
           <div className="signup-btn">
-            <Button color="secondary" fullWidth>
+            <Button color="secondary" fullWidth disabled={isFetching} onClick={handleClick}>
               Sign In
-            </Button>
-            <Divider className="my-4" />
-            <Button
-              className="bg-neutral-900 text-white"
-              variant="bordered"
-              fullWidth
-            >
-              <Avatar
-                src="https://static.vecteezy.com/system/resources/previews/013/760/951/original/colourful-google-logo-in-dark-background-free-vector.jpg"
-                size="sm"
-              />{" "}
-              Or sign in with Google
             </Button>
           </div>
 

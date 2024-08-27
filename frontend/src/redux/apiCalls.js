@@ -4,8 +4,8 @@ import axios from 'axios';
 export const login = async (dispatch, user) => {
     dispatch(loginStart());
     try {
-        const res = await axios.post("https://barterx.onrender.com/auth/login");
-        // console.log(res);    
+        const res = await axios.post("https://barterx.onrender.com/api/auth/login", user);
+        console.log(res);    
         dispatch(loginSuccess(res.data));
     }
     catch (err) {
@@ -16,7 +16,7 @@ export const login = async (dispatch, user) => {
 export const register = async (dispatch, user) => {
     dispatch(loginStart());
     try {
-        await axios.post("https://barterx.onrender.com/auth/register", user);
+        await axios.post("https://barterx.onrender.com/api/auth/register", user);
         const username = user.username;
         const password = user.password;
         login(dispatch, { username, password });
@@ -25,6 +25,7 @@ export const register = async (dispatch, user) => {
         dispatch(loginFailure());
     }
 };
+
 export const update = async (dispatch, user) => {
     try {
         const details = await axios.put(`https://barterx.onrender.com/users/${user.id}`, user);
