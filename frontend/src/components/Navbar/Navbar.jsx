@@ -71,7 +71,7 @@ export default function App() {
           <Link to="/about">About</Link>
         </NavbarItem>
         <NavbarItem>
-          <Link to="/publish">Publish</Link>
+          <Link to="/add-product">Publish</Link>
         </NavbarItem>
       </NavbarContent>
 

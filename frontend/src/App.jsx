@@ -3,10 +3,17 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import Landing from "./pages/Landing/Landing";
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import { useSelector } from "react-redux";
+import AddProduct from "./pages/AddProduct/AddProduct";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
@@ -28,6 +35,10 @@ function App() {
         <Route
           path="/register"
           element={user ? <Navigate to="/home" /> : <Register />}
+        />
+        <Route
+          path="/add-product"
+          element={user ? <AddProduct /> : <Navigate to="/add-product" />}
         />
       </Routes>
       {!hideNavbarFooter && <Footer />}
