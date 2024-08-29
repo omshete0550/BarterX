@@ -36,10 +36,7 @@ function App() {
           path="/register"
           element={user ? <Navigate to="/home" /> : <Register />}
         />
-        <Route
-          path="/add-product"
-          element={user ? <AddProduct /> : <Navigate to="/add-product" />}
-        />
+        <Route path="/add-product" element={<AddProduct />} />
       </Routes>
       {!hideNavbarFooter && <Footer />}
     </>

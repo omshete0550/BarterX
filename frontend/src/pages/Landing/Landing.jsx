@@ -4,6 +4,7 @@ import { Button, Image } from "@nextui-org/react";
 import hero from "../../assets/hero.jpg";
 import AccordianComponent from "../../components/Accordian/Accordian";
 import Category from "../../components/Category/Category";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
@@ -24,8 +25,8 @@ const Landing = () => {
                   bartering enthusiasts.
                 </p>
                 <div className="relative flex flex-col sm:flex-row sm:space-x-4">
-                  <a
-                    href="#_"
+                  <Link
+                    to="/home"
                     className="flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-secondary-600 rounded-md sm:mb-0 hover:bg-secondary-700 sm:w-auto"
                   >
                     Swap Now
@@ -42,7 +43,7 @@ const Landing = () => {
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                       <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
-                  </a>
+                  </Link>
                   <a
                     href="#_"
                     className="flex items-center px-6 py-3 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600"

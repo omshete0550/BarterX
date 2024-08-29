@@ -29,15 +29,10 @@ export default function App() {
   };
 
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
+    "Home",
+    "About",
+    "Contact",
+    "Publish",
     "Log Out",
   ];
 
@@ -51,15 +46,17 @@ export default function App() {
 
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
-          <BarterXLogo />
-          {/* <p className="font-bold text-inherit">BarterX</p> */}
+          <Link to="/">
+            <BarterXLogo />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-9" justify="center">
         <NavbarBrand>
-          <BarterXLogo />
-          {/* <p className="font-bold text-inherit">BarterX</p> */}
+          <Link to="/">
+            <BarterXLogo />
+          </Link>
         </NavbarBrand>
         <NavbarItem>
           <Link to="/home">Home</Link>
@@ -107,7 +104,7 @@ export default function App() {
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">{user.details.username}</p>
               </DropdownItem>
-              <DropdownItem key="settings">My Settings</DropdownItem>
+              <DropdownItem key="settings">User Profile</DropdownItem>
               <DropdownItem key="team_settings">Team Settings</DropdownItem>
               <DropdownItem key="analytics">Analytics</DropdownItem>
               <DropdownItem key="system">System</DropdownItem>
