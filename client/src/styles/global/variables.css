@@ -1,0 +1,23 @@
+:root {
+  --primary: #6d3df5;
+  --primary-dark: #5425d0;
+  --primary-light: #ede9fe;
+
+  --secondary: #9b7cf6;
+
+  --background: #faf9ff;
+  --surface: #ffffff;
+
+  --text: #151827;
+  --text-secondary: #687083;
+
+  --border: #e8e3f7;
+
+  --success: #22c55e;
+  --error: #ef4444;
+  --warning: #f59e0b;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+}

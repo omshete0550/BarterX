@@ -1,0 +1,8 @@
+@import "./variables.css";
+@import "./reset.css";
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--background);
+  color: var(--text);
+}

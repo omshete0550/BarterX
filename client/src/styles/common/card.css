@@ -1,0 +1,28 @@
+.card {
+  background: #ffffff;
+  border: 1px solid #eeeaf7;
+  border-radius: 16px;
+
+  box-shadow: 0 4px 20px rgba(49, 30, 100, 0.05);
+}
+
+.card-padding-small {
+  padding: 14px;
+}
+
+.card-padding-medium {
+  padding: 20px;
+}
+
+.card-padding-large {
+  padding: 28px;
+}
+
+.card-hover {
+  transition: all 0.25s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(109, 61, 245, 0.12);
+}

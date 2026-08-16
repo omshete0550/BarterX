@@ -1,0 +1,42 @@
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 60px 20px;
+
+  text-align: center;
+}
+
+.error-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+
+  color: #ef4444;
+  background: #fef2f2;
+}
+
+.error-state h3 {
+  margin: 0 0 8px;
+
+  color: #1b1e2e;
+  font-size: 20px;
+}
+
+.error-state p {
+  max-width: 420px;
+
+  margin: 0 0 20px;
+
+  color: #7a8192;
+  font-size: 14px;
+}
