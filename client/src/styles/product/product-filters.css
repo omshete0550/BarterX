@@ -1,0 +1,152 @@
+.product-filters {
+  padding: 20px;
+
+  border: 1px solid #e9e4f4;
+  border-radius: 16px;
+
+  background: white;
+
+  box-shadow: 0 5px 20px rgba(57, 35, 110, 0.04);
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 16px;
+
+  margin-bottom: 18px;
+
+  border-bottom: 1px solid #eeeaf5;
+}
+
+.filter-header div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #292d3d;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.filter-header div svg {
+  color: #6d3df5;
+}
+
+.filter-header button {
+  border: none;
+
+  color: #7652d7;
+  background: transparent;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.filter-header button:hover {
+  text-decoration: underline;
+}
+
+.filter-group {
+  margin-bottom: 18px;
+}
+
+.filter-group:last-child {
+  margin-bottom: 0;
+}
+
+.filter-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #555b6b;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.filter-select-wrapper {
+  position: relative;
+}
+
+.filter-select-wrapper select {
+  width: 100%;
+
+  appearance: none;
+
+  padding: 10px 35px 10px 11px;
+
+  border: 1px solid #e4dfee;
+  border-radius: 9px;
+
+  outline: none;
+
+  color: #555b6b;
+  background: #faf9ff;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.filter-select-wrapper select:focus {
+  border-color: #8b6ce8;
+
+  box-shadow: 0 0 0 3px rgba(109, 61, 245, 0.08);
+}
+
+.filter-select-wrapper svg {
+  position: absolute;
+
+  top: 50%;
+  right: 11px;
+
+  pointer-events: none;
+
+  color: #8a90a0;
+
+  transform: translateY(-50%);
+}
+
+.filter-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 11px;
+
+  border: 1px solid #e4dfee;
+  border-radius: 9px;
+
+  color: #8a90a0;
+
+  background: #faf9ff;
+}
+
+.filter-location:focus-within {
+  border-color: #8b6ce8;
+
+  box-shadow: 0 0 0 3px rgba(109, 61, 245, 0.08);
+}
+
+.filter-location input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  color: #555b6b;
+  background: transparent;
+
+  font-size: 12px;
+}
+
+.filter-location input::placeholder {
+  color: #a4a9b6;
+}
