@@ -7,6 +7,12 @@ import ProductListing from "../pages/Products/ProductListing";
 import ProductDetail from "../pages/ProductDetail/ProductDetail";
 import SwapRequest from "../pages/SwapRequest/SwapRequest";
 import Messages from "../pages/Messages/Messages";
+import Wishlist from "../pages/Wishlist/Wishlist";
+import Profile from "../pages/Profile/Profile";
+import EditProfile from "../pages/EditProfile/EditProfile";
+import MyProducts from "../pages/MyProducts/MyProducts";
+import EditProduct from "../pages/EditProduct/EditProduct";
+import SavedItems from "../pages/SavedItems/SavedItems";
 
 function AppRoutes() {
   return (
@@ -18,6 +24,12 @@ function AppRoutes() {
       <Route path="/products/:id" element={<ProductDetail />} />
       <Route path="/swap/:id" element={<SwapRequest />} />
       <Route path="/messages" element={<Messages />} />
+      <Route path="/wishlist" element={<Wishlist />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile/edit" element={<EditProfile />} />
+      <Route path="/my-products" element={<MyProducts />} />
+      <Route path="/products/edit/:id" element={<EditProduct />} />
+      <Route path="/saved-items" element={<SavedItems />} />
     </Routes>
   );
 }
