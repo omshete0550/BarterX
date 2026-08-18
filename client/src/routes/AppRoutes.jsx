@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
+import Landing from "../pages/Landing/Landing";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
@@ -13,11 +14,16 @@ import EditProfile from "../pages/EditProfile/EditProfile";
 import MyProducts from "../pages/MyProducts/MyProducts";
 import EditProduct from "../pages/EditProduct/EditProduct";
 import SavedItems from "../pages/SavedItems/SavedItems";
+import AddProduct from "../pages/AddProduct/AddProduct";
+import Notifications from "../pages/Notifications/Notifications";
+import CategoryProducts from "../pages/CategoryProducts/CategoryProducts";
+import SearchResults from "../pages/SearchResults/SearchResults";
 
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Landing />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/products" element={<ProductListing />} />
@@ -30,6 +36,10 @@ function AppRoutes() {
       <Route path="/my-products" element={<MyProducts />} />
       <Route path="/products/edit/:id" element={<EditProduct />} />
       <Route path="/saved-items" element={<SavedItems />} />
+      <Route path="/add-product" element={<AddProduct />} />
+      <Route path="/notifications" element={<Notifications />} />
+      <Route path="/category/:category" element={<CategoryProducts />} />
+      <Route path="/search" element={<SearchResults />} />
     </Routes>
   );
 }

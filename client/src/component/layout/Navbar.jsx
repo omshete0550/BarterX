@@ -36,7 +36,7 @@ function Navbar() {
         {/* Desktop Navigation */}
 
         <nav className="navbar-links">
-          <Link to="/" className="active">
+          <Link to="/home" className="active">
             Home
           </Link>
 
