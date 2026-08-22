@@ -165,7 +165,7 @@ function MyProducts() {
 
             <button
               className="my-products-add-button"
-              onClick={() => navigate("/products/add")}
+              onClick={() => navigate("/add-product")}
             >
               <Plus size={15} />
               Add Product
@@ -434,7 +434,7 @@ function MyProducts() {
                   Clear Filters
                 </button>
               ) : (
-                <button onClick={() => navigate("/products/add")}>
+                <button onClick={() => navigate("/add-product")}>
                   <Plus size={14} />
                   Add Product
                 </button>

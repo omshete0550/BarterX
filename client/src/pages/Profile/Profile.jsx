@@ -228,7 +228,7 @@ function Profile() {
                   <h2>My Products</h2>
                 </div>
 
-                <button onClick={() => navigate("/products/add")}>
+                <button onClick={() => navigate("/add-product")}>
                   + Add Product
                 </button>
               </div>
@@ -247,7 +247,7 @@ function Profile() {
 
                   <p>Add your first product and start swapping.</p>
 
-                  <button onClick={() => navigate("/products/add")}>
+                  <button onClick={() => navigate("/add-product")}>
                     Add Product
                   </button>
                 </div>

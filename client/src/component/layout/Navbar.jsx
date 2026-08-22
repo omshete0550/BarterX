@@ -7,9 +7,12 @@ import {
   Menu,
   X,
   Plus,
+  Package,
+  Settings,
+  LogOut,
 } from "lucide-react";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import Button from "../common/Button";
@@ -18,8 +21,41 @@ import "../../styles/layout/navbar.css";
 
 function Navbar() {
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [profileMenu, setProfileMenu] = useState(false);
 
   const navigate = useNavigate();
+  const profileRef = useRef(null);
+
+  // Close profile dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleNavigation = (path) => {
+    setProfileMenu(false);
+    setMobileMenu(false);
+    navigate(path);
+  };
+
+  const handleLogout = () => {
+    setProfileMenu(false);
+
+    // Add your authentication logout logic here
+    // Example:
+    // localStorage.removeItem("token");
+
+    navigate("/login");
+  };
 
   return (
     <header className="navbar">
@@ -28,6 +64,7 @@ function Navbar() {
 
         <Link to="/" className="navbar-logo">
           <span className="logo-mark">B</span>
+
           <span className="logo-text">
             BARTER<span>X</span>
           </span>
@@ -46,10 +83,6 @@ function Navbar() {
           </Link>
 
           <Link to="/about">How It Works</Link>
-
-          <Link to="/about">About</Link>
-
-          <Link to="/contact">Contact</Link>
         </nav>
 
         {/* Search */}
@@ -61,8 +94,10 @@ function Navbar() {
             type="text"
             placeholder="Search products, categories..."
             onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                navigate(`/search?q=${e.target.value}`);
+              if (e.key === "Enter" && e.target.value.trim()) {
+                navigate(
+                  `/search?q=${encodeURIComponent(e.target.value.trim())}`,
+                );
               }
             }}
           />
@@ -71,6 +106,8 @@ function Navbar() {
         {/* Actions */}
 
         <div className="navbar-actions">
+          {/* Wishlist */}
+
           <button
             className="navbar-icon"
             onClick={() => navigate("/wishlist")}
@@ -78,6 +115,8 @@ function Navbar() {
           >
             <Heart size={21} />
           </button>
+
+          {/* Notifications */}
 
           <button
             className="navbar-icon notification-button"
@@ -88,31 +127,120 @@ function Navbar() {
             <span className="notification-badge">3</span>
           </button>
 
-          <button
-            className="navbar-profile"
-            onClick={() => navigate("/profile")}
-          >
-            <div className="avatar">
-              <User size={20} />
-            </div>
+          {/* Profile */}
 
-            <ChevronDown size={15} />
-          </button>
+          <div className="profile-wrapper" ref={profileRef}>
+            <button
+              className={`navbar-profile ${profileMenu ? "profile-open" : ""}`}
+              onClick={() => setProfileMenu(!profileMenu)}
+              aria-label="Open profile menu"
+              aria-expanded={profileMenu}
+            >
+              <div className="avatar">
+                <User size={20} />
+              </div>
+
+              <ChevronDown
+                size={15}
+                className={`profile-chevron ${profileMenu ? "rotate" : ""}`}
+              />
+            </button>
+
+            {/* Profile Dropdown */}
+
+            {profileMenu && (
+              <div className="profile-dropdown">
+                {/* User Header */}
+
+                <div className="profile-dropdown-header">
+                  <div className="dropdown-avatar">
+                    <User size={21} />
+                  </div>
+
+                  <div className="profile-user-info">
+                    <strong>My Account</strong>
+                    <span>Welcome back!</span>
+                  </div>
+                </div>
+
+                <div className="dropdown-divider" />
+
+                {/* Menu Items */}
+
+                <button
+                  className="profile-dropdown-item"
+                  onClick={() => handleNavigation("/profile")}
+                >
+                  <User size={18} />
+                  <span>View Profile</span>
+                </button>
+
+                <button
+                  className="profile-dropdown-item"
+                  onClick={() => handleNavigation("/my-products")}
+                >
+                  <Package size={18} />
+                  <span>My Products</span>
+                </button>
+
+                <button
+                  className="profile-dropdown-item"
+                  onClick={() => handleNavigation("/wishlist")}
+                >
+                  <Heart size={18} />
+                  <span>Wishlist</span>
+                </button>
+
+                <button
+                  className="profile-dropdown-item"
+                  onClick={() => handleNavigation("/notifications")}
+                >
+                  <Bell size={18} />
+                  <span>Notifications</span>
+
+                  <span className="dropdown-notification-count">3</span>
+                </button>
+
+                <button
+                  className="profile-dropdown-item"
+                  onClick={() => handleNavigation("/settings")}
+                >
+                  <Settings size={18} />
+                  <span>Settings</span>
+                </button>
+
+                <div className="dropdown-divider" />
+
+                {/* Logout */}
+
+                <button
+                  className="profile-dropdown-item logout-item"
+                  onClick={handleLogout}
+                >
+                  <LogOut size={18} />
+                  <span>Logout</span>
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Add Product */}
 
           <Button
             size="small"
             icon={<Plus size={16} />}
-            onClick={() => navigate("/products/add")}
+            onClick={() => navigate("/add-product")}
           >
             Add Product
           </Button>
         </div>
 
-        {/* Mobile button */}
+        {/* Mobile Menu Button */}
 
         <button
           className="mobile-menu-button"
           onClick={() => setMobileMenu(!mobileMenu)}
+          aria-label="Toggle navigation menu"
         >
           {mobileMenu ? <X /> : <Menu />}
         </button>
@@ -122,25 +250,47 @@ function Navbar() {
 
       {mobileMenu && (
         <div className="mobile-menu">
-          <Link to="/" onClick={() => setMobileMenu(false)}>
+          <Link to="/home" onClick={() => setMobileMenu(false)}>
             Home
           </Link>
 
           <Link to="/products" onClick={() => setMobileMenu(false)}>
-            Products
+            Categories
           </Link>
 
           <Link to="/about" onClick={() => setMobileMenu(false)}>
-            About
+            How It Works
           </Link>
 
-          <Link to="/contact" onClick={() => setMobileMenu(false)}>
-            Contact
+          <Link to="/wishlist" onClick={() => setMobileMenu(false)}>
+            Wishlist
           </Link>
 
-          <Button fullWidth onClick={() => navigate("/products/add")}>
+          <Link to="/notifications" onClick={() => setMobileMenu(false)}>
+            Notifications
+          </Link>
+
+          <Link to="/profile" onClick={() => setMobileMenu(false)}>
+            View Profile
+          </Link>
+
+          <Link to="/my-products" onClick={() => setMobileMenu(false)}>
+            My Products
+          </Link>
+
+          <Link to="/settings" onClick={() => setMobileMenu(false)}>
+            Settings
+          </Link>
+
+          <Button fullWidth onClick={() => handleNavigation("/add-product")}>
+            <Plus size={16} />
             Add Product
           </Button>
+
+          <button className="mobile-logout" onClick={handleLogout}>
+            <LogOut size={17} />
+            Logout
+          </button>
         </div>
       )}
     </header>

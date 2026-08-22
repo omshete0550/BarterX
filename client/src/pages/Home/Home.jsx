@@ -107,7 +107,7 @@ function Home() {
                   size="large"
                   variant="outline"
                   icon={<Plus size={18} />}
-                  onClick={() => navigate("/products/add")}
+                  onClick={() => navigate("/add-product")}
                 >
                   List a Product
                 </Button>
@@ -316,7 +316,7 @@ function Home() {
               </h2>
             </div>
 
-            <Button size="large" onClick={() => navigate("/products/add")}>
+            <Button size="large" onClick={() => navigate("/add-product")}>
               Start Listing
               <ArrowRight size={18} />
             </Button>
