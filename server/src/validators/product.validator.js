@@ -81,6 +81,78 @@ const publishProductValidator = [
         .withMessage("Each image must be a valid URL"),
 ];
 
+const updateProductValidator = [
+    body("title")
+        .optional()
+        .trim()
+        .isLength({ min: 3, max: 100 })
+        .withMessage(
+            "Product title must be between 3 and 100 characters"
+        ),
+
+    body("description")
+        .optional()
+        .trim()
+        .isLength({ max: 2000 })
+        .withMessage(
+            "Product description cannot exceed 2000 characters"
+        ),
+
+    body("category")
+        .optional()
+        .trim()
+        .isIn([
+            "electronics",
+            "furniture",
+            "clothing",
+            "books",
+            "vehicles",
+            "sports",
+            "home",
+            "other",
+        ])
+        .withMessage("Invalid product category"),
+
+    body("condition")
+        .optional()
+        .trim()
+        .isIn([
+            "new",
+            "like-new",
+            "good",
+            "fair",
+            "poor",
+        ])
+        .withMessage("Invalid product condition"),
+
+    body("location")
+        .optional()
+        .trim()
+        .isLength({ max: 100 })
+        .withMessage(
+            "Location cannot exceed 100 characters"
+        ),
+
+    body("desiredProduct")
+        .optional()
+        .trim()
+        .isLength({ max: 200 })
+        .withMessage(
+            "Desired product cannot exceed 200 characters"
+        ),
+
+    body("images")
+        .optional()
+        .isArray()
+        .withMessage("Images must be an array"),
+
+    body("images.*")
+        .optional()
+        .isURL()
+        .withMessage("Each image must be a valid URL"),
+];
+
 module.exports = {
     publishProductValidator,
+    updateProductValidator,
 };
