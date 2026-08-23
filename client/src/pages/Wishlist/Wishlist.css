@@ -40,7 +40,7 @@
 .wishlist-heading span {
   color: #7041e8;
 
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 800;
 
   letter-spacing: 1px;
@@ -51,7 +51,7 @@
 
   color: #252737;
 
-  font-size: 31px;
+  font-size: 38px;
   font-weight: 800;
 
   letter-spacing: -0.7px;
@@ -62,7 +62,7 @@
 
   color: #888d9b;
 
-  font-size: 10px;
+  font-size: 15px;
 }
 
 /* ========================================= */
@@ -107,7 +107,7 @@
 
   color: #4b4e5c;
 
-  font-size: 11px;
+  font-size: 16px;
 }
 
 .wishlist-summary span {
@@ -117,7 +117,7 @@
 
   color: #969aa7;
 
-  font-size: 8px;
+  font-size: 13px;
 }
 
 /* ========================================= */
@@ -171,7 +171,7 @@
   background: transparent;
 
   font-family: inherit;
-  font-size: 9px;
+  font-size: 14px;
 }
 
 .wishlist-search input::placeholder {
@@ -204,7 +204,7 @@
   background: white;
 
   font-family: inherit;
-  font-size: 9px;
+  font-size: 14px;
 
   cursor: pointer;
 
@@ -239,7 +239,7 @@
 
   color: #999eaa;
 
-  font-size: 7px;
+  font-size: 12px;
   font-weight: 800;
 
   letter-spacing: 0.8px;
@@ -262,7 +262,7 @@
   background: white;
 
   font-family: inherit;
-  font-size: 8px;
+  font-size: 13px;
 
   cursor: pointer;
 
@@ -388,7 +388,7 @@
 .wishlist-empty > span {
   color: #9b8bbb;
 
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
 
   letter-spacing: 1px;
@@ -399,7 +399,7 @@
 
   color: #454856;
 
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .wishlist-empty p {
@@ -409,7 +409,7 @@
 
   color: #979ba7;
 
-  font-size: 9px;
+  font-size: 15px;
   line-height: 1.6;
 }
 
@@ -427,7 +427,7 @@
   background: #7041e8;
 
   font-family: inherit;
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 700;
 
   cursor: pointer;
@@ -468,7 +468,7 @@
 
   color: #555967;
 
-  font-size: 15px;
+  font-size: 22px;
 }
 
 .wishlist-no-results p {
@@ -476,7 +476,7 @@
 
   color: #999da8;
 
-  font-size: 9px;
+  font-size: 14px;
 }
 
 /* ========================================= */
@@ -508,7 +508,7 @@
 }
 
 .wishlist-loading p {
-  font-size: 9px;
+  font-size: 14px;
 }
 
 @keyframes wishlist-spin {
@@ -562,7 +562,7 @@
 
   color: #999da8;
 
-  font-size: 9px;
+  font-size: 14px;
 }
 
 /* ========================================= */
@@ -609,7 +609,7 @@
   }
 
   .wishlist-heading h1 {
-    font-size: 27px;
+    font-size: 31px;
   }
 
   .wishlist-summary {

@@ -67,7 +67,7 @@
 
   background: rgba(255, 255, 255, 0.92);
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 
   backdrop-filter: blur(8px);
@@ -125,7 +125,7 @@
 
   color: #7652d7;
 
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
 
   text-transform: uppercase;
@@ -139,7 +139,7 @@
 
   color: #191c2c;
 
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 700;
 
   white-space: nowrap;
@@ -157,7 +157,7 @@
 
   color: #888e9d;
 
-  font-size: 11px;
+  font-size: 14px;
 }
 
 /* Wants */
@@ -202,7 +202,7 @@
 .product-wants span {
   color: #969bab;
 
-  font-size: 9px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
@@ -214,7 +214,7 @@
 
   color: #4c3a82;
 
-  font-size: 11px;
+  font-size: 14px;
 
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -240,7 +240,7 @@
 
   color: #656b7b;
 
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .seller-info img,

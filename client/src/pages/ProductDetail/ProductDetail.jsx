@@ -235,7 +235,7 @@ function ProductDetail() {
                   <Button
                     fullWidth
                     icon={<ArrowLeftRight size={17} />}
-                    onClick={() => navigate(`/swap/${product.id}`)}
+                    onClick={() => navigate(`/swap-request/${product.id}`)}
                   >
                     Swap Now
                   </Button>

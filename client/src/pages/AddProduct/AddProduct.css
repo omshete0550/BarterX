@@ -46,7 +46,7 @@
 
   color: #8964c4;
 
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 800;
 
   letter-spacing: 1.8px;
@@ -156,7 +156,7 @@
 
   color: #8765bb;
 
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 700;
 
   background: #f3eef9;
@@ -231,7 +231,7 @@
 .image-upload-box strong {
   color: #666875;
 
-  font-size: 11px;
+  font-size: 15px;
 }
 
 .image-upload-box span {
@@ -239,7 +239,7 @@
 
   color: #aaa8b0;
 
-  font-size: 8px;
+  font-size: 12px;
 }
 
 .uploaded-image {
@@ -305,7 +305,7 @@
 
   background: rgba(108, 74, 178, 0.85);
 
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -330,7 +330,7 @@
 
   color: #626471;
 
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -353,7 +353,7 @@
 
   font-family: inherit;
 
-  font-size: 12px;
+  font-size: 15px;
 
   transition:
     border-color 0.2s ease,
@@ -405,7 +405,7 @@
 
   color: #aaa8b0;
 
-  font-size: 9px;
+  font-size: 13px;
 }
 
 .character-count {
@@ -416,7 +416,7 @@
 
   color: #aaa8b0;
 
-  font-size: 9px;
+  font-size: 13px;
 }
 
 /* =========================================================
@@ -442,7 +442,7 @@
 
   font-family: inherit;
 
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 
   cursor: pointer;
@@ -510,7 +510,7 @@
 .preview-heading span {
   color: #9471c1;
 
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 800;
 
   letter-spacing: 1.5px;
@@ -602,7 +602,7 @@
 }
 
 .preview-placeholder span {
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .preview-heart {
@@ -640,7 +640,7 @@
 .preview-category {
   color: #9874bd;
 
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
 
   letter-spacing: 1.3px;
@@ -663,7 +663,7 @@
 
   color: #9696a1;
 
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .preview-divider {
@@ -696,7 +696,7 @@
 .preview-wanted span {
   color: #aaa5af;
 
-  font-size: 7px;
+  font-size: 12px;
   font-weight: 800;
 
   letter-spacing: 0.8px;
@@ -709,7 +709,7 @@
 
   color: #7554a6;
 
-  font-size: 10px;
+  font-size: 14px;
 
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -769,13 +769,13 @@
 .preview-owner strong {
   color: #646572;
 
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .preview-owner span {
   color: #aaa8b0;
 
-  font-size: 8px;
+  font-size: 13px;
 }
 
 /* =========================================================
@@ -820,7 +820,7 @@
 
   color: #696170;
 
-  font-size: 10px;
+  font-size: 15px;
 }
 
 .listing-tips p {
@@ -828,7 +828,7 @@
 
   color: #9d99a5;
 
-  font-size: 9px;
+  font-size: 14px;
 
   line-height: 1.6;
 }
@@ -893,7 +893,7 @@
   }
 
   .form-section-heading p {
-    font-size: 10px;
+    font-size: 13px;
   }
 
   .image-upload-grid {

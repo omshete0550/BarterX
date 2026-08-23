@@ -18,6 +18,7 @@ import AddProduct from "../pages/AddProduct/AddProduct";
 import Notifications from "../pages/Notifications/Notifications";
 import CategoryProducts from "../pages/CategoryProducts/CategoryProducts";
 import SearchResults from "../pages/SearchResults/SearchResults";
+import SwapRequests from "../pages/SwapRequests/SwapRequests";
 
 function AppRoutes() {
   return (
@@ -28,7 +29,9 @@ function AppRoutes() {
       <Route path="/register" element={<Register />} />
       <Route path="/products" element={<ProductListing />} />
       <Route path="/products/:id" element={<ProductDetail />} />
+      <Route path="/swap-request/:id" element={<SwapRequest />} />
       <Route path="/swap/:id" element={<SwapRequest />} />
+      <Route path="/swap-requests" element={<SwapRequests />} />
       <Route path="/messages" element={<Messages />} />
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/profile" element={<Profile />} />

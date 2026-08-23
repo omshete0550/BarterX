@@ -42,7 +42,7 @@
 .my-products-eyebrow {
   color: #927ab8;
 
-  font-size: 7px;
+  font-size: 12px;
   font-weight: 800;
 
   letter-spacing: 1.2px;
@@ -53,7 +53,7 @@
 
   color: #292b3a;
 
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 800;
 
   letter-spacing: -0.6px;
@@ -64,7 +64,7 @@
 
   color: #9498a4;
 
-  font-size: 9px;
+  font-size: 15px;
 }
 
 .my-products-add-button {
@@ -73,7 +73,7 @@
 
   gap: 6px;
 
-  padding: 10px 15px;
+  padding: 12px 18px;
 
   border: 0;
   border-radius: 7px;
@@ -82,7 +82,7 @@
   background: #7041e8;
 
   font-family: inherit;
-  font-size: 8px;
+  font-size: 14px;
   font-weight: 700;
 
   cursor: pointer;
@@ -148,7 +148,7 @@
 
   color: #a09da8;
 
-  font-size: 6px;
+  font-size: 12px;
   font-weight: 800;
 
   letter-spacing: 0.5px;
@@ -161,7 +161,7 @@
 
   color: #484b58;
 
-  font-size: 17px;
+  font-size: 24px;
 }
 
 /* ========================================= */
@@ -185,7 +185,7 @@
 
   gap: 8px;
 
-  height: 38px;
+  height: 46px;
 
   padding: 0 12px;
 
@@ -214,7 +214,7 @@
   background: transparent;
 
   font-family: inherit;
-  font-size: 8px;
+  font-size: 14px;
 }
 
 .my-products-search input::placeholder {
@@ -228,7 +228,7 @@
 }
 
 .my-products-filters select {
-  height: 38px;
+  height: 46px;
 
   padding: 0 28px 0 10px;
 
@@ -241,7 +241,7 @@
   background: white;
 
   font-family: inherit;
-  font-size: 8px;
+  font-size: 14px;
 
   cursor: pointer;
 }
@@ -265,13 +265,13 @@
 .my-products-results-header div {
   color: #a0a3ad;
 
-  font-size: 8px;
+  font-size: 13px;
 }
 
 .my-products-results-header strong {
   color: #565966;
 
-  font-size: 9px;
+  font-size: 14px;
 }
 
 .my-products-results-header button {
@@ -281,7 +281,7 @@
   background: transparent;
 
   font-family: inherit;
-  font-size: 8px;
+  font-size: 14px;
   font-weight: 700;
 
   cursor: pointer;
@@ -370,7 +370,7 @@
   color: #5f4a80;
   background: rgba(255, 255, 255, 0.92);
 
-  font-size: 7px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -414,7 +414,7 @@
   top: 43px;
   right: 9px;
 
-  width: 105px;
+  width: 150px;
 
   padding: 5px;
 
@@ -443,7 +443,7 @@
   background: transparent;
 
   font-family: inherit;
-  font-size: 8px;
+  font-size: 13px;
 
   cursor: pointer;
 
@@ -479,7 +479,7 @@
 
   color: #987dbd;
 
-  font-size: 6px;
+  font-size: 12px;
   font-weight: 800;
 
   letter-spacing: 0.7px;
@@ -493,7 +493,7 @@
 
   color: #4a4d5a;
 
-  font-size: 11px;
+  font-size: 17px;
   font-weight: 750;
 
   text-overflow: ellipsis;
@@ -510,7 +510,7 @@
 
   color: #999da8;
 
-  font-size: 7px;
+  font-size: 13px;
 }
 
 .my-product-location svg {
@@ -537,7 +537,7 @@
 .my-product-desired span {
   color: #a3a5ae;
 
-  font-size: 6px;
+  font-size: 12px;
 }
 
 .my-product-desired strong {
@@ -545,7 +545,7 @@
 
   color: #70549b;
 
-  font-size: 7px;
+  font-size: 13px;
 
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -568,12 +568,12 @@
 
   gap: 5px;
 
-  height: 29px;
+  height: 38px;
 
   border-radius: 6px;
 
   font-family: inherit;
-  font-size: 7px;
+  font-size: 13px;
   font-weight: 700;
 
   cursor: pointer;
@@ -646,7 +646,7 @@
 
   color: #555866;
 
-  font-size: 15px;
+  font-size: 22px;
 }
 
 .my-products-empty p {
@@ -656,7 +656,7 @@
 
   color: #9da0aa;
 
-  font-size: 8px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -666,7 +666,7 @@
 
   gap: 5px;
 
-  padding: 9px 13px;
+  padding: 12px 17px;
 
   border: 0;
   border-radius: 7px;
@@ -675,7 +675,7 @@
   background: #7041e8;
 
   font-family: inherit;
-  font-size: 8px;
+  font-size: 14px;
   font-weight: 700;
 
   cursor: pointer;
@@ -710,7 +710,7 @@
 }
 
 .my-products-loading p {
-  font-size: 9px;
+  font-size: 14px;
 }
 
 @keyframes my-products-spin {
@@ -764,7 +764,7 @@
 
   color: #999da8;
 
-  font-size: 9px;
+  font-size: 14px;
 }
 
 .my-products-error button {
@@ -779,7 +779,7 @@
   background: #7041e8;
 
   font-family: inherit;
-  font-size: 8px;
+  font-size: 14px;
   font-weight: 700;
 
   cursor: pointer;
@@ -827,7 +827,7 @@
 
   color: #999da7;
 
-  font-size: 8px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -849,7 +849,7 @@
   border-radius: 6px;
 
   font-family: inherit;
-  font-size: 8px;
+  font-size: 14px;
   font-weight: 700;
 
   cursor: pointer;
@@ -935,7 +935,7 @@
   }
 
   .my-products-header h1 {
-    font-size: 24px;
+    font-size: 30px;
   }
 
   .my-products-add-button {
@@ -964,11 +964,11 @@
   }
 
   .my-products-stat strong {
-    font-size: 14px;
+    font-size: 20px;
   }
 
   .my-products-stat span {
-    font-size: 5px;
+    font-size: 11px;
   }
 
   .my-products-filters {
