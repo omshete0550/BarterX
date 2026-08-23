@@ -1,5 +1,6 @@
 const Rating = require("../models/Rating");
 const BarterRequest = require("../models/BarterRequest");
+const { createNotification } = require("../utils/notification");
 
 const createRating = async (req, res, next) => {
     try {
@@ -69,6 +70,17 @@ const createRating = async (req, res, next) => {
             barterRequest: barterRequestId,
             rating,
             review: review || "",
+        });
+
+        await createNotification({
+            recipient: reviewee,
+            sender: reviewerId,
+            type: "rating_received",
+            title: "New rating received",
+            message: `You received a ${rating}-star rating.`,
+            barterRequest: barterRequestId,
+            product,
+            rating: newRating._id,
         });
 
         return res.status(201).json({
@@ -151,5 +163,5 @@ const getUserRatings = async (req, res, next) => {
 module.exports = {
     createRating,
     getProductRatings,
-    getUserRatings
+    getUserRatings,
 };

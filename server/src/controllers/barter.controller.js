@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const BarterRequest = require("../models/BarterRequest");
 const Product = require("../models/Product");
+const { createNotification } = require("../utils/notification");
 
 const createBarterRequest = async (req, res, next) => {
     try {
@@ -129,6 +130,16 @@ const createBarterRequest = async (req, res, next) => {
             requestedProduct: requestedProductDoc._id,
             offeredProduct: offeredProductDoc._id,
             message: message || "",
+        });
+
+        await createNotification({
+            recipient: receiverId,
+            sender: requesterId,
+            type: "barter_request",
+            title: "New barter request",
+            message: "You received a new barter request.",
+            barterRequest: barterRequest._id,
+            product: requestedProductDoc._id,
         });
 
         return res.status(201).json({
@@ -294,12 +305,10 @@ const updateBarterStatus = async (req, res, next) => {
 
         if (!barterRequest) {
             const error = new Error("Barter request not found.");
-
             error.statusCode = 404;
             return next(error);
         }
 
-        // Only the requester or receiver can modify the request
         const isRequester =
             barterRequest.requester.toString() === userId.toString();
 
@@ -314,7 +323,6 @@ const updateBarterStatus = async (req, res, next) => {
             return next(error);
         }
 
-        // Request must still be pending
         if (barterRequest.status !== "pending") {
             const error = new Error(
                 `This barter request is already ${barterRequest.status}.`,
@@ -324,7 +332,6 @@ const updateBarterStatus = async (req, res, next) => {
             return next(error);
         }
 
-        // Only receiver can accept or reject
         if ((status === "accepted" || status === "rejected") && !isReceiver) {
             const error = new Error(
                 "Only the product owner can accept or reject the barter request.",
@@ -334,7 +341,6 @@ const updateBarterStatus = async (req, res, next) => {
             return next(error);
         }
 
-        // Only requester can cancel
         if (status === "cancelled" && !isRequester) {
             const error = new Error(
                 "Only the requester can cancel the barter request.",
@@ -347,6 +353,42 @@ const updateBarterStatus = async (req, res, next) => {
         barterRequest.status = status;
 
         await barterRequest.save();
+
+        if (status === "accepted") {
+            await createNotification({
+                recipient: barterRequest.requester,
+                sender: barterRequest.receiver,
+                type: "barter_accepted",
+                title: "Barter request accepted",
+                message: "Your barter request has been accepted.",
+                barterRequest: barterRequest._id,
+                product: barterRequest.requestedProduct,
+            });
+        }
+
+        if (status === "rejected") {
+            await createNotification({
+                recipient: barterRequest.requester,
+                sender: barterRequest.receiver,
+                type: "barter_rejected",
+                title: "Barter request rejected",
+                message: "Your barter request has been rejected.",
+                barterRequest: barterRequest._id,
+                product: barterRequest.requestedProduct,
+            });
+        }
+
+        if (status === "cancelled") {
+            await createNotification({
+                recipient: barterRequest.receiver,
+                sender: barterRequest.requester,
+                type: "barter_rejected",
+                title: "Barter request cancelled",
+                message: "A barter request has been cancelled.",
+                barterRequest: barterRequest._id,
+                product: barterRequest.requestedProduct,
+            });
+        }
 
         return res.status(200).json({
             success: true,
@@ -378,7 +420,6 @@ const completeBarter = async (req, res, next) => {
             throw error;
         }
 
-        // Only requester or receiver can complete the barter
         const isRequester =
             barterRequest.requester.toString() === userId.toString();
 
@@ -392,7 +433,6 @@ const completeBarter = async (req, res, next) => {
             throw error;
         }
 
-        // Barter must be accepted first
         if (barterRequest.status !== "accepted") {
             const error = new Error(
                 "Only an accepted barter request can be completed.",
@@ -415,14 +455,12 @@ const completeBarter = async (req, res, next) => {
             throw error;
         }
 
-        // Both products must still be available
         if (!requestedProduct.isActive || !offeredProduct.isActive) {
             const error = new Error("One or both products are no longer available.");
             error.statusCode = 400;
             throw error;
         }
 
-        // Verify ownership before exchanging
         if (
             requestedProduct.owner.toString() !== barterRequest.receiver.toString()
         ) {
@@ -443,28 +481,43 @@ const completeBarter = async (req, res, next) => {
             throw error;
         }
 
-        // Exchange ownership
         requestedProduct.owner = barterRequest.requester;
         offeredProduct.owner = barterRequest.receiver;
 
-        // Mark products as swapped
         requestedProduct.status = "swapped";
         offeredProduct.status = "swapped";
 
-        // Remove products from marketplace
         requestedProduct.isActive = false;
         offeredProduct.isActive = false;
 
-        // Save products
         await requestedProduct.save({ session });
         await offeredProduct.save({ session });
 
-        // Complete barter
         barterRequest.status = "completed";
 
         await barterRequest.save({ session });
 
         await session.commitTransaction();
+
+        await createNotification({
+            recipient: barterRequest.requester,
+            sender: barterRequest.receiver,
+            type: "barter_completed",
+            title: "Barter completed",
+            message: "Your barter has been completed successfully.",
+            barterRequest: barterRequest._id,
+            product: barterRequest.requestedProduct,
+        });
+
+        await createNotification({
+            recipient: barterRequest.receiver,
+            sender: barterRequest.requester,
+            type: "barter_completed",
+            title: "Barter completed",
+            message: "Your barter has been completed successfully.",
+            barterRequest: barterRequest._id,
+            product: barterRequest.offeredProduct,
+        });
 
         return res.status(200).json({
             success: true,
