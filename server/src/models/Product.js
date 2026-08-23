@@ -14,10 +14,7 @@ const productSchema = new mongoose.Schema(
             type: String,
             required: [true, "Product description is required"],
             trim: true,
-            maxlength: [
-                2000,
-                "Product description cannot exceed 2000 characters",
-            ],
+            maxlength: [2000, "Product description cannot exceed 2000 characters"],
         },
 
         category: {
@@ -39,13 +36,7 @@ const productSchema = new mongoose.Schema(
         condition: {
             type: String,
             required: [true, "Product condition is required"],
-            enum: [
-                "new",
-                "like-new",
-                "good",
-                "fair",
-                "poor",
-            ],
+            enum: ["new", "like-new", "good", "fair", "poor"],
         },
 
         location: {
@@ -57,10 +48,7 @@ const productSchema = new mongoose.Schema(
         desiredProduct: {
             type: String,
             trim: true,
-            maxlength: [
-                200,
-                "Desired product cannot exceed 200 characters",
-            ],
+            maxlength: [200, "Desired product cannot exceed 200 characters"],
             default: "",
         },
 
@@ -77,7 +65,7 @@ const productSchema = new mongoose.Schema(
 
         status: {
             type: String,
-            enum: ["active", "sold", "swapped"],
+            enum: ["active", "swapped"],
             default: "active",
         },
 
@@ -94,7 +82,7 @@ const productSchema = new mongoose.Schema(
     },
     {
         timestamps: true,
-    }
+    },
 );
 
 const Product = mongoose.model("Product", productSchema);

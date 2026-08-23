@@ -22,6 +22,16 @@ const createBarterValidator = [
         .withMessage("Message cannot exceed 500 characters"),
 ];
 
+const updateBarterStatusValidator = [
+    body("status")
+        .trim()
+        .notEmpty()
+        .withMessage("Status is required")
+        .isIn(["accepted", "rejected", "cancelled"])
+        .withMessage("Status must be accepted, rejected, or cancelled"),
+];
+
 module.exports = {
     createBarterValidator,
+    updateBarterStatusValidator
 };

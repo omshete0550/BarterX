@@ -92,15 +92,9 @@ const getProducts = async (req, res, next) => {
         }
 
         // Pagination
-        const pageNumber = Math.max(
-            parseInt(page) || 1,
-            1
-        );
+        const pageNumber = Math.max(parseInt(page) || 1, 1);
 
-        const limitNumber = Math.min(
-            Math.max(parseInt(limit) || 12, 1),
-            50
-        );
+        const limitNumber = Math.min(Math.max(parseInt(limit) || 12, 1), 50);
 
         const skip = (pageNumber - 1) * limitNumber;
 
@@ -132,9 +126,7 @@ const getProducts = async (req, res, next) => {
             Product.countDocuments(filter),
         ]);
 
-        const totalPages = Math.ceil(
-            totalProducts / limitNumber
-        );
+        const totalPages = Math.ceil(totalProducts / limitNumber);
 
         return res.status(200).json({
             success: true,
@@ -157,23 +149,21 @@ const getProductDetails = async (req, res, next) => {
     try {
         const { productId } = req.params;
 
-        const product = await Product.findOneAndUpdate(
-            {
-                _id: productId,
-                isActive: true,
-            },
-            {
-                $inc: { views: 1 },
-            },
-            {
-                new: true,
-            },
-        ).populate("owner", "name avatar location bio");
+        const product = await Product.findById(productId).populate(
+            "owner",
+            "name avatar location bio",
+        );
 
         if (!product) {
             const error = new Error("Product not found.");
             error.statusCode = 404;
             return next(error);
+        }
+
+        // Only count views for active products
+        if (product.isActive) {
+            product.views += 1;
+            await product.save();
         }
 
         return res.status(200).json({
@@ -229,7 +219,7 @@ const updateProduct = async (req, res, next) => {
 
         if (!product) {
             const error = new Error(
-                "Product not found or you are not authorized to update it."
+                "Product not found or you are not authorized to update it.",
             );
 
             error.statusCode = 404;
@@ -291,7 +281,7 @@ const deleteProduct = async (req, res, next) => {
 
         if (!product) {
             const error = new Error(
-                "Product not found or you are not authorized to delete it."
+                "Product not found or you are not authorized to delete it.",
             );
 
             error.statusCode = 404;
@@ -317,5 +307,5 @@ module.exports = {
     getProductDetails,
     getMyProducts,
     updateProduct,
-    deleteProduct
+    deleteProduct,
 };

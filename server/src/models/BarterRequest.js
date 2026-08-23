@@ -35,24 +35,20 @@ const barterRequestSchema = new mongoose.Schema(
 
         status: {
             type: String,
-            enum: [
-                "pending",
-                "accepted",
-                "rejected",
-                "cancelled",
-                "completed",
-            ],
+            enum: ["pending", "accepted", "rejected", "cancelled", "completed"],
             default: "pending",
         },
     },
     {
         timestamps: true,
-    }
+    },
 );
 
-const BarterRequest = mongoose.model(
-    "BarterRequest",
-    barterRequestSchema
-);
+barterRequestSchema.index({ requester: 1, status: 1 });
+barterRequestSchema.index({ receiver: 1, status: 1 });
+barterRequestSchema.index({ requestedProduct: 1 });
+barterRequestSchema.index({ offeredProduct: 1 });
+
+const BarterRequest = mongoose.model("BarterRequest", barterRequestSchema);
 
 module.exports = BarterRequest;
