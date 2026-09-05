@@ -233,6 +233,40 @@
   flex-shrink: 0;
 }
 
+.navbar-auth-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-login-link,
+.navbar-register-link {
+  padding: 10px 16px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navbar-login-link {
+  color: #5d6578;
+}
+
+.navbar-login-link:hover {
+  color: #6d3df5;
+  background: #f5f2ff;
+}
+
+.navbar-register-link {
+  color: #ffffff;
+  background: #6d3df5;
+  box-shadow: 0 4px 12px rgba(109, 61, 245, 0.22);
+}
+
+.navbar-register-link:hover {
+  background: #5d30df;
+}
+
 /* =========================================================
    ICON BUTTONS
 ========================================================= */
@@ -769,6 +803,8 @@
   display: flex;
   align-items: center;
 
+  gap: 9px;
+
   min-height: 44px;
 
   padding: 10px 12px;
@@ -793,6 +829,18 @@
   color: #6d3df5;
 
   background: #f5f2ff;
+}
+
+.mobile-menu a.active {
+  color: #6d3df5;
+
+  background: #f5f2ff;
+}
+
+.mobile-auth-links {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 /* =========================================================

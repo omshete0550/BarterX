@@ -1,8 +1,16 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import MainLayout from "../../layouts/MainLayout";
+import { createProduct } from "../../features/products/productSlice";
 import "./AddProduct.css";
 
 function AddProduct() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { creating, error } = useSelector((state) => state.products);
   const [images, setImages] = useState([]);
+  const [imageFiles, setImageFiles] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     category: "",
@@ -27,21 +35,32 @@ function AddProduct() {
     const imageUrls = files.map((file) => URL.createObjectURL(file));
 
     setImages((prev) => [...prev, ...imageUrls]);
+    setImageFiles((prev) => [...prev, ...files]);
   };
 
   const removeImage = (index) => {
     setImages((prev) => prev.filter((_, i) => i !== index));
+    setImageFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Product:", formData);
-    console.log("Images:", images);
+    const result = await dispatch(
+      createProduct({
+        ...formData,
+        category: formData.category.toLowerCase(),
+        condition: formData.condition.toLowerCase().replaceAll(" ", "-"),
+        images: imageFiles,
+      }),
+    );
+    if (createProduct.fulfilled.match(result)) {
+      navigate(`/products/${result.payload._id}`);
+    }
   };
 
   return (
-    <div className="add-product-page">
+    <MainLayout>
+      <div className="add-product-page">
       {/* Header */}
       <section className="add-product-header">
         <div className="add-product-container">
@@ -65,6 +84,7 @@ function AddProduct() {
       <main className="add-product-main">
         <div className="add-product-container">
           <form className="add-product-layout" onSubmit={handleSubmit}>
+            {error && <p className="add-product-error">{error}</p>}
             {/* =====================================
                             LEFT SIDE FORM
                         ===================================== */}
@@ -164,9 +184,11 @@ function AddProduct() {
 
                       <option value="Sports">Sports</option>
 
-                      <option value="Music">Music</option>
+                      <option value="Clothing">Clothing</option>
 
-                      <option value="Fashion">Fashion</option>
+                      <option value="Vehicles">Vehicles</option>
+
+                      <option value="Home">Home</option>
 
                       <option value="Other">Other</option>
                     </select>
@@ -190,6 +212,8 @@ function AddProduct() {
                       <option value="Good">Good</option>
 
                       <option value="Fair">Fair</option>
+
+                      <option value="Poor">Poor</option>
                     </select>
                   </div>
                 </div>
@@ -253,8 +277,8 @@ function AddProduct() {
                   Cancel
                 </button>
 
-                <button type="submit" className="publish-product-btn">
-                  Publish Product
+                <button type="submit" className="publish-product-btn" disabled={creating}>
+                  {creating ? "Publishing..." : "Publish Product"}
                   <span>→</span>
                 </button>
               </div>
@@ -352,7 +376,8 @@ function AddProduct() {
           </form>
         </div>
       </main>
-    </div>
+      </div>
+    </MainLayout>
   );
 }
 

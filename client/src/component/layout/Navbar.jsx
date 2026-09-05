@@ -8,14 +8,20 @@ import {
   X,
   Plus,
   Package,
-  Settings,
   LogOut,
+  MessageCircle,
+  Repeat2,
+  Bookmark,
 } from "lucide-react";
 
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../common/Button";
+import { logout } from "../../features/auth/authSlice";
+import { fetchWishlist } from "../../features/wishlist/wishlistSlice";
+import { fetchNotifications } from "../../features/notifications/notificationSlice";
 
 import "../../styles/layout/navbar.css";
 
@@ -24,7 +30,24 @@ function Navbar() {
   const [profileMenu, setProfileMenu] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const { user, token } = useSelector((state) => state.auth);
+  const unreadNotifications = useSelector((state) => state.notifications.unreadCount);
+  const isLoggedIn = Boolean(user && token);
   const profileRef = useRef(null);
+  const pathname = location.pathname;
+
+  const marketplaceIsActive =
+    pathname === "/products" ||
+    pathname.startsWith("/products/") ||
+    pathname.startsWith("/category/") ||
+    pathname === "/search";
+
+  const swapsAreActive =
+    pathname === "/swap-requests" ||
+    pathname.startsWith("/swap-request/") ||
+    pathname.startsWith("/swap/");
 
   // Close profile dropdown when clicking outside
   useEffect(() => {
@@ -41,6 +64,24 @@ function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    dispatch(fetchWishlist());
+    dispatch(fetchNotifications());
+  }, [dispatch, isLoggedIn]);
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setMobileMenu(false);
+        setProfileMenu(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
+
   const handleNavigation = (path) => {
     setProfileMenu(false);
     setMobileMenu(false);
@@ -49,20 +90,33 @@ function Navbar() {
 
   const handleLogout = () => {
     setProfileMenu(false);
-
-    // Add your authentication logout logic here
-    // Example:
-    // localStorage.removeItem("token");
-
-    navigate("/login");
+    setMobileMenu(false);
+    dispatch(logout());
+    navigate("/");
   };
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const query = new FormData(event.currentTarget).get("query")?.trim();
+
+    if (query) {
+      navigate(`/search?q=${encodeURIComponent(query)}`);
+    }
+  };
+
+  const mobileLinkClass = ({ isActive }) =>
+    isActive ? "mobile-menu-link active" : "mobile-menu-link";
 
   return (
     <header className="navbar">
       <div className="navbar-container">
         {/* Logo */}
 
-        <Link to="/" className="navbar-logo">
+        <Link
+          to={isLoggedIn ? "/home" : "/"}
+          className="navbar-logo"
+          aria-label="BarterX home"
+        >
           <span className="logo-mark">B</span>
 
           <span className="logo-text">
@@ -72,167 +126,197 @@ function Navbar() {
 
         {/* Desktop Navigation */}
 
-        <nav className="navbar-links">
-          <Link to="/home" className="active">
+        <nav className="navbar-links" aria-label="Primary navigation">
+          <NavLink
+            to="/home"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             Home
-          </Link>
+          </NavLink>
 
-          <Link to="/products">
-            Categories
-            <ChevronDown size={15} />
-          </Link>
+          <NavLink
+            to="/products"
+            className={() => (marketplaceIsActive ? "active" : "")}
+          >
+            Browse Products
+          </NavLink>
 
-          <Link to="/about">How It Works</Link>
+          {isLoggedIn && (
+            <>
+              <NavLink
+                to="/swap-requests"
+                className={() => (swapsAreActive ? "active" : "")}
+              >
+                My Swaps
+              </NavLink>
+              <NavLink
+                to="/messages"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Messages
+              </NavLink>
+            </>
+          )}
         </nav>
 
         {/* Search */}
 
-        <div className="navbar-search">
+        <form className="navbar-search" onSubmit={handleSearch} role="search">
           <Search size={18} />
 
           <input
             type="text"
+            name="query"
             placeholder="Search products, categories..."
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && e.target.value.trim()) {
-                navigate(
-                  `/search?q=${encodeURIComponent(e.target.value.trim())}`,
-                );
-              }
-            }}
+            aria-label="Search products and categories"
           />
-        </div>
+        </form>
 
         {/* Actions */}
 
         <div className="navbar-actions">
-          {/* Wishlist */}
+          {isLoggedIn ? (
+            <>
+              {/* Wishlist */}
 
-          <button
-            className="navbar-icon"
-            onClick={() => navigate("/wishlist")}
-            aria-label="Wishlist"
-          >
-            <Heart size={21} />
-          </button>
+              <button
+                className="navbar-icon"
+                onClick={() => navigate("/wishlist")}
+                aria-label="Wishlist"
+              >
+                <Heart size={21} />
+              </button>
 
-          {/* Notifications */}
+              {/* Notifications */}
 
-          <button
-            className="navbar-icon notification-button"
-            onClick={() => navigate("/notifications")}
-            aria-label="Notifications"
-          >
-            <Bell size={21} />
-            <span className="notification-badge">3</span>
-          </button>
+              <button
+                className="navbar-icon notification-button"
+                onClick={() => navigate("/notifications")}
+                aria-label="Notifications"
+              >
+                <Bell size={21} />
+                {unreadNotifications > 0 && (
+                  <span className="notification-badge">
+                    {unreadNotifications > 99 ? "99+" : unreadNotifications}
+                  </span>
+                )}
+              </button>
 
-          {/* Profile */}
+              {/* Profile */}
 
-          <div className="profile-wrapper" ref={profileRef}>
-            <button
-              className={`navbar-profile ${profileMenu ? "profile-open" : ""}`}
-              onClick={() => setProfileMenu(!profileMenu)}
-              aria-label="Open profile menu"
-              aria-expanded={profileMenu}
-            >
-              <div className="avatar">
-                <User size={20} />
-              </div>
-
-              <ChevronDown
-                size={15}
-                className={`profile-chevron ${profileMenu ? "rotate" : ""}`}
-              />
-            </button>
-
-            {/* Profile Dropdown */}
-
-            {profileMenu && (
-              <div className="profile-dropdown">
-                {/* User Header */}
-
-                <div className="profile-dropdown-header">
-                  <div className="dropdown-avatar">
-                    <User size={21} />
+              <div className="profile-wrapper" ref={profileRef}>
+                <button
+                  className={`navbar-profile ${profileMenu ? "profile-open" : ""}`}
+                  onClick={() => setProfileMenu(!profileMenu)}
+                  aria-label="Open profile menu"
+                  aria-expanded={profileMenu}
+                >
+                  <div className="avatar">
+                    <User size={20} />
                   </div>
 
-                  <div className="profile-user-info">
-                    <strong>My Account</strong>
-                    <span>Welcome back!</span>
+                  <ChevronDown
+                    size={15}
+                    className={`profile-chevron ${profileMenu ? "rotate" : ""}`}
+                  />
+                </button>
+
+                {/* Profile Dropdown */}
+
+                {profileMenu && (
+                  <div className="profile-dropdown">
+                    {/* User Header */}
+
+                    <div className="profile-dropdown-header">
+                      <div className="dropdown-avatar">
+                        <User size={21} />
+                      </div>
+
+                      <div className="profile-user-info">
+                        <strong>{user.name || "My account"}</strong>
+                        <span>{user.email || ""}</span>
+                      </div>
+                    </div>
+
+                    <div className="dropdown-divider" />
+
+                    {/* Menu Items */}
+
+                    <button
+                      className="profile-dropdown-item"
+                      onClick={() => handleNavigation("/profile")}
+                    >
+                      <User size={18} />
+                      <span>View Profile</span>
+                    </button>
+
+                    <button
+                      className="profile-dropdown-item"
+                      onClick={() => handleNavigation("/my-products")}
+                    >
+                      <Package size={18} />
+                      <span>My Products</span>
+                    </button>
+
+                    <button
+                      className="profile-dropdown-item"
+                      onClick={() => handleNavigation("/swap-requests")}
+                    >
+                      <Repeat2 size={18} />
+                      <span>My Swaps</span>
+                    </button>
+
+                    <button
+                      className="profile-dropdown-item"
+                      onClick={() => handleNavigation("/messages")}
+                    >
+                      <MessageCircle size={18} />
+                      <span>Messages</span>
+                    </button>
+
+                    <button
+                      className="profile-dropdown-item"
+                      onClick={() => handleNavigation("/saved-items")}
+                    >
+                      <Bookmark size={18} />
+                      <span>Saved Items</span>
+                    </button>
+
+                    <div className="dropdown-divider" />
+
+                    {/* Logout */}
+
+                    <button
+                      className="profile-dropdown-item logout-item"
+                      onClick={handleLogout}
+                    >
+                      <LogOut size={18} />
+                      <span>Logout</span>
+                    </button>
                   </div>
-                </div>
-
-                <div className="dropdown-divider" />
-
-                {/* Menu Items */}
-
-                <button
-                  className="profile-dropdown-item"
-                  onClick={() => handleNavigation("/profile")}
-                >
-                  <User size={18} />
-                  <span>View Profile</span>
-                </button>
-
-                <button
-                  className="profile-dropdown-item"
-                  onClick={() => handleNavigation("/my-products")}
-                >
-                  <Package size={18} />
-                  <span>My Products</span>
-                </button>
-
-                <button
-                  className="profile-dropdown-item"
-                  onClick={() => handleNavigation("/wishlist")}
-                >
-                  <Heart size={18} />
-                  <span>Wishlist</span>
-                </button>
-
-                <button
-                  className="profile-dropdown-item"
-                  onClick={() => handleNavigation("/notifications")}
-                >
-                  <Bell size={18} />
-                  <span>Notifications</span>
-
-                  <span className="dropdown-notification-count">3</span>
-                </button>
-
-                <button
-                  className="profile-dropdown-item"
-                  onClick={() => handleNavigation("/settings")}
-                >
-                  <Settings size={18} />
-                  <span>Settings</span>
-                </button>
-
-                <div className="dropdown-divider" />
-
-                {/* Logout */}
-
-                <button
-                  className="profile-dropdown-item logout-item"
-                  onClick={handleLogout}
-                >
-                  <LogOut size={18} />
-                  <span>Logout</span>
-                </button>
+                )}
               </div>
-            )}
-          </div>
 
-          {/* Add Product */}
+              {/* Add Product */}
 
-          <Button
-            size="small"
-            icon={<Plus size={16} />}
-            onClick={() => navigate("/add-product")}
-          >
-            Add Product
-          </Button>
+              <Button
+                size="small"
+                icon={<Plus size={16} />}
+                onClick={() => navigate("/add-product")}
+              >
+                Add Product
+              </Button>
+            </>
+          ) : (
+            <div className="navbar-auth-links">
+              <Link to="/login" className="navbar-login-link">
+                Login
+              </Link>
+              <Link to="/register" className="navbar-register-link">
+                Register
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -241,6 +325,8 @@ function Navbar() {
           className="mobile-menu-button"
           onClick={() => setMobileMenu(!mobileMenu)}
           aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenu}
+          aria-controls="mobile-navigation"
         >
           {mobileMenu ? <X /> : <Menu />}
         </button>
@@ -249,49 +335,85 @@ function Navbar() {
       {/* Mobile Navigation */}
 
       {mobileMenu && (
-        <div className="mobile-menu">
-          <Link to="/home" onClick={() => setMobileMenu(false)}>
+        <nav
+          className="mobile-menu"
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
+          onClick={(event) => {
+            if (event.target.closest("a")) setMobileMenu(false);
+          }}
+        >
+          <NavLink to="/home" className={mobileLinkClass}>
             Home
-          </Link>
+          </NavLink>
 
-          <Link to="/products" onClick={() => setMobileMenu(false)}>
-            Categories
-          </Link>
+          <NavLink
+            to="/products"
+            className={() =>
+              marketplaceIsActive ? "mobile-menu-link active" : "mobile-menu-link"
+            }
+          >
+            Browse Products
+          </NavLink>
 
-          <Link to="/about" onClick={() => setMobileMenu(false)}>
-            How It Works
-          </Link>
-
-          <Link to="/wishlist" onClick={() => setMobileMenu(false)}>
-            Wishlist
-          </Link>
-
-          <Link to="/notifications" onClick={() => setMobileMenu(false)}>
-            Notifications
-          </Link>
-
-          <Link to="/profile" onClick={() => setMobileMenu(false)}>
-            View Profile
-          </Link>
-
-          <Link to="/my-products" onClick={() => setMobileMenu(false)}>
-            My Products
-          </Link>
-
-          <Link to="/settings" onClick={() => setMobileMenu(false)}>
-            Settings
-          </Link>
-
-          <Button fullWidth onClick={() => handleNavigation("/add-product")}>
-            <Plus size={16} />
-            Add Product
-          </Button>
-
-          <button className="mobile-logout" onClick={handleLogout}>
-            <LogOut size={17} />
-            Logout
-          </button>
-        </div>
+          {isLoggedIn ? (
+            <>
+              <NavLink
+                to="/swap-requests"
+                className={() =>
+                  swapsAreActive ? "mobile-menu-link active" : "mobile-menu-link"
+                }
+              >
+                <Repeat2 size={17} />
+                My Swaps
+              </NavLink>
+              <NavLink to="/messages" className={mobileLinkClass}>
+                <MessageCircle size={17} />
+                Messages
+              </NavLink>
+              <NavLink to="/wishlist" className={mobileLinkClass}>
+                <Heart size={17} />
+                Wishlist
+              </NavLink>
+              <NavLink to="/notifications" className={mobileLinkClass}>
+                <Bell size={17} />
+                Notifications
+              </NavLink>
+              <NavLink to="/profile" className={mobileLinkClass}>
+                <User size={17} />
+                My Profile
+              </NavLink>
+              <NavLink to="/my-products" className={mobileLinkClass}>
+                <Package size={17} />
+                My Products
+              </NavLink>
+              <NavLink to="/saved-items" className={mobileLinkClass}>
+                <Bookmark size={17} />
+                Saved Items
+              </NavLink>
+              <Button
+                fullWidth
+                onClick={() => handleNavigation("/add-product")}
+              >
+                <Plus size={16} />
+                Add Product
+              </Button>
+              <button className="mobile-logout" onClick={handleLogout}>
+                <LogOut size={17} />
+                Logout
+              </button>
+            </>
+          ) : (
+            <div className="mobile-auth-links">
+              <NavLink to="/login" className={mobileLinkClass}>
+                Login
+              </NavLink>
+              <NavLink to="/register" className={mobileLinkClass}>
+                Register
+              </NavLink>
+            </div>
+          )}
+        </nav>
       )}
     </header>
   );

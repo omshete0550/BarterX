@@ -1,15 +1,18 @@
 import { Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 
 import Landing from "../pages/Landing/Landing";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
+import { ForgotPassword, ResetPassword, VerifyEmail } from "../pages/Auth/AccountRecovery";
 import ProductListing from "../pages/Products/ProductListing";
 import ProductDetail from "../pages/ProductDetail/ProductDetail";
 import SwapRequest from "../pages/SwapRequest/SwapRequest";
 import Messages from "../pages/Messages/Messages";
 import Wishlist from "../pages/Wishlist/Wishlist";
 import Profile from "../pages/Profile/Profile";
+import PublicProfile from "../pages/Profile/PublicProfile";
 import EditProfile from "../pages/EditProfile/EditProfile";
 import MyProducts from "../pages/MyProducts/MyProducts";
 import EditProduct from "../pages/EditProduct/EditProduct";
@@ -27,22 +30,28 @@ function AppRoutes() {
       <Route path="/home" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/products" element={<ProductListing />} />
-      <Route path="/products/:id" element={<ProductDetail />} />
-      <Route path="/swap-request/:id" element={<SwapRequest />} />
-      <Route path="/swap/:id" element={<SwapRequest />} />
-      <Route path="/swap-requests" element={<SwapRequests />} />
-      <Route path="/messages" element={<Messages />} />
-      <Route path="/wishlist" element={<Wishlist />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/profile/edit" element={<EditProfile />} />
-      <Route path="/my-products" element={<MyProducts />} />
-      <Route path="/products/edit/:id" element={<EditProduct />} />
-      <Route path="/saved-items" element={<SavedItems />} />
-      <Route path="/add-product" element={<AddProduct />} />
-      <Route path="/notifications" element={<Notifications />} />
-      <Route path="/category/:category" element={<CategoryProducts />} />
-      <Route path="/search" element={<SearchResults />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/verify-email" element={<VerifyEmail />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/products" element={<ProductListing />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/swap-request/:id" element={<SwapRequest />} />
+        <Route path="/swap/:id" element={<SwapRequest />} />
+        <Route path="/swap-requests" element={<SwapRequests />} />
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/users/:id" element={<PublicProfile />} />
+        <Route path="/profile/edit" element={<EditProfile />} />
+        <Route path="/my-products" element={<MyProducts />} />
+        <Route path="/products/edit/:id" element={<EditProduct />} />
+        <Route path="/saved-items" element={<SavedItems />} />
+        <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/category/:category" element={<CategoryProducts />} />
+        <Route path="/search" element={<SearchResults />} />
+      </Route>
     </Routes>
   );
 }

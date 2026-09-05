@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Heart,
   MapPin,
@@ -17,20 +18,34 @@ import Footer from "../../component/layout/Footer";
 import Button from "../../component/common/Button";
 import ProductGrid from "../../component/product/ProductGrid";
 
-import products from "../../data/product";
+import { fetchProductById } from "../../features/products/productSlice";
+import { addToWishlist, removeFromWishlist } from "../../features/wishlist/wishlistSlice";
 
 import "./ProductDetail.css";
 
 function ProductDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const { currentProduct: product, items: products, loading, error } = useSelector(
+    (state) => state.products,
+  );
+  const wishlisted = useSelector((state) => state.wishlist.items);
 
-  const product = products.find((item) => String(item.id) === String(id));
+  useEffect(() => {
+    dispatch(fetchProductById(id));
+  }, [dispatch, id]);
 
   const [activeImage, setActiveImage] = useState(0);
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  const isWishlisted = Boolean(product && wishlisted.some((item) => item.id === product.id));
 
-  if (!product) {
+  if (loading) {
+    return (
+      <div className="product-detail-page"><Navbar /><main className="product-not-found"><p>Loading product...</p></main><Footer /></div>
+    );
+  }
+
+  if (!product || error) {
     return (
       <div className="product-detail-page">
         <Navbar />
@@ -61,7 +76,7 @@ function ProductDetail() {
   const images =
     product.images?.length > 0
       ? product.images
-      : [product.image, product.image, product.image];
+      : [product.image];
 
   const nextImage = () => {
     setActiveImage((current) =>
@@ -73,6 +88,19 @@ function ProductDetail() {
     setActiveImage((current) =>
       current === 0 ? images.length - 1 : current - 1,
     );
+  };
+
+  const shareProduct = async () => {
+    const shareData = { title: product.title, text: `Check out ${product.title} on BarterX`, url: window.location.href };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        return;
+      }
+      await navigator.clipboard?.writeText(window.location.href);
+    } catch {
+      // Closing the native share sheet is not an application error.
+    }
   };
 
   return (
@@ -166,7 +194,7 @@ function ProductDetail() {
                       className={`product-icon-button ${
                         isWishlisted ? "wishlisted" : ""
                       }`}
-                      onClick={() => setIsWishlisted(!isWishlisted)}
+                      onClick={() => dispatch(isWishlisted ? removeFromWishlist(product.id) : addToWishlist(product))}
                       aria-label="Wishlist"
                     >
                       <Heart
@@ -175,7 +203,7 @@ function ProductDetail() {
                       />
                     </button>
 
-                    <button className="product-icon-button" aria-label="Share">
+                    <button className="product-icon-button" aria-label="Share" onClick={shareProduct}>
                       <Share2 size={18} />
                     </button>
                   </div>
@@ -244,6 +272,7 @@ function ProductDetail() {
                     variant="outline"
                     fullWidth
                     icon={<MessageCircle size={17} />}
+                    onClick={() => navigate("/messages", { state: { participantId: product.owner?._id } })}
                   >
                     Message Seller
                   </Button>
@@ -276,26 +305,26 @@ function ProductDetail() {
             <div className="seller-card">
               <div className="seller-info">
                 <div className="seller-avatar">
-                  {product.seller?.avatar ? (
+                  {product.owner?.avatar ? (
                     <img
-                      src={product.seller.avatar}
-                      alt={product.seller.name}
+                      src={product.owner.avatar}
+                      alt={product.owner.name}
                     />
                   ) : (
-                    product.seller?.name?.charAt(0)?.toUpperCase() || "U"
+                    product.owner?.name?.charAt(0)?.toUpperCase() || "U"
                   )}
                 </div>
 
                 <div>
                   <span>Listed by</span>
 
-                  <h3>{product.seller?.name || "BarterX User"}</h3>
+                  <h3>{product.owner?.name || "BarterX User"}</h3>
 
                   <p>Active on BarterX</p>
                 </div>
               </div>
 
-              <Link to={`/profile/${product.seller?.id || ""}`}>
+              <Link to={`/users/${product.owner?._id}`}>
                 <Button variant="outline">View Profile</Button>
               </Link>
             </div>

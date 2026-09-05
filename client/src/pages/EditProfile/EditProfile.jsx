@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ArrowLeft,
   Camera,
-  CheckCircle,
   MapPin,
   Mail,
   Phone,
@@ -12,28 +12,47 @@ import { useNavigate } from "react-router-dom";
 
 import Navbar from "../../component/layout/Navbar";
 import Footer from "../../component/layout/Footer";
+import { getMyProfile, updateMyProfile } from "../../features/auth/authSlice";
 
 import "./EditProfile.css";
 
 function EditProfile() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, loading, error: apiError } = useSelector((state) => state.auth);
 
   const [formData, setFormData] = useState({
-    name: "Om Shete",
-    username: "@omshete",
-    email: "om@example.com",
-    phone: "+91 98765 43210",
-    location: "Pune, Maharashtra",
-    bio: "Tech enthusiast who loves discovering useful products and trading things I no longer need.",
+    name: "",
+    email: "",
+    phone: "",
+    location: "",
+    bio: "",
   });
 
-  const [avatar, setAvatar] = useState("https://i.pravatar.cc/300?img=12");
-
-  const [loading, setLoading] = useState(false);
+  const [avatar, setAvatar] = useState("");
+  const [avatarFile, setAvatarFile] = useState(null);
 
   const [error, setError] = useState("");
 
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState("");
+
+  useEffect(() => {
+    dispatch(getMyProfile());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!user) return;
+    // This is a local draft: populate it once the authenticated profile arrives.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setFormData({
+      name: user.name || "",
+      email: user.email || "",
+      phone: user.phone || "",
+      location: user.location || "",
+      bio: user.bio || "",
+    });
+    setAvatar(user.avatar || "https://i.pravatar.cc/300?img=12");
+  }, [user]);
 
   /*
    * Handle input changes
@@ -73,6 +92,7 @@ function EditProfile() {
     const imageUrl = URL.createObjectURL(file);
 
     setAvatar(imageUrl);
+    setAvatarFile(file);
 
     setError("");
   };
@@ -104,21 +124,19 @@ function EditProfile() {
       return;
     }
 
-    setLoading(true);
+    const result = await dispatch(
+      updateMyProfile({
+        name: formData.name.trim(),
+        phone: formData.phone.trim(),
+        location: formData.location.trim(),
+        bio: formData.bio.trim(),
+        ...(avatarFile ? { avatarFile } : { avatar }),
+      }),
+    );
 
-    /*
-     * Temporary API simulation.
-     *
-     * Later this will become:
-     *
-     * PUT /api/users/:userId
-     */
-
-    setTimeout(() => {
-      setLoading(false);
-
+    if (updateMyProfile.fulfilled.match(result)) {
       setSuccess("Profile updated successfully.");
-    }, 1000);
+    }
   };
 
   /*
@@ -180,6 +198,7 @@ function EditProfile() {
                   title="Change profile photo"
                 >
                   <Camera size={15} />
+                  <span>Change photo</span>
 
                   <input
                     id="avatar-upload"
@@ -198,7 +217,7 @@ function EditProfile() {
                   with.
                 </p>
 
-                <span>JPG, PNG or WEBP · Max 5MB</span>
+                <span>JPG, PNG, or WEBP · Up to 5MB</span>
               </div>
             </section>
 
@@ -235,36 +254,9 @@ function EditProfile() {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Enter your name"
+                      required
                     />
                   </div>
-                </div>
-
-                {/* Username */}
-
-                <div className="edit-profile-field">
-                  <label htmlFor="username">Username</label>
-
-                  <div className="edit-profile-input-wrapper">
-                    <span className="edit-profile-input-symbol">@</span>
-
-                    <input
-                      id="username"
-                      name="username"
-                      type="text"
-                      value={formData.username.replace("@", "")}
-                      onChange={(event) =>
-                        setFormData((current) => ({
-                          ...current,
-                          username: event.target.value.startsWith("@")
-                            ? event.target.value
-                            : `@${event.target.value}`,
-                        }))
-                      }
-                      placeholder="username"
-                    />
-                  </div>
-
-                  <small>Your username is visible to other users.</small>
                 </div>
 
                 {/* Email */}
@@ -280,10 +272,12 @@ function EditProfile() {
                       name="email"
                       type="email"
                       value={formData.email}
-                      onChange={handleChange}
                       placeholder="you@example.com"
+                      disabled
                     />
                   </div>
+
+                  <small>Email is managed with your account and can’t be changed here.</small>
                 </div>
 
                 {/* Phone */}
@@ -320,6 +314,7 @@ function EditProfile() {
                       value={formData.location}
                       onChange={handleChange}
                       placeholder="City, State"
+                      required
                     />
                   </div>
 
@@ -358,35 +353,23 @@ function EditProfile() {
             </section>
 
             {/* ================================= */}
-            {/* Account Status */}
-            {/* ================================= */}
-
-            <section className="edit-profile-account-status">
-              <div className="edit-profile-status-icon">
-                <CheckCircle size={17} />
-              </div>
-
-              <div>
-                <strong>Account Verified</strong>
-
-                <p>Your email address has been verified.</p>
-              </div>
-
-              <span>Verified</span>
-            </section>
-
-            {/* ================================= */}
             {/* Error */}
             {/* ================================= */}
 
-            {error && <div className="edit-profile-message error">{error}</div>}
+            {(error || apiError) && (
+              <div className="edit-profile-message error" role="alert">
+                {error || apiError}
+              </div>
+            )}
 
             {/* ================================= */}
             {/* Success */}
             {/* ================================= */}
 
             {success && (
-              <div className="edit-profile-message success">{success}</div>
+              <div className="edit-profile-message success" role="status">
+                {success}
+              </div>
             )}
 
             {/* ================================= */}

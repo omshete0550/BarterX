@@ -89,8 +89,31 @@ const markAllNotificationsAsRead = async (req, res, next) => {
     }
 };
 
+const deleteNotification = async (req, res, next) => {
+    try {
+        const notification = await Notification.findOneAndDelete({
+            _id: req.params.notificationId,
+            recipient: req.user.userId,
+        });
+
+        if (!notification) {
+            const error = new Error("Notification not found.");
+            error.statusCode = 404;
+            return next(error);
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Notification deleted.",
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = {
     getNotifications,
     markNotificationAsRead,
     markAllNotificationsAsRead,
+    deleteNotification,
 };

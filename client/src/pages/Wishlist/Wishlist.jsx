@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Heart, Search, SlidersHorizontal, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,14 +8,14 @@ import Footer from "../../component/layout/Footer";
 
 import ProductCard from "../../component/product/ProductCard";
 
-import wishlistProductsData from "../../data/wishlist";
+import { fetchWishlist, removeFromWishlist as removeWishlistItem } from "../../features/wishlist/wishlistSlice";
 
 import "./Wishlist.css";
 
 function Wishlist() {
   const navigate = useNavigate();
-
-  const [products, setProducts] = useState(wishlistProductsData);
+  const dispatch = useDispatch();
+  const { items: products, loading, error } = useSelector((state) => state.wishlist);
 
   const [search, setSearch] = useState("");
 
@@ -22,9 +23,7 @@ function Wishlist() {
 
   const [showFilters, setShowFilters] = useState(false);
 
-  const [loading, setLoading] = useState(false);
-
-  const [error, setError] = useState(null);
+  useEffect(() => { dispatch(fetchWishlist()); }, [dispatch]);
 
   /*
    * Categories
@@ -54,7 +53,7 @@ function Wishlist() {
    * Remove wishlist item
    */
   const removeFromWishlist = (id) => {
-    setProducts((current) => current.filter((product) => product.id !== id));
+    dispatch(removeWishlistItem(id));
   };
 
   /*
@@ -120,7 +119,7 @@ function Wishlist() {
 
               <p>We couldn't load your wishlist.</p>
 
-              <button onClick={() => setError(null)}>Try Again</button>
+              <button onClick={() => dispatch(fetchWishlist())}>Try Again</button>
             </div>
           </div>
         </main>

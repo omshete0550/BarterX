@@ -9,7 +9,7 @@ const sendMessage = async (req, res, next) => {
     try {
         const senderId = req.user.userId;
 
-        const { receiver, text } = req.body;
+        const { receiver, text, conversationId } = req.body;
 
         // Validate receiver ID
         if (!mongoose.Types.ObjectId.isValid(receiver)) {
@@ -37,12 +37,34 @@ const sendMessage = async (req, res, next) => {
             return next(error);
         }
 
-        // Find conversation
-        let conversation = await Conversation.findOne({
-            participants: {
-                $all: [senderId, receiver],
-            },
-        });
+        let conversation;
+        if (conversationId) {
+            conversation = await Conversation.findOne({
+                _id: conversationId,
+                participants: senderId,
+            });
+            if (!conversation) {
+                const error = new Error("Conversation not found.");
+                error.statusCode = 404;
+                return next(error);
+            }
+            const receiverIsParticipant = conversation.participants.some(
+                (participant) => participant.toString() === receiver.toString(),
+            );
+            if (!receiverIsParticipant) {
+                const error = new Error("Receiver is not part of this conversation.");
+                error.statusCode = 403;
+                return next(error);
+            }
+        } else {
+            // General conversations intentionally exclude barter-linked threads.
+            conversation = await Conversation.findOne({
+                participants: {
+                    $all: [senderId, receiver],
+                },
+                barterRequest: null,
+            });
+        }
 
         // Create conversation if it doesn't exist
         if (!conversation) {
@@ -68,6 +90,14 @@ const sendMessage = async (req, res, next) => {
         const populatedMessage = await Message.findById(message._id)
             .populate("sender", "name avatar")
             .populate("receiver", "name avatar");
+
+        const io = req.app.get("io");
+        io?.to(`conversation:${conversation._id}`).emit("receive_message", {
+            message: populatedMessage,
+        });
+        io?.to(`user:${receiver}`).emit("new_message", {
+            message: populatedMessage,
+        });
 
         return res.status(201).json({
             success: true,

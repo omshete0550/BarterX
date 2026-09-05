@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ArrowLeftRight,
   CheckCircle2,
@@ -13,17 +14,22 @@ import Navbar from "../../component/layout/Navbar";
 import Footer from "../../component/layout/Footer";
 import Button from "../../component/common/Button";
 
-import products from "../../data/product";
+import { fetchMyProducts, fetchProductById } from "../../features/products/productSlice";
+import { submitBarterRequest } from "../../features/barter/barterSlice";
 
 import "./SwapRequest.css";
 
 function SwapRequest() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { currentProduct: requestedProduct, myItems: myProducts, loading } = useSelector((state) => state.products);
+  const { submitting, error: barterError } = useSelector((state) => state.barter);
 
-  const requestedProduct = products.find(
-    (product) => String(product.id) === String(id),
-  );
+  useEffect(() => {
+    dispatch(fetchProductById(id));
+    dispatch(fetchMyProducts());
+  }, [dispatch, id]);
 
   const [selectedProductId, setSelectedProductId] = useState("");
 
@@ -33,24 +39,18 @@ function SwapRequest() {
 
   const [submitted, setSubmitted] = useState(false);
 
-  /*
-   * In the future this will come from
-   * the authenticated user's products
-   */
-  const myProducts = useMemo(() => {
-    return products.filter(
-      (product) => product.owner?.id !== requestedProduct?.owner?.id,
-    );
-  }, [requestedProduct]);
-
-  const selectedProduct = products.find(
+  const selectedProduct = myProducts.find(
     (product) => String(product.id) === String(selectedProductId),
   );
+
+  if (loading && !requestedProduct) {
+    return <div className="swap-page"><Navbar /><main className="swap-not-found"><p>Loading product...</p></main><Footer /></div>;
+  }
 
   /*
    * Product doesn't exist
    */
-  if (!requestedProduct) {
+  if (!requestedProduct && !loading) {
     return (
       <div className="swap-page">
         <Navbar />
@@ -75,14 +75,19 @@ function SwapRequest() {
   /*
    * Send request
    */
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!selectedProductId) {
       return;
     }
 
-    setSubmitted(true);
+    const result = await dispatch(submitBarterRequest({
+      requestedProduct: id,
+      offeredProduct: selectedProductId,
+      message: message.trim(),
+    }));
+    if (submitBarterRequest.fulfilled.match(result)) setSubmitted(true);
   };
 
   /*
@@ -380,10 +385,10 @@ function SwapRequest() {
                   <Button
                     type="submit"
                     fullWidth
-                    disabled={!selectedProductId}
+                    disabled={!selectedProductId || submitting}
                     icon={<ArrowLeftRight size={16} />}
                   >
-                    Send Swap Request
+                    {submitting ? "Sending..." : "Send Swap Request"}
                   </Button>
 
                   {!selectedProductId && (
@@ -391,6 +396,8 @@ function SwapRequest() {
                       Select one of your products first.
                     </p>
                   )}
+
+                  {barterError && <p className="select-warning">{barterError}</p>}
                 </div>
 
                 {/* Safety */}

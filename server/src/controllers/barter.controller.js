@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const BarterRequest = require("../models/BarterRequest");
 const Product = require("../models/Product");
+const Conversation = require("../models/Conversation");
 const { createNotification } = require("../utils/notification");
 
 const createBarterRequest = async (req, res, next) => {
@@ -131,6 +132,13 @@ const createBarterRequest = async (req, res, next) => {
             offeredProduct: offeredProductDoc._id,
             message: message || "",
         });
+
+        const conversation = await Conversation.create({
+            participants: [requesterId, receiverId],
+            barterRequest: barterRequest._id,
+        });
+        barterRequest.conversation = conversation._id;
+        await barterRequest.save();
 
         await createNotification({
             recipient: receiverId,

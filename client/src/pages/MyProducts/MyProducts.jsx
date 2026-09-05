@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Plus,
   Search,
@@ -17,18 +18,18 @@ import Navbar from "../../component/layout/Navbar";
 import Footer from "../../component/layout/Footer";
 import Modal from "../../component/common/Modal";
 
-import productsData from "../../data/product";
+import { deleteProduct as deleteProductRequest, fetchMyProducts } from "../../features/products/productSlice";
 
 import "./MyProducts.css";
 
 function MyProducts() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { myItems: products, loading, error } = useSelector((state) => state.products);
 
-  /*
-   * In the real application this will come
-   * from the logged-in user's API.
-   */
-  const [products, setProducts] = useState(productsData);
+  useEffect(() => {
+    dispatch(fetchMyProducts());
+  }, [dispatch]);
 
   const [search, setSearch] = useState("");
 
@@ -39,10 +40,6 @@ function MyProducts() {
   const [activeMenu, setActiveMenu] = useState(null);
 
   const [deleteProduct, setDeleteProduct] = useState(null);
-
-  const [loading] = useState(false);
-
-  const [error] = useState(null);
 
   /*
    * Categories
@@ -82,14 +79,10 @@ function MyProducts() {
   /*
    * Delete product
    */
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (!deleteProduct) return;
-
-    setProducts((current) =>
-      current.filter((product) => product.id !== deleteProduct.id),
-    );
-
-    setDeleteProduct(null);
+    const result = await dispatch(deleteProductRequest(deleteProduct.id));
+    if (deleteProductRequest.fulfilled.match(result)) setDeleteProduct(null);
   };
 
   /*
@@ -132,7 +125,7 @@ function MyProducts() {
 
               <p>Something went wrong while loading your products.</p>
 
-              <button onClick={() => window.location.reload()}>
+              <button onClick={() => dispatch(fetchMyProducts())}>
                 Try Again
               </button>
             </div>

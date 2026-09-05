@@ -34,6 +34,15 @@
   width: 100%;
 }
 
+.auth-server-error {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #b42318;
+  background: #fef3f2;
+  font-size: 13px;
+}
+
 /* Password */
 
 .password-wrapper {
@@ -43,12 +52,16 @@
 .password-toggle {
   position: absolute;
 
-  right: 13px;
-  bottom: 25px;
+  top: 46px;
+  right: 7px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  padding: 0;
 
   border: none;
 
@@ -56,6 +69,8 @@
   background: transparent;
 
   cursor: pointer;
+
+  transform: translateY(-50%);
 }
 
 .password-toggle:hover {

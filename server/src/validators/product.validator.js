@@ -70,15 +70,6 @@ const publishProductValidator = [
             "Desired product cannot exceed 200 characters"
         ),
 
-    body("images")
-        .optional()
-        .isArray()
-        .withMessage("Images must be an array"),
-
-    body("images.*")
-        .optional()
-        .isURL()
-        .withMessage("Each image must be a valid URL"),
 ];
 
 const updateProductValidator = [
@@ -141,15 +132,6 @@ const updateProductValidator = [
             "Desired product cannot exceed 200 characters"
         ),
 
-    body("images")
-        .optional()
-        .isArray()
-        .withMessage("Images must be an array"),
-
-    body("images.*")
-        .optional()
-        .isURL()
-        .withMessage("Each image must be a valid URL"),
 ];
 
 module.exports = {

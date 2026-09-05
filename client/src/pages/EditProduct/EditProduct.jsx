@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, ImagePlus, MapPin, Save, Trash2, X } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { ArrowLeft, ImagePlus, MapPin, Save, X } from "lucide-react";
 
 import Navbar from "../../component/layout/Navbar";
 import Footer from "../../component/layout/Footer";
 
-import products from "../../data/product";
+import { fetchProductById, updateProduct } from "../../features/products/productSlice";
 
 import "./EditProduct.css";
 
 function EditProduct() {
   const navigate = useNavigate();
   const { id } = useParams();
-
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState("");
+  const dispatch = useDispatch();
+  const { currentProduct: product, loading, creating: saving, error: apiError } = useSelector(
+    (state) => state.products,
+  );
+  const [error] = useState("");
 
   const [image, setImage] = useState("");
   const [newImage, setNewImage] = useState(null);
@@ -29,23 +31,13 @@ function EditProduct() {
     description: "",
   });
 
-  /*
-   * Load existing product
-   *
-   * For now we're using mock data.
-   * Later this will come from:
-   *
-   * GET /api/product/:productId
-   */
   useEffect(() => {
-    const product = products.find((item) => String(item.id) === String(id));
+    dispatch(fetchProductById(id));
+  }, [dispatch, id]);
 
-    if (!product) {
-      setError("Product not found.");
-      setLoading(false);
-      return;
-    }
-
+  useEffect(() => {
+    if (!product) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFormData({
       title: product.title || "",
       category: product.category || "",
@@ -56,9 +48,7 @@ function EditProduct() {
     });
 
     setImage(product.image || "");
-
-    setLoading(false);
-  }, [id]);
+  }, [product]);
 
   /*
    * Handle input changes
@@ -81,7 +71,6 @@ function EditProduct() {
     if (!file) return;
 
     setNewImage(file);
-
     const preview = URL.createObjectURL(file);
 
     setImage(preview);
@@ -101,34 +90,16 @@ function EditProduct() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    setSaving(true);
-
-    /*
-     * API integration will be added later:
-     *
-     * PUT /api/products/:productId
-     *
-     * FormData:
-     * title
-     * category
-     * condition
-     * location
-     * desiredProduct
-     * description
-     * image
-     */
-
-    await new Promise((resolve) => setTimeout(resolve, 900));
-
-    console.log("Updated product:", {
+    const result = await dispatch(updateProduct({
       id,
-      ...formData,
-      image: newImage,
-    });
-
-    setSaving(false);
-
-    navigate(`/products/${id}`);
+      details: {
+        ...formData,
+        category: formData.category.toLowerCase(),
+        condition: formData.condition.toLowerCase().replaceAll(" ", "-"),
+        images: newImage ? [newImage] : [],
+      },
+    }));
+    if (updateProduct.fulfilled.match(result)) navigate(`/products/${id}`);
   };
 
   /*
@@ -157,7 +128,7 @@ function EditProduct() {
   /*
    * Error state
    */
-  if (error) {
+  if (error || apiError) {
     return (
       <div className="edit-product-page">
         <Navbar />

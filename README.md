@@ -212,11 +212,19 @@ Create a `.env` file inside the `server` directory:
 
 ```env
 PORT=5000
+CLIENT_ORIGIN=http://localhost:5173
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
 
 Replace the values with your local or production configuration.
+
+Create `client/.env` from `client/.env.example` when the API or Socket.IO server is not hosted at `http://localhost:5000`.
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for the required production and E2E-test environment variables.
 
 > **Important:** Never commit your `.env` file or private credentials to GitHub.
 

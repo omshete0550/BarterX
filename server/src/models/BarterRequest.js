@@ -26,6 +26,12 @@ const barterRequestSchema = new mongoose.Schema(
             required: true,
         },
 
+        conversation: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Conversation",
+            default: null,
+        },
+
         message: {
             type: String,
             trim: true,

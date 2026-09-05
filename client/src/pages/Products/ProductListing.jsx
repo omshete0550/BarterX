@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Search, SlidersHorizontal, ChevronDown } from "lucide-react";
 
 import Navbar from "../../component/layout/Navbar";
@@ -8,17 +9,22 @@ import Button from "../../component/common/Button";
 import ProductGrid from "../../component/product/ProductGrid";
 import CategoryNav from "../../component/product/CategoryNav";
 import ProductFilters from "../../component/product/ProductFilters";
+import ProductPagination from "../../component/product/ProductPagination";
 
-import products from "../../data/product";
+import { fetchProducts } from "../../features/products/productSlice";
+import { buildProductQuery } from "../../features/products/productQuery";
 
 import "./ProductListing.css";
 
 function ProductListing() {
+  const dispatch = useDispatch();
+  const { items: products, pagination, loading, error } = useSelector((state) => state.products);
   const [activeCategory, setActiveCategory] = useState("All");
 
   const [search, setSearch] = useState("");
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [page, setPage] = useState(1);
 
   const [filters, setFilters] = useState({
     category: "All",
@@ -27,89 +33,28 @@ function ProductListing() {
     sort: "Latest",
   });
 
-  const [loading] = useState(false);
+  const query = useMemo(() => buildProductQuery({
+    search,
+    category: activeCategory !== "All" ? activeCategory : filters.category,
+    condition: filters.condition,
+    location: filters.location,
+    sort: filters.sort,
+    page,
+  }), [activeCategory, filters, page, search]);
 
-  const [error] = useState(false);
+  useEffect(() => { dispatch(fetchProducts(query)); }, [dispatch, query]);
 
-  /*
-   * Filter products
-   */
-  const filteredProducts = useMemo(() => {
-    let result = [...products];
-
-    /*
-     * Category from category navigation
-     */
-    if (activeCategory !== "All") {
-      result = result.filter((product) => product.category === activeCategory);
-    }
-
-    /*
-     * Category from sidebar filter
-     */
-    if (filters.category !== "All" && activeCategory === "All") {
-      result = result.filter(
-        (product) => product.category === filters.category,
-      );
-    }
-
-    /*
-     * Condition
-     */
-    if (filters.condition !== "All") {
-      result = result.filter(
-        (product) => product.condition === filters.condition,
-      );
-    }
-
-    /*
-     * Location
-     */
-    if (filters.location.trim()) {
-      result = result.filter((product) =>
-        product.location.toLowerCase().includes(filters.location.toLowerCase()),
-      );
-    }
-
-    /*
-     * Search
-     */
-    if (search.trim()) {
-      const query = search.toLowerCase();
-
-      result = result.filter((product) => {
-        return (
-          product.title.toLowerCase().includes(query) ||
-          product.category.toLowerCase().includes(query) ||
-          product.location.toLowerCase().includes(query) ||
-          product.desiredProduct.toLowerCase().includes(query)
-        );
-      });
-    }
-
-    /*
-     * Sorting
-     */
-    if (filters.sort === "A-Z") {
-      result.sort((a, b) => a.title.localeCompare(b.title));
-    }
-
-    if (filters.sort === "Z-A") {
-      result.sort((a, b) => b.title.localeCompare(a.title));
-    }
-
-    if (filters.sort === "Oldest") {
-      result.reverse();
-    }
-
-    return result;
-  }, [activeCategory, filters, search]);
+  const updateFilters = (updater) => {
+    setPage(1);
+    setFilters(updater);
+  };
 
   /*
    * Category change
    */
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
+    setPage(1);
 
     setFilters((prev) => ({
       ...prev,
@@ -130,9 +75,9 @@ function ProductListing() {
 
           <h2>Something went wrong</h2>
 
-          <p>We couldn't load the products. Please try again.</p>
+          <p>{error || "We couldn't load the products. Please try again."}</p>
 
-          <Button>Try Again</Button>
+          <Button onClick={() => dispatch(fetchProducts(query))}>Try Again</Button>
         </main>
 
         <Footer />
@@ -169,7 +114,7 @@ function ProductListing() {
               </div>
 
               <div className="products-total">
-                <strong>{filteredProducts.length}</strong>
+                <strong>{pagination?.totalProducts || 0}</strong>
 
                 <span>Products available</span>
               </div>
@@ -193,13 +138,13 @@ function ProductListing() {
                   type="text"
                   placeholder="Search products, categories, locations..."
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={(e) => { setSearch(e.target.value); setPage(1); }}
                 />
 
                 {search && (
                   <button
                     className="clear-search"
-                    onClick={() => setSearch("")}
+                    onClick={() => { setSearch(""); setPage(1); }}
                   >
                     ×
                   </button>
@@ -237,7 +182,7 @@ function ProductListing() {
               {/* =========================== */}
 
               <aside className="products-sidebar">
-                <ProductFilters filters={filters} setFilters={setFilters} />
+                <ProductFilters filters={filters} setFilters={updateFilters} />
               </aside>
 
               {/* =========================== */}
@@ -249,7 +194,7 @@ function ProductListing() {
                   <div>
                     <span>Showing</span>
 
-                    <strong>{filteredProducts.length}</strong>
+                    <strong>{pagination?.totalProducts || 0}</strong>
 
                     <span>results</span>
                   </div>
@@ -262,12 +207,13 @@ function ProductListing() {
                     <div className="sort-select">
                       <select
                         value={filters.sort}
-                        onChange={(e) =>
+                        onChange={(e) => {
+                          setPage(1);
                           setFilters((prev) => ({
                             ...prev,
                             sort: e.target.value,
-                          }))
-                        }
+                          }));
+                        }}
                       >
                         <option>Latest</option>
 
@@ -285,7 +231,8 @@ function ProductListing() {
 
                 {/* Products */}
 
-                <ProductGrid products={filteredProducts} loading={loading} />
+                <ProductGrid products={products} loading={loading} />
+                <ProductPagination pagination={pagination} onPageChange={setPage} />
               </div>
             </div>
           </div>
@@ -310,10 +257,10 @@ function ProductListing() {
               <button onClick={() => setMobileFiltersOpen(false)}>×</button>
             </div>
 
-            <ProductFilters filters={filters} setFilters={setFilters} />
+            <ProductFilters filters={filters} setFilters={updateFilters} />
 
             <Button fullWidth onClick={() => setMobileFiltersOpen(false)}>
-              Show {filteredProducts.length} Products
+              Show {pagination?.totalProducts || 0} Products
             </Button>
           </div>
         </div>

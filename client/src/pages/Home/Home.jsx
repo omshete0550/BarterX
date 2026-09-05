@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Search,
@@ -19,12 +20,16 @@ import Button from "../../component/common/Button";
 import ProductGrid from "../../component/product/ProductGrid";
 import CategoryNav from "../../component/product/CategoryNav";
 
-import products from "../../data/product";
+import { fetchProducts } from "../../features/products/productSlice";
 
 import "./Home.css";
 
 function Home() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.items);
+
+  useEffect(() => { dispatch(fetchProducts()); }, [dispatch]);
 
   const [activeCategory, setActiveCategory] = useState("All");
 
@@ -41,7 +46,7 @@ function Home() {
 
       return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, search]);
+  }, [activeCategory, products, search]);
 
   return (
     <div className="home-page">
@@ -120,7 +125,7 @@ function Home() {
               <div className="hero-orbit orbit-one" />
               <div className="hero-orbit orbit-two" />
 
-              <div className="hero-product-card hero-card-one">
+              {products[0] && <div className="hero-product-card hero-card-one">
                 <img src={products[0].image} alt="" />
 
                 <div>
@@ -128,9 +133,9 @@ function Home() {
 
                   <span>Wants: Gaming Keyboard</span>
                 </div>
-              </div>
+              </div>}
 
-              <div className="hero-product-card hero-card-two">
+              {products[2] && <div className="hero-product-card hero-card-two">
                 <img src={products[2].image} alt="" />
 
                 <div>
@@ -138,7 +143,7 @@ function Home() {
 
                   <span>Wants: Smart Watch</span>
                 </div>
-              </div>
+              </div>}
 
               <div className="hero-center-icon">
                 <RefreshCcw size={42} />

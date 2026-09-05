@@ -1,4 +1,6 @@
 const Product = require("../models/Product");
+const uploadToCloudinary = require("../utils/uploadToCloudinary");
+const { deleteFromCloudinary } = require("../utils/uploadToCloudinary");
 
 const publishProduct = async (req, res, next) => {
     try {
@@ -11,8 +13,11 @@ const publishProduct = async (req, res, next) => {
             condition,
             location,
             desiredProduct,
-            images,
         } = req.body;
+
+        const images = req.files?.length
+            ? await Promise.all(req.files.map((file) => uploadToCloudinary(file, process.env.CLOUDINARY_UPLOAD_FOLDER || "barterx/products")))
+            : [];
 
         const product = await Product.create({
             title,
@@ -108,6 +113,14 @@ const getProducts = async (req, res, next) => {
 
             case "popular":
                 sortOption = { views: -1 };
+                break;
+
+            case "title-asc":
+                sortOption = { title: 1 };
+                break;
+
+            case "title-desc":
+                sortOption = { title: -1 };
                 break;
 
             case "newest":
@@ -208,7 +221,6 @@ const updateProduct = async (req, res, next) => {
             condition,
             location,
             desiredProduct,
-            images,
         } = req.body;
 
         const product = await Product.findOne({
@@ -250,11 +262,13 @@ const updateProduct = async (req, res, next) => {
             product.desiredProduct = desiredProduct;
         }
 
-        if (images !== undefined) {
-            product.images = images;
+        const previousImages = req.files?.length ? [...product.images] : [];
+        if (req.files?.length) {
+            product.images = await Promise.all(req.files.map((file) => uploadToCloudinary(file, process.env.CLOUDINARY_UPLOAD_FOLDER || "barterx/products")));
         }
 
         await product.save();
+        await Promise.allSettled(previousImages.map(deleteFromCloudinary));
 
         return res.status(200).json({
             success: true,
@@ -291,6 +305,7 @@ const deleteProduct = async (req, res, next) => {
         product.isActive = false;
 
         await product.save();
+        await Promise.allSettled(product.images.map(deleteFromCloudinary));
 
         return res.status(200).json({
             success: true,

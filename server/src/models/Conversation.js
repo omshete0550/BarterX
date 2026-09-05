@@ -15,6 +15,12 @@ const conversationSchema = new mongoose.Schema(
             ref: "Message",
             default: null,
         },
+
+        barterRequest: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "BarterRequest",
+            default: null,
+        },
     },
     {
         timestamps: true,

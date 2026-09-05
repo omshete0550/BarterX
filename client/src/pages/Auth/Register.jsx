@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Eye, EyeOff, ArrowRight } from "lucide-react";
 
 import AuthLayout from "../../layouts/AuthLayout";
 import Button from "../../component/common/Button";
 import Input from "../../component/common/Input";
+import { clearAuthError, register } from "../../features/auth/authSlice";
 
 import "./Auth.css";
 
 function Register() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { loading, error: apiError } = useSelector((state) => state.auth);
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -35,9 +39,10 @@ function Register() {
       ...prev,
       [name]: "",
     }));
+    if (apiError) dispatch(clearAuthError());
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = {};
@@ -65,11 +70,14 @@ function Register() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Register:", formData);
-
-      // API call will go here later
-
-      navigate("/");
+      // confirmPassword is only needed in the UI, not by the API.
+      const userDetails = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      };
+      const result = await dispatch(register(userDetails));
+      if (register.fulfilled.match(result)) navigate("/");
     }
   };
 
@@ -88,6 +96,7 @@ function Register() {
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
+          {apiError && <p className="auth-server-error">{apiError}</p>}
           <Input
             label="Full name"
             name="name"
@@ -126,6 +135,8 @@ function Register() {
               type="button"
               className="password-toggle"
               onClick={() => setShowPassword((prev) => !prev)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              title={showPassword ? "Hide password" : "Show password"}
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
@@ -147,6 +158,12 @@ function Register() {
               type="button"
               className="password-toggle"
               onClick={() => setShowConfirmPassword((prev) => !prev)}
+              aria-label={
+                showConfirmPassword ? "Hide confirm password" : "Show confirm password"
+              }
+              title={
+                showConfirmPassword ? "Hide confirm password" : "Show confirm password"
+              }
             >
               {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
@@ -166,6 +183,7 @@ function Register() {
             size="large"
             fullWidth
             icon={<ArrowRight size={18} />}
+            loading={loading}
           >
             Create Account
           </Button>

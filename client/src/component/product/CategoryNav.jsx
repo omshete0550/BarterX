@@ -4,8 +4,10 @@ import {
   BookOpen,
   Sofa,
   Dumbbell,
-  Music,
   Shirt,
+  Car,
+  House,
+  CircleEllipsis,
 } from "lucide-react";
 
 import "../../styles/product/category-nav.css";
@@ -32,12 +34,20 @@ const categories = [
     icon: Dumbbell,
   },
   {
-    name: "Music",
-    icon: Music,
+    name: "Clothing",
+    icon: Shirt,
   },
   {
-    name: "Fashion",
-    icon: Shirt,
+    name: "Vehicles",
+    icon: Car,
+  },
+  {
+    name: "Home",
+    icon: House,
+  },
+  {
+    name: "Other",
+    icon: CircleEllipsis,
   },
 ];
 

@@ -1,13 +1,18 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import products from "../../data/product";
+import { fetchProducts } from "../../features/products/productSlice";
 import ProductGrid from "../../component/product/ProductGrid";
 import ProductFilters from "../../component/product/ProductFilters";
+import ProductPagination from "../../component/product/ProductPagination";
+import { buildProductQuery } from "../../features/products/productQuery";
 
 import "./SearchResults.css";
 
 function SearchResults() {
+  const dispatch = useDispatch();
+  const { items: products, pagination, loading } = useSelector((state) => state.products);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const initialQuery = searchParams.get("q") || "";
@@ -15,70 +20,16 @@ function SearchResults() {
   const [searchInput, setSearchInput] = useState(initialQuery);
 
   const [filters, setFilters] = useState({
+    category: "All",
     condition: "All",
-    location: "All",
-    sort: "Newest",
+    location: "",
+    sort: "Latest",
   });
+  const [page, setPage] = useState(1);
 
-  const query = initialQuery.trim().toLowerCase();
-
-  const searchResults = useMemo(() => {
-    let result = [...products];
-
-    /* =========================
-           SEARCH
-        ========================= */
-
-    if (query) {
-      result = result.filter((product) => {
-        const searchableText = `
-                    ${product.title}
-                    ${product.category}
-                    ${product.condition}
-                    ${product.location}
-                    ${product.desiredProduct}
-                    ${product.description}
-                    ${product.owner?.name || ""}
-                `.toLowerCase();
-
-        return searchableText.includes(query);
-      });
-    }
-
-    /* =========================
-           CONDITION
-        ========================= */
-
-    if (filters.condition !== "All") {
-      result = result.filter(
-        (product) => product.condition === filters.condition,
-      );
-    }
-
-    /* =========================
-           LOCATION
-        ========================= */
-
-    if (filters.location !== "All") {
-      result = result.filter(
-        (product) => product.location === filters.location,
-      );
-    }
-
-    /* =========================
-           SORT
-        ========================= */
-
-    if (filters.sort === "A-Z") {
-      result.sort((a, b) => a.title.localeCompare(b.title));
-    }
-
-    if (filters.sort === "Z-A") {
-      result.sort((a, b) => b.title.localeCompare(a.title));
-    }
-
-    return result;
-  }, [query, filters]);
+  const query = initialQuery.trim();
+  const productQuery = useMemo(() => buildProductQuery({ ...filters, search: query, page }), [filters, page, query]);
+  useEffect(() => { dispatch(fetchProducts(productQuery)); }, [dispatch, productQuery]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -92,18 +43,22 @@ function SearchResults() {
     } else {
       setSearchParams({});
     }
+    setPage(1);
   };
 
   const clearSearch = () => {
     setSearchInput("");
     setSearchParams({});
+    setPage(1);
   };
 
   const clearFilters = () => {
+    setPage(1);
     setFilters({
       condition: "All",
-      location: "All",
-      sort: "Newest",
+      category: "All",
+      location: "",
+      sort: "Latest",
     });
   };
 
@@ -137,7 +92,7 @@ function SearchResults() {
             </div>
 
             <div className="search-result-circle">
-              <strong>{searchResults.length}</strong>
+              <strong>{pagination?.totalProducts || 0}</strong>
 
               <span>Results</span>
             </div>
@@ -197,7 +152,7 @@ function SearchResults() {
                 </button>
               </div>
 
-              <ProductFilters filters={filters} onFilterChange={setFilters} />
+              <ProductFilters filters={filters} setFilters={setFilters} />
             </aside>
 
             {/* =================================================
@@ -225,8 +180,8 @@ function SearchResults() {
                 </div>
 
                 <div className="results-count">
-                  {searchResults.length}{" "}
-                  {searchResults.length === 1 ? "product" : "products"}
+                  {pagination?.totalProducts || 0}{" "}
+                  {pagination?.totalProducts === 1 ? "product" : "products"}
                 </div>
               </div>
 
@@ -246,8 +201,8 @@ function SearchResults() {
 
               {/* Products */}
 
-              {searchResults.length > 0 ? (
-                <ProductGrid products={searchResults} />
+              {products.length > 0 ? (
+                <><ProductGrid products={products} loading={loading} /><ProductPagination pagination={pagination} onPageChange={setPage} /></>
               ) : (
                 <div className="search-empty-state">
                   <div className="search-empty-icon">⌕</div>

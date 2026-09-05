@@ -25,6 +25,12 @@ const protect = (req, res, next) => {
             process.env.JWT_SECRET
         );
 
+        if (decoded.type !== "access") {
+            const error = new Error("Invalid access token.");
+            error.statusCode = 401;
+            return next(error);
+        }
+
         req.user = decoded;
 
         next();

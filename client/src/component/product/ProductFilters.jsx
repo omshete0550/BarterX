@@ -48,8 +48,10 @@ function ProductFilters({ filters, setFilters }) {
             <option>Books</option>
             <option>Furniture</option>
             <option>Sports</option>
-            <option>Music</option>
-            <option>Fashion</option>
+            <option>Clothing</option>
+            <option>Vehicles</option>
+            <option>Home</option>
+            <option>Other</option>
           </select>
 
           <ChevronDown size={15} />
@@ -67,9 +69,11 @@ function ProductFilters({ filters, setFilters }) {
             onChange={(e) => updateFilter("condition", e.target.value)}
           >
             <option>All</option>
+            <option>New</option>
             <option>Like New</option>
             <option>Good</option>
             <option>Fair</option>
+            <option>Poor</option>
           </select>
 
           <ChevronDown size={15} />

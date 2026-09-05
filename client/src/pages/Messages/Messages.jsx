@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import {
   ArrowLeft,
   Check,
@@ -18,14 +20,17 @@ import {
 import Navbar from "../../component/layout/Navbar";
 import Footer from "../../component/layout/Footer";
 
-import conversationsData from "../../data/conversations";
+import { createConversation, fetchConversations, fetchMessages, sendMessage as sendChatMessage } from "../../features/messages/messageSlice";
 
 import "./Messages.css";
 
 function Messages() {
-  const [conversations, setConversations] = useState(conversationsData);
-
-  const [activeId, setActiveId] = useState(conversationsData[0]?.id);
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const currentUser = useSelector((state) => state.auth.user);
+  const { conversations: rawConversations, messagesByConversation, onlineUserIds, loading, sending, error } = useSelector((state) => state.messages);
+  const currentUserId = currentUser?._id || currentUser?.id;
+  const [activeId, setActiveId] = useState(null);
 
   const [message, setMessage] = useState("");
 
@@ -37,8 +42,46 @@ function Messages() {
 
   const messagesEndRef = useRef(null);
 
+  useEffect(() => { dispatch(fetchConversations()); }, [dispatch]);
+
+  useEffect(() => {
+    const participantId = location.state?.participantId;
+    if (!participantId || location.state?.conversationId) return;
+    dispatch(createConversation(participantId)).then((result) => {
+      if (createConversation.fulfilled.match(result)) setActiveId(result.payload._id);
+    });
+  }, [dispatch, location.state?.conversationId, location.state?.participantId]);
+
+  const selectedId = activeId || location.state?.conversationId || rawConversations[0]?._id;
+
+  useEffect(() => {
+    if (selectedId) dispatch(fetchMessages(selectedId));
+  }, [dispatch, selectedId]);
+
+  const conversations = useMemo(() => rawConversations.map((conversation) => {
+    const user = conversation.participants.find((participant) => (participant._id || participant) !== currentUserId) || {};
+    const messages = (messagesByConversation[conversation._id] || []).map((item) => ({
+      id: item._id,
+      sender: (item.sender?._id || item.sender) === currentUserId ? "me" : "theirs",
+      text: item.text,
+      time: new Date(item.createdAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
+    }));
+    const lastMessage = conversation.lastMessage?.text || messages.at(-1)?.text || "No messages yet";
+    return {
+      id: conversation._id,
+      user: { ...user, avatar: user.avatar || "https://placehold.co/80x80/f0ebff/6d3df5?text=BX", online: onlineUserIds.includes(user._id) },
+      messages,
+      lastMessage,
+      lastMessageTime: conversation.lastMessage?.createdAt ? new Date(conversation.lastMessage.createdAt).toLocaleDateString() : "",
+      unread: 0,
+      product: { image: conversation.barterRequest?.requestedProduct?.images?.[0] || "https://placehold.co/120x90/f0ebff/6d3df5?text=BarterX", title: conversation.barterRequest?.requestedProduct?.title || "General conversation" },
+      offeredProduct: { image: conversation.barterRequest?.offeredProduct?.images?.[0] || "https://placehold.co/120x90/f0ebff/6d3df5?text=BarterX", title: conversation.barterRequest?.offeredProduct?.title || "No linked offer" },
+      status: conversation.barterRequest?.status || "Open",
+    };
+  }), [currentUserId, messagesByConversation, onlineUserIds, rawConversations]);
+
   const activeConversation = conversations.find(
-    (conversation) => conversation.id === activeId,
+    (conversation) => conversation.id === selectedId,
   );
 
   /*
@@ -64,22 +107,12 @@ function Messages() {
     setActiveId(id);
     setMobileChat(true);
 
-    setConversations((prev) =>
-      prev.map((conversation) =>
-        conversation.id === id
-          ? {
-              ...conversation,
-              unread: 0,
-            }
-          : conversation,
-      ),
-    );
   };
 
   /*
    * Send message
    */
-  const sendMessage = (event) => {
+  const sendMessage = async (event) => {
     event.preventDefault();
 
     const trimmedMessage = message.trim();
@@ -88,43 +121,19 @@ function Messages() {
       return;
     }
 
-    const newMessage = {
-      id: activeConversation.messages.length + 1,
-
-      sender: "me",
-
-      text: trimmedMessage,
-
-      time: new Date().toLocaleTimeString([], {
-        hour: "numeric",
-        minute: "2-digit",
-      }),
-    };
-
-    setConversations((prev) =>
-      prev.map((conversation) =>
-        conversation.id === activeId
-          ? {
-              ...conversation,
-
-              lastMessage: trimmedMessage,
-
-              lastMessageTime: "Just now",
-
-              messages: [...conversation.messages, newMessage],
-            }
-          : conversation,
-      ),
-    );
-
-    setMessage("");
+    const result = await dispatch(sendChatMessage({ receiver: activeConversation.user._id, text: trimmedMessage, conversationId: selectedId }));
+    if (sendChatMessage.fulfilled.match(result)) setMessage("");
   };
 
   /*
    * No active conversation
    */
+  if (loading && !activeConversation) {
+    return <div className="messages-page"><Navbar /><main className="messages-main"><p>Loading conversations...</p></main><Footer /></div>;
+  }
+
   if (!activeConversation) {
-    return null;
+    return <div className="messages-page"><Navbar /><main className="messages-main"><p>{error || "No conversations yet."}</p></main><Footer /></div>;
   }
 
   return (
@@ -202,7 +211,7 @@ function Messages() {
                       key={conversation.id}
                       type="button"
                       className={`conversation-item ${
-                        conversation.id === activeId ? "active" : ""
+                        conversation.id === selectedId ? "active" : ""
                       }`}
                       onClick={() => openConversation(conversation.id)}
                     >
@@ -401,7 +410,7 @@ function Messages() {
                   className="send-button"
                   disabled={!message.trim()}
                 >
-                  <Send size={16} />
+                  {sending ? "Sending" : <Send size={16} />}
                 </button>
               </form>
             </section>

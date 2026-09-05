@@ -293,7 +293,7 @@ function Landing() {
             </div>
 
             <div className="landing-steps">
-              {steps.map((step, index) => (
+              {steps.map((step) => (
                 <div className="landing-step" key={step.number}>
                   <span className="landing-step-number">{step.number}</span>
 

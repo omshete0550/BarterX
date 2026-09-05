@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   MapPin,
   CalendarDays,
@@ -16,18 +17,52 @@ import Navbar from "../../component/layout/Navbar";
 import Footer from "../../component/layout/Footer";
 import ProductCard from "../../component/product/ProductCard";
 
-import profileData from "../../data/profile";
+import { getMyProfile } from "../../features/auth/authSlice";
+import { fetchMyProducts } from "../../features/products/productSlice";
+import { fetchWishlist } from "../../features/wishlist/wishlistSlice";
+import { fetchBarterRequests } from "../../features/barter/barterSlice";
 
 import "./Profile.css";
 
 function Profile() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector((state) => state.auth);
+  const { myItems: myProducts } = useSelector((state) => state.products);
+  const wishlist = useSelector((state) => state.wishlist.items);
+  const { incoming, outgoing } = useSelector((state) => state.barter);
 
-  const [profile] = useState(profileData);
+  useEffect(() => {
+    dispatch(getMyProfile());
+    dispatch(fetchMyProducts());
+    dispatch(fetchWishlist());
+    dispatch(fetchBarterRequests());
+  }, [dispatch]);
 
-  const [loading] = useState(false);
-
-  const [error] = useState(null);
+  const profile = {
+    ...user,
+    avatar: user?.avatar || "https://placehold.co/300x300/f0ebff/6d3df5?text=BX",
+    username: user?.email ? `@${user.email.split("@")[0]}` : "@barterx",
+    memberSince: user?.createdAt
+      ? new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(
+          new Date(user.createdAt),
+        )
+      : "Recently",
+    products: myProducts,
+    wishlist,
+    swapActivity: [...incoming, ...outgoing].map((request) => ({
+      id: request._id,
+      product: request.requestedProduct?.title || "Product exchange",
+      user: (request.requester?._id === user?._id ? request.receiver : request.requester)?.name || "BarterX member",
+      date: new Date(request.createdAt).toLocaleDateString(),
+      status: request.status,
+    })),
+    stats: {
+      products: myProducts.length,
+      swaps: incoming.length + outgoing.length,
+      wishlist: wishlist.length,
+    },
+  };
 
   const [activeTab, setActiveTab] = useState("products");
 

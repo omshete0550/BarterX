@@ -4,6 +4,15 @@ const Conversation = require("../models/Conversation");
 const User = require("../models/User");
 const Message = require("../models/Message");
 
+const populateBarterContext = (query) => query.populate({
+    path: "barterRequest",
+    select: "requestedProduct offeredProduct status",
+    populate: [
+        { path: "requestedProduct", select: "title images" },
+        { path: "offeredProduct", select: "title images" },
+    ],
+});
+
 // Create or get conversation
 const createConversation = async (req, res, next) => {
     try {
@@ -38,6 +47,7 @@ const createConversation = async (req, res, next) => {
             participants: {
                 $all: [userId, participantId],
             },
+            barterRequest: null,
         })
             .populate("participants", "name email avatar location")
             .populate("lastMessage");
@@ -87,6 +97,7 @@ const getConversations = async (req, res, next) => {
                 select: "sender receiver text isRead createdAt",
             })
             .sort({ updatedAt: -1 });
+        await Promise.all(conversations.map((conversation) => populateBarterContext(conversation)));
 
         return res.status(200).json({
             success: true,
@@ -125,6 +136,8 @@ const getConversation = async (req, res, next) => {
             error.statusCode = 404;
             return next(error);
         }
+
+        await populateBarterContext(conversation);
 
         return res.status(200).json({
             success: true,

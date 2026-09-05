@@ -1,21 +1,28 @@
-import { useState } from "react";
 import { Heart, MapPin, ArrowLeftRight, UserRound } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../common/Button";
+import { addToWishlist, removeFromWishlist } from "../../features/wishlist/wishlistSlice";
 
 import "../../styles/product/product-card.css";
 
 function ProductCard({ product }) {
   const navigate = useNavigate();
-
-  const [liked, setLiked] = useState(false);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => Boolean(state.auth.user));
+  const liked = useSelector((state) => state.wishlist.items.some((item) => item.id === product.id));
 
   const handleWishlist = (e) => {
+    e.preventDefault();
     e.stopPropagation();
 
-    setLiked((prev) => !prev);
+    if (!isLoggedIn) {
+      navigate("/login");
+      return;
+    }
+    dispatch(liked ? removeFromWishlist(product.id) : addToWishlist(product));
   };
 
   const handleCardClick = () => {
@@ -29,7 +36,7 @@ function ProductCard({ product }) {
 
         <div className="product-card-image-wrapper">
           <img
-            src={product.image}
+            src={product.image || "https://placehold.co/800x600/f0ebff/6d3df5?text=BarterX"}
             alt={product.title}
             className="product-card-image"
           />
@@ -74,7 +81,7 @@ function ProductCard({ product }) {
 
           <div className="product-seller">
             <div className="seller-info">
-              {product.owner.avatar ? (
+              {product.owner?.avatar ? (
                 <img src={product.owner.avatar} alt={product.owner.name} />
               ) : (
                 <div className="seller-placeholder">
@@ -82,7 +89,7 @@ function ProductCard({ product }) {
                 </div>
               )}
 
-              <span>{product.owner.name}</span>
+              <span>{product.owner?.name || "BarterX User"}</span>
             </div>
           </div>
 

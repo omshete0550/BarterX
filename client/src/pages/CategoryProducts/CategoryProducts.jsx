@@ -1,63 +1,39 @@
-import { useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import products from "../../data/product";
+import { fetchProducts } from "../../features/products/productSlice";
 import ProductGrid from "../../component/product/ProductGrid";
 import CategoryNav from "../../component/product/CategoryNav";
 import ProductFilters from "../../component/product/ProductFilters";
+import ProductPagination from "../../component/product/ProductPagination";
+import { buildProductQuery } from "../../features/products/productQuery";
 
 import "./CategoryProducts.css";
 
 function CategoryProducts() {
+  const dispatch = useDispatch();
+  const { items: products, pagination, loading } = useSelector((state) => state.products);
   const { category } = useParams();
+  const navigate = useNavigate();
 
   const categoryName = category
     ? category.charAt(0).toUpperCase() + category.slice(1)
     : "All Products";
 
   const [filters, setFilters] = useState({
+    category: "All",
     condition: "All",
-    location: "All",
-    sort: "Newest",
+    location: "",
+    sort: "Latest",
   });
+  const [page, setPage] = useState(1);
 
-  const filteredProducts = useMemo(() => {
-    let result = [...products];
-
-    // Category
-    if (category && category.toLowerCase() !== "all") {
-      result = result.filter(
-        (product) => product.category.toLowerCase() === category.toLowerCase(),
-      );
-    }
-
-    // Condition
-    if (filters.condition !== "All") {
-      result = result.filter(
-        (product) => product.condition === filters.condition,
-      );
-    }
-
-    // Location
-    if (filters.location !== "All") {
-      result = result.filter(
-        (product) => product.location === filters.location,
-      );
-    }
-
-    // Sort
-    if (filters.sort === "A-Z") {
-      result.sort((a, b) => a.title.localeCompare(b.title));
-    }
-
-    if (filters.sort === "Z-A") {
-      result.sort((a, b) => b.title.localeCompare(a.title));
-    }
-
-    return result;
-  }, [category, filters]);
+  const query = useMemo(() => buildProductQuery({ ...filters, category: category && category.toLowerCase() !== "all" ? category : filters.category, page }), [category, filters, page]);
+  useEffect(() => { dispatch(fetchProducts(query)); }, [dispatch, query]);
 
   const handleFilterChange = (updatedFilters) => {
+    setPage(1);
     setFilters(updatedFilters);
   };
 
@@ -90,7 +66,7 @@ function CategoryProducts() {
             </div>
 
             <div className="category-count">
-              <strong>{filteredProducts.length}</strong>
+              <strong>{pagination?.totalProducts || 0}</strong>
 
               <span>Products</span>
             </div>
@@ -104,7 +80,7 @@ function CategoryProducts() {
 
       <section className="category-navigation-section">
         <div className="category-products-container">
-          <CategoryNav />
+          <CategoryNav activeCategory={categoryName} onCategoryChange={(name) => navigate(name === "All" ? "/products" : `/category/${name.toLowerCase()}`)} />
         </div>
       </section>
 
@@ -123,10 +99,7 @@ function CategoryProducts() {
                 <span>Refine</span>
               </div>
 
-              <ProductFilters
-                filters={filters}
-                onFilterChange={handleFilterChange}
-              />
+              <ProductFilters filters={filters} setFilters={handleFilterChange} />
             </aside>
 
             {/* Products */}
@@ -139,12 +112,12 @@ function CategoryProducts() {
                 </div>
 
                 <div className="product-result-count">
-                  {filteredProducts.length} items
+                  {pagination?.totalProducts || 0} items
                 </div>
               </div>
 
-              {filteredProducts.length > 0 ? (
-                <ProductGrid products={filteredProducts} />
+              {products.length > 0 ? (
+                <><ProductGrid products={products} loading={loading} /><ProductPagination pagination={pagination} onPageChange={setPage} /></>
               ) : (
                 <div className="category-empty-state">
                   <div className="category-empty-icon">⌕</div>
@@ -158,10 +131,11 @@ function CategoryProducts() {
                   <button
                     type="button"
                     onClick={() =>
-                      setFilters({
+                      handleFilterChange({
+                        category: "All",
                         condition: "All",
-                        location: "All",
-                        sort: "Newest",
+                        location: "",
+                        sort: "Latest",
                       })
                     }
                   >
