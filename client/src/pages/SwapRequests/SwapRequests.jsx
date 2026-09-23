@@ -246,17 +246,47 @@ function SwapRequests() {
           {loading && <p>Loading swap requests...</p>}
           {error && <p>{error}</p>}
 
-          {ratingRequest && <form onSubmit={sendRating} className="swap-request-list">
-            <h2>Rate your swap</h2>
-            <p>How was your exchange for {ratingRequest.requestedProduct?.title}?</p>
-            <select value={rating} onChange={(event) => setRating(Number(event.target.value))}>
-              {[5, 4, 3, 2, 1].map((value) => <option key={value} value={value}>{value} stars</option>)}
-            </select>
-            <textarea value={review} onChange={(event) => setReview(event.target.value)} maxLength={500} placeholder="Optional review" />
-            {ratingError && <p>{ratingError}</p>}
-            <button type="submit" disabled={ratingSubmitting}>{ratingSubmitting ? "Submitting..." : "Submit rating"}</button>
-            <button type="button" onClick={() => setRatingRequest(null)}>Cancel</button>
-          </form>}
+          {ratingRequest && (
+            <form onSubmit={sendRating} className="swap-rating-card">
+              <div className="swap-rating-heading">
+                <span>COMPLETED SWAP</span>
+                <h2>Rate your swap</h2>
+                <p>How was your exchange for <strong>{ratingRequest.requestedProduct?.title || "this item"}</strong>?</p>
+              </div>
+
+              <fieldset className="swap-rating-stars">
+                <legend>Your rating</legend>
+                <div role="group" aria-label="Select a rating from one to five stars">
+                  {[1, 2, 3, 4, 5].map((value) => (
+                    <button
+                      key={value}
+                      type="button"
+                      className={value <= rating ? "selected" : ""}
+                      onClick={() => setRating(value)}
+                      aria-label={`${value} star${value === 1 ? "" : "s"}`}
+                      aria-pressed={value === rating}
+                    >
+                      <Star size={27} fill="currentColor" />
+                    </button>
+                  ))}
+                </div>
+                <p>{["Poor", "Fair", "Good", "Very good", "Excellent"][rating - 1]} — {rating} out of 5</p>
+              </fieldset>
+
+              <label className="swap-rating-review">
+                <span>Write a review <em>Optional</em></span>
+                <textarea value={review} onChange={(event) => setReview(event.target.value)} maxLength={500} placeholder="Share a few details about the swap..." />
+                <small>{review.length}/500</small>
+              </label>
+
+              {ratingError && <p className="swap-rating-error">{ratingError}</p>}
+
+              <div className="swap-rating-actions">
+                <button type="button" className="cancel" onClick={() => setRatingRequest(null)}>Cancel</button>
+                <button type="submit" className="submit" disabled={ratingSubmitting}>{ratingSubmitting ? "Submitting..." : "Submit rating"}</button>
+              </div>
+            </form>
+          )}
         </div>
       </main>
 

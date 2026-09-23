@@ -59,20 +59,10 @@ const userSchema = new mongoose.Schema(
             default: false,
         },
 
-        isEmailVerified: {
-            type: Boolean,
-            default: false,
-        },
-
         refreshTokenVersion: {
             type: Number,
             default: 0,
         },
-
-        passwordResetToken: String,
-        passwordResetExpires: Date,
-        emailVerificationToken: String,
-        emailVerificationExpires: Date,
 
         role: {
             type: String,

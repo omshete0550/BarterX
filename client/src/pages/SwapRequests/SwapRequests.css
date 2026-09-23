@@ -432,6 +432,216 @@
   font-size: 14px;
 }
 
+.swap-rating-card {
+  max-width: 680px;
+
+  margin: 28px auto 0;
+  padding: 30px;
+
+  border: 1px solid #e4dfeb;
+  border-radius: 14px;
+
+  background: white;
+  box-shadow: 0 10px 28px rgba(60, 34, 95, 0.06);
+}
+
+.swap-rating-heading > span {
+  color: #9a84bc;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.7px;
+}
+
+.swap-rating-heading h2 {
+  margin: 6px 0 7px;
+
+  color: #373a48;
+
+  font-size: 25px;
+}
+
+.swap-rating-heading p {
+  margin: 0;
+
+  color: #777b88;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.swap-rating-heading strong {
+  color: #4b4e5c;
+}
+
+.swap-rating-stars {
+  margin: 25px 0 22px;
+  padding: 0;
+
+  border: 0;
+}
+
+.swap-rating-stars legend,
+.swap-rating-review > span {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #565967;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.swap-rating-stars > div {
+  display: flex;
+
+  gap: 7px;
+}
+
+.swap-rating-stars button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid #e4dfeb;
+  border-radius: 9px;
+
+  color: #d7d1e1;
+  background: #fff;
+
+  cursor: pointer;
+  transition: 160ms ease;
+}
+
+.swap-rating-stars button:hover,
+.swap-rating-stars button:focus-visible {
+  border-color: #bea9ed;
+  color: #9c76ec;
+  outline: none;
+}
+
+.swap-rating-stars button.selected {
+  border-color: #e8c36d;
+  color: #e8ad32;
+  background: #fff9e9;
+}
+
+.swap-rating-stars p {
+  margin: 9px 0 0;
+
+  color: #8a8d99;
+  font-size: 13px;
+}
+
+.swap-rating-review em {
+  color: #aaa5b2;
+
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.swap-rating-review textarea {
+  display: block;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 112px;
+  padding: 12px 13px;
+
+  resize: vertical;
+
+  border: 1px solid #ded8e7;
+  border-radius: 8px;
+  outline: none;
+
+  color: #4c4f5c;
+  background: #fff;
+
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.swap-rating-review textarea:focus {
+  border-color: #aa8ceb;
+  box-shadow: 0 0 0 3px rgba(112, 65, 232, 0.1);
+}
+
+.swap-rating-review small {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #aaa5b2;
+
+  font-size: 11px;
+  text-align: right;
+}
+
+.swap-rating-error {
+  margin: 16px 0 0;
+  padding: 10px 12px;
+
+  border: 1px solid #f0ccd3;
+  border-radius: 7px;
+
+  color: #9b4f5d;
+  background: #fff7f8;
+
+  font-size: 13px;
+}
+
+.swap-rating-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 9px;
+
+  margin-top: 24px;
+}
+
+.swap-rating-actions button {
+  min-height: 42px;
+  padding: 0 17px;
+
+  border-radius: 8px;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.swap-rating-actions .cancel {
+  border: 1px solid #e1dbe9;
+
+  color: #6f7380;
+  background: white;
+}
+
+.swap-rating-actions .submit {
+  border: 1px solid #7041e8;
+
+  color: white;
+  background: #7041e8;
+}
+
+.swap-rating-actions .submit:hover:not(:disabled) {
+  border-color: #5d2ed3;
+  background: #5d2ed3;
+}
+
+.swap-rating-actions .submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
 @media (max-width: 1120px) {
   .swap-request-card {
     grid-template-columns: 1fr;
@@ -468,5 +678,9 @@
 
   .swap-request-arrow {
     transform: rotate(90deg);
+  }
+
+  .swap-rating-card {
+    padding: 22px 18px;
   }
 }

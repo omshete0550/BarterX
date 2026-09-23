@@ -8,9 +8,6 @@ export const registerRequest = (userDetails) =>
 export const getMeRequest = () => api.get("/auth/me");
 export const refreshSessionRequest = () => api.post("/auth/refresh");
 export const logoutRequest = () => api.post("/auth/logout");
-export const forgotPasswordRequest = (email) => api.post("/auth/forgot-password", { email });
-export const resetPasswordRequest = (token, password) => api.post("/auth/reset-password", { token, password });
-export const verifyEmailRequest = (token) => api.post("/auth/verify-email", { token });
 
 export const updateProfileRequest = (profileDetails) =>
   profileDetails.avatarFile

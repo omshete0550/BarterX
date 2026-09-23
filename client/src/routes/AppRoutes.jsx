@@ -5,7 +5,6 @@ import Landing from "../pages/Landing/Landing";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
-import { ForgotPassword, ResetPassword, VerifyEmail } from "../pages/Auth/AccountRecovery";
 import ProductListing from "../pages/Products/ProductListing";
 import ProductDetail from "../pages/ProductDetail/ProductDetail";
 import SwapRequest from "../pages/SwapRequest/SwapRequest";
@@ -30,9 +29,6 @@ function AppRoutes() {
       <Route path="/home" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/verify-email" element={<VerifyEmail />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/products" element={<ProductListing />} />
         <Route path="/products/:id" element={<ProductDetail />} />
