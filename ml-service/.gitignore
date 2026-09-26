@@ -20,4 +20,5 @@ images/
 .ruff_cache/
 
 datasets/
-models/
+models/*
+!models/fashion_category_head.pt
