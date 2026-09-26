@@ -57,6 +57,23 @@ const productSchema = new mongoose.Schema(
             default: [],
         },
 
+        imageEmbeddings: {
+            type: [
+                {
+                    imageUrl: {
+                        type: String,
+                        required: true,
+                    },
+                    vector: {
+                        type: [Number],
+                        required: true,
+                    },
+                },
+            ],
+            default: [],
+            select: false,
+        },
+
         owner: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",

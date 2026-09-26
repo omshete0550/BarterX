@@ -12,6 +12,7 @@ import {
   MessageCircle,
   Repeat2,
   Bookmark,
+  Camera,
 } from "lucide-react";
 
 import { useEffect, useRef, useState } from "react";
@@ -177,6 +178,15 @@ function Navbar() {
         <div className="navbar-actions">
           {isLoggedIn ? (
             <>
+              <button
+                className="navbar-icon"
+                onClick={() => navigate("/search?mode=visual")}
+                aria-label="Search by photo"
+                title="Search by photo"
+              >
+                <Camera size={21} />
+              </button>
+
               {/* Wishlist */}
 
               <button
@@ -374,6 +384,10 @@ function Navbar() {
               <NavLink to="/wishlist" className={mobileLinkClass}>
                 <Heart size={17} />
                 Wishlist
+              </NavLink>
+              <NavLink to="/search?mode=visual" className={mobileLinkClass}>
+                <Camera size={17} />
+                Search by Photo
               </NavLink>
               <NavLink to="/notifications" className={mobileLinkClass}>
                 <Bell size={17} />

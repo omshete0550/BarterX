@@ -15,6 +15,11 @@ const toFormData = (details) => {
 };
 
 export const getProductsRequest = (params = {}) => api.get("/products", { params });
+export const visualSearchProductsRequest = (image) => {
+  const formData = new FormData();
+  formData.append("image", image);
+  return api.post("/products/visual-search", formData);
+};
 export const getProductRequest = (productId) => api.get(`/products/${productId}`);
 export const createProductRequest = (productDetails) =>
   api.post("/products", toFormData(productDetails));

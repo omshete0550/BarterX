@@ -3,6 +3,7 @@ from tempfile import NamedTemporaryFile
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from app.similarity import find_similar_images
 from app.embeddings import image_to_embedding
+from app.fashion_classifier import classify_fashion_image
 
 app = FastAPI(title="BarterX Visual Search API")
 
@@ -40,6 +41,39 @@ async def create_image_embedding(
         return {
             "success": True,
             "embedding": embedding.tolist(),
+        }
+
+    finally:
+        if temporary_image_path and temporary_image_path.exists():
+            temporary_image_path.unlink()
+
+@app.post("/classify")
+async def classify_image(
+    image: UploadFile = File(...),
+):
+    file_extension = Path(image.filename or "").suffix.lower()
+
+    if file_extension not in SUPPORTED_EXTENSIONS:
+        raise HTTPException(
+            status_code=400,
+            detail="Upload a JPG, JPEG, PNG, or WEBP image.",
+        )
+
+    temporary_image_path = None
+
+    try:
+        with NamedTemporaryFile(
+            suffix=file_extension,
+            delete=False,
+        ) as temporary_file:
+            temporary_file.write(await image.read())
+            temporary_image_path = Path(temporary_file.name)
+
+        prediction = classify_fashion_image(temporary_image_path)
+
+        return {
+            "success": True,
+            "data": prediction,
         }
 
     finally:

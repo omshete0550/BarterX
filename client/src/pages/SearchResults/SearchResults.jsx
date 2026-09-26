@@ -2,20 +2,29 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchProducts } from "../../features/products/productSlice";
+import { clearVisualSearch, fetchProducts, searchProductsByImage } from "../../features/products/productSlice";
 import ProductGrid from "../../component/product/ProductGrid";
 import ProductFilters from "../../component/product/ProductFilters";
 import ProductPagination from "../../component/product/ProductPagination";
+import VisualSearchButton from "../../component/search/VisualSearchButton";
 import { buildProductQuery } from "../../features/products/productQuery";
 
 import "./SearchResults.css";
 
 function SearchResults() {
   const dispatch = useDispatch();
-  const { items: products, pagination, loading } = useSelector((state) => state.products);
+  const {
+    items,
+    pagination,
+    loading,
+    visualItems,
+    visualPagination,
+    visualLoading,
+  } = useSelector((state) => state.products);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const initialQuery = searchParams.get("q") || "";
+  const visualMode = searchParams.get("mode") === "visual";
 
   const [searchInput, setSearchInput] = useState(initialQuery);
 
@@ -29,7 +38,13 @@ function SearchResults() {
 
   const query = initialQuery.trim();
   const productQuery = useMemo(() => buildProductQuery({ ...filters, search: query, page }), [filters, page, query]);
-  useEffect(() => { dispatch(fetchProducts(productQuery)); }, [dispatch, productQuery]);
+  useEffect(() => {
+    if (!visualMode) dispatch(fetchProducts(productQuery));
+  }, [dispatch, productQuery, visualMode]);
+
+  const products = visualMode ? visualItems : items;
+  const currentPagination = visualMode ? visualPagination : pagination;
+  const resultsLoading = visualMode ? visualLoading : loading;
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -43,12 +58,21 @@ function SearchResults() {
     } else {
       setSearchParams({});
     }
+    dispatch(clearVisualSearch());
+    setPage(1);
+  };
+
+  const handleVisualSearch = async (image) => {
+    await dispatch(searchProductsByImage(image)).unwrap();
+    setSearchInput("");
+    setSearchParams({ mode: "visual" });
     setPage(1);
   };
 
   const clearSearch = () => {
     setSearchInput("");
     setSearchParams({});
+    dispatch(clearVisualSearch());
     setPage(1);
   };
 
@@ -92,7 +116,7 @@ function SearchResults() {
             </div>
 
             <div className="search-result-circle">
-              <strong>{pagination?.totalProducts || 0}</strong>
+              <strong>{currentPagination?.totalProducts || 0}</strong>
 
               <span>Results</span>
             </div>
@@ -125,6 +149,12 @@ function SearchResults() {
               Search
             </button>
           </form>
+
+          <VisualSearchButton
+            onSearch={handleVisualSearch}
+            loading={visualLoading}
+            initiallyOpen={visualMode && !visualItems.length}
+          />
         </div>
       </section>
 
@@ -164,7 +194,13 @@ function SearchResults() {
 
               <div className="search-results-toolbar">
                 <div>
-                  {query ? (
+                  {visualMode ? (
+                    <>
+                      <span className="results-label">VISUAL SEARCH</span>
+
+                      <h2>Visually similar products</h2>
+                    </>
+                  ) : query ? (
                     <>
                       <span className="results-label">SEARCHING FOR</span>
 
@@ -180,14 +216,24 @@ function SearchResults() {
                 </div>
 
                 <div className="results-count">
-                  {pagination?.totalProducts || 0}{" "}
-                  {pagination?.totalProducts === 1 ? "product" : "products"}
+                  {currentPagination?.totalProducts || 0}{" "}
+                  {currentPagination?.totalProducts === 1 ? "product" : "products"}
                 </div>
               </div>
 
               {/* Active Search */}
 
-              {query && (
+              {visualMode ? (
+                <div className="active-search">
+                  <span>Search:</span>
+
+                  <strong>Photo match</strong>
+
+                  <button type="button" onClick={clearSearch} aria-label="Clear visual search">
+                    Ã—
+                  </button>
+                </div>
+              ) : query && (
                 <div className="active-search">
                   <span>Search:</span>
 
@@ -201,8 +247,13 @@ function SearchResults() {
 
               {/* Products */}
 
-              {products.length > 0 ? (
-                <><ProductGrid products={products} loading={loading} /><ProductPagination pagination={pagination} onPageChange={setPage} /></>
+              {resultsLoading ? (
+                <ProductGrid products={[]} loading />
+              ) : products.length > 0 ? (
+                <>
+                  <ProductGrid products={products} />
+                  {!visualMode && <ProductPagination pagination={currentPagination} onPageChange={setPage} />}
+                </>
               ) : (
                 <div className="search-empty-state">
                   <div className="search-empty-icon">⌕</div>
@@ -210,12 +261,13 @@ function SearchResults() {
                   <h3>No products found</h3>
 
                   <p>
-                    We couldn't find anything matching
-                    {query ? ` "${initialQuery}".` : " your filters."}
+                    {visualMode
+                      ? "Take another clear photo or add more products with image embeddings."
+                      : <>We couldn't find anything matching{query ? ` "${initialQuery}".` : " your filters."}</>}
                   </p>
 
                   <div className="empty-actions">
-                    {query && (
+                    {(query || visualMode) && (
                       <button
                         type="button"
                         onClick={clearSearch}

@@ -1,7 +1,7 @@
 const express = require("express");
 
 const {
-    publishProduct, getProducts, getProductDetails, getMyProducts, updateProduct, deleteProduct
+    publishProduct, getProducts, getProductDetails, getMyProducts, classifyProductImage, visualSearchProducts, updateProduct, deleteProduct
 } = require("../controllers/product.controller");
 
 const {
@@ -27,6 +27,20 @@ router.post(
 router.get("/", getProducts);
 
 router.get("/my", protect, getMyProducts);
+
+router.post(
+    "/classify-image",
+    protect,
+    upload.single("image"),
+    classifyProductImage,
+);
+
+router.post(
+    "/visual-search",
+    protect,
+    upload.single("image"),
+    visualSearchProducts,
+);
 
 router.get("/:productId", getProductDetails);
 

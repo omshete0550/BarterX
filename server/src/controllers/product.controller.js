@@ -1,6 +1,27 @@
 const Product = require("../models/Product");
 const uploadToCloudinary = require("../utils/uploadToCloudinary");
 const { deleteFromCloudinary } = require("../utils/uploadToCloudinary");
+const { getImageEmbedding, classifyFashionImage, isMlServiceConfigured } = require("../utils/mlService");
+
+const cosineSimilarity = (firstVector, secondVector) => {
+    if (!Array.isArray(firstVector) || !Array.isArray(secondVector) || firstVector.length !== secondVector.length) {
+        return null;
+    }
+
+    const { dotProduct, firstMagnitude, secondMagnitude } = firstVector.reduce(
+        (totals, value, index) => {
+            const comparisonValue = secondVector[index];
+            totals.dotProduct += value * comparisonValue;
+            totals.firstMagnitude += value * value;
+            totals.secondMagnitude += comparisonValue * comparisonValue;
+            return totals;
+        },
+        { dotProduct: 0, firstMagnitude: 0, secondMagnitude: 0 },
+    );
+
+    if (!firstMagnitude || !secondMagnitude) return null;
+    return dotProduct / (Math.sqrt(firstMagnitude) * Math.sqrt(secondMagnitude));
+};
 
 const publishProduct = async (req, res, next) => {
     try {
@@ -15,9 +36,18 @@ const publishProduct = async (req, res, next) => {
             desiredProduct,
         } = req.body;
 
+        const imageVectors = req.files?.length && isMlServiceConfigured()
+            ? await Promise.all(req.files.map(getImageEmbedding))
+            : [];
+
         const images = req.files?.length
             ? await Promise.all(req.files.map((file) => uploadToCloudinary(file, process.env.CLOUDINARY_UPLOAD_FOLDER || "barterx/products")))
             : [];
+
+        const imageEmbeddings = images.map((imageUrl, index) => ({
+            imageUrl,
+            vector: imageVectors[index],
+        })).filter((embedding) => Array.isArray(embedding.vector));
 
         const product = await Product.create({
             title,
@@ -27,6 +57,7 @@ const publishProduct = async (req, res, next) => {
             location,
             desiredProduct,
             images,
+            imageEmbeddings,
             owner: userId,
         });
 
@@ -209,6 +240,82 @@ const getMyProducts = async (req, res, next) => {
     }
 };
 
+const classifyProductImage = async (req, res, next) => {
+    try {
+        if (!req.file) {
+            const error = new Error("An image is required for classification.");
+            error.statusCode = 400;
+            return next(error);
+        }
+
+        const classification = await classifyFashionImage(req.file);
+
+        return res.status(200).json({
+            success: true,
+            data: classification,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+const visualSearchProducts = async (req, res, next) => {
+    try {
+        if (!req.file) {
+            const error = new Error("A search image is required.");
+            error.statusCode = 400;
+            return next(error);
+        }
+
+        const queryVector = await getImageEmbedding(req.file);
+        const limitNumber = Math.min(Math.max(parseInt(req.query.limit) || 12, 1), 50);
+
+        const products = await Product.find({
+            isActive: true,
+            "imageEmbeddings.0": { $exists: true },
+        })
+            .select("+imageEmbeddings")
+            .populate("owner", "name avatar location");
+
+        const matches = products.map((product) => {
+            const scores = product.imageEmbeddings
+                .map((embedding) => cosineSimilarity(queryVector, embedding.vector))
+                .filter((score) => score !== null);
+
+            if (!scores.length) return null;
+
+            const productData = product.toObject();
+            delete productData.imageEmbeddings;
+
+            return {
+                product: productData,
+                similarity: Math.max(...scores),
+            };
+        })
+            .filter(Boolean)
+            .sort((first, second) => second.similarity - first.similarity)
+            .slice(0, limitNumber);
+
+        return res.status(200).json({
+            success: true,
+            data: {
+                products: matches.map((match) => ({
+                    ...match.product,
+                    similarity: match.similarity,
+                })),
+                pagination: {
+                    page: 1,
+                    limit: limitNumber,
+                    totalProducts: matches.length,
+                    totalPages: 1,
+                },
+            },
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
 const updateProduct = async (req, res, next) => {
     try {
         const { productId } = req.params;
@@ -264,7 +371,16 @@ const updateProduct = async (req, res, next) => {
 
         const previousImages = req.files?.length ? [...product.images] : [];
         if (req.files?.length) {
-            product.images = await Promise.all(req.files.map((file) => uploadToCloudinary(file, process.env.CLOUDINARY_UPLOAD_FOLDER || "barterx/products")));
+            const imageVectors = isMlServiceConfigured()
+                ? await Promise.all(req.files.map(getImageEmbedding))
+                : [];
+            const images = await Promise.all(req.files.map((file) => uploadToCloudinary(file, process.env.CLOUDINARY_UPLOAD_FOLDER || "barterx/products")));
+
+            product.images = images;
+            product.imageEmbeddings = images.map((imageUrl, index) => ({
+                imageUrl,
+                vector: imageVectors[index],
+            })).filter((embedding) => Array.isArray(embedding.vector));
         }
 
         await product.save();
@@ -321,6 +437,8 @@ module.exports = {
     getProducts,
     getProductDetails,
     getMyProducts,
+    classifyProductImage,
+    visualSearchProducts,
     updateProduct,
     deleteProduct,
 };
