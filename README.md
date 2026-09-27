@@ -1,265 +1,187 @@
 # BarterX
 
-### A modern platform for exchanging products without money.
+BarterX is a full-stack peer-to-peer marketplace for exchanging products without money. Users can publish listings, discover products, propose swaps, communicate in real time, and save items to a wishlist.
 
-BarterX is a peer-to-peer product exchange platform that allows people to **trade products directly with each other** instead of buying and selling them with money.
-
-The idea is simple: you have something you no longer need, someone else has something you want, and BarterX helps you find each other and make the exchange.
-
----
-
-## What is BarterX?
-
-Traditional marketplaces focus on buying and selling products with money. BarterX takes a different approach by focusing on **product-to-product exchanges**.
-
-Users can list products they want to exchange, discover products listed by other users, and propose a swap based on what they are looking for.
-
-For example:
-
-> You have a pair of headphones and want a mechanical keyboard.
-> Another user has a mechanical keyboard and is interested in headphones.
-> BarterX allows both users to discover each other and propose an exchange.
-
----
-
-## How It Works
-
-### 1. List a Product
-
-Add a product you want to exchange along with its details, condition, location, and what you would like in return.
-
-### 2. Discover Products
-
-Browse and explore products listed by other users.
-
-### 3. Find a Match
-
-Find a product you want and check what the owner is looking for in exchange.
-
-### 4. Send a Swap Request
-
-Propose an exchange to the product owner.
-
-### 5. Connect & Discuss
-
-If the request is accepted, users can communicate through the platform to discuss the exchange.
-
-### 6. Complete the Exchange
-
-Users arrange the final exchange between themselves.
-
----
-
-## Core Features
-
-- 🔄 **Product Swapping** — Exchange products directly with other users.
-- 📦 **Product Listings** — List products with descriptions, conditions, categories, images, and desired products.
-- 🔍 **Product Discovery** — Explore products available for exchange.
-- 🤝 **Swap Requests** — Send and manage exchange proposals.
-- 💬 **Messaging** — Communicate with other users about potential exchanges.
-- ❤️ **Wishlist** — Save products you're interested in.
-- 👤 **User Profiles** — View user information and listed products.
-- 📍 **Location-Based Discovery** — Find exchange opportunities based on location.
-
----
-
-## Why BarterX?
-
-BarterX is built around the idea that **value doesn't always have to be measured in money**.
-
-A product that has little use for one person may be exactly what another person needs. Instead of selling something and then spending money to buy something else, users can directly exchange value.
-
-BarterX makes it easier to:
-
-- Give unused products a second life
-- Find things you actually need
-- Reduce unnecessary spending
-- Connect with people interested in exchanging products
-- Make product exchanges simple and convenient
-
----
-
-## Vision
-
-The vision of BarterX is to build a trusted community where people can **exchange products based on mutual value rather than monetary price**.
+The project also includes ML-powered visual search: a user can take or upload a product photo, and BarterX returns visually similar active listings.
 
 > **Don't buy it. Barter it.**
 
----
+## Highlights
 
-## Tech Stack
+- JWT-based registration, login, and protected routes
+- Product listings with Cloudinary image uploads
+- Text search, category, condition, location, sorting, and pagination filters
+- Camera or image-upload visual product search powered by CLIP embeddings
+- Product swap requests, conversations, Socket.IO notifications, and ratings
+- Wishlists, saved items, public profiles, and editable user/product profiles
+- Responsive React interface for desktop and mobile
 
-### Frontend
+## Architecture
 
-- React
-- Vite
-- JavaScript
-- React Router
-- Axios
-- Lucide React
-- CSS
+```text
+React + Vite client
+        |
+        v
+Node.js + Express API ---- MongoDB / Cloudinary
+        |
+        v
+Local FastAPI ML service (CLIP image embeddings)
+```
 
-### Backend
+The browser communicates only with the Express API. The API sends uploaded product/search images to the Python service, stores image embeddings with products, and returns matched listings.
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT Authentication
-- bcrypt
+## Tech stack
 
----
+| Layer | Technologies |
+| --- | --- |
+| Client | React, Vite, Redux Toolkit, React Router, Axios, Lucide, CSS |
+| API | Node.js, Express, Mongoose, JWT, Socket.IO, Multer |
+| Data & media | MongoDB, Cloudinary |
+| ML service | Python, FastAPI, PyTorch, Transformers, CLIP, Pillow |
+| Testing | Node test runner, Supertest |
 
-# Project Structure
+## Project structure
 
 ```text
 BarterX/
-│
-├── client/
-│   │
-│   ├── public/
-│   │
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── layouts/
-│   │   ├── routes/
-│   │   ├── services/
-│   │   ├── hooks/
-│   │   ├── utils/
-│   │   ├── data/
-│   │   ├── styles/
-│   │   │
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   │
-│   ├── package.json
-│   └── vite.config.js
-│
-├── server/
-│   │
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── utils/
-│   │
-│   ├── server.js
-│   └── package.json
-│
-├── .gitignore
+├── client/                 # React application
+│   └── src/
+│       ├── api/            # Axios and authentication helpers
+│       ├── component/      # Common, layout, product, and search components
+│       ├── features/       # Redux slices and API requests
+│       ├── pages/          # Application pages
+│       └── routes/         # Route definitions and guards
+├── server/                 # Express API
+│   └── src/
+│       ├── controllers/
+│       ├── middleware/
+│       ├── models/
+│       ├── routes/
+│       └── utils/
+├── ml-service/             # Local FastAPI and ML training/inference code
+│   └── app/
+│       ├── embeddings.py
+│       ├── fashion_classifier.py
+│       ├── main.py
+│       └── train_fashion_classifier.py
+├── DEPLOYMENT.md
 └── README.md
 ```
 
----
-
-# Setup & Installation
-
 ## Prerequisites
 
-Make sure you have the following installed:
-
-- [Node.js](https://nodejs.org/)
-- npm
-- MongoDB
+- Node.js 20 or later
+- Python 3.10–3.12
+- MongoDB Atlas or a local MongoDB instance
+- Cloudinary account
 - Git
 
----
+## Local setup
 
-## 1. Clone the Repository
-
-```bash
-git clone <YOUR_REPOSITORY_URL>
-```
+Clone the repository and install each service's dependencies:
 
 ```bash
+git clone <repository-url>
 cd BarterX
 ```
 
----
+### 1. Configure the Express API
 
-## 2. Install Frontend Dependencies
-
-```bash
-cd client
-npm install
-```
-
-Start the frontend development server:
-
-```bash
-npm run dev
-```
-
----
-
-## 3. Install Backend Dependencies
-
-Open a new terminal and navigate to the backend:
-
-```bash
-cd server
-npm install
-```
-
----
-
-## 4. Configure Environment Variables
-
-Create a `.env` file inside the `server` directory:
+Copy `server/.env.example` to `server/.env` and set the required values:
 
 ```env
 PORT=5000
 CLIENT_ORIGIN=http://localhost:5173
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
+JWT_SECRET=your_long_random_jwt_secret
 CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
+CLOUDINARY_API_KEY=your_cloudinary_key
+CLOUDINARY_API_SECRET=your_cloudinary_secret
+ML_SERVICE_URL=http://127.0.0.1:8000
 ```
 
-Replace the values with your local or production configuration.
-
-Create `client/.env` from `client/.env.example` when the API or Socket.IO server is not hosted at `http://localhost:5000`.
-
-See [DEPLOYMENT.md](DEPLOYMENT.md) for the required production and E2E-test environment variables.
-
-> **Important:** Never commit your `.env` file or private credentials to GitHub.
-
----
-
-## 5. Start the Backend
+Install and start the API:
 
 ```bash
+cd server
+npm install
 npm run dev
 ```
 
-The backend will start on the configured port.
+The API runs at `http://localhost:5000`.
 
----
+### 2. Start the ML service
 
-## Running the Project
+Open a second terminal:
 
-Once both frontend and backend servers are running:
-
-```text
-Frontend  →  React + Vite
-Backend   →  Node.js + Express
-Database  →  MongoDB
+```powershell
+cd ml-service
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+uvicorn app.main:app --reload
 ```
 
-Open the frontend URL provided by Vite in your browser.
+The ML service runs at `http://127.0.0.1:8000`. On its first start, Transformers downloads the CLIP model. This can take several minutes and requires an internet connection.
 
----
+Check it with:
+
+```text
+http://127.0.0.1:8000/health
+```
+
+### 3. Start the React client
+
+Open a third terminal:
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+Open the Vite URL shown in the terminal, normally `http://localhost:5173`.
+
+## Visual search workflow
+
+1. A seller creates or updates a product with images.
+2. Express sends each uploaded image to `POST /embed` on the ML service.
+3. The CLIP embedding is saved with the MongoDB product record.
+4. A buyer takes/uploads a photo using **Search by Photo**.
+5. `POST /api/products/visual-search` creates an embedding for the query image and ranks active products by cosine similarity.
+6. The client displays the matching BarterX product cards.
+
+For visual search to return a listing, that listing must have been created or had its images replaced while `ML_SERVICE_URL` was configured.
+
+## ML learning assets
+
+`ml-service` also contains optional training scripts used for the fashion category classifier:
+
+```text
+prepare_fashion_data.py       # Validates image/label pairs
+split_fashion_data.py         # Creates train and validation CSV files
+evaluate_fashion_baseline.py  # Measures zero-shot CLIP accuracy
+train_fashion_classifier.py   # Trains a linear classifier on frozen CLIP embeddings
+```
+
+The classifier predicts `Apparel`, `Accessories`, `Footwear`, or `Personal Care`. It is separate from general visual product search, which uses image similarity and supports all marketplace categories.
+
+## Available scripts
+
+| Directory | Command | Purpose |
+| --- | --- | --- |
+| `client` | `npm run dev` | Start the Vite development server |
+| `client` | `npm run build` | Build the production client |
+| `client` | `npm run lint` | Run ESLint |
+| `server` | `npm run dev` | Start Express with Nodemon |
+| `server` | `npm start` | Start Express in production mode |
+| `server` | `npm run test:e2e` | Run configured end-to-end tests |
+| `server` | `npm run migrate:barter-conversations` | Run the barter conversation migration |
+
+## Environment and deployment
+
+Never commit real `.env` files, JWT secrets, database connection strings, Cloudinary credentials, or user data. See [DEPLOYMENT.md](DEPLOYMENT.md) for production variables, deployment order, E2E testing, and ML-service hosting guidance.
 
 ## Author
 
-**Om Shete**
-
-### BarterX
-
-> **Don't buy it. Barter it.**
-
----
+Om Shete
